@@ -67,6 +67,10 @@ div#posts-en ul {
   margin-left: -20px;
 }
 
+div#posts-en li {
+  margin-bottom: 15px;
+}
+
 div#posts-pt {
   width: 280px;
   padding-right: 20px;
@@ -74,6 +78,10 @@ div#posts-pt {
 
 div#posts-pt ul {
   margin-left: -20px;
+}
+
+div#posts-pt li {
+  margin-bottom: 15px;
 }
 
 /*---------------------------------------------------------------------------*/
