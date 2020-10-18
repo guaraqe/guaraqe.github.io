@@ -55,6 +55,7 @@ div#welcome {
 
 div#posts {
   display: flex;
+  text-align: left;
 }
 
 div#posts-en {
