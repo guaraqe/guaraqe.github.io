@@ -1,0 +1,160 @@
+body {
+  font-family: "PT Serif", serif;
+  color: #333332;
+  font-size: 16px;
+}
+
+div#header {
+  height: 100%;
+  position:fixed;
+  width: 250px;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+div#header div#logo {
+  text-align: center;
+}
+
+div#header div#logo a {
+  display: block;
+  padding: 15px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+div#header div#navigation {
+  text-align: center;
+  padding-top: 20px;
+}
+
+div#header div#navigation a {
+  font-size: 20px;
+  padding: 8px;
+  margin: 0 auto;
+  display: block;
+  transition: 0.3s
+}
+
+div#content {
+  padding-top: 10px;
+  margin-left: 300px;
+  margin-right: auto;
+  width: 600px;
+  text-align: justify;
+}
+
+div#welcome {
+  display: flex;
+}
+
+/*---------------------------------------------------------------------------*/
+
+div#posts {
+  display: flex;
+}
+
+div#posts-en {
+  width: 280px;
+  padding-right: 20px;
+}
+
+div#posts-en ul {
+  margin-left: -20px;
+}
+
+div#posts-pt {
+  width: 280px;
+  padding-right: 20px;
+}
+
+div#posts-pt ul {
+  margin-left: -20px;
+}
+
+/*---------------------------------------------------------------------------*/
+
+div#logo a {
+  color: #333332;
+  float: left;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+div#header #navigation {
+  text-align: right;
+}
+
+div#header #navigation a {
+  color: #333332;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 12px;
+  text-decoration: none;
+}
+
+div#footer {
+  border-top: solid 2px black;
+  color: #555;
+  font-size: 12px;
+  width:600px;
+  margin-left: 300px;
+  margin-top: 30px;
+  padding: 12px 0px 12px 0px;
+  text-align: right;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+div.info {
+  color: #555;
+  font-size: 14px;
+  font-style: italic;
+}
+
+pre {
+  line-height: 140%;
+  white-space: pre;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+}
+
+code {
+  font-family: "DejaVu Sans Mono", monospace;
+  font-size: 90%;
+  line-height: 140%;
+  white-space: pre;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  background: #efefef;
+}
+
+#content code {
+  padding: 0.025em 0.1em;
+}
+
+#content pre code {
+  padding: 0.5em 1em;
+  display: block;
+}
+
+.display-math {
+  display: block;
+  margin: auto !important;
+}
+
+a {
+  color: #333332;
+}

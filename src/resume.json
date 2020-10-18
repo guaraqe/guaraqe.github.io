@@ -1,0 +1,114 @@
+{
+  "basics": {
+    "name": "Juan Raphael Diaz Simões",
+    "label": "Software Engineer",
+    "picture": "",
+    "email": "mail@guaraqe.gq",
+    "website": "http://guaraqe.gq",
+    "location": {
+      "city": "Paris",
+      "countryCode": "FR"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "guaraqe",
+        "url": "https://github.com/guaraqe"
+      }
+    ]
+  },
+  "work": [
+    {
+      "company": "Tweag I/O",
+      "position": "Software Engineer",
+      "website": "https://tweag.io",
+      "startDate": "2018-09-01"
+    },
+    {
+      "company": "PMC - École Polytechnique",
+      "position": "Research Engineer",
+      "website": "https://pmc.polytechnique.fr",
+      "startDate": "2018-02-01",
+      "endDate": "2018-08-31"
+    },
+    {
+      "company": "BioEmergences - CNRS Gif-sur-Yvette",
+      "position": "Research Engineer",
+      "website": "https://bioemergences.eu",
+      "startDate": "2017-02-01",
+      "endDate": "2018-08-31"
+    }
+  ],
+  "publications": [
+    {
+      "name": "Publication",
+      "publisher": "Company",
+      "releaseDate": "2014-10-01",
+      "website": "http://publication.com",
+      "summary": "Description..."
+    }
+  ],
+  "education": [
+    {
+      "institution": "Université Paris-Saclay",
+      "area": "Complex Systems Science",
+      "studyType": "PhD Thesis",
+      "startDate": "2013-10-01",
+      "endDate": "2017-09-30"
+    },
+    {
+      "institution": "École Polytechnique",
+      "area": "Complex Systems Science",
+      "studyType": "Master's degree",
+      "startDate": "2012-07-01",
+      "endDate": "2013-06-30"
+    },
+    {
+      "institution": "École Polytechnique",
+      "area": "Sciences",
+      "studyType": "Ingénieur Polytechnicien",
+      "startDate": "2010-01-01",
+      "endDate": "2012-06-30"
+    },
+    {
+      "institution": "Universidade de São Paulo",
+      "area": "Physics",
+      "studyType": "Bachelor Degree",
+      "startDate": "2007-01-01",
+      "endDate": "2011-01-01"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Web Development",
+      "level": "Master",
+      "keywords": [
+        "HTML",
+        "CSS",
+        "Javascript"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Portuguese",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "English",
+      "fluency": "Fluent"
+    },
+    {
+      "language": "French",
+      "fluency": "Fluent"
+    },
+    {
+      "language": "Spanish",
+      "fluency": "Intermediate"
+    },
+    {
+      "language": "Russian",
+      "fluency": "Beginner"
+    }
+  ]
+}
