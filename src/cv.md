@@ -15,7 +15,7 @@ title: CV
   **Software engineer.**
   Development of software as a consultant for both large and small companies
   using various technologies, but especially Haskell, Nix and Terraform.
-  Edition and writing of posts for the company blog.
+  Edition and writing of posts for the [company blog](https://www.tweag.io/blog).
 
 - **Turin Polytechnic University in Tashkent** -- *2020/09 - Present* <br>
   **Physics lecturer.**
@@ -49,8 +49,8 @@ title: CV
 - **PhD in Complex Systems Science -- Université Paris-Saclay** -- 2017/10 <br>
   *Thesis*: A mathematical approach to embryonic morphogenesis based on spatio-temporal cell lineages <br>
   *Supervisors*: Denis Grebenkov, Paul Bourgine and Nadine Peyriéras <br>
-  The thesis can be found in [HAL](https://hal.archives-ouvertes.fr/tel-01689773),
-  and the resulting sofware in [GitHub](https://github.com/guaraqe/lineageflow).
+  The thesis can be found on [HAL](https://hal.archives-ouvertes.fr/tel-01689773),
+  and the resulting sofware on [GitHub](https://github.com/guaraqe/lineageflow).
 
 - **Masters in Complex Systems Science -- École Polytechnique** -- 2013/07 <br>
   *Thesis*: Generalized Langevin equations driven by fractional Brownian noise <br>
