@@ -11,13 +11,13 @@ title: CV
 
 ## Work Experience
 
-- **Tweag I/O** -- *2018/09 - Now* <br>
+- **Tweag I/O** -- *2018/09 - Present* <br>
   **Software engineer.**
   Development of software as a consultant for both large and small companies
   using various technologies, but especially Haskell, Nix and Terraform.
   Edition and writing of posts for the company blog.
 
-- **Turin Polytechnic University in Tashkent** -- *2020/09 - Now* <br>
+- **Turin Polytechnic University in Tashkent** -- *2020/09 - Present* <br>
   **Physics lecturer.**
   Teaching of fundamental physics courses to the university's engineering
   students.
