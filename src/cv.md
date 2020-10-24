@@ -6,6 +6,7 @@ title: CV
 
 - **Name**: Juan Raphael Diaz Simões
 - **Nationality**: Brazilian
+- **Location**: Tashkent, Uzbekistan
 - **Birth**: September 5th 1989, in São Paulo, Brazil
 - **Contact**: `mail(at)guaraqe.gq`.
 
