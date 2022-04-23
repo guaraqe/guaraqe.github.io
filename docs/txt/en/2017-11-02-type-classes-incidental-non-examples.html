@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Guaraqe's Nest - Haskell type classes: incidental non-examples</title>
+        <link rel="stylesheet" type="text/css" href="../../css/default.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/syntax.css" />
+        <link href="http://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet" type="text/css" />
+        <link href="http://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../../">Guaraqe's Nest</a>
+                <img src="../../img/guara_tri.png" style="width: 180px; margin: auto; display: block;" />
+            </div>
+            <div id="navigation">
+                <a href="../../">Home</a>
+                <a href="../../cv.html">CV</a>
+                <a href="../../projects.html">Projects</a>
+                <a href="../../archive.html">Posts</a>
+            </div>
+        </div>
+
+        <div id="content">
+            
+               <h1>Haskell type classes: incidental non-examples</h1>
+            
+
+            <div class="info">
+    Posted on November  2, 2017
+</div>
+
+<p>This post is a tour of some Haskell type classes, and why some types don’t fit them, but in a non-fundamental way. That means that one could change the encoding of these type classes in order to make these types fit into them, without changing their mathematical meaning.</p>
+<p>This list will evolve in time.</p>
+<hr />
+<h1 id="functor">Functor</h1>
+<p>The most common type class on Haskell, inspired by the category theory <a href="https://en.wikipedia.org/wiki/Functor">concept</a> with same name. In Haskell all functors are endofunctors, that is, they have the same domain and target categories.</p>
+<pre><code>class Functor f where
+  fmap :: (a -&gt; b) -&gt; f a -&gt; f b</code></pre>
+<h2 id="non-examples">Non-examples</h2>
+<p>The most common non-example is <code>Set</code>. A reason for this is that <code>Set</code> contains only unique elements, following their <code>Eq</code> instance, but Haskell functions are not required to follow this instance. That is, <code>x == y</code> does not imply <code>f x == f y</code>, which is the property known as <a href="https://en.wikipedia.org/wiki/Equality_(mathematics)#Equality_in_mathematical_logic">Leibniz equality</a>. If we define for any type a newtype:</p>
+<pre><code>newtype Same a = Same { getSame :: a }
+
+instance Eq (Same a) where
+  _ == _ = True
+
+instance Ord (Same a) where
+  _ &lt;= _ = True
+</code></pre>
+<p>then it easy to see that <code>Set.map getSame . Set.map Same</code> is not the same as <code>Set.map (getSame . Same) = Set.map id = id</code>.</p>
+<p>Another reason for <code>Set</code> not to fit the class is its <code>Ord</code> restriction on elements. To see why this is a problem, we can write the full type signature for <code>fmap</code>, with explicit quantification:</p>
+<pre><code>forall a b . Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b</code></pre>
+<p>which shows that there is no place for restrictions in this signature.</p>
+<p>Other examples of this kind are the <code>Storable</code> and <code>Unbox</code> variants of <code>Vector</code> from the <a href="https://hackage.haskell.org/package/vector">vector</a> package. These limitations make numerical applications in Haskell unpleasant, since they often depend on constraints. The most well known library that tries to solve this problem is <a href="https://github.com/mikeizbicki/subhask">SubHask</a>, and I have my own personal take on the subject <a href="https://github.com/guaraqe/constraint-classes">here</a>.</p>
+<hr />
+<h1 id="applicative">Applicative</h1>
+<p>The class is defined as follows:</p>
+<pre><code>class Functor f =&gt; Applicative f where
+  pure :: a -&gt; f a
+  &lt;*&gt; :: f (a -&gt; b) -&gt; f a -&gt; f b</code></pre>
+<p>Both functions are related to the concept of <a href="https://en.wikipedia.org/wiki/Monoidal_category">monoidal categories</a> in different ways. The function <code>pure</code> is related to the concept of <a href="https://ncatlab.org/nlab/show/tensorial+strength">tensorial strength</a>, while <code>&lt;*&gt;</code> is related to <a href="https://ncatlab.org/nlab/show/monoidal+functor">lax monoidal functors</a>.</p>
+<p>It is worth noting that the property of having <code>&lt;*&gt;</code> is equivalent to have a function <code>zip :: (f a, f b) -&gt; f (a,b)</code>, that is, pairs of functor images are mapped to functor images of pairs.</p>
+<h2 id="non-examples-1">Non-examples</h2>
+<p>A common type that is <code>Functor</code> but not <code>Applicative</code> is <code>Map k</code>. <code>Map k a</code> is semantically a function <code>k -&gt; Maybe a</code>, the composition of <code>(k -&gt;)</code> and <code>Maybe</code>, both <code>Applicatives</code>. Since for <code>(k -&gt;)</code> we have <code>pure = const</code> and for <code>Maybe</code> we have <code>pure = Just</code>, we would need to have values for all the keys, which may be infinite in number.</p>
+<p>However, <code>&lt;*&gt;</code> is perfectly implementable, and could be defined as <code>instersectWith ($)</code>, which is equivalent to the composition of <code>&lt;*&gt;</code> for <code>(k -&gt;)</code> and <code>Maybe</code>.</p>
+<p>Another similar example are <code>ZipVector</code>s, which are vectors where <code>(&lt;*&gt;) = zipWith ($)</code>. For this instance to be lawful, one would need <code>pure</code> to produce an infinite vector, which is not possible. This is however possible for lists and is implemented in <a href="http://hackage.haskell.org/package/base-4.9.1.0/docs/Control-Applicative.html#t:ZipList">Control.Applicative</a>.</p>
+<p>A solution to this problem is to split the <code>Applicative</code> class in two parts. You can find these parts as <code>Pointed</code> in <a href="https://hackage.haskell.org/package/pointed">pointed</a> and <code>Apply</code> in <a href="https://hackage.haskell.org/package/semigroupoids">semigroupoids</a>. This separation has been also implemented in <a href="https://pursuit.purescript.org/packages/purescript-prelude/3.1.0/docs/Control.Apply">purescript</a>.</p>
+
+        </div>
+        <div id="footer">
+            Site generated by
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+        </div>
+    </body>
+</html>

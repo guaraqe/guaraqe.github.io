@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Guaraqe's Nest - Haskell type classes: a compilation of laws</title>
+        <link rel="stylesheet" type="text/css" href="../../css/default.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/syntax.css" />
+        <link href="http://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet" type="text/css" />
+        <link href="http://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../../">Guaraqe's Nest</a>
+                <img src="../../img/guara_tri.png" style="width: 180px; margin: auto; display: block;" />
+            </div>
+            <div id="navigation">
+                <a href="../../">Home</a>
+                <a href="../../cv.html">CV</a>
+                <a href="../../projects.html">Projects</a>
+                <a href="../../archive.html">Posts</a>
+            </div>
+        </div>
+
+        <div id="content">
+            
+               <h1>Haskell type classes: a compilation of laws</h1>
+            
+
+            <div class="info">
+    Posted on November  1, 2017
+</div>
+
+<p>This post is a reference for type classes’ laws. It will be expanded with time.</p>
+<hr />
+<h1 id="functor">Functor</h1>
+<pre><code>class Functor f where
+  fmap :: (a -&gt; b) -&gt; f a -&gt; f b</code></pre>
+<h2 id="laws">Laws</h2>
+<ul>
+<li><code>fmap id = id</code></li>
+<li><code>fmap f . fmap g = fmap (f . g)</code></li>
+</ul>
+<hr />
+<h1 id="applicative">Applicative</h1>
+<pre><code>class Functor f =&gt; Applicative f where
+  pure :: a -&gt; f a
+  &lt;*&gt; :: f (a -&gt; b) -&gt; f a -&gt; f b</code></pre>
+<p>An alternative definition could be:</p>
+<pre><code>class Functor f =&gt; Applicative f where
+  pure :: a -&gt; f a
+  zip :: (f a, f b) -&gt; f (a, b)</code></pre>
+<h2 id="laws-1">Laws</h2>
+<ul>
+<li><code>pure id &lt;*&gt; v = v</code></li>
+<li><code>pure f &lt;*&gt; pure x = pure (f x)</code></li>
+<li><code>f &lt;*&gt; pure x = pure ($ x) &lt;*&gt; f</code></li>
+<li><code>pure (.) &lt;*&gt; x &lt;*&gt; y &lt;*&gt; z = x &lt;*&gt; (y &lt;*&gt; z)</code></li>
+</ul>
+<p>or:</p>
+<ul>
+<li><code>zip (pure x) (pure y) = pure (x,y)</code></li>
+<li><code>zip (pure x) y = fmap (x,) y</code></li>
+<li><code>zip x (pure y) = fmap (,y) x</code></li>
+<li><code>(\(a,(b,c)) -&gt; ((a,b),c)) $ zip x (zip y z) = zip (zip x y) z</code></li>
+</ul>
+<hr />
+<h1 id="monad">Monad</h1>
+<pre><code>class Applicative m =&gt; Monad m where
+  (&gt;&gt;=) :: m a -&gt; (a -&gt; m b) -&gt; m b</code></pre>
+<p>An alternative definition could be:</p>
+<pre><code>class Applicative m =&gt; Monad m where
+  (&gt;=&gt;) :: (a -&gt; m b) -&gt; (b -&gt; m c) -&gt; (a -&gt; m c)</code></pre>
+<h2 id="laws-2">Laws</h2>
+<ul>
+<li><code>pure a &gt;&gt;= f = f a</code></li>
+<li><code>x &gt;&gt;= pure = x</code></li>
+<li><code>(m &gt;&gt;= f) &gt;&gt;= g = m &gt;&gt;= (\x -&gt; f x &gt;&gt;= g)</code></li>
+</ul>
+<p>or:</p>
+<ul>
+<li><code>pure &gt;=&gt; f = f</code></li>
+<li><code>f &gt;=&gt; pure = f</code></li>
+<li><code>f &gt;=&gt; (g &gt;=&gt; h) = (f &gt;=&gt; g) &gt;=&gt; h</code></li>
+</ul>
+<hr />
+<h1 id="alternative">Alternative</h1>
+<pre><code>class Applicative f =&gt; Alternative f where
+  empty :: f a
+  (&lt;|&gt;) :: f a -&gt; f a -&gt; f a</code></pre>
+<h2 id="laws-3">Laws</h2>
+<ul>
+<li><code>empty &lt;|&gt; x = x</code></li>
+<li><code>x &lt;|&gt; empty = x</code></li>
+<li><code>x &lt;|&gt; (y &lt;|&gt; z) = (x &lt;|&gt; y) &lt;|&gt; z</code></li>
+</ul>
+<p>and:</p>
+<ul>
+<li><code>(f &lt;|&gt; g) &lt;*&gt; a = (f &lt;*&gt; a) &lt;|&gt; (g &lt;|&gt; a)</code></li>
+<li><code>empty &lt;*&gt; a = empty</code></li>
+<li><code>f &lt;$&gt; (a &lt;|&gt; b) = (f &lt;$&gt; a) &lt;|&gt; (f &lt;$&gt; b)</code></li>
+<li><code>f &lt;$&gt; empty = empty</code></li>
+</ul>
+<hr />
+<h1 id="foldable">Foldable</h1>
+<pre><code>class Foldable f where
+  foldMap :: Monoid m =&gt; (a -&gt; m) -&gt; f a -&gt; m</code></pre>
+<h2 id="laws-4">Laws</h2>
+<p>There are no laws. However, when it is also a functor, it is expected that:</p>
+<ul>
+<li><code>foldMap f . fmap g = foldMap (f . g)</code></li>
+</ul>
+<p>also, if <code>t</code> is <em>monoid morphism</em>, that is:</p>
+<pre><code>t mempty = mempty
+t (a &lt;&gt; b) = t a &lt;&gt; t b</code></pre>
+<p>it is expected that:</p>
+<ul>
+<li><code>t . foldMap f = foldMap (t . f)</code></li>
+</ul>
+<hr />
+<h1 id="traversable">Traversable</h1>
+<pre><code>class (Functor t, Foldable t) =&gt; Traversable t where
+  traverse :: Applicative f =&gt; (a -&gt; f b) -&gt; t a -&gt; f (t b)</code></pre>
+<h2 id="laws-5">Laws</h2>
+<p>Let <code>t</code> be an <em>applicative transformation</em>, that is:</p>
+<pre><code>t (pure a) = pure a
+t (a &lt;*&gt; b) = t a &lt;*&gt; t b</code></pre>
+<p>then:</p>
+<ul>
+<li><code>t . traverse f = traverse (t . f)</code></li>
+<li><code>traverse Identity = Identity</code></li>
+<li><code>traverse (Compose . fmap g . f) = Compose . fmap (traverse g) . traverse f</code></li>
+</ul>
+<p>and:</p>
+<ul>
+<li><code>traverse (Identity . f) = Identity . fmap f</code></li>
+<li><code>traverse (Const . f) = Const . foldMap f</code></li>
+</ul>
+
+        </div>
+        <div id="footer">
+            Site generated by
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+        </div>
+    </body>
+</html>

@@ -8,7 +8,7 @@ import Data.Default (def)
 
 config = def
   { providerDirectory = "src"
-  , destinationDirectory = "build"
+  , destinationDirectory = "docs"
   }
 
 main :: IO ()
