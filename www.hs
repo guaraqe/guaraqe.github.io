@@ -15,7 +15,7 @@ main :: IO ()
 main =
   hakyllWith config $ do
 
-    match ("img/*" .||. "txt/en/img/*" .||. "txt/pt/img/*" .||. "data/*") $ do
+    match ("img/*" .||. "txt/en/img/*" .||. "txt/pt/img/*" .||. "data/**") $ do
       route idRoute
       compile copyFileCompiler
 

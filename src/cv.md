@@ -14,11 +14,23 @@ title: CV
 
 - **Tweag I/O** -- *2018/09 - Present* <br>
   **Software engineer.**
-  Development of software as a consultant for both large and small companies
-  using various technologies, but especially Haskell, Nix and Terraform.
-  Edition and writing of posts for the [company blog](https://www.tweag.io/blog).
+  I work as a software engineering consultant for Tweag, mainly with Haskell,
+  Nix and functional programming-related tech stacks. I have more than 5 years
+  of experience in different environments and companies, ranging from academia
+  to banking and logistics. I am the project lead for my latest mission. I am
+  an editor for the [company technical blog](https://www.tweag.io/blog).
 
-- **Turin Polytechnic University in Tashkent** -- *2020/09 - Present* <br>
+- **Tashkent State Dental Institute** -- *2022/02 - Present* <br>
+  **Lecturer.**
+  Teaching of physics, mathematics and informatics courses to the university's
+  medical and dentistry students.
+
+- **Tashkent State Dental Institute** -- *2020/11 - 2021/11* <br>
+  **Guest Lecturer.**
+  Guest lectures on physics related to the medical and biological sciences to
+  the university's medical and dentistry students.
+
+- **Turin Polytechnic University in Tashkent** -- *2020/09 - 2021/08* <br>
   **Physics lecturer.**
   Teaching of fundamental physics courses to the university's engineering
   students.
@@ -55,6 +67,7 @@ title: CV
 
 - **Masters in Complex Systems Science -- École Polytechnique** -- 2013/07 <br>
   *Thesis*: Generalized Langevin equations driven by fractional Brownian noise <br>
+  The thesis can be found on [here](data/internship_report.pdf).
 
 - **Polytechnic Engineer -- École Polytechnique** -- 2011/07 <br>
   Double diploma between the University of São Paulo in Brazil, and the École
