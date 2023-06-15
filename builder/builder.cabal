@@ -1,19 +1,31 @@
-cabal-version:      3.4
-name:               builder
-version:            0.1.0.0
-license:            BSD-3-Clause
-license-file:       LICENSE
-author:             Juan Raphael Diaz Simões
-maintainer:         juanrapha@gmail.com
-build-type:         Simple
-extra-doc-files:    CHANGELOG.md
+cabal-version: 3.4
+name:          builder
+version:       0.1.0.0
+license:       BSD-3-Clause
+license-file:  LICENSE
+author:        Juan Raphael Diaz Simões
+maintainer:    juanrapha@gmail.com
+build-type:    Simple
 
 common warnings
-    ghc-options: -Wall
+  ghc-options: -Wall
 
 executable builder
-    import:           warnings
-    main-is:          Main.hs
-    build-depends:    base
-    hs-source-dirs:   app
-    default-language: GHC2021
+  import:           warnings
+  main-is:          Main.hs
+  other-modules:    Blog, Book
+  build-depends:
+    , aeson
+    , base
+    , containers
+    , lens
+    , lens-aeson
+    , pandoc
+    , shake
+    , slick
+    , text
+    , time
+    , unordered-containers
+
+  hs-source-dirs:   app
+  default-language: GHC2021

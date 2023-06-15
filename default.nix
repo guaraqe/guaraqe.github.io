@@ -24,6 +24,8 @@ let
         withHoogle = true;
         buildInputs =
           [
+            # Site
+            python3Packages.livereload
             nodePackages.npm
             nodePackages.node2nix
             # Haskell
