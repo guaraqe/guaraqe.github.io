@@ -18,14 +18,15 @@
         <h1 class="text-3xl mb-5">
             {{title}}
         </h1>
-        <div class="mb-5">{{date}}</div>
 
         {{{content}}}
+
+        {{#index}}
+          {{{index}}}
+        {{/index}}
 
         <br>
         <br>
 </article>
 
 </div>
-
-{{>site/templates/footer.html}}

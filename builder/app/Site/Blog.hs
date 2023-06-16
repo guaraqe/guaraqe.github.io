@@ -2,24 +2,23 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module Blog
-  ( buildBlog
-  ) where
+module Site.Blog
+  ( buildBlog,
+  )
+where
 
-import Control.Lens
+import Control.Monad (void)
 import Data.Aeson as A
-import Data.Aeson.Lens
 import Data.Text qualified as T
 import Data.Time
-import Control.Monad (void)
 import Development.Shake
 import Development.Shake.Classes
 import Development.Shake.FilePath
 import Development.Shake.Forward
 import GHC.Generics (Generic)
+import Site.Json
+import Site.Pandoc
 import Slick
-import Slick.Pandoc
-import Text.Pandoc
 
 buildBlog :: FilePath -> FilePath -> Action ()
 buildBlog inputFolder outputFolder = do
@@ -68,23 +67,19 @@ buildPosts inputFolder outputFolder = do
   forP pPaths (buildPost outputFolder)
 
 buildPost :: FilePath -> FilePath -> Action Post
-buildPost outputFolder srcPath = cacheAction ("build" :: T.Text, srcPath) $ do
-  liftIO $ print srcPath
+buildPost outputFolder srcPath = cacheAction ("post" :: T.Text, srcPath) $ do
   postContent <- T.pack <$> readFile' srcPath
-  let readOpts =
-        def
-          { readerExtensions = pandocExtensions
-          }
-      writeOpts = def
-  postData <- markdownToHTMLWithOpts readOpts writeOpts postContent
+  (pandoc, meta) <- readMarkdownAndMeta postContent
+  postData <- writeHtmlAndMeta pandoc meta
+
 
   let postUrl = takeFileName $ srcPath -<.> "html"
       date = prefixToDate postUrl
 
   let fullPostData =
-        _Object . at "date" ?~ String (T.pack (showGregorian date)) $
-          _Object . at "url" ?~ String (T.pack postUrl) $
-            postData
+        setObjectAttribute "date" (showGregorian date)
+          . setObjectAttribute "url" postUrl
+          $ postData
 
   template <- compileTemplate' "site/templates/post.html"
 

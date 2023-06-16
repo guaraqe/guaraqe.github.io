@@ -13,6 +13,12 @@ serve: ## Serve the website with live reload.
 
 .PHONY: serve
 
+clean: ## Remove the artifacts
+	rm -rf .shake
+	rm -rf docs
+
+.PHONY: clean
+
 ################################################################################
 # Haskell development
 

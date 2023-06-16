@@ -8,7 +8,8 @@ import Control.Monad
 import Development.Shake
 import Development.Shake.FilePath
 import Development.Shake.Forward
-import Blog
+import Site.Blog
+import Site.Book
 
 outputFolder :: FilePath
 outputFolder = "docs/"
@@ -25,6 +26,10 @@ copyStaticFiles = do
 buildRules :: Action ()
 buildRules = do
   buildBlog "site/posts" (outputFolder </> "posts")
+  buildBook
+    outputFolder
+    "/home/juan/courses/tdsi/statistics-book"
+    ("courses" </> "statistics")
   copyStaticFiles
 
 -- Kick it all off
@@ -33,7 +38,6 @@ main = do
   let shOpts =
         forwardOptions $
           shakeOptions
-            { shakeVerbosity = Chatty,
-              shakeLintInside = ["site"]
+            { shakeLintInside = ["site"]
             }
   shakeArgsForward shOpts buildRules

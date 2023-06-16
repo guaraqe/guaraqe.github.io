@@ -13,10 +13,18 @@ common warnings
 executable builder
   import:           warnings
   main-is:          Main.hs
-  other-modules:    Blog, Book
+  other-modules:
+    Site.Blog
+    Site.Book
+    Site.Html
+    Site.Json
+    Site.Pandoc
+
   build-depends:
     , aeson
     , base
+    , blaze-html
+    , blaze-markup
     , containers
     , lens
     , lens-aeson
