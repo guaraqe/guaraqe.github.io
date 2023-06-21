@@ -34,6 +34,9 @@ let
             localHaskellPackages.ghcid
             localHaskellPackages.ormolu
             localHaskellPackages.cabal-fmt
+            # Latex
+            texlive.combined.scheme-medium
+            imagemagick
           ];
       };
 in

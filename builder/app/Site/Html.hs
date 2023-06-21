@@ -18,7 +18,7 @@ addClasses' html =
   case html of
     Parent tag _ _ _ ->
       case getText tag of
-        "a" -> html ! A.class_ "link"
+        "a" -> html ! A.class_ "link link-hover text-zinc-600"
         "ul" -> html ! A.class_ "list-disc list-outside space-y-1 pl-5"
         "h1" -> html ! A.class_ "text-2xl mt-5 mb-5"
         "h2" -> html ! A.class_ "text-xl mt-5 mb-5"

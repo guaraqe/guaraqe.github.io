@@ -11,9 +11,9 @@ where
 
 import Control.Monad (forM, void, when)
 import Data.Aeson
+import Data.List qualified as L
 import Data.String (fromString)
 import Data.Text qualified as T
-import Data.List qualified as L
 import Development.Shake
 import Development.Shake.Classes
 import Development.Shake.FilePath
@@ -127,7 +127,5 @@ buildIndexHtml Section {..} =
 
 addTitleNumbers :: [Int] -> Value -> Value
 addTitleNumbers numbers =
-  let
-    prefix = L.intercalate "." (fmap show numbers) <> " "
-  in
-    overObjectAttribute "title" (prefix <>)
+  let prefix = L.intercalate "." (fmap show numbers) <> " "
+   in overObjectAttribute "title" (prefix <>)

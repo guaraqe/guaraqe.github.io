@@ -26,6 +26,8 @@ executable builder
     , blaze-html
     , blaze-markup
     , containers
+    , latex-formulae-image
+    , latex-formulae-pandoc
     , lens
     , lens-aeson
     , pandoc
