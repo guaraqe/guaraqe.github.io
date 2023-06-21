@@ -13,6 +13,7 @@ import Control.Monad (forM, void, when)
 import Data.Aeson
 import Data.String (fromString)
 import Data.Text qualified as T
+import Data.List qualified as L
 import Development.Shake
 import Development.Shake.Classes
 import Development.Shake.FilePath
@@ -29,7 +30,14 @@ import Text.Blaze.Html5.Attributes qualified as A
 
 buildBook :: FilePath -> FilePath -> FilePath -> Action ()
 buildBook outputFolder inputFolder outputPath = do
-  _ <- buildSection outputFolder inputFolder outputPath
+  _ <-
+    buildSection
+      SectionParams
+        { outputFolder,
+          inputFolder,
+          outputPath,
+          number = []
+        }
   pure ()
 
 --------------------------------------------------------------------------------
@@ -43,16 +51,28 @@ data Section = Section
   }
   deriving (Generic, Eq, Ord, Show, FromJSON, ToJSON, Binary)
 
-buildSection :: FilePath -> FilePath -> FilePath -> Action Section
-buildSection outputFolder inputFolder outputPath = do
+data SectionParams = SectionParams
+  { inputFolder :: FilePath,
+    outputFolder :: FilePath,
+    outputPath :: FilePath,
+    number :: [Int]
+  }
+
+buildSection :: SectionParams -> Action Section
+buildSection SectionParams {..} = do
   -- Build subsections
   subFolders <- getDirectoryDirs inputFolder
-  let subsectionFolders = filter (/= "data") subFolders
-  subsections <- forM subsectionFolders $ \subsectionFolder ->
+  let subsectionFolders =
+        zip [1 ..] $
+          filter (/= "data") subFolders
+  subsections <- forM subsectionFolders $ \(subsectionNumber, subsectionFolder) ->
     buildSection
-      outputFolder
-      (inputFolder </> subsectionFolder)
-      (outputPath </> subsectionFolder)
+      SectionParams
+        { inputFolder = (inputFolder </> subsectionFolder),
+          outputFolder,
+          outputPath = (outputPath </> subsectionFolder),
+          number = number <> [subsectionNumber]
+        }
 
   let indexHtml = buildSubsectionsIndexHtml subsections
       index = renderHtml indexHtml
@@ -80,6 +100,7 @@ buildSection outputFolder inputFolder outputPath = do
           setObjectAttribute "url" postUrl
             . setObjectAttribute "subsections" subsections
             . setObjectAttribute "index" index
+            . addTitleNumbers number
             $ postData
 
     template <- compileTemplate' "site/templates/book-section.html"
@@ -103,3 +124,10 @@ buildIndexHtml Section {..} =
       [ H.a ! A.href (fromString url) $ fromString title,
         H.ul $ foldMap buildIndexHtml subsections
       ]
+
+addTitleNumbers :: [Int] -> Value -> Value
+addTitleNumbers numbers =
+  let
+    prefix = L.intercalate "." (fmap show numbers) <> " "
+  in
+    overObjectAttribute "title" (prefix <>)

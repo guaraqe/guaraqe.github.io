@@ -72,7 +72,6 @@ buildPost outputFolder srcPath = cacheAction ("post" :: T.Text, srcPath) $ do
   (pandoc, meta) <- readMarkdownAndMeta postContent
   postData <- writeHtmlAndMeta pandoc meta
 
-
   let postUrl = takeFileName $ srcPath -<.> "html"
       date = prefixToDate postUrl
 

@@ -23,6 +23,7 @@ addClasses' html =
         "h1" -> html ! A.class_ "text-2xl mt-5 mb-5"
         "h2" -> html ! A.class_ "text-xl mt-5 mb-5"
         "p" -> html ! A.class_ "mb-3"
+        "hr" -> html ! A.class_ "mb-3"
         "table" -> html ! A.class_ "table border-collapse mb-3"
         "th" -> html ! A.class_ "border"
         "td" -> html ! A.class_ "border"
