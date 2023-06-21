@@ -2,11 +2,13 @@ _: pkgs:
 
 let
 
+  #latex-formulae-src = ../tmp/latex-formulae;
+
   latex-formulae-src = pkgs.fetchFromGitHub {
     owner = "guaraqe";
     repo = "latex-formulae";
-    rev = "31ea096c55a34f53cbeeadb30a6514e19f4d1c95";
-    sha256 = "sha256-paOJ8q9aJttjwumOA8y47c6SRqvKv+Rj79mgv6TJaZ0=";
+    rev = "8776ea60a47f2ef88376975c0b85c0a149fc6785";
+    sha256 = "sha256-HvLdQIy2ZhQiZH/YxMptsKeRHpoOY29g56Y77upODeE=";
   };
 
   overrides = _: hspkgs: with pkgs.haskell.lib;

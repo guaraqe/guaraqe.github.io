@@ -21,7 +21,6 @@ let
     localHaskellPackages.shellFor
       {
         packages = _: attrValues packages;
-        withHoogle = true;
         buildInputs =
           [
             # Site

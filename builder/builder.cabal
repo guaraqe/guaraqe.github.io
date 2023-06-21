@@ -31,6 +31,7 @@ executable builder
     , lens
     , lens-aeson
     , pandoc
+    , pandoc-crossref
     , shake
     , slick
     , text
