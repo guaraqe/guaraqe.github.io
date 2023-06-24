@@ -23,22 +23,62 @@
     {{>site/templates/header.html}}
 
 <div class="flex justify-center bg-base-100">
-<article class="prose max-w-prose">
-    {{#previousTitle}}
-    <div class="book-navigation-previous">
-      <div class="arrow arrow-left"></div>
-      <a href="{{previousUrl}}">{{previousTitle}}</a>
+<article class="prose max-w-prose mb-5">
+  <div class="book-navigation">
+
+    <div class="book-navigation-parent drawer">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content">
+        <label for="my-drawer">
+          <div class="space-y-1 inline-block">
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+          </div>
+          <b>Index</b>
+        </label>
+      </div>
+      <div class="drawer-side">
+        <label for="my-drawer" class="drawer-overlay"></label>
+           <ul class="menu p-4 h-full bg-base-200 text-base-content">
+            <li>
+             <h1 class="text-xl mb-5">
+                 {{bookTitle}}
+             </h1>
+            </li>
+             {{{bookIndex}}}
+           </ul>
+      </div>
     </div>
-    {{/previousTitle}}
+
+    {{#parentTitle}}
+    <div class="book-navigation-parent">
+      <div class="arrow arrow-up"></div>
+      <a href="{{parentUrl}}">{{parentTitle}}</a>
+      <div class="arrow arrow-up"></div>
+    </div>
+    {{/parentTitle}}
+
+    <div class="book-navigation-section">
+
+       <div class="book-navigation-previous">
+         {{#previousTitle}}
+         <div class="arrow arrow-left"></div>
+         <a href="{{previousUrl}}">{{previousTitle}}</a>
+         {{/previousTitle}}
+       </div>
+
+       <div class="book-navigation-next">
+         {{#nextTitle}}
+         <a href="{{nextUrl}}">{{nextTitle}}</a>
+         <div class="arrow arrow-right"></div>
+         {{/nextTitle}}
+       </div>
+    </div>
+  </div>
 
     {{{content}}}
 
-    {{#nextTitle}}
-    <div class="book-navigation-next">
-      <a href="{{nextUrl}}">{{nextTitle}}</a>
-      <div class="arrow arrow-right"></div>
-    </div>
-    {{/nextTitle}}
 </article>
 </div>
 

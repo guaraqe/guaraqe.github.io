@@ -15,6 +15,7 @@ import Data.Aeson
 import Data.List qualified as L
 import Data.String (fromString)
 import Data.Text qualified as T
+import Data.Text.Lazy qualified as TL
 import Development.Shake
 import Development.Shake.Classes
 import Development.Shake.FilePath
@@ -40,7 +41,10 @@ buildBook outputFolder inputFolder outputPath = do
           number = []
         }
 
-  writeSection outputFolder section
+  let indexHtml = buildSubsectionsIndexHtml section.subsections
+      bookIndex = TL.unpack $ renderHtml indexHtml
+
+  writeSection outputFolder (setBookInfo bookIndex section.title section)
 
 --------------------------------------------------------------------------------
 -- Section
@@ -50,12 +54,24 @@ data Section = Section
     url :: String,
     content :: String,
     subsections :: [Section],
+    parentTitle :: Maybe String,
+    parentUrl :: Maybe String,
     previousTitle :: Maybe String,
     previousUrl :: Maybe String,
     nextTitle :: Maybe String,
-    nextUrl :: Maybe String
+    nextUrl :: Maybe String,
+    bookTitle :: Maybe String,
+    bookIndex :: Maybe String
   }
   deriving (Generic, Eq, Ord, Show, FromJSON, ToJSON, Binary)
+
+setBookInfo :: String -> String -> Section -> Section
+setBookInfo index title section =
+  section
+    { bookTitle = Just title
+    , bookIndex = Just index
+    , subsections = fmap (setBookInfo index title) section.subsections
+    }
 
 writeSection :: FilePath -> Section -> Action ()
 writeSection outputFolder section = do
@@ -63,6 +79,8 @@ writeSection outputFolder section = do
       value = toJSON section
   template <- compileTemplate' "site/templates/book-section.html"
   writeFile' postPath $ T.unpack $ substitute template value
+  forM_ section.subsections $ \subsection ->
+    writeSection outputFolder subsection
 
 data SectionParams = SectionParams
   { inputFolder :: FilePath,
@@ -95,19 +113,6 @@ buildSection SectionParams {..} = do
           number = number <> [subsectionNumber]
         }
 
-  cacheAction ("subsections" :: T.Text, inputFolder) $
-    forM_ (toContext subsections) $ \(mprevious, current, mnext) -> do
-      let withPreviousAndNext = current
-            { previousTitle = fmap (.title) mprevious,
-              previousUrl = fmap (.url) mprevious,
-              nextTitle = fmap (.title) mnext,
-              nextUrl = fmap (.url) mnext
-            }
-
-      liftIO $ print $ withPreviousAndNext.nextUrl
-
-      writeSection outputFolder withPreviousAndNext
-
   let indexHtml = buildSubsectionsIndexHtml subsections
       index = renderHtml indexHtml
 
@@ -136,10 +141,27 @@ buildSection SectionParams {..} = do
             . addTitleNumbers number
             $ postData
 
+    section :: Section <- convert fullPostData
+
+    -- Do subsections first
+    let subsectionsData =
+         flip fmap (toContext subsections) $ \(mprevious, current, mnext) ->
+           current
+                { parentTitle = Just section.title,
+                  parentUrl = Just section.url,
+                  previousTitle = fmap (.title) mprevious,
+                  previousUrl = fmap (.url) mprevious,
+                  nextTitle = fmap (.title) mnext,
+                  nextUrl = fmap (.url) mnext
+                }
+
     template <- compileTemplate' "site/templates/book-section-content.html"
     let content = substitute template fullPostData
 
-    convert $ setObjectAttribute "content" content fullPostData
+    convert .
+      setObjectAttribute "content" content .
+      setObjectAttribute "subsections" subsectionsData $
+        fullPostData
 
 --------------------------------------------------------------------------------
 -- Index
