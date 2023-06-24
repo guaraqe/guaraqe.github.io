@@ -7,8 +7,10 @@ module Site.Html
 where
 
 import Text.Blaze.Html
+import Text.Blaze.Renderer.String (fromChoiceString)
 import Text.Blaze.Html5.Attributes qualified as A
 import Text.Blaze.Internal
+import Debug.Trace
 
 addClasses :: Html -> Html
 addClasses = recurse addClasses'
@@ -27,6 +29,14 @@ addClasses' html =
         "table" -> html ! A.class_ "table border-collapse mb-3"
         "th" -> html ! A.class_ "border"
         "td" -> html ! A.class_ "border"
+        _ -> html
+    AddAttribute key key' val html' ->
+      case getText key of
+        "class" ->
+           case fromChoiceString val "" of
+             "math display" -> AddAttribute key key' (val <> " notranslate") html'
+             "math inline" -> AddAttribute key key' (val <> " notranslate") html'
+             _ -> html
         _ -> html
     _ -> html
 

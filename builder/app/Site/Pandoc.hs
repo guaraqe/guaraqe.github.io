@@ -50,11 +50,11 @@ writeHtmlAndMeta pandoc value = do
   pandocWithRefs <- liftIO $
     runCrossRefIO defaultMeta Nothing defaultCrossRefAction pandoc
 
-  pandocWithFormulas <- liftIO $
-    convertAllFormulaeDataURI defaultEnv defaultPandocFormulaOptions pandocWithRefs
+  --pandocWithFormulas <- liftIO $
+    --convertAllFormulaeDataURI defaultEnv defaultPandocFormulaOptions pandocWithRefs
 
   html <-
-    liftIO (runIO (writeHtml5 writeOpts pandocWithFormulas)) >>= \case
+    liftIO (runIO (writeHtml5 writeOpts pandocWithRefs)) >>= \case
       Left e -> fail (show e)
       Right r -> pure r
 
