@@ -8,3 +8,38 @@ img.display-math {
   margin-left: auto;
   margin-right: auto;
 }
+
+div.book-navigation-previous {
+  padding-bottom: 1em;
+  width: 100%;
+}
+
+div.book-navigation-next {
+  padding-top: 1em;
+  width: 100%;
+  text-align: right;
+}
+
+.arrow{
+  display: inline-block;
+  width: 0px;
+  height: 0px;
+  border: 0.5em solid transparent;
+  margin-bottom: -0.15em;
+}
+.arrow.arrow-up{
+  border-bottom-color: #000;
+  border-top-width: 0px;
+}
+.arrow.arrow-down{
+  border-top-color: #000;
+  border-bottom-width: 0px;
+}
+.arrow.arrow-left{
+  border-right-color: #000;
+  border-left-width: 0px;
+}
+.arrow.arrow-right{
+  border-left-color: #000;
+  border-right-width: 0px;
+}

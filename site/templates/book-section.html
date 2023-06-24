@@ -23,19 +23,24 @@
     {{>site/templates/header.html}}
 
 <div class="flex justify-center bg-base-100">
-    <article class="prose max-w-prose">
-        <h1 class="text-3xl mb-5">
-            {{title}}
-        </h1>
+<article class="prose max-w-prose">
+    {{#previousTitle}}
+    <div class="book-navigation-previous">
+      <div class="arrow arrow-left"></div>
+      <a href="{{previousUrl}}">{{previousTitle}}</a>
+    </div>
+    {{/previousTitle}}
 
-        {{{content}}}
+    {{{content}}}
 
-        {{#index}}
-          {{{index}}}
-        {{/index}}
-
-        <br>
-        <br>
+    {{#nextTitle}}
+    <div class="book-navigation-next">
+      <a href="{{nextUrl}}">{{nextTitle}}</a>
+      <div class="arrow arrow-right"></div>
+    </div>
+    {{/nextTitle}}
 </article>
-
 </div>
+
+</body>
+</html>

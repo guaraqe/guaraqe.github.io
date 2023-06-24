@@ -10,7 +10,6 @@ import Text.Blaze.Html
 import Text.Blaze.Renderer.String (fromChoiceString)
 import Text.Blaze.Html5.Attributes qualified as A
 import Text.Blaze.Internal
-import Debug.Trace
 
 addClasses :: Html -> Html
 addClasses = recurse addClasses'

@@ -24,8 +24,8 @@ import Text.Pandoc
   )
 import Text.Pandoc.Readers.Markdown (readMarkdown)
 import Text.Pandoc.Writers.HTML (writeHtml5)
-import Image.LaTeX.Render
-import Image.LaTeX.Render.Pandoc
+--import Image.LaTeX.Render
+--import Image.LaTeX.Render.Pandoc
 import Text.Pandoc.CrossRef
 
 readMarkdownAndMeta :: Text -> Action (Pandoc, Value)

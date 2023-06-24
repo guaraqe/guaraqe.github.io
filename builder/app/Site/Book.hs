@@ -2,6 +2,7 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DuplicateRecordFields #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedRecordDot #-}
 {-# LANGUAGE RecordWildCards #-}
 
 module Site.Book
@@ -9,7 +10,7 @@ module Site.Book
   )
 where
 
-import Control.Monad (forM, void, when)
+import Control.Monad (forM, forM_, void, when)
 import Data.Aeson
 import Data.List qualified as L
 import Data.String (fromString)
@@ -30,7 +31,7 @@ import Text.Blaze.Html5.Attributes qualified as A
 
 buildBook :: FilePath -> FilePath -> FilePath -> Action ()
 buildBook outputFolder inputFolder outputPath = do
-  _ <-
+  section <-
     buildSection
       SectionParams
         { outputFolder,
@@ -38,18 +39,30 @@ buildBook outputFolder inputFolder outputPath = do
           outputPath,
           number = []
         }
-  pure ()
+
+  writeSection outputFolder section
 
 --------------------------------------------------------------------------------
 -- Section
 
 data Section = Section
   { title :: String,
-    content :: String,
     url :: String,
-    subsections :: [Section]
+    content :: String,
+    subsections :: [Section],
+    previousTitle :: Maybe String,
+    previousUrl :: Maybe String,
+    nextTitle :: Maybe String,
+    nextUrl :: Maybe String
   }
   deriving (Generic, Eq, Ord, Show, FromJSON, ToJSON, Binary)
+
+writeSection :: FilePath -> Section -> Action ()
+writeSection outputFolder section = do
+  let postPath = outputFolder </> drop 1 section.url
+      value = toJSON section
+  template <- compileTemplate' "site/templates/book-section.html"
+  writeFile' postPath $ T.unpack $ substitute template value
 
 data SectionParams = SectionParams
   { inputFolder :: FilePath,
@@ -57,6 +70,14 @@ data SectionParams = SectionParams
     outputPath :: FilePath,
     number :: [Int]
   }
+
+toContext :: [a] -> [(Maybe a, a, Maybe a)]
+toContext xs =
+  let
+    ps = [Nothing] <> fmap Just xs
+    ns = fmap Just (drop 1 xs) <> [Nothing]
+  in
+    zip3 ps xs ns
 
 buildSection :: SectionParams -> Action Section
 buildSection SectionParams {..} = do
@@ -73,6 +94,19 @@ buildSection SectionParams {..} = do
           outputPath = (outputPath </> subsectionFolder),
           number = number <> [subsectionNumber]
         }
+
+  cacheAction ("subsections" :: T.Text, inputFolder) $
+    forM_ (toContext subsections) $ \(mprevious, current, mnext) -> do
+      let withPreviousAndNext = current
+            { previousTitle = fmap (.title) mprevious,
+              previousUrl = fmap (.url) mprevious,
+              nextTitle = fmap (.title) mnext,
+              nextUrl = fmap (.url) mnext
+            }
+
+      liftIO $ print $ withPreviousAndNext.nextUrl
+
+      writeSection outputFolder withPreviousAndNext
 
   let indexHtml = buildSubsectionsIndexHtml subsections
       index = renderHtml indexHtml
@@ -94,7 +128,6 @@ buildSection SectionParams {..} = do
     postData <- writeHtmlAndMeta pandoc meta
 
     let postUrl = "/" </> outputPath </> "index.html"
-        postPath = outputFolder </> outputPath </> "index.html"
 
     let fullPostData =
           setObjectAttribute "url" postUrl
@@ -103,10 +136,10 @@ buildSection SectionParams {..} = do
             . addTitleNumbers number
             $ postData
 
-    template <- compileTemplate' "site/templates/book-section.html"
+    template <- compileTemplate' "site/templates/book-section-content.html"
+    let content = substitute template fullPostData
 
-    writeFile' postPath $ T.unpack $ substitute template fullPostData
-    convert fullPostData
+    convert $ setObjectAttribute "content" content fullPostData
 
 --------------------------------------------------------------------------------
 -- Index
