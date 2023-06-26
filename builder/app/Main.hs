@@ -30,6 +30,10 @@ buildRules = do
     outputFolder
     "/home/juan/courses/tdsi/statistics-book"
     ("courses" </> "statistics")
+  buildBook
+    outputFolder
+    "/home/juan/courses/tdsi/bioinformatics"
+    ("courses" </> "bioinformatics")
   copyStaticFiles
 
 -- Kick it all off

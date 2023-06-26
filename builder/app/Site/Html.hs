@@ -20,7 +20,7 @@ addClasses' html =
     Parent tag _ _ _ ->
       case getText tag of
         "a" -> html ! A.class_ "link link-hover text-zinc-600"
-        "ul" -> html ! A.class_ "list-disc list-outside space-y-1 pl-5"
+        "ul" -> html ! A.class_ "list-disc list-outside mt-1 pl-5"
         "h1" -> html ! A.class_ "text-2xl mt-5 mb-5"
         "h2" -> html ! A.class_ "text-xl mt-5 mb-5"
         "p" -> html ! A.class_ "mb-3"
@@ -28,6 +28,10 @@ addClasses' html =
         "table" -> html ! A.class_ "table border-collapse mb-3"
         "th" -> html ! A.class_ "border"
         "td" -> html ! A.class_ "border"
+        _ -> html
+    Leaf tag _ _ _ ->
+      case getText tag of
+        "img" -> html ! A.class_ "mx-auto"
         _ -> html
     AddAttribute key key' val html' ->
       case getText key of
