@@ -22,11 +22,11 @@ import Text.Pandoc
     pandocExtensions,
     runIO,
   )
+-- import Image.LaTeX.Render
+-- import Image.LaTeX.Render.Pandoc
+import Text.Pandoc.CrossRef
 import Text.Pandoc.Readers.Markdown (readMarkdown)
 import Text.Pandoc.Writers.HTML (writeHtml5)
---import Image.LaTeX.Render
---import Image.LaTeX.Render.Pandoc
-import Text.Pandoc.CrossRef
 
 readMarkdownAndMeta :: Text -> Action (Pandoc, Value)
 readMarkdownAndMeta markdown = do
@@ -47,11 +47,12 @@ writeHtmlAndMeta pandoc value = do
             writerReferenceLinks = True
           }
 
-  pandocWithRefs <- liftIO $
-    runCrossRefIO defaultMeta Nothing defaultCrossRefAction pandoc
+  pandocWithRefs <-
+    liftIO $
+      runCrossRefIO defaultMeta Nothing defaultCrossRefAction pandoc
 
-  --pandocWithFormulas <- liftIO $
-    --convertAllFormulaeDataURI defaultEnv defaultPandocFormulaOptions pandocWithRefs
+  -- pandocWithFormulas <- liftIO $
+  -- convertAllFormulaeDataURI defaultEnv defaultPandocFormulaOptions pandocWithRefs
 
   html <-
     liftIO (runIO (writeHtml5 writeOpts pandocWithRefs)) >>= \case

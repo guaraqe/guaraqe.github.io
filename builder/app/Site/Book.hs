@@ -6,7 +6,8 @@
 {-# LANGUAGE RecordWildCards #-}
 
 module Site.Book
-  ( buildBook,
+  ( Section (..)
+  , build,
   )
 where
 
@@ -25,13 +26,14 @@ import Site.Html
 import Site.Json
 import Site.Pandoc
 import Slick
+import Site.Layout qualified as Layout
 import Text.Blaze.Html.Renderer.Text (renderHtml)
 import Text.Blaze.Html5 (Html, (!))
 import Text.Blaze.Html5 qualified as H
 import Text.Blaze.Html5.Attributes qualified as A
 
-buildBook :: FilePath -> FilePath -> FilePath -> Action ()
-buildBook outputFolder inputFolder outputPath = do
+build :: FilePath -> FilePath -> FilePath -> Action Section
+build outputFolder inputFolder outputPath = do
   section <-
     buildSection
       SectionParams
@@ -45,6 +47,8 @@ buildBook outputFolder inputFolder outputPath = do
       bookIndex = TL.unpack $ renderHtml indexHtml
 
   writeSection outputFolder (setBookInfo bookIndex section.title section)
+
+  pure section
 
 --------------------------------------------------------------------------------
 -- Section
@@ -78,7 +82,14 @@ writeSection outputFolder section = do
   let postPath = outputFolder </> drop 1 section.url
       value = toJSON section
   template <- compileTemplate' "site/templates/book-section.html"
-  writeFile' postPath $ T.unpack $ substitute template value
+  let layout = Layout.Layout
+         { title = section.title
+         , content = T.unpack $ substitute template value
+         , latex = True
+         , page = "Courses"
+         , pageLink = "/courses"
+         }
+  Layout.build postPath layout
   forM_ section.subsections $ \subsection ->
     writeSection outputFolder subsection
 

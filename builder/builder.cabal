@@ -19,6 +19,7 @@ executable builder
     Site.Html
     Site.Json
     Site.Pandoc
+    Site.Layout
 
   build-depends:
     , aeson

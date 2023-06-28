@@ -8,35 +8,44 @@ import Control.Monad
 import Development.Shake
 import Development.Shake.FilePath
 import Development.Shake.Forward
-import Site.Blog
-import Site.Book
+import Site.Blog qualified as Blog
+import Site.Book qualified as Book
 
 outputFolder :: FilePath
 outputFolder = "docs/"
 
--- Copy all static files from the listed folders to their destination
 copyStaticFiles :: Action ()
 copyStaticFiles = do
   filepaths <- getDirectoryFiles "site" ["images//*", "css//*", "js//*"]
   void $ forP filepaths $ \filepath ->
     copyFileChanged ("site" </> filepath) (outputFolder </> filepath)
 
--- Specific build rules for the Shake system defines workflow to build the
--- website
+buildBlog :: Action [Blog.Post]
+buildBlog = do
+  Blog.build "site/posts" (outputFolder </> "posts")
+
+buildBooks :: Action [Book.Section]
+buildBooks = do
+  let makeBook (input, output) =
+        Book.build outputFolder input output
+
+  mapM
+    makeBook
+    [ ( "/home/juan/courses/tdsi/statistics-book",
+        "courses" </> "statistics"
+      ),
+      ( "/home/juan/courses/tdsi/bioinformatics",
+        "courses" </> "bioinformatics"
+      )
+    ]
+
 buildRules :: Action ()
 buildRules = do
-  buildBlog "site/posts" (outputFolder </> "posts")
-  buildBook
-    outputFolder
-    "/home/juan/courses/tdsi/statistics-book"
-    ("courses" </> "statistics")
-  buildBook
-    outputFolder
-    "/home/juan/courses/tdsi/bioinformatics"
-    ("courses" </> "bioinformatics")
+  posts <- buildBlog
+  Blog.buildIndex (outputFolder </> "posts") posts
+  books <- buildBooks
   copyStaticFiles
 
--- Kick it all off
 main :: IO ()
 main = do
   let shOpts =

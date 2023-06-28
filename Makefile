@@ -9,7 +9,7 @@ build: ## Build the website.
 .PHONY: build
 
 serve: ## Serve the website with live reload.
-	livereload docs
+	livereload docs -w 2
 
 .PHONY: serve
 

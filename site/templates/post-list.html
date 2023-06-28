@@ -1,7 +1,19 @@
-<ul>
-    {{#posts}}
-        <li>
-            <a href="{{url}}">{{title}} <span class="date">{{date}}</span> </a>
-        </li>
-    {{/posts}}
-</ul>
+<div class="flex justify-center bg-base-100">
+    <article class="prose max-w-prose">
+        <h1 class="text-3xl mb-5">
+            Posts
+        </h1>
+
+        <ul class="list-disc list-outside mt-1 pl-5">
+            {{#posts}}
+                <li>
+                    <a href="{{url}}"><span class="date">{{date}}</span> - {{title}}</a>
+                </li>
+            {{/posts}}
+        </ul>
+
+    </article>
+</div>
+
+
+

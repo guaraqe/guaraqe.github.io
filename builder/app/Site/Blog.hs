@@ -1,9 +1,13 @@
 {-# LANGUAGE DeriveAnyClass #-}
 {-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DuplicateRecordFields #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedRecordDot #-}
 
 module Site.Blog
-  ( buildBlog,
+  ( Post (..),
+    build,
+    buildIndex,
   )
 where
 
@@ -18,13 +22,15 @@ import Development.Shake.Forward
 import GHC.Generics (Generic)
 import Site.Json
 import Site.Pandoc
+import Site.Layout qualified as Layout
 import Slick
+import Data.List (sortOn)
+import Data.Ord (Down (..))
 
-buildBlog :: FilePath -> FilePath -> Action ()
-buildBlog inputFolder outputFolder = do
-  allPosts <- buildPosts inputFolder outputFolder
-  buildIndex outputFolder allPosts
+build :: FilePath -> FilePath -> Action [Post]
+build inputFolder outputFolder = do
   copyStaticFiles inputFolder outputFolder
+  buildPosts inputFolder outputFolder
 
 --------------------------------------------------------------------------------
 -- Static
@@ -44,11 +50,18 @@ data IndexInfo = IndexInfo
   deriving (Generic, Show, FromJSON, ToJSON)
 
 buildIndex :: FilePath -> [Post] -> Action ()
-buildIndex outputFolder posts' = do
-  indexT <- compileTemplate' "site/templates/index.html"
-  let indexInfo = IndexInfo {posts = posts'}
-      indexHTML = T.unpack $ substitute indexT (toJSON indexInfo)
-  writeFile' (outputFolder </> "index.html") indexHTML
+buildIndex outputFolder posts = do
+  indexT <- compileTemplate' "site/templates/post-list.html"
+  let sortedPosts = sortOn (Down . (.date)) posts
+      indexInfo = IndexInfo sortedPosts
+      layout = Layout.Layout
+        { title = "Posts"
+        , content = T.unpack $ substitute indexT (toJSON indexInfo)
+        , latex = False
+        , page = "Posts"
+        , pageLink = "/posts"
+        }
+  Layout.build (outputFolder </> "index.html") layout
 
 --------------------------------------------------------------------------------
 -- Posts
@@ -82,8 +95,19 @@ buildPost outputFolder srcPath = cacheAction ("post" :: T.Text, srcPath) $ do
 
   template <- compileTemplate' "site/templates/post.html"
 
-  writeFile' (outputFolder </> postUrl) . T.unpack $ substitute template fullPostData
-  convert fullPostData
+  post <- convert fullPostData
+
+  let layout = Layout.Layout
+        { title = post.title
+        , content = T.unpack $ substitute template fullPostData
+        , latex = True
+        , page = "Posts"
+        , pageLink = "/posts"
+        }
+
+  Layout.build (outputFolder </> postUrl) layout
+
+  pure post
 
 prefixToDate :: String -> Day
 prefixToDate name =
