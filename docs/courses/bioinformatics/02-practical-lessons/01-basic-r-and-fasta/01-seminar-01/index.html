@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>2.1.1 Basic R
+</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+</head>
+<body>
+    <header>
+        <div class="navbar bg-base-100">
+          <div class="navbar-start">
+            <nav>
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="inline-flex items-center text-l font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+            <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+            Juan Raphael Diaz Simões
+          </a>
+        </li>
+    
+        <li>
+      <div class="flex items-center">
+        <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+        <a href="/courses" class="ml-1 text-l font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Courses</a>
+      </div>
+    </li>
+
+          </div>
+          <div class="navbar-end">
+            <ul class="menu menu-horizontal px-1">
+              <li><a href="/posts">Posts</a></li>
+              <li><a href="/courses">Courses</a></li>
+              <li><a href="/cv.html">CV</a></li>
+              <li><a href="/projects.html">Projects</a></li>
+            </ul>
+          </div>
+        </nav>
+    </header>
+    <div class="flex justify-center bg-base-100">
+<article class="prose max-w-prose mb-5">
+  <div class="book-navigation">
+
+    <div class="book-navigation-parent drawer">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content">
+        <label for="my-drawer">
+          <div class="space-y-1 inline-block">
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+          </div>
+          <b>Index</b>
+        </label>
+      </div>
+      <div class="drawer-side">
+        <label for="my-drawer" class="drawer-overlay"></label>
+           <div class="menu menu-vertical p-4 h-full bg-base-200">
+             <h1 class="text-xl mb-5 w-100">
+                  Introduction to Bioinformatics
+
+             </h1>
+             <div style="flex-basis:100%; height: 0;"}></div>
+             <ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/index.html">1 Lectures
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/03-lecture-01/index.html">1.1 Bioinformatics Basics
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/07-lecture-02/index.html">1.2 Comparing Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/10-lecture-03/index.html">1.3 Comparing Gene Sequences 2
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/13-lecture-04/index.html">1.4 Gene Finding
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/16-lecture-05/index.html">1.5 Locating genes and its functions: techniques, problems and difficulties
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/index.html">2 Practical Lessons
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/index.html">2.1 Basic R and generic data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/01-seminar-01/index.html">2.1.1 Basic R
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/02-seminar-02/index.html">2.1.2 Files
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/04-seminar-03/index.html">2.1.3 Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/05-seminar-04/index.html">2.1.4 Comparing Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/06-control-01/index.html">2.1.5 Loading and processing data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/20-seminar-12/index.html">2.1.6 Programming Exercises
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/index.html">2.2 Basic analysis of genetic data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/08-seminar-05/index.html">2.2.1 GC Content
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/09-seminar-06/index.html">2.2.2 Subseries GC Content
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/11-seminar-07/index.html">2.2.3 Creating dot plots
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/14-control-02/index.html">2.2.4 Loading and comparing data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/index.html">2.3 Codons and gene finding
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/15-seminar-09/index.html">2.3.1 Translating bases to codons
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/17-seminar-10/index.html">2.3.2 Codon frequencies and finding genes
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/18-control-03/index.html">2.3.3 Theoretical Control
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/19-seminar-11/index.html">2.3.4 Aminoacid sequences and base sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/index.html">2.4 Summary and exam
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/21-seminar-13/index.html">2.4.1 Theoretical Questions
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/22-exam-01/index.html">2.4.2 Final exam
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li></ul></li></ul>
+           </div>
+      </div>
+    </div>
+
+    <div class="book-navigation-parent">
+      <div class="arrow arrow-up"></div>
+      <a href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/index.html">2.1 Basic R and generic data
+</a>
+      <div class="arrow arrow-up"></div>
+    </div>
+
+    <div class="book-navigation-section">
+
+       <div class="book-navigation-previous">
+       </div>
+
+       <div class="book-navigation-next">
+         <a href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/02-seminar-02/index.html">2.1.2 Files
+</a>
+         <div class="arrow arrow-right"></div>
+       </div>
+    </div>
+  </div>
+
+    <h1 class="text-3xl mb-5">
+    2.1.1 Basic R
+
+</h1>
+
+<p class="mb-3">There are many programming languages, and while most are capable of building any kind of software, each language tends to be better suited for some particular task. R is a programming language that is well adapted for statistical analysis. It makes easy to load data sets, do statistics with it, and create graphs from the results. This is the language we will use during this course.</p>
+<p class="mb-3">In this first course, we will learn the basics about R and how it works. There will be many new concepts in this course, but don’t worry if you have problems undertanding all of them right now, since we will review each of these new concepts many times during the next courses, when we will put them to practice.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="installing-r-and-rstudio"><span class="header-section-number">1</span> Installing R and RStudio</h1>
+<p class="mb-3">During the course, R and RStudio will already be installed, this is a reference in case you want to try it by yourself.</p>
+<p class="mb-3">R is the program that runs the programming language. It is command-line based, which will be not familiar for most new users. Therefore, we will use RStudio, which gives a practical user interface to use R.</p>
+<p class="mb-3">To install R, follow these steps:</p>
+<ol class="list-decimal list-outside mt-1 mb-3 pl-5" type="1">
+<li>Go to <a class="link link-hover text-zinc-600" href="https://cran.r-project.org/">https://cran.r-project.org/</a></li>
+<li>Under “Download and Install R”, click on the “Windows” link.</li>
+<li>Under “Subdirectories”, click on the <strong>“base”</strong> link.</li>
+<li>Click on the download link and save the file.</li>
+<li>Open the downloaded file.</li>
+<li>The <em>R</em> Setup Wizard will appear in a window. Follow the steps.</li>
+</ol>
+<p class="mb-3">To install RStudio, follow these steps:</p>
+<ol class="list-decimal list-outside mt-1 mb-3 pl-5" type="1">
+<li>Go to the <a class="link link-hover text-zinc-600" href="https://www.rstudio.com/products/rstudio/download/">RStudio download page</a> and click <em>Download</em> for the free version.</li>
+<li>Click on the <em>Windows 10/11</em> version and save it.</li>
+<li>Click on the download link and save the file.</li>
+<li>Open the downloaded file.</li>
+<li>The Setup Wizard will appear in a window. Follow the steps.</li>
+</ol>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="rstudio"><span class="header-section-number">2</span> RStudio</h1>
+<p class="mb-3">RStudio is a graphical interface to interact with R. If you click on the “New File” button (white sheet of paper with green plus sign), you will see the following:</p>
+<p class="mb-3"><img class="mx-auto" src="data/rstudio.png" /></p>
+<p class="mb-3">This UI has several panels. The first one, in the lower left, is the <em>Console</em> panel:</p>
+<p class="mb-3"><img class="mx-auto" src="data/console.png" /></p>
+<p class="mb-3">This is the place where you can evaluate code. For example, if you write <code>1+1</code> and press enter there, you will see the result <code>2</code>.</p>
+<p class="mb-3">The second panel is the <em>Code</em> one, located at the upper-left part of the screen:</p>
+<p class="mb-3"><img class="mx-auto" src="data/code.png" /></p>
+<p class="mb-3">If you select a block of code with the mouse, and click <em>Run</em>, the code will be evaluated in the console panel below.</p>
+<p class="mb-3">In R, we can store values in <em>variables</em>. For example, in the console, you can store your own name in the <code>name</code> variable, by writing:</p>
+<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">&quot;Juan Raphael Diaz Simões&quot;</span></span></code></pre></div>
+<p class="mb-3">You can see the variables that were defined, as well as their value, in the <em>Environment</em> pane, at the upper-right part of the UIl:</p>
+<p class="mb-3"><img class="mx-auto" src="data/environment.png" /></p>
+<p class="mb-3">Finally, you can see the files that are available for manipulation at the lower-right <em>Files</em> panel:</p>
+<p class="mb-3"><img class="mx-auto" src="data/files.png" /></p>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="basic-r"><span class="header-section-number">3</span> Basic R</h1>
+<p class="mb-3">This section serves as a reference on how to use the most useful constructs in R. Make sure to come back to this page if you forget the syntax of the operations.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.1" id="variables"><span class="header-section-number">3.1</span> Variables</h2>
+<p class="mb-3">R can act like a basic calculator that you type commands in to. You can also use it like a more advanced scientific calculator and create <em>variables</em> that store information. In R, we assign values to variables using an arrow-looking function <code>&lt;-</code> the <em>assignment operator</em>. For example, we can assign the value <code>2*3</code> to the variable <code>x</code> using the command:</p>
+<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="dv">3</span></span></code></pre></div>
+<p class="mb-3">To view the contents of any variable, just type its name, press enter, and the contents of that R object will be displayed:</p>
+<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
+<span id="cb3-2"><a class="link link-hover text-zinc-600" href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">6</span></span></code></pre></div>
+<p class="mb-3">What kind of information can you store in a variable? Anything! But the simplest kinds of data are strings, numbers and booleans:</p>
+<div class="sourceCode mb-3 notranslate" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a class="link link-hover text-zinc-600" href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> s <span class="ot">&lt;-</span> <span class="st">&quot;Some String&quot;</span></span>
+<span id="cb4-2"><a class="link link-hover text-zinc-600" href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> n <span class="ot">&lt;-</span> <span class="fl">154.4</span></span>
+<span id="cb4-3"><a class="link link-hover text-zinc-600" href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> b <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code></pre></div>
+<h3 class="text-l mt-5 mb-5" data-number="3.1.1" id="exercise"><span class="header-section-number">3.1.1</span> Exercise</h3>
+<p class="mb-3">Create:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>a variable named <code>имя</code>, and save <strong>your first name</strong> in it</li>
+<li>a variable named <code>лет</code> and save <strong>your age</strong> in it</li>
+</ul>
+<h2 class="text-xl mt-5 mb-5" data-number="3.2" id="vectors"><span class="header-section-number">3.2</span> Vectors</h2>
+<p class="mb-3">To create a vector, we can use the <code>c()</code> (combine) function. For example, to create a vector called <code>myvector</code> that has elements with values 8, 6, 9, 10, and 5, we type:</p>
+<div class="sourceCode mb-3 notranslate" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a class="link link-hover text-zinc-600" href="#cb5-1" aria-hidden="true" tabindex="-1"></a>myvector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">5</span>) <span class="co"># note: commas between each number!</span></span></code></pre></div>
+<p class="mb-3">To see the contents of the variable <code>myvector</code>, we can just type its name and press enter:</p>
+<div class="sourceCode mb-3 notranslate" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a class="link link-hover text-zinc-600" href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> myvector</span>
+<span id="cb6-2"><a class="link link-hover text-zinc-600" href="#cb6-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">8</span>  <span class="dv">6</span>  <span class="dv">9</span> <span class="dv">10</span>  <span class="dv">5</span></span></code></pre></div>
+<p class="mb-3">The <code>[1]</code> is the <em>index</em> of the first <em>element</em> in the vector. We can extract any element of the vector by typing the vector name with the index of that element given in <em>square brackets</em> <code>[...]</code>.</p>
+<p class="mb-3">For example, to get the value of the 4th element in the vector <code>myvector</code>, we type:</p>
+<div class="sourceCode mb-3 notranslate" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a class="link link-hover text-zinc-600" href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> myvector[<span class="dv">4</span>]</span>
+<span id="cb7-2"><a class="link link-hover text-zinc-600" href="#cb7-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">10</span></span></code></pre></div>
+<p class="mb-3">Vectors can also contain letters, such as those designating nucleic acids</p>
+<div class="sourceCode mb-3 notranslate" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a class="link link-hover text-zinc-600" href="#cb8-1" aria-hidden="true" tabindex="-1"></a>my.seq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;T&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;G&quot;</span>)</span></code></pre></div>
+<p class="mb-3">They can also contain multi-letter <em>strings</em>:</p>
+<div class="sourceCode mb-3 notranslate" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a class="link link-hover text-zinc-600" href="#cb9-1" aria-hidden="true" tabindex="-1"></a>my.oligos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ATCGC&quot;</span>,<span class="st">&quot;TTTCGC&quot;</span>,<span class="st">&quot;CCCGCG&quot;</span>,<span class="st">&quot;GGGCGC&quot;</span>)</span></code></pre></div>
+<h3 class="text-l mt-5 mb-5" data-number="3.2.1" id="exercise-1"><span class="header-section-number">3.2.1</span> Exercise</h3>
+<p class="mb-3">Create a variable named <code>семья</code> and save in it the names of <strong>your family members</strong>.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.3" id="tables"><span class="header-section-number">3.3</span> Tables</h2>
+<p class="mb-3">If we made a vector variable “nucleotides” containing the of a DNA molecule, we can use the <code>table()</code> function to produce a <strong>table variable</strong> that contains the number of bases with each possible nucleotides:</p>
+<div class="sourceCode mb-3 notranslate" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a class="link link-hover text-zinc-600" href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bases <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;G&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;G&quot;</span>)</span></code></pre></div>
+<p class="mb-3">Now make the table</p>
+<div class="sourceCode mb-3 notranslate" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a class="link link-hover text-zinc-600" href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(bases)</span>
+<span id="cb11-2"><a class="link link-hover text-zinc-600" href="#cb11-2" aria-hidden="true" tabindex="-1"></a>bases</span>
+<span id="cb11-3"><a class="link link-hover text-zinc-600" href="#cb11-3" aria-hidden="true" tabindex="-1"></a>A C G T </span>
+<span id="cb11-4"><a class="link link-hover text-zinc-600" href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span></span></code></pre></div>
+<h2 class="text-xl mt-5 mb-5" data-number="3.4" id="functions-and-arguments"><span class="header-section-number">3.4</span> Functions and arguments</h2>
+<p class="mb-3">Functions are operations that can be applied to different arguments. Functions in R usually require input variables (i.e.. objects) that are <em>passed</em> to them, which they then carry out some operation on. For example, the <code>log10</code> function is passed a number, and it then calculates the log to the base 10 of that number:</p>
+<div class="sourceCode mb-3 notranslate" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a class="link link-hover text-zinc-600" href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">log10</span>(<span class="dv">100</span>)</span>
+<span id="cb12-2"><a class="link link-hover text-zinc-600" href="#cb12-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">2</span></span></code></pre></div>
+<p class="mb-3">There’s a more generic function, <code>log</code>, where we pass it not only a number to take the log of, but also the specific <code>base</code> of the logarithm. To take the log base 10 with the <code>log</code> function we do this</p>
+<div class="sourceCode mb-3 notranslate" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a class="link link-hover text-zinc-600" href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">log</span>(<span class="dv">100</span>, <span class="at">base =</span> <span class="dv">10</span>)</span>
+<span id="cb13-2"><a class="link link-hover text-zinc-600" href="#cb13-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">2</span></span></code></pre></div>
+<p class="mb-3">We can also take logs with other bases, such as 2:</p>
+<div class="sourceCode mb-3 notranslate" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a class="link link-hover text-zinc-600" href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">log</span>(<span class="dv">100</span>, <span class="at">base =</span> <span class="dv">2</span>)</span>
+<span id="cb14-2"><a class="link link-hover text-zinc-600" href="#cb14-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">6.643856</span></span></code></pre></div>
+<p class="mb-3">We can perform computations with R using objects such as scalars and vectors. For example, to calculate the average of the values in the vector <code>myvector</code> (i.e.. the average of 8, 6, 9, 10 and 5), we can use the <code>mean()</code> function:</p>
+<div class="sourceCode mb-3 notranslate" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a class="link link-hover text-zinc-600" href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">mean</span>(myvector) <span class="co"># note: no &quot; &quot;</span></span>
+<span id="cb15-2"><a class="link link-hover text-zinc-600" href="#cb15-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">7.6</span></span></code></pre></div>
+<p class="mb-3">We will been using built-in R functions such as <code>mean()</code>, <code>length()</code>, <code>print()</code>, <code>plot()</code>, etc.</p>
+<h3 class="text-l mt-5 mb-5" data-number="3.4.1" id="exercise-2"><span class="header-section-number">3.4.1</span> Exercise</h3>
+<p class="mb-3">Create a variable named <code>семья_лет</code> and save in it the ages of your family members. Use the function <code>mean</code> on it to calculate the average age of your family.</p>
+<p class="mb-3">Sum all the numbers from 1 to 1000. You can do it using the syntax <code>1:1000</code>, which generates a vector with all numbers between 1 and 1000, and the function <code>sum</code>.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.5" id="writing-your-own-functions"><span class="header-section-number">3.5</span> Writing your own functions</h2>
+<p class="mb-3">We can also create our own functions in R to do calculations that you want to carry out very often on different input data sets. For example, we can create a function to calculate the value of 20 plus square of some input number, in the code panel:</p>
+<div class="sourceCode mb-3 notranslate" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a class="link link-hover text-zinc-600" href="#cb16-1" aria-hidden="true" tabindex="-1"></a>myfunction <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb16-2"><a class="link link-hover text-zinc-600" href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> x <span class="sc">*</span> x</span>
+<span id="cb16-3"><a class="link link-hover text-zinc-600" href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">20</span> <span class="sc">+</span> y)</span>
+<span id="cb16-4"><a class="link link-hover text-zinc-600" href="#cb16-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p class="mb-3">This function will calculate the square of a number <code>x</code>, and then add 20 to that value. The <code>return()</code> statement returns the calculated value. Once you have typed in this function, the function is then available for use. For example, we can use the function for different input numbers (e.g.. 10, 25):</p>
+<div class="sourceCode mb-3 notranslate" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a class="link link-hover text-zinc-600" href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">myfunction</span>(<span class="dv">10</span>)</span>
+<span id="cb17-2"><a class="link link-hover text-zinc-600" href="#cb17-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">120</span></span></code></pre></div>
+<h3 class="text-l mt-5 mb-5" data-number="3.5.1" id="exercise-3"><span class="header-section-number">3.5.1</span> Exercise</h3>
+<p class="mb-3">Write a function called <code>sayHi</code> that takes a parameter <code>name</code>, and returns the sentence <code>Hi name!</code>. For this, you will use the function <code>paste</code>, which can be used as follows: <code>r &gt; paste("A","B") [1] "A B" &gt; paste("A","B",sep="") [1] "AB"</code></p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.6" id="loops"><span class="header-section-number">3.6</span> Loops</h2>
+<p class="mb-3">Finally, sometimes we want to execute an operation many times. The way to do it is using a <code>for</code> loop. For example, to print the numbers from 1 to 10 we can do:</p>
+<div class="sourceCode mb-3 notranslate" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a class="link link-hover text-zinc-600" href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {  </span>
+<span id="cb18-2"><a class="link link-hover text-zinc-600" href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(x)  </span>
+<span id="cb18-3"><a class="link link-hover text-zinc-600" href="#cb18-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p class="mb-3">Or, to print every element of an array:</p>
+<div class="sourceCode mb-3 notranslate" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a class="link link-hover text-zinc-600" href="#cb19-1" aria-hidden="true" tabindex="-1"></a>dice <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb19-2"><a class="link link-hover text-zinc-600" href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a class="link link-hover text-zinc-600" href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> dice) {  </span>
+<span id="cb19-4"><a class="link link-hover text-zinc-600" href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(x)  </span>
+<span id="cb19-5"><a class="link link-hover text-zinc-600" href="#cb19-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 class="text-l mt-5 mb-5" data-number="3.6.1" id="exercise-4"><span class="header-section-number">3.6.1</span> Exercise</h3>
+<p class="mb-3">Create a vector with the name of four of your classmates, using the <code>c(...)</code> construction. Use a <code>for</code> loop to go through these names, an print the say hi sentence for each one of them, using the <code>print</code> function, and the <code>sayHi</code> function that was defined just above.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.7" id="conditionals"><span class="header-section-number">3.7</span> Conditionals</h2>
+<p class="mb-3">It is often useful to execute different operations depending on a condition. Let’s say we want to say if a number if big (larger than 10) or small (otherwise):</p>
+<div class="sourceCode mb-3 notranslate" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a class="link link-hover text-zinc-600" href="#cb20-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb20-2"><a class="link link-hover text-zinc-600" href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">10</span>) {</span>
+<span id="cb20-3"><a class="link link-hover text-zinc-600" href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Big!&quot;</span>)</span>
+<span id="cb20-4"><a class="link link-hover text-zinc-600" href="#cb20-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb20-5"><a class="link link-hover text-zinc-600" href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Small!&quot;</span>)</span>
+<span id="cb20-6"><a class="link link-hover text-zinc-600" href="#cb20-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p class="mb-3">By changing the value of <code>x</code>, you can see either the first or the second piece of code being executed.</p>
+<h3 class="text-l mt-5 mb-5" data-number="3.7.1" id="exercise-5"><span class="header-section-number">3.7.1</span> Exercise</h3>
+<p class="mb-3">Write a function <code>маленький_или_большой</code> which uses the code above to answer whether any number is small or big. Change it so it answers in Russian.</p>
+
+  <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
+
+
+</article>
+</div>
+
+</body>
+</html>

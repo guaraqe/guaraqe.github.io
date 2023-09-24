@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>JupyterWith: declarative, reproducible notebook environments
+</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+</head>
+<body>
+    <header>
+        <div class="navbar bg-base-100">
+          <div class="navbar-start">
+            <nav>
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="inline-flex items-center text-l font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+            <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+            Juan Raphael Diaz Simões
+          </a>
+        </li>
+    
+        <li>
+      <div class="flex items-center">
+        <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+        <a href="/posts" class="ml-1 text-l font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Posts</a>
+      </div>
+    </li>
+
+          </div>
+          <div class="navbar-end">
+            <ul class="menu menu-horizontal px-1">
+              <li><a href="/posts">Posts</a></li>
+              <li><a href="/courses">Courses</a></li>
+              <li><a href="/cv.html">CV</a></li>
+              <li><a href="/projects.html">Projects</a></li>
+            </ul>
+          </div>
+        </nav>
+    </header>
+    <div class="flex justify-center bg-base-100">
+    <article class="prose max-w-prose">
+        <h1 class="text-3xl mb-5">
+            JupyterWith: declarative, reproducible notebook environments
+
+        </h1>
+        <div class="mb-5">2019-02-28</div>
+
+        <p class="mb-3">I wrote a post for <a class="link link-hover text-zinc-600" href="https://www.tweag.io">Tweag</a> with Matthias Meschede on JupyterWith. You can find the original <a class="link link-hover text-zinc-600" href="https://www.tweag.io/blog/2019-02-28-jupyter-with/">here</a>.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="reproducible-notebooks"><span class="header-section-number">1</span> Reproducible Notebooks</h1>
+<p class="mb-3">Millions of Jupyter notebooks are spread over the internet - machine learning, astrophysics,biology, economy, you name it. “What a great age for reproducible science!” - Or that’s what you think until you try to actually run these notebooks. Then you realize that having understandable high-level code alone is not enough to reproduce something on a computer.</p>
+<p class="mb-3">Below the superficial charm of a well-written notebook lurks a messy web of low-level dependencies. A notebook doesn’t know how to set those up. Dozens to hundreds of libraries can be called and all of them can potentially influence the final results. Setting them up correctly is painful, requiring a different strategy for each programming language. In a previous <a class="link link-hover text-zinc-600" href="./2019-01-23-jupyterlab-ihaskell.html">post</a>, we used a Docker container to circumvent this problem but a Docker container is difficult to customize. Thus it is often non-trivial to run an arbitrary notebook on a machine different from the one it was written on.</p>
+<p class="mb-3">This blog post is about defining and reproducing the compute environments below the surface of a Jupyter notebook. We will show how to setup configurable and reproducible Jupyter environments that include JupyterLab with extensions, the classical notebook, and configurable kernels for various programming languages. These environments are declarative, which means that their content - not the steps required to install them - is defined in a few lines of code. A single command installs and runs the compute environment from the configuration file.</p>
+<p class="mb-3">Under the hood, we use the <a class="link link-hover text-zinc-600" href="https://nixos.org/nix">Nix</a> package manager, which enables us to build up such composable environments with simplicity. The Jupyter environments can also be containerized with a single Nix command as a Docker image. Such Docker images can then be served with <a class="link link-hover text-zinc-600" href="https://github.com/jupyterhub/jupyterhub">JupyterHub</a> to give multiple users access to a well-defined reproducible environment. With this setup, installation of a Jupyterlab environment with multiple kernels such as in the following image is easy and robust:</p>
+<figure>
+<img class="mx-auto" src="./img/jupyter-kernels.png" alt="png" />
+<figcaption aria-hidden="true">png</figcaption>
+</figure>
+<p class="mb-3">A reproducible compute environment is certainly not the only thing that is required to reproduce a notebook. Just think of a random number generator that could be called in one of the code cells. If the seed is not properly set, the notebook will look differently after each run. Reproducible compute environments are therefore only a necessary first step on the road to full reproducibility.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="declarative-environments"><span class="header-section-number">2</span> Declarative Environments</h1>
+<p class="mb-3">How does such a reproducible compute environment look like? Here is a simple example. First, make sure that <a class="link link-hover text-zinc-600" href="https://nixos.org/nix">Nix</a> is installed on your computer. This works on any Linux and macOS, and won’t modify any files except create one single directory in your filesystem. Then, write a <code>shell.nix</code> file with the following contents:</p>
+<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode nix"><code class="sourceCode nix"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span></span>
+<span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">jupyter</span> <span class="op">=</span> <span class="bu">import</span> <span class="op">(</span><span class="bu">builtins</span>.fetchGit <span class="op">{</span></span>
+<span id="cb1-3"><a class="link link-hover text-zinc-600" href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">url</span> <span class="op">=</span> <span class="va">https</span><span class="op">://</span><span class="ss">github.com/tweag/jupyterWith</span><span class="op">;</span></span>
+<span id="cb1-4"><a class="link link-hover text-zinc-600" href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">rev</span> <span class="op">=</span> <span class="st">&quot;10d64ee254050de69d0dc51c9c39fdadf1398c38&quot;</span><span class="op">;</span></span>
+<span id="cb1-5"><a class="link link-hover text-zinc-600" href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">})</span> <span class="op">{};</span></span>
+<span id="cb1-6"><a class="link link-hover text-zinc-600" href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a class="link link-hover text-zinc-600" href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">ihaskell</span> <span class="op">=</span> jupyter.kernels.iHaskellWith <span class="op">{</span></span>
+<span id="cb1-8"><a class="link link-hover text-zinc-600" href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">name</span> <span class="op">=</span> <span class="st">&quot;haskell&quot;</span><span class="op">;</span></span>
+<span id="cb1-9"><a class="link link-hover text-zinc-600" href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">packages</span> <span class="op">=</span> <span class="va">p</span><span class="op">:</span> <span class="kw">with</span> p<span class="op">;</span> <span class="op">[</span> hvega formatting <span class="op">];</span></span>
+<span id="cb1-10"><a class="link link-hover text-zinc-600" href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
+<span id="cb1-11"><a class="link link-hover text-zinc-600" href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a class="link link-hover text-zinc-600" href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">ipython</span> <span class="op">=</span> jupyter.kernels.iPythonWith <span class="op">{</span></span>
+<span id="cb1-13"><a class="link link-hover text-zinc-600" href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="va">name</span> <span class="op">=</span> <span class="st">&quot;python&quot;</span><span class="op">;</span></span>
+<span id="cb1-14"><a class="link link-hover text-zinc-600" href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="va">packages</span> <span class="op">=</span> <span class="va">p</span><span class="op">:</span> <span class="kw">with</span> p<span class="op">;</span> <span class="op">[</span> numpy <span class="op">];</span></span>
+<span id="cb1-15"><a class="link link-hover text-zinc-600" href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
+<span id="cb1-16"><a class="link link-hover text-zinc-600" href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a class="link link-hover text-zinc-600" href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="va">jupyterEnvironment</span> <span class="op">=</span> jupyter.jupyterlabWith <span class="op">{</span></span>
+<span id="cb1-18"><a class="link link-hover text-zinc-600" href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="va">kernels</span> <span class="op">=</span> <span class="op">[</span> ihaskell ipython <span class="op">];</span></span>
+<span id="cb1-19"><a class="link link-hover text-zinc-600" href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
+<span id="cb1-20"><a class="link link-hover text-zinc-600" href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span></span>
+<span id="cb1-21"><a class="link link-hover text-zinc-600" href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  jupyterEnvironment.env</span></code></pre></div>
+<p class="mb-3">and run <code>nix-shell --command "jupyter lab"</code>.</p>
+<p class="mb-3">After downloading and building of all dependencies, this should open a shell and launch JupyterLab. That’s it, all the kernels are installed, and all libraries are accessible to them. Although the first run can take quite a while, subsequent runs are instant because all build steps are automatically cached. More examples of <code>JupyterWith</code>, including Jupyterlab extensions, Docker images, and many other kernels can be found in the <a class="link link-hover text-zinc-600" href="https://github.com/tweag/jupyterWith">README</a> of the project.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="behind-the-scenes-nix"><span class="header-section-number">3</span> Behind the scenes: Nix</h1>
+<p class="mb-3">Packaging Jupyter with kernels from many different language ecosystems is complicated. Language specific package managers can only handle their own subsystems and often rely on libraries that are provided by the underlying operating system. If one manages to set all of these up together, the outcome will be conflict-prone and difficult to change. This is where the <a class="link link-hover text-zinc-600" href="https://nixos.org/nix">Nix</a> package manager enters the scene.</p>
+<p class="mb-3">Nix is a package manager whose packages are written in the Nix language, which can be thought of as a simple configuration language but with <em>functions</em>. It is used to describe <em>derivations</em>, build recipes that describe every step necessary to build a binary or library from source. A derivation knows its dependencies, source code locations and hashes, build scripts, environment variables and so on. Nix is powerful because we can describe derivations programmatically, as we did for example with the <code>jupyterlabWith</code>, <code>iPythonWith</code> and <code>iHaskellWith</code> functions. We can also programmatically compose different derivations, our own or the ones from the <a class="link link-hover text-zinc-600" href="./2019-02-06-mapping-open-source.html">enormous Nixpkgs repository</a>, to generate new ones. For example, different kernels that are themselves composite packages can be combined with Jupyterlab into a single application. The output is a big dependency web that links the final build output, i.e. Jupyterlab with kernels to all of its dependencies as shown in this dependency graph:</p>
+<figure>
+<img class="mx-auto" src="./img/jupyter-graph.png" alt="png" />
+<figcaption aria-hidden="true">png</figcaption>
+</figure>
+<p class="mb-3">Packages and their dependencies are represented as interconnected nodes in this graph. Such a graph is called the <em>closure</em> of JupyterWith, that is the set of all derivations that are required to run the Jupyterlab. This means that the environment generated by JupyterWith includes not only Jupyter and its kernels, but also all system packages that are required. This guarantees a high degree of reproducibility.</p>
+<p class="mb-3">The final JupyterLab environment is complete to a point that we can simply copy it into a base docker Alpine image to run it. No further installation or configuration is required.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="4" id="behind-the-scenes-packaging-jupyterlab"><span class="header-section-number">4</span> Behind the scenes: packaging Jupyterlab</h1>
+<p class="mb-3">Let’s look in more detail into the packaging process of JupyterLab. A JupyterLab environment is composed of three parts:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>the JupyterLab frontend is essentially a browser application that consists of several bundled Typescript/Javascript core and extension modules;</li>
+<li>the Jupyter server is a Python application that intermediates interactions between kernel compute environments and frontends;</li>
+<li>kernels such as IPython or IHaskell execute code that is send from a frontend such as JupyterLab via the Jupyter server.</li>
+</ul>
+<p class="mb-3">The Jupyter server is easy to install with Nix because it is just a set of Python packages that have to be put together. Nix already has a fairly well developed <a class="link link-hover text-zinc-600" href="https://nixos.org/nixpkgs/manual/#python">Python ecosystem</a> which can be used for this.</p>
+<p class="mb-3">Setting up the kernel environments is a bit more tricky. Kernels are independent executables that require independent package sets and environment variables. As is common in Nix, we wrap the kernel executable into a shell script that locally sets all required environment variables. This wrapper script is then exposed to Jupyter with a <a class="link link-hover text-zinc-600" href="https://jupyter-client.readthedocs.io/en/stable/kernels.html#kernel-specs">kernel spec</a> file. For example, the file for the IHaskell kernel looks as follows:</p>
+<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a class="link link-hover text-zinc-600" href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;display_name&quot;</span> <span class="er">=</span> <span class="dt">&quot;Haskell&quot;</span><span class="er">;</span></span>
+<span id="cb2-3"><a class="link link-hover text-zinc-600" href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;language&quot;</span> <span class="er">=</span> <span class="dt">&quot;haskell&quot;</span><span class="er">;</span></span>
+<span id="cb2-4"><a class="link link-hover text-zinc-600" href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;argv&quot;</span> <span class="er">=</span> <span class="er">[</span></span>
+<span id="cb2-5"><a class="link link-hover text-zinc-600" href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;/path/to/ihaskellShell&quot;</span></span>
+<span id="cb2-6"><a class="link link-hover text-zinc-600" href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;kernel&quot;</span></span>
+<span id="cb2-7"><a class="link link-hover text-zinc-600" href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;{connection_file}&quot;</span></span>
+<span id="cb2-8"><a class="link link-hover text-zinc-600" href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="er">];</span></span>
+<span id="cb2-9"><a class="link link-hover text-zinc-600" href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;logo64&quot;</span> <span class="er">=</span> <span class="dt">&quot;logo-64x64.svg&quot;</span><span class="er">;</span></span>
+<span id="cb2-10"><a class="link link-hover text-zinc-600" href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p class="mb-3">Jupyter is made aware of the location of these files through the <code>JUPYTER_PATH</code> environment variable. For kernels, all we need to do is building packages and setting environment variables. Nix handles this wonderfully.</p>
+<p class="mb-3">When dealing with Jupyterlab extensions we face a problem since Jupyterlab expects to manage them itself. Usually, they are installed with the command <code>jupyter labextension install</code> which is a wrapper of the Javascript package manager <code>yarn</code>. Yarn determines compatible versions for the JupyterLab core modules and the required extension modules together with all their Javascript dependencies. This resolver step is difficult to reproduce with Nix, since Nix is not about finding compatible versions. Even worse: it doesn’t even make sense to use the precise versions that <code>yarn</code> determined and feed them into Nix. Every combination of extensions can have a different set of compatible versions, which means that we can’t pre-resolve all of them.</p>
+<p class="mb-3">We therefore pre-build JupyterLab into a custom, self-contained folder with all required extensions. This folder is the starting point of the Nix derivation and can be referred to from the <code>shell.nix</code> file.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="5" id="conclusions"><span class="header-section-number">5</span> Conclusions</h1>
+<p class="mb-3">Jupyter is a showcase example for the power of a configuration language like Nix combined with the Nixpkgs collaborative project to describe all open source packages out there. With a few lines of Nix code, we can pull together dependencies from various language ecosystems in a robust way and build configurable compute environments and applications on top of them. Such configurable compute environments can be used and distributed in various ways, including Docker containers. This is a boon for reproducible science: declaratively specify your dependencies and compose your dependency descriptions to incrementally build larger and more complex notebooks that you know will run now and forever in the future.</p>
+<p class="mb-3">Suggestions and PRs on JupyterWith are welcome!</p>
+
+        <br>
+        <br>
+    </article>
+</div>
+
+</body>
+</html>

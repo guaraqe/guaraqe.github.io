@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>1.4 Gene Finding
+</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+</head>
+<body>
+    <header>
+        <div class="navbar bg-base-100">
+          <div class="navbar-start">
+            <nav>
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="inline-flex items-center text-l font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+            <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+            Juan Raphael Diaz Simões
+          </a>
+        </li>
+    
+        <li>
+      <div class="flex items-center">
+        <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+        <a href="/courses" class="ml-1 text-l font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Courses</a>
+      </div>
+    </li>
+
+          </div>
+          <div class="navbar-end">
+            <ul class="menu menu-horizontal px-1">
+              <li><a href="/posts">Posts</a></li>
+              <li><a href="/courses">Courses</a></li>
+              <li><a href="/cv.html">CV</a></li>
+              <li><a href="/projects.html">Projects</a></li>
+            </ul>
+          </div>
+        </nav>
+    </header>
+    <div class="flex justify-center bg-base-100">
+<article class="prose max-w-prose mb-5">
+  <div class="book-navigation">
+
+    <div class="book-navigation-parent drawer">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content">
+        <label for="my-drawer">
+          <div class="space-y-1 inline-block">
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+          </div>
+          <b>Index</b>
+        </label>
+      </div>
+      <div class="drawer-side">
+        <label for="my-drawer" class="drawer-overlay"></label>
+           <div class="menu menu-vertical p-4 h-full bg-base-200">
+             <h1 class="text-xl mb-5 w-100">
+                  Introduction to Bioinformatics
+
+             </h1>
+             <div style="flex-basis:100%; height: 0;"}></div>
+             <ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/index.html">1 Lectures
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/03-lecture-01/index.html">1.1 Bioinformatics Basics
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/07-lecture-02/index.html">1.2 Comparing Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/10-lecture-03/index.html">1.3 Comparing Gene Sequences 2
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/13-lecture-04/index.html">1.4 Gene Finding
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/16-lecture-05/index.html">1.5 Locating genes and its functions: techniques, problems and difficulties
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/index.html">2 Practical Lessons
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/index.html">2.1 Basic R and generic data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/01-seminar-01/index.html">2.1.1 Basic R
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/02-seminar-02/index.html">2.1.2 Files
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/04-seminar-03/index.html">2.1.3 Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/05-seminar-04/index.html">2.1.4 Comparing Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/06-control-01/index.html">2.1.5 Loading and processing data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/20-seminar-12/index.html">2.1.6 Programming Exercises
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/index.html">2.2 Basic analysis of genetic data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/08-seminar-05/index.html">2.2.1 GC Content
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/09-seminar-06/index.html">2.2.2 Subseries GC Content
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/11-seminar-07/index.html">2.2.3 Creating dot plots
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/14-control-02/index.html">2.2.4 Loading and comparing data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/index.html">2.3 Codons and gene finding
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/15-seminar-09/index.html">2.3.1 Translating bases to codons
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/17-seminar-10/index.html">2.3.2 Codon frequencies and finding genes
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/18-control-03/index.html">2.3.3 Theoretical Control
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/19-seminar-11/index.html">2.3.4 Aminoacid sequences and base sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/index.html">2.4 Summary and exam
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/21-seminar-13/index.html">2.4.1 Theoretical Questions
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/22-exam-01/index.html">2.4.2 Final exam
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li></ul></li></ul>
+           </div>
+      </div>
+    </div>
+
+    <div class="book-navigation-parent">
+      <div class="arrow arrow-up"></div>
+      <a href="/courses/bioinformatics/01-lectures/index.html">1 Lectures
+</a>
+      <div class="arrow arrow-up"></div>
+    </div>
+
+    <div class="book-navigation-section">
+
+       <div class="book-navigation-previous">
+         <div class="arrow arrow-left"></div>
+         <a href="/courses/bioinformatics/01-lectures/10-lecture-03/index.html">1.3 Comparing Gene Sequences 2
+</a>
+       </div>
+
+       <div class="book-navigation-next">
+         <a href="/courses/bioinformatics/01-lectures/16-lecture-05/index.html">1.5 Locating genes and its functions: techniques, problems and difficulties
+</a>
+         <div class="arrow arrow-right"></div>
+       </div>
+    </div>
+  </div>
+
+    <h1 class="text-3xl mb-5">
+    1.4 Gene Finding
+
+</h1>
+
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="transcription"><span class="header-section-number">1</span> Transcription</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="1.1" id="transcription-1"><span class="header-section-number">1.1</span> Transcription</h2>
+<p class="mb-3">Transcription is the process of copying a segment of DNA into RNA, which is then used to synthesize a polypeptide.</p>
+<p class="mb-3"><img class="mx-auto" src="data/97a84761ba627193d3685afd80c8855c.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.2" id="dna-polymerase"><span class="header-section-number">1.2</span> DNA polymerase</h2>
+<p class="mb-3">RNA polymerase binds to <em>promoter DNA</em>, which are located close to the start sites of genes.</p>
+<p class="mb-3">It then generates a transcription bubble, which separates the two strands of the DNA helix. This is done by breaking the hydrogen bonds between complementary DNA nucleotides.</p>
+<p class="mb-3"><img class="mx-auto" src="data/849fb59db6bda0324643ea490a48d6f4.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.3" id="pre-rna"><span class="header-section-number">1.3</span> Pre-RNA</h2>
+<p class="mb-3">While RNA is produced in the transcription bubble, we call it pre-RNA. Some base sequences make the transcription stop.</p>
+<p class="mb-3"><img class="mx-auto" src="data/6bd666f76f4963d021effe0144ac22e5.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.4" id="ribosomes"><span class="header-section-number">1.4</span> Ribosomes</h2>
+<p class="mb-3">Ribosomes translate RNA into polypeptides.</p>
+<p class="mb-3"><img class="mx-auto" src="data/dc74f7ec59f6baad82fb843b711fe42e.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.5" id="messenger-and-non-coding-rna"><span class="header-section-number">1.5</span> Messenger and non-coding RNA</h2>
+<p class="mb-3">The segments of DNA transcribed into RNA molecules that can encode proteins are said to produce messenger RNA (mRNA).</p>
+<p class="mb-3">mRNA comprises only 1-3% of total RNA samples. Less than 2% of the human genome can be transcribed into mRNA.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.6" id="non-coding-rna"><span class="header-section-number">1.6</span> Non-coding RNA</h2>
+<p class="mb-3">Other segments of DNA are copied into RNA molecules called non-coding RNAs (ncRNAs).</p>
+<p class="mb-3">At least 80% of mammalian genomic DNA can be actively transcribed, with the majority of this 80% considered to be ncRNA.</p>
+<p class="mb-3">There is no consensus in the literature on how much of non-coding transcription is functional.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.7" id="exercise-dna-to-rna"><span class="header-section-number">1.7</span> Exercise: DNA to RNA</h2>
+<pre><code>ATGAACAACCAACGGAA</code></pre>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="codons"><span class="header-section-number">2</span> Codons</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="2.1" id="codons-1"><span class="header-section-number">2.1</span> Codons</h2>
+<p class="mb-3">Codons are triples of bases correspond. These are the units ribosomes use to translate between bases and aminoacids.</p>
+<p class="mb-3"><img class="mx-auto" src="data/dc74f7ec59f6baad82fb843b711fe42e.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.2" id="mapping-codons"><span class="header-section-number">2.2</span> Mapping codons</h2>
+<p class="mb-3">Many representations are possible to show the translation between codons and aminoacids.</p>
+<p class="mb-3"><img class="mx-auto" src="data/40fcef6ec633abc61ffad3a09762bc73.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.3" id="possible-aminoacids"><span class="header-section-number">2.3</span> Possible aminoacids</h2>
+<p class="mb-3">Aminoacids have four different types: basic, acidic, polar and non-polar.</p>
+<p class="mb-3"><img class="mx-auto" src="data/f1dfe5559e9d6bdd155c9d37c142739d.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.4" id="mapping-codons-1"><span class="header-section-number">2.4</span> Mapping codons</h2>
+<p class="mb-3">Translate into the corresponding aminoacids:</p>
+<pre><code>ACUGAGACACUUGCG</code></pre>
+<p class="mb-3"><img class="mx-auto" src="data/c607ed2489dff78e0434aad6e8567cec.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.5" id="exercise-finding-codons"><span class="header-section-number">2.5</span> Exercise: finding codons</h2>
+<p class="mb-3">In the full sequence, genes don’t have to start at the beginning of the sequence. What are the possible codons in the following sequence?</p>
+<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ACTTGACTACTTTA</span></code></pre></div>
+<h2 class="text-xl mt-5 mb-5" data-number="2.6" id="example-in-r-translating-to-aminoacids"><span class="header-section-number">2.6</span> Example in R: translating to aminoacids</h2>
+<div class="sourceCode mb-3 notranslate" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a class="link link-hover text-zinc-600" href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> s</span>
+<span id="cb4-2"><a class="link link-hover text-zinc-600" href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dv">183</span><span class="sc">-</span>letter DNAString object</span>
+<span id="cb4-3"><a class="link link-hover text-zinc-600" href="#cb4-3" aria-hidden="true" tabindex="-1"></a>seq<span class="sc">:</span> ATGGGGCTCATTCAAGAAGAATGGAGCGATCAAAGTGTTACG...CATCTGACCACCCGAGGGGGAGAGCCGCACATGATAGTTAG</span>
+<span id="cb4-4"><a class="link link-hover text-zinc-600" href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Biostrings<span class="sc">::</span><span class="fu">translate</span>(s)</span>
+<span id="cb4-5"><a class="link link-hover text-zinc-600" href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="dv">61</span><span class="sc">-</span>letter AAString object</span>
+<span id="cb4-6"><a class="link link-hover text-zinc-600" href="#cb4-6" aria-hidden="true" tabindex="-1"></a>seq<span class="sc">:</span> MGLIQEEWSDQSVTGFQERNLKHVEHNEQEEKICDHAPHAAAHSPGVPSDHPRGRAAHDS<span class="sc">*</span></span></code></pre></div>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="genes"><span class="header-section-number">3</span> Genes</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="3.1" id="genes-1"><span class="header-section-number">3.1</span> Genes</h2>
+<p class="mb-3">The molecular gene is a sequence of nucleotides in DNA that is transcribed to produce a functional RNA. Genes can lead to the production of sequences of aminoacids. That is, proteins.</p>
+<p class="mb-3"><img class="mx-auto" src="data/3ebdca4776e17bc0d999f2cf368946af.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.2" id="starting-and-stopping"><span class="header-section-number">3.2</span> Starting and stopping</h2>
+<p class="mb-3">There are particular codons that can imply the start and the end of genes:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>Genes start with <code>ATG</code> (Methionine).</li>
+<li>Genes end with <code>TAA</code> (Ochre), <code>TAG</code> (Amber), <code>TGA</code> (Opal).</li>
+</ul>
+<h2 class="text-xl mt-5 mb-5" data-number="3.3" id="exercise-1-finding-potential-genes"><span class="header-section-number">3.3</span> Exercise 1: finding potential genes</h2>
+<p class="mb-3">Find the possible genes in this sequence:</p>
+<pre><code>ATGGGGCTCATTCAAGAAGAATGGAGTAACTAG</code></pre>
+<h2 class="text-xl mt-5 mb-5" data-number="3.4" id="exercise-2-finding-potential-genes"><span class="header-section-number">3.4</span> Exercise 2: finding potential genes</h2>
+<p class="mb-3">Find the possible genes in this sequence:</p>
+<pre><code>GCTCATTCAAGAAGAATCGAGTAACTGCAG</code></pre>
+<h1 class="text-2xl mt-5 mb-5" data-number="4" id="computationally"><span class="header-section-number">4</span> Computationally</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="4.1" id="to-find-potential-genes"><span class="header-section-number">4.1</span> To find potential genes</h2>
+<ol class="list-decimal list-outside mt-1 mb-3 pl-5" type="1">
+<li>Find the potential <em>start</em> and <em>end</em> codons in the sequence.</li>
+<li>Match start codons to end codons. These end codons must be after the start codons, and there must a multiple of three bases between them.</li>
+<li>Extract the obtained sequences between start and end.</li>
+</ol>
+<h2 class="text-xl mt-5 mb-5" data-number="4.2" id="and-3-reading-frames"><span class="header-section-number">4.2</span> 1, 2 and 3 reading frames</h2>
+<p class="mb-3">We can name sites as reading frames 1, 2 or 3 depending if their nucleotide has remainder 0, 1 or 2, respectively when divided by three. Start and end sites must be in the same reading frames.</p>
+<p class="mb-3"><img class="mx-auto" src="data/e89eb8123fb5a31e7bcadf805ad3321a.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="4.3" id="matching-starts-and-ends"><span class="header-section-number">4.3</span> Matching starts and ends</h2>
+<p class="mb-3">In each line, we march starts to the first available end.</p>
+<p class="mb-3"><img class="mx-auto" src="data/175565ddd401abdddb866891e999d1eb.png" /></p>
+<h1 class="text-2xl mt-5 mb-5" data-number="5" id="next"><span class="header-section-number">5</span> Next</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="5.1" id="next-classes"><span class="header-section-number">5.1</span> Next classes</h2>
+<p class="mb-3">We will learn how to look for codons and genes in DNA sequences in R.</p>
+
+  <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
+
+
+</article>
+</div>
+
+</body>
+</html>

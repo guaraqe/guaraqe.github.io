@@ -2,5 +2,5 @@ dist-newstyle
 result
 tmp
 **/node_modules
-docs
 .shake
+.translation-cache

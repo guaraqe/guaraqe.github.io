@@ -18,15 +18,20 @@ executable builder
     Site.Book
     Site.Html
     Site.Json
-    Site.Pandoc
     Site.Layout
+    Site.Pandoc
+    Site.Translate
 
   build-depends:
     , aeson
     , base
     , blaze-html
     , blaze-markup
+    , bytestring
     , containers
+    , hashable
+    , http-client
+    , http-client-tls
     , latex-formulae-image
     , latex-formulae-pandoc
     , lens

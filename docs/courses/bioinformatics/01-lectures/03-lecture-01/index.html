@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>1.1 Bioinformatics Basics
+</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+</head>
+<body>
+    <header>
+        <div class="navbar bg-base-100">
+          <div class="navbar-start">
+            <nav>
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="inline-flex items-center text-l font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+            <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+            Juan Raphael Diaz Simões
+          </a>
+        </li>
+    
+        <li>
+      <div class="flex items-center">
+        <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+        <a href="/courses" class="ml-1 text-l font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Courses</a>
+      </div>
+    </li>
+
+          </div>
+          <div class="navbar-end">
+            <ul class="menu menu-horizontal px-1">
+              <li><a href="/posts">Posts</a></li>
+              <li><a href="/courses">Courses</a></li>
+              <li><a href="/cv.html">CV</a></li>
+              <li><a href="/projects.html">Projects</a></li>
+            </ul>
+          </div>
+        </nav>
+    </header>
+    <div class="flex justify-center bg-base-100">
+<article class="prose max-w-prose mb-5">
+  <div class="book-navigation">
+
+    <div class="book-navigation-parent drawer">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content">
+        <label for="my-drawer">
+          <div class="space-y-1 inline-block">
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+          </div>
+          <b>Index</b>
+        </label>
+      </div>
+      <div class="drawer-side">
+        <label for="my-drawer" class="drawer-overlay"></label>
+           <div class="menu menu-vertical p-4 h-full bg-base-200">
+             <h1 class="text-xl mb-5 w-100">
+                  Introduction to Bioinformatics
+
+             </h1>
+             <div style="flex-basis:100%; height: 0;"}></div>
+             <ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/index.html">1 Lectures
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/03-lecture-01/index.html">1.1 Bioinformatics Basics
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/07-lecture-02/index.html">1.2 Comparing Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/10-lecture-03/index.html">1.3 Comparing Gene Sequences 2
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/13-lecture-04/index.html">1.4 Gene Finding
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/16-lecture-05/index.html">1.5 Locating genes and its functions: techniques, problems and difficulties
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/index.html">2 Practical Lessons
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/index.html">2.1 Basic R and generic data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/01-seminar-01/index.html">2.1.1 Basic R
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/02-seminar-02/index.html">2.1.2 Files
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/04-seminar-03/index.html">2.1.3 Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/05-seminar-04/index.html">2.1.4 Comparing Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/06-control-01/index.html">2.1.5 Loading and processing data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/20-seminar-12/index.html">2.1.6 Programming Exercises
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/index.html">2.2 Basic analysis of genetic data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/08-seminar-05/index.html">2.2.1 GC Content
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/09-seminar-06/index.html">2.2.2 Subseries GC Content
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/11-seminar-07/index.html">2.2.3 Creating dot plots
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/14-control-02/index.html">2.2.4 Loading and comparing data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/index.html">2.3 Codons and gene finding
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/15-seminar-09/index.html">2.3.1 Translating bases to codons
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/17-seminar-10/index.html">2.3.2 Codon frequencies and finding genes
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/18-control-03/index.html">2.3.3 Theoretical Control
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/19-seminar-11/index.html">2.3.4 Aminoacid sequences and base sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/index.html">2.4 Summary and exam
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/21-seminar-13/index.html">2.4.1 Theoretical Questions
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/22-exam-01/index.html">2.4.2 Final exam
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li></ul></li></ul>
+           </div>
+      </div>
+    </div>
+
+    <div class="book-navigation-parent">
+      <div class="arrow arrow-up"></div>
+      <a href="/courses/bioinformatics/01-lectures/index.html">1 Lectures
+</a>
+      <div class="arrow arrow-up"></div>
+    </div>
+
+    <div class="book-navigation-section">
+
+       <div class="book-navigation-previous">
+       </div>
+
+       <div class="book-navigation-next">
+         <a href="/courses/bioinformatics/01-lectures/07-lecture-02/index.html">1.2 Comparing Gene Sequences
+</a>
+         <div class="arrow arrow-right"></div>
+       </div>
+    </div>
+  </div>
+
+    <h1 class="text-3xl mb-5">
+    1.1 Bioinformatics Basics
+
+</h1>
+
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="introduction"><span class="header-section-number">1</span> Introduction</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="1.1" id="what-is-bioinformatics"><span class="header-section-number">1.1</span> What is bioinformatics?</h2>
+<p class="mb-3">Bioinformatics is the use of computer methods for analyzing biological data.</p>
+<p class="mb-3">Nowadays, it refers mostly to the computational analysis of <strong>gene sequences</strong>.</p>
+<p class="mb-3"><img class="mx-auto" src="data/e56ce67c12aca2ac9f264d2663dc7f28.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.2" id="bases"><span class="header-section-number">1.2</span> Bases</h2>
+<p class="mb-3">DNA is composed of four bases adenine (<strong>A</strong>), guanine (<strong>G</strong>), cytosine (<strong>C</strong>) and thymine (<strong>T</strong>).</p>
+<p class="mb-3">Bases match in the DNA in two pairs: G-T and A-T.</p>
+<p class="mb-3"><img class="mx-auto" src="data/2598c30f7e7dbc62f1c16dde34714bd5.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.3" id="bases-sequences"><span class="header-section-number">1.3</span> Bases sequences</h2>
+<p class="mb-3">DNA is a sequence of such bases. The bases of DNA determines the RNA it can encode, and therefore the proteins in can enduce production of.</p>
+<p class="mb-3"><img class="mx-auto" src="data/1b1f5ce9f25913897c5ae987912331cd.png" /></p>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="dna-sequencing"><span class="header-section-number">2</span> DNA sequencing</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="2.1" id="what-dna-sequencing-does"><span class="header-section-number">2.1</span> What DNA sequencing does</h2>
+<p class="mb-3">DNA sequencing may be used to determine the sequence of individual genes, larger genetic regions (i.e. clusters of genes or operons), full chromosomes, or entire genomes of any organism.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.2" id="history"><span class="header-section-number">2.2</span> History</h2>
+<p class="mb-3"><img class="mx-auto" src="data/deed562c448e0628f88f24cfb6625834.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.3" id="maxam-gilbert-sequencing"><span class="header-section-number">2.3</span> Maxam-Gilbert sequencing</h2>
+<p class="mb-3">Breaking DNA at specific sites, and marking. By matching breaking points, one can find the sequencing. Not used much anymore.</p>
+<p class="mb-3"><img class="mx-auto" src="data/af690667c702c87ddc6b343542d92528.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.4" id="chain-termination-methods"><span class="header-section-number">2.4</span> Chain-termination methods</h2>
+<p class="mb-3">PCR breaking and multiplying chains with fluorescent ending markers. Sorting and viewing.</p>
+<p class="mb-3"><img class="mx-auto" src="data/c7261914a9c8023197b11bd80d4d96a7.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.5" id="shotgun-sequencing"><span class="header-section-number">2.5</span> Shotgun sequencing</h2>
+<p class="mb-3">Break DNA, sequence each part as above, and assemble fragments using overlapping.</p>
+<p class="mb-3"><img class="mx-auto" src="data/4af3e6facc2bde7f74a87881acae4e71.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.6" id="price"><span class="header-section-number">2.6</span> Price</h2>
+<p class="mb-3">Price dropped from $2,400,000 per million bases to $5-$100 depending on de technique.</p>
+<p class="mb-3">Nowadays human genome can be sequenced with less than $1000.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="applications"><span class="header-section-number">3</span> Applications</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="3.1" id="what-is-done-with-dna-sequences"><span class="header-section-number">3.1</span> What is done with DNA sequences?</h2>
+<p class="mb-3">DNA sequencing is a key technology in biology, as medicine, forensics, and anthropology.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.2" id="molecular-biology"><span class="header-section-number">3.2</span> Molecular biology</h2>
+<p class="mb-3">It is used to study genomes and the proteins they encode.</p>
+<p class="mb-3">It allows to identify changes in DNA and associations with diseases and phenotypes.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.3" id="evolutionary-biology"><span class="header-section-number">3.3</span> Evolutionary biology</h2>
+<p class="mb-3">DNA is transmitted from one generation to another, so sequencing is used to study how different organisms are related and how they evolved.</p>
+<p class="mb-3">In 2021, the sequencing of DNA from a mammoth over a million years old was done.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.4" id="metagenomics"><span class="header-section-number">3.4</span> Metagenomics</h2>
+<p class="mb-3">Metagenomics identifies organisms present in a body of water, sewage, dirt, swab samples from organisms…</p>
+<p class="mb-3">DNA sequencing determines which types of microbes may be present in a such microbiome. This is important for ecology, epidemiology…</p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.5" id="virology"><span class="header-section-number">3.5</span> Virology</h2>
+<p class="mb-3">Sequencing is one of the main tools in virology to identify and study viruses, based in DNA or RNA.</p>
+<p class="mb-3">There are more than 2.3 million unique viral sequences in GenBank.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.6" id="medicine"><span class="header-section-number">3.6</span> Medicine</h2>
+<p class="mb-3">Medical technicians may sequence genes from patients to determine if there is risk of genetic diseases.</p>
+<p class="mb-3">DNA sequencing cal also be used to diagnose and treat rare genetic diseases.</p>
+<p class="mb-3">DNA sequencing can determine specific bacteria, to allow for more precise antibiotics treatments.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.7" id="forensic-investigation"><span class="header-section-number">3.7</span> Forensic investigation</h2>
+<p class="mb-3">DNA sequencing is used for forensic identification and paternity testing.</p>
+<p class="mb-3">The DNA patterns in fingerprint, saliva, hair follicles, etc. uniquely separate each living organism from another.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="4" id="bioinformatics"><span class="header-section-number">4</span> Bioinformatics</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="4.1" id="general-idea"><span class="header-section-number">4.1</span> General idea</h2>
+<p class="mb-3">DNA is very large. Manual analysis is prohibitive, except for very short sequences.</p>
+<p class="mb-3">Informatics allows large-scale work to be done.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="4.2" id="dna-sequencing-1"><span class="header-section-number">4.2</span> DNA sequencing</h2>
+<p class="mb-3">DNA sequencing is still a non-trivial problem as the raw data may be noisy or affected by weak signals. Algorithms have been developed for base calling.</p>
+<p class="mb-3">Most DNA sequencing techniques produce short fragments of sequence that need to be assembled. Shotgun sequencing yields sequence data quickly, and the task of assembling the fragments can be quite complicated for larger genomes.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="4.3" id="genome-annotation"><span class="header-section-number">4.3</span> Genome annotation</h2>
+<p class="mb-3">Annotation is the process of marking genes and other biological features in a DNA sequence. Annotation is made possible by the fact that genes have recognisable start and stop regions.</p>
+<p class="mb-3"><img class="mx-auto" src="data/31f7694f1161a7a7b246513b9ed63167.png" /></p>
+<h1 class="text-2xl mt-5 mb-5" data-number="5" id="what-will-we-do"><span class="header-section-number">5</span> What will we do?</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="5.1" id="why-r"><span class="header-section-number">5.1</span> Why R?</h2>
+<p class="mb-3">As explained, genetic data is very large. It would not be practical to analyze it by hand, because it is slow. It is also not practical to use Excel, where all the data is visible all the time.</p>
+<p class="mb-3">R is a simple programming language, and very practical for statistical data analysis.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="5.2" id="genome-databases"><span class="header-section-number">5.2</span> Genome databases</h2>
+<p class="mb-3">Data can be found in genome databases such as NCBI (US), EMBL (EU), DDBJ (JP). Many specimens are sequenced.</p>
+<p class="mb-3"><img class="mx-auto" src="data/597fef9f521bd74b410b46475c0d3d3a.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="5.3" id="finding-data"><span class="header-section-number">5.3</span> Finding data</h2>
+<p class="mb-3">Data can be found in two ways:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>Going to the website and downloading it</li>
+<li>Programmatically, from R itself</li>
+</ul>
+<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">choosebank</span>(<span class="st">&quot;refseqViruses&quot;</span>)</span>
+<span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">query</span>(<span class="st">&quot;Dengue1&quot;</span>, <span class="st">&quot;AC=NC_001477&quot;</span>)</span></code></pre></div>
+<h2 class="text-xl mt-5 mb-5" data-number="5.4" id="fasta"><span class="header-section-number">5.4</span> Fasta</h2>
+<p class="mb-3">Usually, sequences are encoded in the FASTA format. We can manipulate this data in R.</p>
+<p class="mb-3"><img class="mx-auto" src="data/d08d35158fa4632a42294ad6ceb2ca7d.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="5.5" id="statistics"><span class="header-section-number">5.5</span> Statistics</h2>
+<p class="mb-3">Using this data, it’s very simple to have statistics for bases:</p>
+<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">count</span>(dengueseq, <span class="dv">1</span>)</span>
+<span id="cb2-2"><a class="link link-hover text-zinc-600" href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  a    c    g    t</span>
+<span id="cb2-3"><a class="link link-hover text-zinc-600" href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3426</span> <span class="dv">2240</span> <span class="dv">2770</span> <span class="dv">2299</span></span></code></pre></div>
+<p class="mb-3">Also pairs and so on:</p>
+<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">count</span>(dengueseq, <span class="dv">2</span>)</span>
+<span id="cb3-2"><a class="link link-hover text-zinc-600" href="#cb3-2" aria-hidden="true" tabindex="-1"></a> aa   ac   ag   at   ca   cc   cg   ct</span>
+<span id="cb3-3"><a class="link link-hover text-zinc-600" href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1108</span>  <span class="dv">720</span>  <span class="dv">890</span>  <span class="dv">708</span>  <span class="dv">901</span>  <span class="dv">523</span>  <span class="dv">261</span>  <span class="dv">555</span></span>
+<span id="cb3-4"><a class="link link-hover text-zinc-600" href="#cb3-4" aria-hidden="true" tabindex="-1"></a> ga   gc   gg   gt   ta   tc   tg   tt</span>
+<span id="cb3-5"><a class="link link-hover text-zinc-600" href="#cb3-5" aria-hidden="true" tabindex="-1"></a> <span class="dv">976</span>  <span class="dv">500</span>  <span class="dv">787</span>  <span class="dv">507</span>  <span class="dv">440</span>  <span class="dv">497</span>  <span class="dv">832</span>  <span class="dv">529</span></span></code></pre></div>
+
+  <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
+
+
+</article>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>Haskell type classes: incidental non-examples
+</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+</head>
+<body>
+    <header>
+        <div class="navbar bg-base-100">
+          <div class="navbar-start">
+            <nav>
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="inline-flex items-center text-l font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+            <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+            Juan Raphael Diaz Simões
+          </a>
+        </li>
+    
+        <li>
+      <div class="flex items-center">
+        <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+        <a href="/posts" class="ml-1 text-l font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Posts</a>
+      </div>
+    </li>
+
+          </div>
+          <div class="navbar-end">
+            <ul class="menu menu-horizontal px-1">
+              <li><a href="/posts">Posts</a></li>
+              <li><a href="/courses">Courses</a></li>
+              <li><a href="/cv.html">CV</a></li>
+              <li><a href="/projects.html">Projects</a></li>
+            </ul>
+          </div>
+        </nav>
+    </header>
+    <div class="flex justify-center bg-base-100">
+    <article class="prose max-w-prose">
+        <h1 class="text-3xl mb-5">
+            Haskell type classes: incidental non-examples
+
+        </h1>
+        <div class="mb-5">2017-11-02</div>
+
+        <p class="mb-3">This post is a tour of some Haskell type classes, and why some types don’t fit them, but in a non-fundamental way. That means that one could change the encoding of these type classes in order to make these types fit into them, without changing their mathematical meaning.</p>
+<p class="mb-3">This list will evolve in time.</p>
+<hr />
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="functor"><span class="header-section-number">1</span> Functor</h1>
+<p class="mb-3">The most common type class on Haskell, inspired by the category theory <a class="link link-hover text-zinc-600" href="https://en.wikipedia.org/wiki/Functor">concept</a> with same name. In Haskell all functors are endofunctors, that is, they have the same domain and target categories.</p>
+<pre><code>class Functor f where
+  fmap :: (a -&gt; b) -&gt; f a -&gt; f b</code></pre>
+<h2 class="text-xl mt-5 mb-5" data-number="1.1" id="non-examples"><span class="header-section-number">1.1</span> Non-examples</h2>
+<p class="mb-3">The most common non-example is <code>Set</code>. A reason for this is that <code>Set</code> contains only unique elements, following their <code>Eq</code> instance, but Haskell functions are not required to follow this instance. That is, <code>x == y</code> does not imply <code>f x == f y</code>, which is the property known as <a class="link link-hover text-zinc-600" href="https://en.wikipedia.org/wiki/Equality_(mathematics)#Equality_in_mathematical_logic">Leibniz equality</a>. If we define for any type a newtype:</p>
+<pre><code>newtype Same a = Same { getSame :: a }
+
+instance Eq (Same a) where
+  _ == _ = True
+
+instance Ord (Same a) where
+  _ &lt;= _ = True
+</code></pre>
+<p class="mb-3">then it easy to see that <code>Set.map getSame . Set.map Same</code> is not the same as <code>Set.map (getSame . Same) = Set.map id = id</code>.</p>
+<p class="mb-3">Another reason for <code>Set</code> not to fit the class is its <code>Ord</code> restriction on elements. To see why this is a problem, we can write the full type signature for <code>fmap</code>, with explicit quantification:</p>
+<pre><code>forall a b . Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b</code></pre>
+<p class="mb-3">which shows that there is no place for restrictions in this signature.</p>
+<p class="mb-3">Other examples of this kind are the <code>Storable</code> and <code>Unbox</code> variants of <code>Vector</code> from the <a class="link link-hover text-zinc-600" href="https://hackage.haskell.org/package/vector">vector</a> package. These limitations make numerical applications in Haskell unpleasant, since they often depend on constraints. The most well known library that tries to solve this problem is <a class="link link-hover text-zinc-600" href="https://github.com/mikeizbicki/subhask">SubHask</a>, and I have my own personal take on the subject <a class="link link-hover text-zinc-600" href="https://github.com/guaraqe/constraint-classes">here</a>.</p>
+<hr />
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="applicative"><span class="header-section-number">2</span> Applicative</h1>
+<p class="mb-3">The class is defined as follows:</p>
+<pre><code>class Functor f =&gt; Applicative f where
+  pure :: a -&gt; f a
+  &lt;*&gt; :: f (a -&gt; b) -&gt; f a -&gt; f b</code></pre>
+<p class="mb-3">Both functions are related to the concept of <a class="link link-hover text-zinc-600" href="https://en.wikipedia.org/wiki/Monoidal_category">monoidal categories</a> in different ways. The function <code>pure</code> is related to the concept of <a class="link link-hover text-zinc-600" href="https://ncatlab.org/nlab/show/tensorial+strength">tensorial strength</a>, while <code>&lt;*&gt;</code> is related to <a class="link link-hover text-zinc-600" href="https://ncatlab.org/nlab/show/monoidal+functor">lax monoidal functors</a>.</p>
+<p class="mb-3">It is worth noting that the property of having <code>&lt;*&gt;</code> is equivalent to have a function <code>zip :: (f a, f b) -&gt; f (a,b)</code>, that is, pairs of functor images are mapped to functor images of pairs.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.1" id="non-examples-1"><span class="header-section-number">2.1</span> Non-examples</h2>
+<p class="mb-3">A common type that is <code>Functor</code> but not <code>Applicative</code> is <code>Map k</code>. <code>Map k a</code> is semantically a function <code>k -&gt; Maybe a</code>, the composition of <code>(k -&gt;)</code> and <code>Maybe</code>, both <code>Applicatives</code>. Since for <code>(k -&gt;)</code> we have <code>pure = const</code> and for <code>Maybe</code> we have <code>pure = Just</code>, we would need to have values for all the keys, which may be infinite in number.</p>
+<p class="mb-3">However, <code>&lt;*&gt;</code> is perfectly implementable, and could be defined as <code>instersectWith ($)</code>, which is equivalent to the composition of <code>&lt;*&gt;</code> for <code>(k -&gt;)</code> and <code>Maybe</code>.</p>
+<p class="mb-3">Another similar example are <code>ZipVector</code>s, which are vectors where <code>(&lt;*&gt;) = zipWith ($)</code>. For this instance to be lawful, one would need <code>pure</code> to produce an infinite vector, which is not possible. This is however possible for lists and is implemented in <a class="link link-hover text-zinc-600" href="http://hackage.haskell.org/package/base-4.9.1.0/docs/Control-Applicative.html#t:ZipList">Control.Applicative</a>.</p>
+<p class="mb-3">A solution to this problem is to split the <code>Applicative</code> class in two parts. You can find these parts as <code>Pointed</code> in <a class="link link-hover text-zinc-600" href="https://hackage.haskell.org/package/pointed">pointed</a> and <code>Apply</code> in <a class="link link-hover text-zinc-600" href="https://hackage.haskell.org/package/semigroupoids">semigroupoids</a>. This separation has been also implemented in <a class="link link-hover text-zinc-600" href="https://pursuit.purescript.org/packages/purescript-prelude/3.1.0/docs/Control.Apply">purescript</a>.</p>
+
+        <br>
+        <br>
+    </article>
+</div>
+
+</body>
+</html>

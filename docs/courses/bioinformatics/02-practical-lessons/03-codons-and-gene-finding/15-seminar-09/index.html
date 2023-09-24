@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>2.3.1 Translating bases to codons
+</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+</head>
+<body>
+    <header>
+        <div class="navbar bg-base-100">
+          <div class="navbar-start">
+            <nav>
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="inline-flex items-center text-l font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+            <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+            Juan Raphael Diaz Simões
+          </a>
+        </li>
+    
+        <li>
+      <div class="flex items-center">
+        <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+        <a href="/courses" class="ml-1 text-l font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Courses</a>
+      </div>
+    </li>
+
+          </div>
+          <div class="navbar-end">
+            <ul class="menu menu-horizontal px-1">
+              <li><a href="/posts">Posts</a></li>
+              <li><a href="/courses">Courses</a></li>
+              <li><a href="/cv.html">CV</a></li>
+              <li><a href="/projects.html">Projects</a></li>
+            </ul>
+          </div>
+        </nav>
+    </header>
+    <div class="flex justify-center bg-base-100">
+<article class="prose max-w-prose mb-5">
+  <div class="book-navigation">
+
+    <div class="book-navigation-parent drawer">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content">
+        <label for="my-drawer">
+          <div class="space-y-1 inline-block">
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+          </div>
+          <b>Index</b>
+        </label>
+      </div>
+      <div class="drawer-side">
+        <label for="my-drawer" class="drawer-overlay"></label>
+           <div class="menu menu-vertical p-4 h-full bg-base-200">
+             <h1 class="text-xl mb-5 w-100">
+                  Introduction to Bioinformatics
+
+             </h1>
+             <div style="flex-basis:100%; height: 0;"}></div>
+             <ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/index.html">1 Lectures
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/03-lecture-01/index.html">1.1 Bioinformatics Basics
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/07-lecture-02/index.html">1.2 Comparing Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/10-lecture-03/index.html">1.3 Comparing Gene Sequences 2
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/13-lecture-04/index.html">1.4 Gene Finding
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/16-lecture-05/index.html">1.5 Locating genes and its functions: techniques, problems and difficulties
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/index.html">2 Practical Lessons
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/index.html">2.1 Basic R and generic data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/01-seminar-01/index.html">2.1.1 Basic R
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/02-seminar-02/index.html">2.1.2 Files
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/04-seminar-03/index.html">2.1.3 Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/05-seminar-04/index.html">2.1.4 Comparing Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/06-control-01/index.html">2.1.5 Loading and processing data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/20-seminar-12/index.html">2.1.6 Programming Exercises
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/index.html">2.2 Basic analysis of genetic data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/08-seminar-05/index.html">2.2.1 GC Content
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/09-seminar-06/index.html">2.2.2 Subseries GC Content
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/11-seminar-07/index.html">2.2.3 Creating dot plots
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/14-control-02/index.html">2.2.4 Loading and comparing data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/index.html">2.3 Codons and gene finding
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/15-seminar-09/index.html">2.3.1 Translating bases to codons
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/17-seminar-10/index.html">2.3.2 Codon frequencies and finding genes
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/18-control-03/index.html">2.3.3 Theoretical Control
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/19-seminar-11/index.html">2.3.4 Aminoacid sequences and base sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/index.html">2.4 Summary and exam
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/21-seminar-13/index.html">2.4.1 Theoretical Questions
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/22-exam-01/index.html">2.4.2 Final exam
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li></ul></li></ul>
+           </div>
+      </div>
+    </div>
+
+    <div class="book-navigation-parent">
+      <div class="arrow arrow-up"></div>
+      <a href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/index.html">2.3 Codons and gene finding
+</a>
+      <div class="arrow arrow-up"></div>
+    </div>
+
+    <div class="book-navigation-section">
+
+       <div class="book-navigation-previous">
+       </div>
+
+       <div class="book-navigation-next">
+         <a href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/17-seminar-10/index.html">2.3.2 Codon frequencies and finding genes
+</a>
+         <div class="arrow arrow-right"></div>
+       </div>
+    </div>
+  </div>
+
+    <h1 class="text-3xl mb-5">
+    2.3.1 Translating bases to codons
+
+</h1>
+
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="codons"><span class="header-section-number">1</span> Codons</h1>
+<p class="mb-3">Codons are triples of bases. These are the units ribosomes use to translate between bases and aminoacids.</p>
+<p class="mb-3"><img class="mx-auto" src="data/dc74f7ec59f6baad82fb843b711fe42e.png" /></p>
+<p class="mb-3">Many representations are possible to show the translation between codons and aminoacids.</p>
+<p class="mb-3"><img class="mx-auto" src="data/40fcef6ec633abc61ffad3a09762bc73.png" /></p>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="mapping-codons"><span class="header-section-number">2</span> Mapping codons</h1>
+<p class="mb-3">Translate into the corresponding aminoacids:</p>
+<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> s <span class="ot">&lt;-</span> <span class="fu">DNAString</span>(<span class="st">&quot;ACTGAGACACTTGCG&quot;</span>)</span>
+<span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Biostrings<span class="sc">::</span><span class="fu">translate</span>(s)</span>
+<span id="cb1-3"><a class="link link-hover text-zinc-600" href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">-</span>letter AAString object</span>
+<span id="cb1-4"><a class="link link-hover text-zinc-600" href="#cb1-4" aria-hidden="true" tabindex="-1"></a>seq<span class="sc">:</span> TETLA</span></code></pre></div>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="genes"><span class="header-section-number">3</span> Genes</h1>
+<p class="mb-3">The molecular gene is a sequence of nucleotides in DNA that is transcribed to produce a functional RNA. Genes can lead to the production of sequences of aminoacids. That is, proteins. There are particular codons that can imply the start and the end of genes:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>Genes start with <code>ATG</code> (Methionine).</li>
+<li>Genes end with <code>TAA</code> (Ochre), <code>TAG</code> (Amber), <code>TGA</code> (Opal).</li>
+</ul>
+<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> start <span class="ot">&lt;-</span> <span class="fu">DNAString</span>(<span class="st">&quot;ATG&quot;</span>)</span>
+<span id="cb2-2"><a class="link link-hover text-zinc-600" href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> end1 <span class="ot">&lt;-</span> <span class="fu">DNAString</span>(<span class="st">&quot;TAA&quot;</span>)</span>
+<span id="cb2-3"><a class="link link-hover text-zinc-600" href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> end2 <span class="ot">&lt;-</span> <span class="fu">DNAString</span>(<span class="st">&quot;TAG&quot;</span>)</span>
+<span id="cb2-4"><a class="link link-hover text-zinc-600" href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> end3 <span class="ot">&lt;-</span> <span class="fu">DNAString</span>(<span class="st">&quot;TGA&quot;</span>)</span></code></pre></div>
+<p class="mb-3">Apply the function <code>Biostrings::translate</code> to each one of these.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="4" id="and-3-reading-frames"><span class="header-section-number">4</span> 1, 2 and 3 reading frames</h1>
+<p class="mb-3">We can name sites as reading frames 1, 2 or 3 depending if their nucleotide has remainder 0, 1 or 2, respectively when divided by three. Start and end sites must be in the same reading frames.</p>
+<p class="mb-3">By default, a sequence is in the reading frame 1. We can find the other reading frames by skipping the starting position:</p>
+<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> s[<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(s)] <span class="co"># reading frame 1, same as s</span></span>
+<span id="cb3-2"><a class="link link-hover text-zinc-600" href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> s[<span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(s)] <span class="co"># reading frame 2</span></span>
+<span id="cb3-3"><a class="link link-hover text-zinc-600" href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> s[<span class="dv">3</span><span class="sc">:</span><span class="fu">length</span>(s)] <span class="co"># reading frame 3</span></span></code></pre></div>
+<h1 class="text-2xl mt-5 mb-5" data-number="5" id="exercise-finding-all-possible-codons"><span class="header-section-number">5</span> Exercise: finding all possible codons</h1>
+<p class="mb-3">In the full sequence, genes don’t have to start at the beginning of the sequence. Therefore, there are three possible lists of codons.</p>
+<div class="sourceCode mb-3 notranslate" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a class="link link-hover text-zinc-600" href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> c1 <span class="ot">&lt;-</span> Biostrings<span class="sc">::</span><span class="fu">translate</span>(s[<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(s)])</span>
+<span id="cb4-2"><a class="link link-hover text-zinc-600" href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> c2 <span class="ot">&lt;-</span> Biostrings<span class="sc">::</span><span class="fu">translate</span>(s[<span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(s)])</span>
+<span id="cb4-3"><a class="link link-hover text-zinc-600" href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> c3 <span class="ot">&lt;-</span> Biostrings<span class="sc">::</span><span class="fu">translate</span>(s[<span class="dv">3</span><span class="sc">:</span><span class="fu">length</span>(s)])</span></code></pre></div>
+<p class="mb-3">Look at these three sequences, and try to find genes. Remembering, it starts with <code>M</code>, and finishes with <code>*</code>.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="6" id="computationally-find-potential-genes"><span class="header-section-number">6</span> Computationally find potential genes</h1>
+<ol class="list-decimal list-outside mt-1 mb-3 pl-5" type="1">
+<li>Find the potential <em>start</em> and <em>end</em> codons in the sequence. (In 1, 2 or 3 position)</li>
+<li>Match start codons to end codons. These end codons must be after the start codons, and there must a multiple of three bases between them.</li>
+<li>Extract the obtained sequences between start and end.</li>
+</ol>
+<h1 class="text-2xl mt-5 mb-5" data-number="7" id="exercise-1-finding-potential-genes"><span class="header-section-number">7</span> Exercise 1: finding potential genes</h1>
+<p class="mb-3">Find the possible genes in this sequence:</p>
+<pre><code>ATGGGGCTCATTCAAGAAGAATGGAGTAACTAG</code></pre>
+<h1 class="text-2xl mt-5 mb-5" data-number="8" id="exercise-2-finding-potential-genes"><span class="header-section-number">8</span> Exercise 2: finding potential genes</h1>
+<p class="mb-3">Find the possible genes in this sequence:</p>
+<pre><code>GCTCATTCAAGAAGAATCGAGTAACTGCAG</code></pre>
+
+  <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
+
+
+</article>
+</div>
+
+</body>
+</html>

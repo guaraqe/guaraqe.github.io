@@ -1,23 +1,28 @@
 {-# LANGUAGE DeriveAnyClass #-}
+{-# LANGUAGE DuplicateRecordFields #-}
+{-# LANGUAGE OverloadedRecordDot #-}
+{-# LANGUAGE NoFieldSelectors #-}
+
 
 module Site.Layout
-  ( Layout (..)
-  , build
-  ) where
+  ( Layout (..),
+    build,
+  )
+where
 
-import Development.Shake
-import Slick
-import Development.Shake.Classes
 import Data.Aeson
-import GHC.Generics (Generic)
 import Data.Text qualified as T
+import Development.Shake
+import Development.Shake.Classes
+import GHC.Generics (Generic)
+import Slick
 
 data Layout = Layout
-  { title :: String
-  , content :: String
-  , latex :: Bool
-  , page :: String
-  , pageLink :: String
+  { title :: String,
+    content :: String,
+    latex :: Bool,
+    page :: String,
+    pageLink :: String
   }
   deriving (Generic, Eq, Ord, Show, FromJSON, ToJSON, Binary)
 

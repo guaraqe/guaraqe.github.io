@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>1.5 Locating genes and its functions: techniques, problems and difficulties
+</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+</head>
+<body>
+    <header>
+        <div class="navbar bg-base-100">
+          <div class="navbar-start">
+            <nav>
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="inline-flex items-center text-l font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+            <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+            Juan Raphael Diaz Simões
+          </a>
+        </li>
+    
+        <li>
+      <div class="flex items-center">
+        <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+        <a href="/courses" class="ml-1 text-l font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Courses</a>
+      </div>
+    </li>
+
+          </div>
+          <div class="navbar-end">
+            <ul class="menu menu-horizontal px-1">
+              <li><a href="/posts">Posts</a></li>
+              <li><a href="/courses">Courses</a></li>
+              <li><a href="/cv.html">CV</a></li>
+              <li><a href="/projects.html">Projects</a></li>
+            </ul>
+          </div>
+        </nav>
+    </header>
+    <div class="flex justify-center bg-base-100">
+<article class="prose max-w-prose mb-5">
+  <div class="book-navigation">
+
+    <div class="book-navigation-parent drawer">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content">
+        <label for="my-drawer">
+          <div class="space-y-1 inline-block">
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+          </div>
+          <b>Index</b>
+        </label>
+      </div>
+      <div class="drawer-side">
+        <label for="my-drawer" class="drawer-overlay"></label>
+           <div class="menu menu-vertical p-4 h-full bg-base-200">
+             <h1 class="text-xl mb-5 w-100">
+                  Introduction to Bioinformatics
+
+             </h1>
+             <div style="flex-basis:100%; height: 0;"}></div>
+             <ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/index.html">1 Lectures
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/03-lecture-01/index.html">1.1 Bioinformatics Basics
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/07-lecture-02/index.html">1.2 Comparing Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/10-lecture-03/index.html">1.3 Comparing Gene Sequences 2
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/13-lecture-04/index.html">1.4 Gene Finding
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/16-lecture-05/index.html">1.5 Locating genes and its functions: techniques, problems and difficulties
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/index.html">2 Practical Lessons
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/index.html">2.1 Basic R and generic data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/01-seminar-01/index.html">2.1.1 Basic R
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/02-seminar-02/index.html">2.1.2 Files
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/04-seminar-03/index.html">2.1.3 Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/05-seminar-04/index.html">2.1.4 Comparing Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/06-control-01/index.html">2.1.5 Loading and processing data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/20-seminar-12/index.html">2.1.6 Programming Exercises
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/index.html">2.2 Basic analysis of genetic data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/08-seminar-05/index.html">2.2.1 GC Content
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/09-seminar-06/index.html">2.2.2 Subseries GC Content
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/11-seminar-07/index.html">2.2.3 Creating dot plots
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/14-control-02/index.html">2.2.4 Loading and comparing data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/index.html">2.3 Codons and gene finding
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/15-seminar-09/index.html">2.3.1 Translating bases to codons
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/17-seminar-10/index.html">2.3.2 Codon frequencies and finding genes
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/18-control-03/index.html">2.3.3 Theoretical Control
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/19-seminar-11/index.html">2.3.4 Aminoacid sequences and base sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/index.html">2.4 Summary and exam
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/21-seminar-13/index.html">2.4.1 Theoretical Questions
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/22-exam-01/index.html">2.4.2 Final exam
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li></ul></li></ul>
+           </div>
+      </div>
+    </div>
+
+    <div class="book-navigation-parent">
+      <div class="arrow arrow-up"></div>
+      <a href="/courses/bioinformatics/01-lectures/index.html">1 Lectures
+</a>
+      <div class="arrow arrow-up"></div>
+    </div>
+
+    <div class="book-navigation-section">
+
+       <div class="book-navigation-previous">
+         <div class="arrow arrow-left"></div>
+         <a href="/courses/bioinformatics/01-lectures/13-lecture-04/index.html">1.4 Gene Finding
+</a>
+       </div>
+
+       <div class="book-navigation-next">
+       </div>
+    </div>
+  </div>
+
+    <h1 class="text-3xl mb-5">
+    1.5 Locating genes and its functions: techniques, problems and difficulties
+
+</h1>
+
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="problems-and-difficulties"><span class="header-section-number">1</span> Problems and difficulties</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="1.1" id="open-reading-frames"><span class="header-section-number">1.1</span> Open Reading Frames</h2>
+<p class="mb-3">In the last lessons we learned about open reading frames, and how to find them using starting and ending codons.</p>
+<p class="mb-3">In this lecture, you will learn about how these techniques turn out to be difficult to apply in many cases.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.2" id="open-reading-frames-1"><span class="header-section-number">1.2</span> Open Reading Frames</h2>
+<p class="mb-3">The ORF begins with an initiation codon - usually (but not always) ATG - and ends with a termination codon: TAA, TAG or TGA.</p>
+<p class="mb-3">Other initiation codons are possible. Some of these include, TTG, GTG, CTG, etc. All of them will put a methionine in the sequence.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.3" id="six-reading-frames"><span class="header-section-number">1.3</span> Six Reading Frames</h2>
+<p class="mb-3">DNA sequence has six reading frames, three in one direction (what we did during the lecture) and three in the reverse direction on the complementary strand.</p>
+<p class="mb-3"><img class="mx-auto" src="data/59e37f22e83ace3c297b63741f931731.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.4" id="statistics"><span class="header-section-number">1.4</span> Statistics</h2>
+<p class="mb-3">If the DNA has a random sequence and a GC content of 50% then each of the three termination codons - TAA, TAG and TGA - will appear, on average, once every 64 base pairs.</p>
+<p class="mb-3">If the GC content is &gt; 50% then the termination codons, being AT-rich, will occur less frequently but one will still be expected every 100–200 bp. This means that random DNA should not show many ORFs longer than 50 codons in length.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.5" id="gene-size"><span class="header-section-number">1.5</span> Gene size</h2>
+<p class="mb-3">Most genes, on the other hand, are longer than 50 codons: the average lengths are 317 codons for Escherichia coli, 483 codons for Saccharomyces cerevisiae, and approximately 450 codons for humans.</p>
+<p class="mb-3">ORF scanning, in its simplest form, therefore takes a figure of, say, 100 codons as the shortest length of a putative gene and records positive hits for all ORFs longer than this.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.6" id="where-it-works-well"><span class="header-section-number">1.6</span> Where it works well</h2>
+<p class="mb-3">With bacterial genomes, simple ORF scanning is an effective way of locating most of the genes in a DNA sequence.</p>
+<p class="mb-3">This picture shows a segment of the E. coli genome with all ORFs longer than 50 codons highlighted. The real genes in the sequence cannot be mistaken because they are much longer than 50 codons in length.</p>
+<p class="mb-3"><img class="mx-auto" src="data/7c06d12d16a36ef8ee4ce66e1a9816e2.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.7" id="bacterial-genome"><span class="header-section-number">1.7</span> Bacterial genome</h2>
+<p class="mb-3">There is relatively little non-coding DNA in the genome of bacteria (only 11% for E. coli).</p>
+<p class="mb-3">For bacteria is reasonable to assume that real genes do not overlap, and that there are no genes-within-genes.</p>
+<p class="mb-3">Then it is only in the non-coding region where one can mistake a short spurious ORF for a real gene.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.8" id="higher-eukaryotes"><span class="header-section-number">1.8</span> Higher eukaryotes</h2>
+<p class="mb-3">ORF scans are less effective for locating genes in DNA sequences from higher eukaryotes.</p>
+<p class="mb-3">In part because there is more space between the real genes in a eukaryotic genome (62% of the human genome is intergenic), increasing the chances of finding spurious ORFs</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.9" id="introns"><span class="header-section-number">1.9</span> Introns</h2>
+<p class="mb-3">In higher eukaryotes, genes are often split by introns, and so do not appear as continuous ORFs in the DNA sequence.</p>
+<p class="mb-3">Many exons (parts which are not introns) are shorter than 100 codons, some fewer than 50 codons. In other words, the genes of a higher eukaryote do not appear in the genome sequence as long ORFs, and simple ORF scanning cannot locate them.</p>
+<p class="mb-3"><img class="mx-auto" src="data/c5313b485fd1fa904361bc3848bc9dc4.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.10" id="homology-search"><span class="header-section-number">1.10</span> Homology Search</h2>
+<p class="mb-3">Identification of spurious ORFs as real genes is still a major problem, even for better algorithms.</p>
+<p class="mb-3">In homology analysis the DNA databases are searched to determine if the test sequence is identical or similar to any genes that have already been sequenced.</p>
+<p class="mb-3">This can show that the found sequences are homologous, meaning that they represent genes that are evolutionarily related.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="experimental-techniques"><span class="header-section-number">2</span> Experimental techniques</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="2.1" id="rna-detection"><span class="header-section-number">2.1</span> RNA detection</h2>
+<p class="mb-3">Most experimental methods for gene location are not based on direct examination of DNA molecules, relying on detection of the RNA molecules that are transcribed from genes.</p>
+<p class="mb-3">Techniques that map the positions of transcribed sequences in a DNA fragment can therefore be used to locate exons and entire genes.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.2" id="rna-detection-1"><span class="header-section-number">2.2</span> RNA detection</h2>
+<p class="mb-3">The transcript is usually longer than the coding part of the gene because it begins several tens of nucleotides upstream of the initiation codon and continues several tens or hundreds of nucleotides downstream of the termination.</p>
+<p class="mb-3">This does not therefore give a precise definition of the start and end of the coding region of a gene, but it does tell you that a gene is present in a particular region and it can locate the exon-intron boundaries.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.3" id="hybridization"><span class="header-section-number">2.3</span> Hybridization</h2>
+<p class="mb-3">The simplest procedures for studying transcribed sequences are based on hybridization analysis.</p>
+<p class="mb-3">The principle of hybridization analysis is that a single-stranded DNA or RNA molecule of defined sequence (the probe) can base-pair to a second DNA or RNA molecule that contains a complementary sequence (the target).</p>
+<p class="mb-3"><img class="mx-auto" src="data/d8a255cfe12d7ca43cb9e764fdbc31b0.png" /></p>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="gene-function"><span class="header-section-number">3</span> Gene function</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="3.1" id="identifying-gene-function"><span class="header-section-number">3.1</span> Identifying gene function</h2>
+<p class="mb-3">Once a new gene has been located in a genome sequence, the question of its function has to be addressed.</p>
+<p class="mb-3">Completed sequencing projects have revealed that we know less than we thought about the content of individual genomes.</p>
+<p class="mb-3">Of the 4288 protein-coding genes in the E. coli genome sequence, only 1853 (43% of the total) had been previously identified. For S. cerevisiae the figure was only 30%.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.2" id="homology"><span class="header-section-number">3.2</span> Homology</h2>
+<p class="mb-3">The basis of homology searching is that related genes have similar sequences and so a new gene can be discovered by virtue of its similarity to an equivalent, already sequenced, gene from a different organism.</p>
+<p class="mb-3">A pair of homologous genes do not have identical nucleotide sequences, because the two genes undergo different random changes by mutation. But they are similar because these random changes have operated on the same starting sequence, the common ancestral gene.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.3" id="homology-and-evolution"><span class="header-section-number">3.3</span> Homology and evolution</h2>
+<p class="mb-3">Homologous genes are ones that share a common evolutionary ancestor, revealed by sequence similarities between the genes. Homologous genes fall into two categories:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li><p class="mb-3"><strong>Orthologous</strong> genes are those homologs that are present in different organisms and whose common ancestor predates the split between the species.</p></li>
+<li><p class="mb-3"><strong>Paralogous</strong> genes are present in the same organism, often members of a recognized multigene family, their common ancestor possibly or possibly not predating the species in which the genes are now found.</p></li>
+</ul>
+<h2 class="text-xl mt-5 mb-5" data-number="3.4" id="homology-and-aminoacid-sequences"><span class="header-section-number">3.4</span> Homology and aminoacid sequences</h2>
+<p class="mb-3">A tentative gene sequence is converted into an amino acid sequence before the search is carried out. A homology search is therefore less likely to give spurious results if the amino sequence is used.</p>
+<p class="mb-3"><img class="mx-auto" src="data/f1dfe5559e9d6bdd155c9d37c142739d.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.5" id="yeast-genome-example"><span class="header-section-number">3.5</span> Yeast genome example</h2>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>30% of genes identified before sequencing</li>
+<li>30% more using homology, with known function</li>
+<li>10% more using homology, with no known function</li>
+<li>30% with no homologs, called orphan genes</li>
+</ul>
+<h1 class="text-2xl mt-5 mb-5" data-number="4" id="inactivation"><span class="header-section-number">4</span> Inactivation</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="4.1" id="experimental-methods"><span class="header-section-number">4.1</span> Experimental methods</h2>
+<p class="mb-3">The problem is that the objective - to plot a course from gene to function - is the reverse of the route normally taken by genetic analysis, in which the starting point is a phenotype and the objective is to identify the underlying gene or genes.</p>
+<p class="mb-3">The problem we are currently addressing takes us in the opposite direction: starting with a new gene and hopefully leading to identification of the associated phenotype.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="4.2" id="mutants"><span class="header-section-number">4.2</span> Mutants</h2>
+<p class="mb-3">In conventional genetic analysis, the genetic basis of a phenotype is usually studied by searching for mutant organisms in which the phenotype has become altered.</p>
+<p class="mb-3">The gene or genes that have been altered in the mutant organism are then studied by genetic crosses.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="4.3" id="gene-inactivation"><span class="header-section-number">4.3</span> Gene inactivation</h2>
+<p class="mb-3">If the starting point is the gene, rather than the phenotype, then the equivalent strategy would be to mutate the gene and identify the phenotypic change that results.</p>
+<p class="mb-3">The easiest way to inactivate a specific gene is to disrupt it with an unrelated segment of DNA.</p>
+<p class="mb-3">Examples where this analysis were carried out were the yeast and the mice.</p>
+<p class="mb-3"><img class="mx-auto" src="data/dd351b77dc94bfb22f4dbaccc3ddd3a4.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="4.4" id="gene-overexpression"><span class="header-section-number">4.4</span> Gene overexpression</h2>
+<p class="mb-3">The complementary approach is to engineer an organism in which the test gene is much more active than normal (‘gain of function’) and to determine what changes, if any, this has on the phenotype.</p>
+<p class="mb-3">To overexpress a gene a special type of cloning vector must be used, one designed to ensure that the cloned gene directs the synthesis of as much protein as possible.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="4.5" id="reporter-genes"><span class="header-section-number">4.5</span> Reporter genes</h2>
+<p class="mb-3">If gene expression is restricted to a particular organ or tissue of a multicellular organism, or to a single set of cells within an organ or tissue, then this positional information can be used to infer the general role of the gene product.</p>
+<p class="mb-3">Determining the pattern of gene expression within an organism is possible with a reporter gene. This is a gene whose expression can be monitored in a convenient way, ideally by visual examination.</p>
+<p class="mb-3">This type of analysis has proved particularly useful in understanding the activities of genes involved in the earliest stages of development in Drosophila</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="5" id="questions"><span class="header-section-number">5</span> Questions</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="5.1" id="questions-1"><span class="header-section-number">5.1</span> Questions?</h2>
+
+  <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
+
+
+</article>
+</div>
+
+</body>
+</html>

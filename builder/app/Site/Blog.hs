@@ -1,8 +1,9 @@
 {-# LANGUAGE DeriveAnyClass #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DuplicateRecordFields #-}
-{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE OverloadedRecordDot #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE NoFieldSelectors #-}
 
 module Site.Blog
   ( Post (..),
@@ -13,6 +14,8 @@ where
 
 import Control.Monad (void)
 import Data.Aeson as A
+import Data.List (sortOn)
+import Data.Ord (Down (..))
 import Data.Text qualified as T
 import Data.Time
 import Development.Shake
@@ -21,16 +24,15 @@ import Development.Shake.FilePath
 import Development.Shake.Forward
 import GHC.Generics (Generic)
 import Site.Json
-import Site.Pandoc
 import Site.Layout qualified as Layout
+import Site.Pandoc
 import Slick
-import Data.List (sortOn)
-import Data.Ord (Down (..))
 
 build :: FilePath -> FilePath -> Action [Post]
 build inputFolder outputFolder = do
   copyStaticFiles inputFolder outputFolder
-  buildPosts inputFolder outputFolder
+  posts <- buildPosts inputFolder outputFolder
+  pure $ sortOn (Down . (.date)) posts
 
 --------------------------------------------------------------------------------
 -- Static
@@ -52,15 +54,15 @@ data IndexInfo = IndexInfo
 buildIndex :: FilePath -> [Post] -> Action ()
 buildIndex outputFolder posts = do
   indexT <- compileTemplate' "site/templates/post-list.html"
-  let sortedPosts = sortOn (Down . (.date)) posts
-      indexInfo = IndexInfo sortedPosts
-      layout = Layout.Layout
-        { title = "Posts"
-        , content = T.unpack $ substitute indexT (toJSON indexInfo)
-        , latex = False
-        , page = "Posts"
-        , pageLink = "/posts"
-        }
+  let indexInfo = IndexInfo posts
+      layout =
+        Layout.Layout
+          { title = "Posts",
+            content = T.unpack $ substitute indexT (toJSON indexInfo),
+            latex = False,
+            page = "Posts",
+            pageLink = "/posts"
+          }
   Layout.build (outputFolder </> "index.html") layout
 
 --------------------------------------------------------------------------------
@@ -90,20 +92,21 @@ buildPost outputFolder srcPath = cacheAction ("post" :: T.Text, srcPath) $ do
 
   let fullPostData =
         setObjectAttribute "date" (showGregorian date)
-          . setObjectAttribute "url" postUrl
+          . setObjectAttribute "url" ("posts" </> postUrl)
           $ postData
 
   template <- compileTemplate' "site/templates/post.html"
 
   post <- convert fullPostData
 
-  let layout = Layout.Layout
-        { title = post.title
-        , content = T.unpack $ substitute template fullPostData
-        , latex = True
-        , page = "Posts"
-        , pageLink = "/posts"
-        }
+  let layout =
+        Layout.Layout
+          { title = post.title,
+            content = T.unpack $ substitute template fullPostData,
+            latex = True,
+            page = "Posts",
+            pageLink = "/posts"
+          }
 
   Layout.build (outputFolder </> postUrl) layout
 

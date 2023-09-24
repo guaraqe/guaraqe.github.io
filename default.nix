@@ -36,6 +36,8 @@ let
             # Latex
             texlive.combined.scheme-medium
             imagemagick
+            # Translate
+            translate-shell
           ];
       };
 in

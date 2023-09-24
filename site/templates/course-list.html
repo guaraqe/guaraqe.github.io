@@ -1,0 +1,19 @@
+<div class="flex justify-center bg-base-100">
+    <article class="prose max-w-prose">
+        <h1 class="text-2xl mb-5">
+            Courses
+        </h1>
+
+        <ul class="list-disc list-outside mt-1 pl-5">
+            {{#courses}}
+                <li>
+                    <a href="{{url}}">{{title}}</a>
+                </li>
+            {{/courses}}
+        </ul>
+
+    </article>
+</div>
+
+
+

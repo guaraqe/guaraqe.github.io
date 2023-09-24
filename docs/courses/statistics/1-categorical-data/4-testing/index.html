@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>1.4 Testing Categorical Data
+</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+</head>
+<body>
+    <header>
+        <div class="navbar bg-base-100">
+          <div class="navbar-start">
+            <nav>
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="inline-flex items-center text-l font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+            <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+            Juan Raphael Diaz Simões
+          </a>
+        </li>
+    
+        <li>
+      <div class="flex items-center">
+        <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+        <a href="/courses" class="ml-1 text-l font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Courses</a>
+      </div>
+    </li>
+
+          </div>
+          <div class="navbar-end">
+            <ul class="menu menu-horizontal px-1">
+              <li><a href="/posts">Posts</a></li>
+              <li><a href="/courses">Courses</a></li>
+              <li><a href="/cv.html">CV</a></li>
+              <li><a href="/projects.html">Projects</a></li>
+            </ul>
+          </div>
+        </nav>
+    </header>
+    <div class="flex justify-center bg-base-100">
+<article class="prose max-w-prose mb-5">
+  <div class="book-navigation">
+
+    <div class="book-navigation-parent drawer">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content">
+        <label for="my-drawer">
+          <div class="space-y-1 inline-block">
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+          </div>
+          <b>Index</b>
+        </label>
+      </div>
+      <div class="drawer-side">
+        <label for="my-drawer" class="drawer-overlay"></label>
+           <div class="menu menu-vertical p-4 h-full bg-base-200">
+             <h1 class="text-xl mb-5 w-100">
+                  Statistics using Excel, a data type based approach
+
+             </h1>
+             <div style="flex-basis:100%; height: 0;"}></div>
+             <ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/1-categorical-data/index.html">1 Categorical Data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/1-categorical-data/1-introduction/index.html">1.1 Introduction
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/1-categorical-data/2-probabilities/index.html">1.2 Probabilities and distributions
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/1-categorical-data/3-multiple-variables/index.html">1.3 Multiple variables and joint probabilities
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/1-categorical-data/4-testing/index.html">1.4 Testing Categorical Data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/2-ordered-data/index.html">2 Ordered Data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/2-ordered-data/1-introduction/index.html">2.1 Introduction
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/2-ordered-data/2-measurements/index.html">2.2 Measurements
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/2-ordered-data/3-multiple-variables-models/index.html">2.3 Multiple variables
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/2-ordered-data/4-testing/index.html">2.4 Testing
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-numerical-data/index.html">3 Numerical Data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-numerical-data/1-introduction/index.html">3.1 Introduction
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-numerical-data/2-measurements/index.html">3.2 Measurements
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-numerical-data/3-multiple-variables/index.html">3.3 Multiple Measurements
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-numerical-data/4-testing/index.html">3.4 Testing
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li></ul>
+           </div>
+      </div>
+    </div>
+
+    <div class="book-navigation-parent">
+      <div class="arrow arrow-up"></div>
+      <a href="/courses/statistics/1-categorical-data/index.html">1 Categorical Data
+</a>
+      <div class="arrow arrow-up"></div>
+    </div>
+
+    <div class="book-navigation-section">
+
+       <div class="book-navigation-previous">
+         <div class="arrow arrow-left"></div>
+         <a href="/courses/statistics/1-categorical-data/3-multiple-variables/index.html">1.3 Multiple variables and joint probabilities
+</a>
+       </div>
+
+       <div class="book-navigation-next">
+       </div>
+    </div>
+  </div>
+
+    <h1 class="text-3xl mb-5">
+    1.4 Testing Categorical Data
+
+</h1>
+
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="null-hypothesis-and-testing"><span class="header-section-number">1</span> Null hypothesis and testing</h1>
+<p class="mb-3">They way statistical test work is the following. Assume a hypothesis and answer the question: <em>what is the probability of obtaining the observed result given this hypothesis</em>? This hypothesis is called the <em>null hypothesis</em> and the probability is called <span class="math inline notranslate"><em>p</em></span>.</p>
+<p class="mb-3">In general, the null hypothesis represents a default state of affairs. For example, if we want to compare two samples, the null hypothesis may be that there is no statistical difference between them. The idea is that if there is a difference between the samples, then the probability of observing the observed data will be low.</p>
+<p class="mb-3">This brings the question of how low is low enough to establish the difference between samples. There is no definitive answer to this, but the limit <span class="math inline notranslate"><em>p</em> &lt; 0.05</span>, representing a chance of less than 5% of observing this data, is socially considered as good evidence.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="which-test-should-i-use"><span class="header-section-number">2</span> Which test should I use?</h1>
+<p class="mb-3">Many statistical tests exist, each with different characteristics and conditions of use. Here we are going to focus on two of the most popular ones: Pearson’s chi-squared test and Fisher’s exact test. In the following, we will use these tests to evaluate the difference between samples.</p>
+<p class="mb-3">The difference between these two tests is how well they perform depending on the sample size. Pearson’s chi-squared test has an assumption that is only reasonable when the sample size is big, but it performs well under this constraint. On the other hand, Fisher’s exact test doesn’t depend on the same assumption, and therefore gives better results when sample sizes are small.</p>
+<p class="mb-3">Therefore, if you have categorical data to compare, look at your sample size. If you don’t have much data, Fisher’s test is a good first step, otherwise, if you have lots of data, Pearson’s test is good first choice.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="fishers-exact-test"><span class="header-section-number">3</span> Fisher’s exact test</h1>
+<p class="mb-3">Let’s suppose we want to evaluate whether there is a difference in a given population between men and women with relation to studies. The available data is the following (<a class="link link-hover text-zinc-600" href="https://en.wikipedia.org/wiki/Fisher%27s_exact_test">source</a>):</p>
+<table class="table border-collapse mb-3">
+<thead>
+<tr class="header">
+<th class="border"></th>
+<th class="border">Men</th>
+<th class="border">Women</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="border">Studying</td>
+<td class="border">1</td>
+<td class="border">9</td>
+</tr>
+<tr class="even">
+<td class="border">Not-studying</td>
+<td class="border">11</td>
+<td class="border">3</td>
+</tr>
+</tbody>
+</table>
+<p class="mb-3">In this particular case, we can see there is a large difference between distributions. But how significant is this statistically? To calculate this, we enrich the table with data for each row and column.</p>
+<table class="table border-collapse mb-3">
+<thead>
+<tr class="header">
+<th class="border"></th>
+<th class="border">Men</th>
+<th class="border">Women</th>
+<th class="border">Row total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="border">Studying</td>
+<td class="border">1</td>
+<td class="border">9</td>
+<td class="border">10</td>
+</tr>
+<tr class="even">
+<td class="border">Not-studying</td>
+<td class="border">11</td>
+<td class="border">3</td>
+<td class="border">14</td>
+</tr>
+<tr class="odd">
+<td class="border">Column total</td>
+<td class="border">12</td>
+<td class="border">12</td>
+<td class="border">24</td>
+</tr>
+</tbody>
+</table>
+<p class="mb-3">Schematically, we can see this table as this:</p>
+<table class="table border-collapse mb-3">
+<thead>
+<tr class="header">
+<th class="border"></th>
+<th class="border">Men</th>
+<th class="border">Women</th>
+<th class="border">Row Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="border">Studying</td>
+<td class="border">a</td>
+<td class="border">b</td>
+<td class="border">a + b</td>
+</tr>
+<tr class="even">
+<td class="border">Non-studying</td>
+<td class="border">c</td>
+<td class="border">d</td>
+<td class="border">c + d</td>
+</tr>
+<tr class="odd">
+<td class="border">Column Total</td>
+<td class="border">a + c</td>
+<td class="border">b + d</td>
+<td class="border">a + b + c + d (=n)</td>
+</tr>
+</tbody>
+</table>
+<p class="mb-3">Fisher’s exact test says that the probability of observing such data is: <span id="eq:eqn1"><span class="math display notranslate">$$
+p = \frac{{{{a + b} \choose a}}{{{c + d} \choose c}}}{{n \choose {a + c}}}
+\qquad{(1)}$$</span></span> where we use the binomial coefficients: <span id="eq:eqn2"><span class="math display notranslate">$$
+{n \choose m} = \frac{n!}{m!(n-m)!}
+\qquad{(2)}$$</span></span> So, using eq. 1 and eq. 2 in this particular case we have: <span class="math display notranslate"><em>p</em> = 0.0013</span> That is, a chance of 0.13% of observing this data, which is very low and is therefore evidence for the difference between distributions.</p>
+<p class="mb-3">In Excel, the binomial coefficients can be calculated using the <code>COMBIN</code>/<code>ЧИСЛКОМБ</code> function.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.1" id="exercise"><span class="header-section-number">3.1</span> Exercise</h2>
+<p class="mb-3">We will divide the class between men and women, and count the frequencies of total students, and absent students. Then we will see if the distributions are the same or not, using Fisher’s exact test.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="4" id="pearsons-chi-squared-test"><span class="header-section-number">4</span> Pearson’s chi-squared test</h1>
+<p class="mb-3">One of the most commonly used test to evaluate differences for categorical data is Pearson’s chi-squared test for homogeneity.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="4.1" id="method"><span class="header-section-number">4.1</span> Method</h2>
+<p class="mb-3">We start with categorical data about two groups A and B, and their occurrences for categories 1 to K.</p>
+<table class="table border-collapse mb-3">
+<thead>
+<tr class="header">
+<th class="border"></th>
+<th class="border">Group A (Observed)</th>
+<th class="border">Group B (Observed)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="border">Category 1</td>
+<td class="border">a1</td>
+<td class="border">b1</td>
+</tr>
+<tr class="even">
+<td class="border">Category 2</td>
+<td class="border">a2</td>
+<td class="border">b2</td>
+</tr>
+<tr class="odd">
+<td class="border">…</td>
+<td class="border">…</td>
+<td class="border">…</td>
+</tr>
+<tr class="even">
+<td class="border">Category K</td>
+<td class="border">aK</td>
+<td class="border">bK</td>
+</tr>
+</tbody>
+</table>
+<p class="mb-3">We then enrich this table with row and column totals.</p>
+<table class="table border-collapse mb-3">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th class="border"></th>
+<th class="border">Group A (Observed)</th>
+<th class="border">Group B (Observed)</th>
+<th class="border">Row Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="border">Category 1</td>
+<td class="border">a1</td>
+<td class="border">b1</td>
+<td class="border">a1 + b1 = n1</td>
+</tr>
+<tr class="even">
+<td class="border">Category 2</td>
+<td class="border">a2</td>
+<td class="border">b2</td>
+<td class="border">a2 + b2 = n2</td>
+</tr>
+<tr class="odd">
+<td class="border">…</td>
+<td class="border">…</td>
+<td class="border">…</td>
+<td class="border">…</td>
+</tr>
+<tr class="even">
+<td class="border">Category K</td>
+<td class="border">aK</td>
+<td class="border">bK</td>
+<td class="border">aK + bK = nK</td>
+</tr>
+<tr class="odd">
+<td class="border">Column Total</td>
+<td class="border">a1 + … + aK = a</td>
+<td class="border">b1 + … + bK = b</td>
+<td class="border">a + b = n1 + … + nK = n</td>
+</tr>
+</tbody>
+</table>
+<p class="mb-3">We then replace occurrences with expected frequencies:</p>
+<table class="table border-collapse mb-3">
+<thead>
+<tr class="header">
+<th class="border"></th>
+<th class="border">Group A (Expected)</th>
+<th class="border">Group B (Expected)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="border">Category 1</td>
+<td class="border">a * n1 / n</td>
+<td class="border">b * n1 / n</td>
+</tr>
+<tr class="even">
+<td class="border">Category 2</td>
+<td class="border">a * n2 / n</td>
+<td class="border">b * n2 / n</td>
+</tr>
+<tr class="odd">
+<td class="border">…</td>
+<td class="border">…</td>
+<td class="border">…</td>
+</tr>
+<tr class="even">
+<td class="border">Category K</td>
+<td class="border">a * nK / n</td>
+<td class="border">b * nK / n</td>
+</tr>
+</tbody>
+</table>
+<p class="mb-3">Then, for each cell we calculate the <em>chi-square</em> value for each cell, which is: <span class="math display notranslate">$$
+\chi = \frac{(O - E)^2}{E}
+$$</span> where <span class="math inline notranslate"><em>O</em></span> is the observed value, and <span class="math inline notranslate"><em>E</em></span> the expected one, and then sum the values.</p>
+<p class="mb-3">Finally, we need the degrees of freedom. In our case it’s the number of rows minus one, times the number of columns minus one, that is, K - 1.</p>
+<p class="mb-3">Then, we use these two values and consult a chi-square values table, such as this one:</p>
+<figure>
+<img class="mx-auto" src="data/chi-squared-table.png" alt="chi-squared-table.png" />
+<figcaption aria-hidden="true">chi-squared-table.png</figcaption>
+</figure>
+<h2 class="text-xl mt-5 mb-5" data-number="4.2" id="example"><span class="header-section-number">4.2</span> Example</h2>
+<p class="mb-3">We start with data about how people who live alone or with others eat (<a class="link link-hover text-zinc-600" href="https://www.displayr.com/what-is-the-chi-square-test-of-homogeneity/">source</a>).</p>
+<table class="table border-collapse mb-3">
+<thead>
+<tr class="header">
+<th class="border"></th>
+<th class="border">Living Alone</th>
+<th class="border">Living With Others</th>
+<th class="border">Row Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="border">On a diet</td>
+<td class="border">2</td>
+<td class="border">25</td>
+<td class="border">27</td>
+</tr>
+<tr class="even">
+<td class="border">Pays attention</td>
+<td class="border">23</td>
+<td class="border">146</td>
+<td class="border">169</td>
+</tr>
+<tr class="odd">
+<td class="border">Eats anything</td>
+<td class="border">7</td>
+<td class="border">124</td>
+<td class="border">131</td>
+</tr>
+<tr class="even">
+<td class="border">Column Total</td>
+<td class="border">32</td>
+<td class="border">295</td>
+<td class="border">327</td>
+</tr>
+</tbody>
+</table>
+<p class="mb-3">We then calculate expected values:</p>
+<table class="table border-collapse mb-3">
+<thead>
+<tr class="header">
+<th class="border"></th>
+<th class="border">Living Alone</th>
+<th class="border">Living With Others</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="border">On a diet</td>
+<td class="border">2.6</td>
+<td class="border">24.4</td>
+</tr>
+<tr class="even">
+<td class="border">Pays attention</td>
+<td class="border">16.5</td>
+<td class="border">152.5</td>
+</tr>
+<tr class="odd">
+<td class="border">Eats anything</td>
+<td class="border">12.8</td>
+<td class="border">118.2</td>
+</tr>
+</tbody>
+</table>
+<p class="mb-3">And then the chi-squared values:</p>
+<table class="table border-collapse mb-3">
+<thead>
+<tr class="header">
+<th class="border"></th>
+<th class="border">Living Alone</th>
+<th class="border">Living With Others</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="border">On a diet</td>
+<td class="border">0.138</td>
+<td class="border">0.0014</td>
+</tr>
+<tr class="even">
+<td class="border">Pays attention</td>
+<td class="border">2.560</td>
+<td class="border">0.277</td>
+</tr>
+<tr class="odd">
+<td class="border">Eats anything</td>
+<td class="border">1.800</td>
+<td class="border">1.386</td>
+</tr>
+</tbody>
+</table>
+<p class="mb-3">The total sum is 5.9 and the degrees of freedom are 2. Consulting the table above, that gives us a p-value a slightly larger than 0.05.</p>
+<p class="mb-3">On Excel, we can use the <code>CHISQ.TEST</code>/<code>ХИ2.ТЕСТ</code> function, whose first argument is the observed table, and the second the expected one.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="4.3" id="exercise-1"><span class="header-section-number">4.3</span> Exercise</h2>
+<p class="mb-3">We will use the cancer data and compare observables for people with cancer and without cancer.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="5" id="control"><span class="header-section-number">5</span> Control</h1>
+<p class="mb-3">Take the following <a class="link link-hover text-zinc-600" href="data/control-testing.xls">data table</a> and apply Fisher’s method on it, using Excel.</p>
+
+  <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
+
+
+</article>
+</div>
+
+</body>
+</html>
