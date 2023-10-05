@@ -24,7 +24,7 @@ let
         buildInputs =
           [
             # Site
-            python3Packages.livereload
+            nodePackages.browser-sync
             nodePackages.npm
             nodePackages.node2nix
             # Haskell

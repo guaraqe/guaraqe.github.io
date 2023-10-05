@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>1 Introduction: types of data
+</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+</head>
+<body>
+    <header>
+        <div class="navbar bg-base-100">
+          <div class="navbar-start">
+            <nav>
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="inline-flex items-center text-l font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+            <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+            Juan Raphael Diaz Simões
+          </a>
+        </li>
+    
+        <li>
+      <div class="flex items-center">
+        <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+        <a href="/courses" class="ml-1 text-l font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Courses</a>
+      </div>
+    </li>
+
+          </div>
+          <div class="navbar-end">
+            <ul class="menu menu-horizontal px-1">
+              <li><a href="/posts">Posts</a></li>
+              <li><a href="/courses">Courses</a></li>
+              <li><a href="/cv.html">CV</a></li>
+              <li><a href="/projects.html">Projects</a></li>
+            </ul>
+          </div>
+        </nav>
+    </header>
+    <div class="flex justify-center bg-base-100">
+<article class="prose max-w-prose mb-5">
+  <div class="book-navigation">
+
+    <div class="book-navigation-parent drawer">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content">
+        <label for="my-drawer">
+          <div class="space-y-1 inline-block">
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+          </div>
+          <b>Index</b>
+        </label>
+      </div>
+      <div class="drawer-side">
+        <label for="my-drawer" class="drawer-overlay"></label>
+           <div class="menu menu-vertical p-4 bg-base-200">
+             <h1 class="text-xl mb-5 w-100" style="margin-left: 0.75em;">
+                  Statistics using Excel, a data type based approach
+
+             </h1>
+             <div style="margin-left:-1.5em;">
+               <ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/1-introduction/index.html">1 Introduction: types of data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/2-categorical-data/index.html">2 Categorical Data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/2-categorical-data/1-introduction/index.html">2.1 Introduction
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/2-categorical-data/2-probabilities/index.html">2.2 Probabilities and distributions
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/2-categorical-data/3-multiple-variables/index.html">2.3 Multiple variables and joint probabilities
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/2-categorical-data/4-testing/index.html">2.4 Testing Categorical Data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/index.html">3 Ordered Data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/1-introduction/index.html">3.1 Introduction
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/2-measurements/index.html">3.2 Measurements
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/3-multiple-variables-models/index.html">3.3 Multiple variables
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/4-testing/index.html">3.4 Testing
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/index.html">4 Numerical Data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/1-introduction/index.html">4.1 Introduction
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/2-measurements/index.html">4.2 Measurements
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/3-multiple-variables/index.html">4.3 Multiple Measurements
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/4-testing/index.html">4.4 Testing
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li></ul>
+             </div>
+           </div>
+      </div>
+    </div>
+
+    <div class="book-navigation-parent">
+      <div class="arrow arrow-up"></div>
+      <a href="/courses/statistics/index.html"> Statistics using Excel, a data type based approach
+</a>
+      <div class="arrow arrow-up"></div>
+    </div>
+
+    <div class="book-navigation-section">
+
+       <div class="book-navigation-previous">
+       </div>
+
+       <div class="book-navigation-next">
+         <a href="/courses/statistics/2-categorical-data/index.html">2 Categorical Data
+</a>
+         <div class="arrow arrow-right"></div>
+       </div>
+    </div>
+
+    <div id="google_translate_element" style="margin-top:1em;"></div>
+
+  </div>
+
+    <h1 class="text-3xl mb-5">
+    1 Introduction: types of data
+
+</h1>
+
+<p class="mb-3">The goal of this course is to help students analyze data useful for the health sciences. The point of this section is to show that there are <em>different types of data</em>. And since there are different types of data, each type must be treated accordingly to its own characteristics, otherwise one can obtain results that don’t make sense.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="an-example-of-wrong-data-analysis"><span class="header-section-number">1</span> An example of wrong data analysis</h1>
+<p class="mb-3">As an example of wrong treatment of data types, suppose we have a population of patients with diabetes. These patients can have diabetes type 1 or diabetes type 2.</p>
+<table class="table border-collapse mb-3">
+<thead>
+<tr class="header">
+<th class="border">Type of diabetes</th>
+<th class="border">Number of patients</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="border">1</td>
+<td class="border">20</td>
+</tr>
+<tr class="even">
+<td class="border">2</td>
+<td class="border">10</td>
+</tr>
+</tbody>
+</table>
+<p class="mb-3">Here, the 1 and 2 labels attributed to the diabetes are not to be interpreted as numbers, but as names. However, someone who doesn’t pay attention to this, may want to calculate the average type of diabetes in the population and obtain:</p>
+<p class="mb-3"><span class="math display notranslate">$$
+\frac{1 \times 30 + 2 \times 20}{30 + 20} = 1.4
+$$</span></p>
+<p class="mb-3">which doesn’t mean anything. Once more, the 1 and 2 are just labels, not actual numerical data, so diabetes type 1.4 is not something that can be reasoned about.</p>
+<p class="mb-3">But what can we do with this kind of data? To understand this, let’s see the kinds of data we are going to study here.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="three-types-of-data"><span class="header-section-number">2</span> Three types of data</h1>
+<p class="mb-3">We are going to study three kinds of data here.</p>
+<p class="mb-3">The first one is <strong>categorical data</strong>. This kind of data is composed of categories or labels. The main feature of categories is that while they have meaning by themselves, there is no further operational or mathematical relation we can make between categories, besides telling whether they are <em>equal</em> or whether they are <em>different</em>. Examples are the diabetes 1 and 2 above, the country where some person is born, the family name of a person.</p>
+<p class="mb-3">The second one is <strong>ordered data</strong>. This kind of data is also composed of categories or labels, but these categories can be <em>compared</em>. That is, one can tell that one category is larger than another. Examples are letter grades, such as A, B, C, D, F, clothes sizes such as S, M, L, and many other size categorizations that use terms as small and large.</p>
+<p class="mb-3">The third one is <strong>numerical data</strong>. This kind of data is composed by numbers. So, not only we can tell whether two numbers are different from each other, and we can tell which one is smaller or bigger, but we can also know by <em>how much</em> they differ. Examples are physical measurements such as heights, volumes and weights, and chemical element amounts and concentrations. In all these cases we can know what is difference between two data points, which is not the case as for letter grades, for example, as one does not know how much exactly the performance of two students differed just using these grades.</p>
+<p class="mb-3">To show some differences between these three types of data, and what we can do with them, we will draw histograms.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="histograms"><span class="header-section-number">3</span> Histograms</h1>
+<p class="mb-3">Histograms represent <em>data distributions</em>. That is, given a feature that is represented in multiple members of a population, or point in a data set, we draw a graph. Let’s take as an example the following data:</p>
+<table class="table border-collapse mb-3">
+<thead>
+<tr class="header">
+<th class="border">Name</th>
+<th class="border">Animal</th>
+<th class="border">T-Shirt Size</th>
+<th class="border">Weight (kg)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="border">Alice</td>
+<td class="border">Cat</td>
+<td class="border">S</td>
+<td class="border">2</td>
+</tr>
+<tr class="even">
+<td class="border">Bob</td>
+<td class="border">Dog</td>
+<td class="border">S</td>
+<td class="border">3</td>
+</tr>
+<tr class="odd">
+<td class="border">Cynthia</td>
+<td class="border">Mouse</td>
+<td class="border">S</td>
+<td class="border">1</td>
+</tr>
+<tr class="even">
+<td class="border">Dude</td>
+<td class="border">Dog</td>
+<td class="border">M</td>
+<td class="border">12</td>
+</tr>
+<tr class="odd">
+<td class="border">Edward</td>
+<td class="border">Cat</td>
+<td class="border">M</td>
+<td class="border">8</td>
+</tr>
+<tr class="even">
+<td class="border">Fanny</td>
+<td class="border">Elephant</td>
+<td class="border">L</td>
+<td class="border">4000</td>
+</tr>
+</tbody>
+</table>
+<p class="mb-3">Some important points to note about this table:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>The first column, <em>Name</em>, is just an identifier, so in general we don’t manipulate this data. It is used just to differentiate data points.</li>
+<li>The second column, <em>Animal</em>, says the kind of animal for each data point. Since this is a categorization that has no inherent ordering, this column contains <em>categorical data</em>.</li>
+<li>The third column, <em>T-Shirt Size</em>, also contains categories. However, there is an inherent ordering in these categories, with “S” being the smaller and “L” the largest. Therefore, this column contains <em>ordered data</em>.</li>
+<li>Finally, the fourth column, <em>Weight</em>, contains numbers, and therefore, <em>numerical data</em>. One indication that data is numeric is when it contains an unit of measurement, such as kilograms in this case.</li>
+</ul>
+<p class="mb-3">Now we can go through each one of these:</p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.1" id="categorical-data"><span class="header-section-number">3.1</span> Categorical data</h2>
+<p class="mb-3">The histogram for this data will contain the categories in the horizontal axis, and in the vertical axis, bars whose height correspond to the number of data points belonging to each category.</p>
+<p class="mb-3"><img class="mx-auto" src="data/animal-types-number.png" /></p>
+<p class="mb-3">This same data can be represented differently. Instead of writing the total numbers for each of the categories, we write the proportions for each one of these. Or equivalently, the probability of a data point being in each category. So, for example, we have 2 cats among 6 animals, so the probability is 2/6 = 0.33. The corresponding histogram is the following:</p>
+<p class="mb-3"><img class="mx-auto" src="data/animal-types-probability.png" /></p>
+<p class="mb-3">As you can see, the shape is exactly the same. This is always the case, only the scale of the vertical axis changes.</p>
+<p class="mb-3">Finally, since there is no inherent order on the types of animals, the order of the horizontal axis is not important. Therefore, the following histogram is as correct as the previous one.</p>
+<p class="mb-3"><img class="mx-auto" src="data/animal-types-order.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.2" id="ordered-data"><span class="header-section-number">3.2</span> Ordered data</h2>
+<p class="mb-3">As mentioned before, the column <em>T-Shirt Sizes</em> contains ordered data. The procedure for producing the histogram is exactly the same, with one major difference: the order of the categories in the horizontal axis is important, as it should be increasing from left to the right.</p>
+<p class="mb-3"><img class="mx-auto" src="data/ordered-data.png" /></p>
+<p class="mb-3">Another type of histogram that can be done with ordered data: cumulative number (or probabilities) histograms. In the bars, instead of counting just the number of data points corresponding to the category, we count the number of data point corresponding to the category <em>or any smaller category</em>. For example, the column for “M” will contain the total numbers (or probabilities) for “S” plus “M”. The histogram for cumulative probabilities for the data above is:</p>
+<p class="mb-3"><img class="mx-auto" src="data/ordered-data-cumulative.png" /></p>
+<p class="mb-3">In these kinds of graphs, the final column will always have a height of 1, if the histogram is counting probabilities, or the total number of data points, if the histogram is counting numbers.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.3" id="numerical-data"><span class="header-section-number">3.3</span> Numerical data</h2>
+<p class="mb-3">Differently from categorical and ordered data, numerical data is continuous. That is, it’s value can be any number, and as such, it is not convenient to create bars per value. Instead, what is typical is to choose bins of data, that is, an interval between two values, and represent in the bar all values present in this interval. So, for example, for the weight data above we can do the following probability histogram:</p>
+<p class="mb-3"><img class="mx-auto" src="data/numerical-data-bins.png" /></p>
+<p class="mb-3">Choosing good bins is a matter or trial and error, and is not always evident which values to choose. However, this choice can be completely circunvented if we thing about cumulative probabilities instead. In place of bars, we draw a line and obtain the following:</p>
+<p class="mb-3"><img class="mx-auto" src="data/numerical-data-cumulative.png" /></p>
+<p class="mb-3">At each point where we have data, the cumulative probability increases. One can read it as follows: the probability of an animal in this data set having less than 10kg, or exactly 10kg equals 66%. For 50kg, we have 100%, as this is the maximum value.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="4" id="exercise"><span class="header-section-number">4</span> Exercise</h1>
+<p class="mb-3">In the classroom, together, we will create a table containing the following data collected from students:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>Region of birth</li>
+<li>Year of birth</li>
+<li>Height</li>
+</ul>
+<p class="mb-3">And draw the above types of histogram for this collected data.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="5" id="control"><span class="header-section-number">5</span> Control</h1>
+<p class="mb-3">Download the following <a class="link link-hover text-zinc-600" href="data/histograms.xlsx">file</a>, which contains data for several people containing three columns of data. Using this data, draw the following using Excel:</p>
+<ol class="list-decimal list-outside mt-1 mb-3 pl-5" type="1">
+<li>The total number histogram for sports.</li>
+<li>The probability histogram for ages.</li>
+<li>The cumulative probability histogram for ages.</li>
+<li>The cumulative probability line for shoe sizes.</li>
+</ol>
+
+  <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
+
+
+</article>
+  <script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      autoDisplay: false,
+      includedLanguages: 'en,ru,uz',
+    }, 'google_translate_element');
+  }
+  </script>
+
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</div>
+
+</body>
+</html>

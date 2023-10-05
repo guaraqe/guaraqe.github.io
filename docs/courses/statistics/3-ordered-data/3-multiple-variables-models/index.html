@@ -5,7 +5,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name=viewport content="width=device-width, initial-scale=1">
-    <title> Statistics using Excel, a data type based approach
+    <title>3.3 Multiple variables
 </title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/syntax.css">
@@ -99,13 +99,25 @@
       </div>
     </div>
 
+    <div class="book-navigation-parent">
+      <div class="arrow arrow-up"></div>
+      <a href="/courses/statistics/3-ordered-data/index.html">3 Ordered Data
+</a>
+      <div class="arrow arrow-up"></div>
+    </div>
 
     <div class="book-navigation-section">
 
        <div class="book-navigation-previous">
+         <div class="arrow arrow-left"></div>
+         <a href="/courses/statistics/3-ordered-data/2-measurements/index.html">3.2 Measurements
+</a>
        </div>
 
        <div class="book-navigation-next">
+         <a href="/courses/statistics/3-ordered-data/4-testing/index.html">3.4 Testing
+</a>
+         <div class="arrow arrow-right"></div>
        </div>
     </div>
 
@@ -114,32 +126,73 @@
   </div>
 
     <h1 class="text-3xl mb-5">
-     Statistics using Excel, a data type based approach
+    3.3 Multiple variables
 
 </h1>
 
-<p class="mb-3">This is an introductory course on statistics for medical students, using Excel for practical applications. It is organized based on <strong>data types</strong>, that is, what kind of type of data one has at hand to analyze – categorical, ordered or numerical. Starting from the most general case, we progressively add properties to data, and more precise and powerful methods.</p>
-<p class="mb-3">Given to its organization, it can also serve later as a reference for students on the procedures to analize data.</p>
-<h1 class="text-2xl mt-5 mb-5" data-number="1" id="organization"><span class="header-section-number">1</span> Organization</h1>
-<h1 class="text-2xl mt-5 mb-5" data-number="2" id="table-of-contents"><span class="header-section-number">2</span> Table of contents</h1>
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="binary-diagnosis"><span class="header-section-number">1</span> Binary Diagnosis</h1>
+<p class="mb-3">Binary diagnosis is the process of evaluating data and classifying it in one of two categories. For example, one can look at a patient, and decide if they are sick or not. Another example are PCR tests for Covid, which identify the presence or not of the virus in the patient. The purpose of this class is to discuss how we can measure the <strong>quality</strong> of a binary diagnosis test.</p>
+<p class="mb-3">We are going to use data from benign and malignant tumours, available <a class="link link-hover text-zinc-600" href="data/breast-cancer-wisconsin.xlsx">here</a>.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.1" id="classifying-results"><span class="header-section-number">1.1</span> Classifying Results</h2>
+<p class="mb-3">Suppose you are analysing a new diagnostic test. You test it with two groups of people: a group you know is sick, and another which is healthy. You test each one of these people, and you get the results: <em>positive</em> for sick people, <em>negative</em> for healthy people. These results can placed in a table such as the one below:</p>
+<p class="mb-3"><img class="mx-auto" src="table.png" /></p>
+<p class="mb-3">We can classify results in four ways:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li><strong>True Positive</strong>: a sick patient had a positive result</li>
+<li><strong>False Positive</strong>: a healthy patient had a positive result</li>
+<li><strong>False Negative</strong>: a sick patient had a negative result</li>
+<li><strong>True Negative</strong>: a healthy patient had a negative result</li>
+</ul>
+<h2 class="text-xl mt-5 mb-5" data-number="1.2" id="in-practice"><span class="header-section-number">1.2</span> In Practice</h2>
+<p class="mb-3">In the Excel file, we have data for breast tumours, with different categorized characteristics. The most important column is the last one, Class, which says whether the tumour is benign (2) or malignant (4). We will try to create a method to diagnose a tumour, and see how it performs.</p>
+<p class="mb-3"><a class="link link-hover text-zinc-600" href="https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29">Source</a></p>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="probabilistic-methods"><span class="header-section-number">2</span> Probabilistic methods</h1>
+<p class="mb-3">Every measurement will have a different relation to the diagnostic. In the example of the previous class, for example, we saw a model that put a relation between tumour size and malignant cancer.</p>
+<p class="mb-3">How can we evaluate the effect of a quantity on the cancer? For example, for tumour size, we can make a table:</p>
+<table class="table border-collapse mb-3">
+<thead>
+<tr class="header">
+<th class="border">Tumour Size</th>
+<th class="border">Quantity</th>
+<th class="border">Quantity with cancer</th>
+<th class="border">Proportion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="border">1</td>
+<td class="border">N1</td>
+<td class="border">Q1</td>
+<td class="border">N1/Q1</td>
+</tr>
+<tr class="even">
+<td class="border">…</td>
+<td class="border">…</td>
+<td class="border">…</td>
+<td class="border">…</td>
+</tr>
+<tr class="odd">
+<td class="border">10</td>
+<td class="border">N10</td>
+<td class="border">Q10</td>
+<td class="border">N10/Q10</td>
+</tr>
+</tbody>
+</table>
+<p class="mb-3">The last column, <em>Proportion</em>, with show the proportion of cancers with the given size which are malignant. This table can be made with use of the <code>COUNTIFS/СЧЁТЕСЛИМН</code> function from Excel.</p>
+<p class="mb-3">With this table, we have a probabilistic diagnostic tool. Let’s say your patient has a cancer of size 2 – look at the table, and you know the probability of it being malignant.</p>
+<p class="mb-3">We can also make this table using more than one parameter at the same time. For example, we can use tumour size and cell size uniformity. Then we need to make a new table, and check the two parameters together – we cannot just use the result of the two previous tables together and combine them.</p>
+<p class="mb-3">To be done in class:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>Table for tumour size</li>
+<li>Table for uniformity of cell size</li>
+<li>Table for uniformity of cell shape</li>
+<li>What happens when we take two criteria into account?</li>
+</ul>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="control"><span class="header-section-number">3</span> Control</h1>
+<p class="mb-3">You will reproduce the analysis by filling the following <a class="link link-hover text-zinc-600" href="data/control.xlsx">control exercise</a>. The description of the exercise can be found in <a class="link link-hover text-zinc-600" href="data/control-EN.docx">English</a> and <a class="link link-hover text-zinc-600" href="data/control-RU.docx">Russian</a>.</p>
 
-  <ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/1-introduction/index.html">1 Introduction: types of data
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/2-categorical-data/index.html">2 Categorical Data
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/2-categorical-data/1-introduction/index.html">2.1 Introduction
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/2-categorical-data/2-probabilities/index.html">2.2 Probabilities and distributions
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/2-categorical-data/3-multiple-variables/index.html">2.3 Multiple variables and joint probabilities
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/2-categorical-data/4-testing/index.html">2.4 Testing Categorical Data
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/index.html">3 Ordered Data
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/1-introduction/index.html">3.1 Introduction
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/2-measurements/index.html">3.2 Measurements
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/3-multiple-variables-models/index.html">3.3 Multiple variables
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/4-testing/index.html">3.4 Testing
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/index.html">4 Numerical Data
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/1-introduction/index.html">4.1 Introduction
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/2-measurements/index.html">4.2 Measurements
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/3-multiple-variables/index.html">4.3 Multiple Measurements
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/4-testing/index.html">4.4 Testing
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li></ul>
+  <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
 
 
 </article>
