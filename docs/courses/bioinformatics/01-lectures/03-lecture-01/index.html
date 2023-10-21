@@ -212,22 +212,22 @@
 <li>Going to the website and downloading it</li>
 <li>Programmatically, from R itself</li>
 </ul>
-<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">choosebank</span>(<span class="st">&quot;refseqViruses&quot;</span>)</span>
-<span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">query</span>(<span class="st">&quot;Dengue1&quot;</span>, <span class="st">&quot;AC=NC_001477&quot;</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>&gt; choosebank(&quot;refseqViruses&quot;)
+&gt; query(&quot;Dengue1&quot;, &quot;AC=NC_001477&quot;)</code></pre>
 <h2 class="text-xl mt-5 mb-5" data-number="5.4" id="fasta"><span class="header-section-number">5.4</span> Fasta</h2>
 <p class="mb-3">Usually, sequences are encoded in the FASTA format. We can manipulate this data in R.</p>
 <p class="mb-3"><img class="mx-auto" src="data/d08d35158fa4632a42294ad6ceb2ca7d.png" /></p>
 <h2 class="text-xl mt-5 mb-5" data-number="5.5" id="statistics"><span class="header-section-number">5.5</span> Statistics</h2>
 <p class="mb-3">Using this data, it’s very simple to have statistics for bases:</p>
-<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">count</span>(dengueseq, <span class="dv">1</span>)</span>
-<span id="cb2-2"><a class="link link-hover text-zinc-600" href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  a    c    g    t</span>
-<span id="cb2-3"><a class="link link-hover text-zinc-600" href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3426</span> <span class="dv">2240</span> <span class="dv">2770</span> <span class="dv">2299</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; count(dengueseq, 1)
+  a    c    g    t
+3426 2240 2770 2299</code></pre>
 <p class="mb-3">Also pairs and so on:</p>
-<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">count</span>(dengueseq, <span class="dv">2</span>)</span>
-<span id="cb3-2"><a class="link link-hover text-zinc-600" href="#cb3-2" aria-hidden="true" tabindex="-1"></a> aa   ac   ag   at   ca   cc   cg   ct</span>
-<span id="cb3-3"><a class="link link-hover text-zinc-600" href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1108</span>  <span class="dv">720</span>  <span class="dv">890</span>  <span class="dv">708</span>  <span class="dv">901</span>  <span class="dv">523</span>  <span class="dv">261</span>  <span class="dv">555</span></span>
-<span id="cb3-4"><a class="link link-hover text-zinc-600" href="#cb3-4" aria-hidden="true" tabindex="-1"></a> ga   gc   gg   gt   ta   tc   tg   tt</span>
-<span id="cb3-5"><a class="link link-hover text-zinc-600" href="#cb3-5" aria-hidden="true" tabindex="-1"></a> <span class="dv">976</span>  <span class="dv">500</span>  <span class="dv">787</span>  <span class="dv">507</span>  <span class="dv">440</span>  <span class="dv">497</span>  <span class="dv">832</span>  <span class="dv">529</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; count(dengueseq, 2)
+ aa   ac   ag   at   ca   cc   cg   ct
+1108  720  890  708  901  523  261  555
+ ga   gc   gg   gt   ta   tc   tg   tt
+ 976  500  787  507  440  497  832  529</code></pre>
 
   <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
 

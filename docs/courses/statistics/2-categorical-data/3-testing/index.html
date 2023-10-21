@@ -125,9 +125,9 @@
 </h1>
 
 <h1 class="text-2xl mt-5 mb-5" data-number="1" id="null-hypothesis-and-testing"><span class="header-section-number">1</span> Null hypothesis and testing</h1>
-<p class="mb-3">They way statistical test work is the following. Assume a hypothesis and answer the question: <em>what is the probability of obtaining the observed result given this hypothesis</em>? This hypothesis is called the <em>null hypothesis</em> and the probability is called <span class="math inline notranslate"><em>p</em></span>.</p>
+<p class="mb-3">They way statistical test work is the following. Assume a hypothesis and answer the question: <em>what is the probability of obtaining the observed result given this hypothesis</em>? This hypothesis is called the <em>null hypothesis</em> and the probability is called <em>p</em>.</p>
 <p class="mb-3">In general, the null hypothesis represents a default state of affairs. For example, if we want to compare two samples, the null hypothesis may be that there is no statistical difference between them. The idea is that if there is a difference between the samples, then the probability of observing the observed data will be low.</p>
-<p class="mb-3">This brings the question of how low is low enough to establish the difference between samples. There is no definitive answer to this, but the limit <span class="math inline notranslate"><em>p</em> &lt; 0.05</span>, representing a chance of less than 5% of observing this data, is socially considered as good evidence.</p>
+<p class="mb-3">This brings the question of how low is low enough to establish the difference between samples. There is no definitive answer to this, but the limit <em>p</em> &lt; 0.05, representing a chance of less than 5% of observing this data, is socially considered as good evidence.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="2" id="which-test-should-i-use"><span class="header-section-number">2</span> Which test should I use?</h1>
 <p class="mb-3">Many statistical tests exist, each with different characteristics and conditions of use. Here we are going to focus on two of the most popular ones: Pearson’s chi-squared test and Fisher’s exact test. In the following, we will use these tests to evaluate the difference between samples.</p>
 <p class="mb-3">The difference between these two tests is how well they perform depending on the sample size. Pearson’s chi-squared test has an assumption that is only reasonable when the sample size is big, but it performs well under this constraint. On the other hand, Fisher’s exact test doesn’t depend on the same assumption, and therefore gives better results when sample sizes are small.</p>
@@ -217,11 +217,7 @@
 </tr>
 </tbody>
 </table>
-<p class="mb-3">Fisher’s exact test says that the probability of observing such data is: <span id="eq:eqn1"><span class="math display notranslate">$$
-p = \frac{{{{a + b} \choose a}}{{{c + d} \choose c}}}{{n \choose {a + c}}}
-\qquad{(1)}$$</span></span> where we use the binomial coefficients: <span id="eq:eqn2"><span class="math display notranslate">$$
-{n \choose m} = \frac{n!}{m!(n-m)!}
-\qquad{(2)}$$</span></span> So, using eq. 1 and eq. 2 in this particular case we have: <span class="math display notranslate"><em>p</em> = 0.0013</span> That is, a chance of 0.13% of observing this data, which is very low and is therefore evidence for the difference between distributions.</p>
+<p class="mb-3">Fisher’s exact test says that the probability of observing such data is: $$ p =  $$ where we use the binomial coefficients: $$ {n m} =  $$ So, using eq. 1 and eq. 2 in this particular case we have: <em>p</em> = 0.0013 That is, a chance of 0.13% of observing this data, which is very low and is therefore evidence for the difference between distributions.</p>
 <p class="mb-3">In Excel, the binomial coefficients can be calculated using the <code>COMBIN</code>/<code>ЧИСЛКОМБ</code> function.</p>
 <h2 class="text-xl mt-5 mb-5" data-number="3.1" id="exercise"><span class="header-section-number">3.1</span> Exercise</h2>
 <p class="mb-3">We will divide the class between men and women, and count the frequencies of total students, and absent students. Then we will see if the distributions are the same or not, using Fisher’s exact test.</p>
@@ -264,9 +260,9 @@ p = \frac{{{{a + b} \choose a}}{{{c + d} \choose c}}}{{n \choose {a + c}}}
 <table class="table border-collapse mb-3">
 <colgroup>
 <col style="width: 17%" />
-<col style="width: 24%" />
-<col style="width: 24%" />
-<col style="width: 33%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 31%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -341,9 +337,7 @@ p = \frac{{{{a + b} \choose a}}{{{c + d} \choose c}}}{{n \choose {a + c}}}
 </tr>
 </tbody>
 </table>
-<p class="mb-3">Then, for each cell we calculate the <em>chi-square</em> value for each cell, which is: <span class="math display notranslate">$$
-\chi = \frac{(O - E)^2}{E}
-$$</span> where <span class="math inline notranslate"><em>O</em></span> is the observed value, and <span class="math inline notranslate"><em>E</em></span> the expected one, and then sum the values.</p>
+<p class="mb-3">Then, for each cell we calculate the <em>chi-square</em> value for each cell, which is: $$ =  $$ where <em>O</em> is the observed value, and <em>E</em> the expected one, and then sum the values.</p>
 <p class="mb-3">Finally, we need the degrees of freedom. In our case it’s the number of rows minus one, times the number of columns minus one, that is, K - 1.</p>
 <p class="mb-3">Then, we use these two values and consult a chi-square values table, such as this one:</p>
 <figure>

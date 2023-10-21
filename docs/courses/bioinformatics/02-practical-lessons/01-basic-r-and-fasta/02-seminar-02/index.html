@@ -156,69 +156,69 @@
 <p class="mb-3">When doing long manipulations, it is convenient to decompose your work in multiple files. In order to do so, first create a folder with your name in the desktop. After, on the lower-right panel, go to your folder (in the image below, it is named <code>r-tests</code>), go to the <code>More</code> menu, and click in <code>Set As Working Directory</code>.</p>
 <p class="mb-3"><img class="mx-auto" src="data/folder.png" /></p>
 <p class="mb-3">We are going to create two files. The first one will be named <code>code1.R</code>, and the second one <code>code2.R</code>. In <code>code2.R</code>, define the following function <code>sayHello</code>:</p>
-<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sayHello <span class="ot">&lt;-</span> <span class="cf">function</span>(name){</span>
-<span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">paste</span>(<span class="st">&quot;Hello&quot;</span>, name))</span>
-<span id="cb1-3"><a class="link link-hover text-zinc-600" href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre class="sourcecode"><code>sayHello &lt;- function(name){
+  return(paste(&quot;Hello&quot;, name))
+}</code></pre>
 <p class="mb-3">In <code>code1.R</code>, we can use this function by <em>sourcing</em> <code>code2.R</code>:</p>
-<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the file. This defines the function `sayHello`.</span></span>
-<span id="cb2-2"><a class="link link-hover text-zinc-600" href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;code2.R&quot;</span>)</span>
-<span id="cb2-3"><a class="link link-hover text-zinc-600" href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a class="link link-hover text-zinc-600" href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a variable `x`</span></span>
-<span id="cb2-5"><a class="link link-hover text-zinc-600" href="#cb2-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb2-6"><a class="link link-hover text-zinc-600" href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a class="link link-hover text-zinc-600" href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Depending on the value of `x`, do something different.</span></span>
-<span id="cb2-8"><a class="link link-hover text-zinc-600" href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">10</span>) {</span>
-<span id="cb2-9"><a class="link link-hover text-zinc-600" href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sayHello</span>(<span class="st">&quot;Big Number&quot;</span>)</span>
-<span id="cb2-10"><a class="link link-hover text-zinc-600" href="#cb2-10" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb2-11"><a class="link link-hover text-zinc-600" href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sayHello</span>(<span class="st">&quot;Small Number&quot;</span>)</span>
-<span id="cb2-12"><a class="link link-hover text-zinc-600" href="#cb2-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre class="sourcecode"><code># Import the file. This defines the function `sayHello`.
+source(&quot;code2.R&quot;)
+
+# Define a variable `x`
+x &lt;- 5
+
+# Depending on the value of `x`, do something different.
+if (x &gt; 10) {
+  sayHello(&quot;Big Number&quot;)
+} else {
+  sayHello(&quot;Small Number&quot;)
+}</code></pre>
 <p class="mb-3">To execute this file, select the block of code, and press <code>Run</code>. Change the value of <code>x</code>, and run it again, to see how the code works.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="2" id="working-with-data-files"><span class="header-section-number">2</span> Working with data files</h1>
 <p class="mb-3">Open Excel, and create a file as follows, with first name, family name and age. You may use different data.</p>
 <p class="mb-3"><img class="mx-auto" src="data/data.png" /></p>
 <p class="mb-3">Save it as a <code>.csv</code> file, named <code>data</code>. We can load this file in R and save it in the variable <code>myData</code>:</p>
-<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a>myData <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data.csv&quot;</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>myData &lt;- read.csv(&quot;data.csv&quot;)</code></pre>
 <p class="mb-3">The resulting data will be a <em>Data Frame</em>:</p>
-<div class="sourceCode mb-3 notranslate" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a class="link link-hover text-zinc-600" href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> myData</span>
-<span id="cb4-2"><a class="link link-hover text-zinc-600" href="#cb4-2" aria-hidden="true" tabindex="-1"></a>     First    Last Age</span>
-<span id="cb4-3"><a class="link link-hover text-zinc-600" href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     Juan  Simoes  <span class="dv">33</span></span>
-<span id="cb4-4"><a class="link link-hover text-zinc-600" href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     Luna    Diaz  <span class="dv">28</span></span>
-<span id="cb4-5"><a class="link link-hover text-zinc-600" href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  Rogerio   Pinto  <span class="dv">60</span></span>
-<span id="cb4-6"><a class="link link-hover text-zinc-600" href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Mercedes Jimenez  <span class="dv">61</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; myData
+     First    Last Age
+1     Juan  Simoes  33
+2     Luna    Diaz  28
+3  Rogerio   Pinto  60
+4 Mercedes Jimenez  61</code></pre>
 <p class="mb-3">It has rows and columns. You can refer to rows by numbers, and to columns by either number or name:</p>
-<div class="sourceCode mb-3 notranslate" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a class="link link-hover text-zinc-600" href="#cb5-1" aria-hidden="true" tabindex="-1"></a>myData <span class="co"># See the table</span></span>
-<span id="cb5-2"><a class="link link-hover text-zinc-600" href="#cb5-2" aria-hidden="true" tabindex="-1"></a>myData[<span class="st">&quot;First&quot;</span>] <span class="co"># See all the first names</span></span>
-<span id="cb5-3"><a class="link link-hover text-zinc-600" href="#cb5-3" aria-hidden="true" tabindex="-1"></a>myData[<span class="dv">1</span>] <span class="co"># See all the first names, but referring to the order</span></span>
-<span id="cb5-4"><a class="link link-hover text-zinc-600" href="#cb5-4" aria-hidden="true" tabindex="-1"></a>myData[<span class="dv">1</span>,] <span class="co"># See the data of the first person</span></span>
-<span id="cb5-5"><a class="link link-hover text-zinc-600" href="#cb5-5" aria-hidden="true" tabindex="-1"></a>myData<span class="sc">$</span>Age <span class="co"># See all ages, but as a vector</span></span></code></pre></div>
+<pre class="sourcecode"><code>myData # See the table
+myData[&quot;First&quot;] # See all the first names
+myData[1] # See all the first names, but referring to the order
+myData[1,] # See the data of the first person
+myData$Age # See all ages, but as a vector</code></pre>
 <h2 class="text-xl mt-5 mb-5" data-number="2.1" id="working-with-data-frames"><span class="header-section-number">2.1</span> Working with data frames</h2>
 <p class="mb-3">With this variable available, we can analyze the data. For example, what is the highest age in our data set?</p>
-<div class="sourceCode mb-3 notranslate" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a class="link link-hover text-zinc-600" href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">max</span>(myData<span class="sc">$</span>Age)</span>
-<span id="cb6-2"><a class="link link-hover text-zinc-600" href="#cb6-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">61</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; max(myData$Age)
+[1] 61</code></pre>
 <p class="mb-3">But who’s this person? We can ask this using:</p>
-<div class="sourceCode mb-3 notranslate" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a class="link link-hover text-zinc-600" href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">which.max</span>(myData<span class="sc">$</span>Age) <span class="co"># Get the index of the maximum value</span></span>
-<span id="cb7-2"><a class="link link-hover text-zinc-600" href="#cb7-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span></span>
-<span id="cb7-3"><a class="link link-hover text-zinc-600" href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> oldest <span class="ot">&lt;-</span> <span class="fu">which.max</span>(myData<span class="sc">$</span>Age) <span class="co"># Store it in a variable</span></span>
-<span id="cb7-4"><a class="link link-hover text-zinc-600" href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> myData[oldest,] <span class="co"># Get the corresponding row</span></span>
-<span id="cb7-5"><a class="link link-hover text-zinc-600" href="#cb7-5" aria-hidden="true" tabindex="-1"></a>     First    Last Age</span>
-<span id="cb7-6"><a class="link link-hover text-zinc-600" href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Mercedes Jimenez  <span class="dv">61</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; which.max(myData$Age) # Get the index of the maximum value
+[1] 4
+&gt; oldest &lt;- which.max(myData$Age) # Store it in a variable
+&gt; myData[oldest,] # Get the corresponding row
+     First    Last Age
+4 Mercedes Jimenez  61</code></pre>
 <p class="mb-3">And now we know the oldest person in the data set!</p>
 <h2 class="text-xl mt-5 mb-5" data-number="2.2" id="plots"><span class="header-section-number">2.2</span> Plots</h2>
 <p class="mb-3">Plotting data in R is very simple. Let’s start by preparing some data:</p>
-<div class="sourceCode mb-3 notranslate" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a class="link link-hover text-zinc-600" href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function that squares a number.</span></span>
-<span id="cb8-2"><a class="link link-hover text-zinc-600" href="#cb8-2" aria-hidden="true" tabindex="-1"></a>square <span class="ot">&lt;-</span> <span class="cf">function</span>(a) {</span>
-<span id="cb8-3"><a class="link link-hover text-zinc-600" href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(a<span class="sc">*</span>a)</span>
-<span id="cb8-4"><a class="link link-hover text-zinc-600" href="#cb8-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-5"><a class="link link-hover text-zinc-600" href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a class="link link-hover text-zinc-600" href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># The X values for the graph.</span></span>
-<span id="cb8-7"><a class="link link-hover text-zinc-600" href="#cb8-7" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="sc">-</span><span class="dv">1</span>,<span class="at">to=</span><span class="dv">1</span>,<span class="at">by=</span><span class="fl">0.1</span>)</span>
-<span id="cb8-8"><a class="link link-hover text-zinc-600" href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a class="link link-hover text-zinc-600" href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># The Y values for the graph.</span></span>
-<span id="cb8-10"><a class="link link-hover text-zinc-600" href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># The square of each number in x.</span></span>
-<span id="cb8-11"><a class="link link-hover text-zinc-600" href="#cb8-11" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sapply</span>(x,square)</span>
-<span id="cb8-12"><a class="link link-hover text-zinc-600" href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a class="link link-hover text-zinc-600" href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the graph.</span></span>
-<span id="cb8-14"><a class="link link-hover text-zinc-600" href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span></code></pre></div>
+<pre class="sourcecode"><code># A function that squares a number.
+square &lt;- function(a) {
+  return(a*a)
+}
+
+# The X values for the graph.
+x &lt;- seq(from=-1,to=1,by=0.1)
+
+# The Y values for the graph.
+# The square of each number in x.
+y &lt;- sapply(x,square)
+
+# Create the graph.
+plot(x,y)</code></pre>
 <p class="mb-3">On the lower-right panel, you should see the graph:</p>
 <p class="mb-3"><img class="mx-auto" src="data/plot.png" /> Using the <em>Export</em> button, you can save this image as a file.</p>
 

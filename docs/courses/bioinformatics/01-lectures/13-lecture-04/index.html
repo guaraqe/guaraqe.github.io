@@ -180,14 +180,14 @@
 <p class="mb-3"><img class="mx-auto" src="data/c607ed2489dff78e0434aad6e8567cec.png" /></p>
 <h2 class="text-xl mt-5 mb-5" data-number="2.5" id="exercise-finding-codons"><span class="header-section-number">2.5</span> Exercise: finding codons</h2>
 <p class="mb-3">In the full sequence, genes don’t have to start at the beginning of the sequence. What are the possible codons in the following sequence?</p>
-<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ACTTGACTACTTTA</span></code></pre></div>
+<pre class="sourcecode"><code>ACTTGACTACTTTA</code></pre>
 <h2 class="text-xl mt-5 mb-5" data-number="2.6" id="example-in-r-translating-to-aminoacids"><span class="header-section-number">2.6</span> Example in R: translating to aminoacids</h2>
-<div class="sourceCode mb-3 notranslate" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a class="link link-hover text-zinc-600" href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> s</span>
-<span id="cb4-2"><a class="link link-hover text-zinc-600" href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dv">183</span><span class="sc">-</span>letter DNAString object</span>
-<span id="cb4-3"><a class="link link-hover text-zinc-600" href="#cb4-3" aria-hidden="true" tabindex="-1"></a>seq<span class="sc">:</span> ATGGGGCTCATTCAAGAAGAATGGAGCGATCAAAGTGTTACG...CATCTGACCACCCGAGGGGGAGAGCCGCACATGATAGTTAG</span>
-<span id="cb4-4"><a class="link link-hover text-zinc-600" href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Biostrings<span class="sc">::</span><span class="fu">translate</span>(s)</span>
-<span id="cb4-5"><a class="link link-hover text-zinc-600" href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="dv">61</span><span class="sc">-</span>letter AAString object</span>
-<span id="cb4-6"><a class="link link-hover text-zinc-600" href="#cb4-6" aria-hidden="true" tabindex="-1"></a>seq<span class="sc">:</span> MGLIQEEWSDQSVTGFQERNLKHVEHNEQEEKICDHAPHAAAHSPGVPSDHPRGRAAHDS<span class="sc">*</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; s
+183-letter DNAString object
+seq: ATGGGGCTCATTCAAGAAGAATGGAGCGATCAAAGTGTTACG...CATCTGACCACCCGAGGGGGAGAGCCGCACATGATAGTTAG
+&gt; Biostrings::translate(s)
+61-letter AAString object
+seq: MGLIQEEWSDQSVTGFQERNLKHVEHNEQEEKICDHAPHAAAHSPGVPSDHPRGRAAHDS*</code></pre>
 <h1 class="text-2xl mt-5 mb-5" data-number="3" id="genes"><span class="header-section-number">3</span> Genes</h1>
 <h2 class="text-xl mt-5 mb-5" data-number="3.1" id="genes-1"><span class="header-section-number">3.1</span> Genes</h2>
 <p class="mb-3">The molecular gene is a sequence of nucleotides in DNA that is transcribed to produce a functional RNA. Genes can lead to the production of sequences of aminoacids. That is, proteins.</p>

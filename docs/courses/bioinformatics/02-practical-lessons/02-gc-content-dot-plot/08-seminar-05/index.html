@@ -145,26 +145,26 @@
 <p class="mb-3">The GC content is calculated as:</p>
 <p class="mb-3"><img class="mx-auto" src="data/164df7f5f092e4529a73b266a16b6571.png" /></p>
 <p class="mb-3">We will define a function that calculates GC from data. The data will have the following format, as obtained from the <code>count</code> function:</p>
-<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a>a    c    g    t </span>
-<span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">3426</span> <span class="dv">2240</span> <span class="dv">2770</span> <span class="dv">2299</span> </span></code></pre></div>
+<pre class="sourcecode"><code>a    c    g    t 
+3426 2240 2770 2299 </code></pre>
 <p class="mb-3">then we can define:</p>
-<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a>myGC <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
-<span id="cb2-2"><a class="link link-hover text-zinc-600" href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    c <span class="ot">&lt;-</span> data[<span class="st">&quot;c&quot;</span>]</span>
-<span id="cb2-3"><a class="link link-hover text-zinc-600" href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    g <span class="ot">&lt;-</span> data[<span class="st">&quot;g&quot;</span>]</span>
-<span id="cb2-4"><a class="link link-hover text-zinc-600" href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    total <span class="ot">&lt;-</span> <span class="fu">sum</span>(data)</span>
-<span id="cb2-5"><a class="link link-hover text-zinc-600" href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    (c<span class="sc">+</span>g)<span class="sc">/</span>total</span>
-<span id="cb2-6"><a class="link link-hover text-zinc-600" href="#cb2-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre class="sourcecode"><code>myGC &lt;- function(data) {
+    c &lt;- data[&quot;c&quot;]
+    g &lt;- data[&quot;g&quot;]
+    total &lt;- sum(data)
+    (c+g)/total
+}</code></pre>
 <p class="mb-3">We will use this to calculate the GC content for dengue:</p>
-<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dengue <span class="ot">&lt;-</span> <span class="fu">read.fasta</span>(<span class="st">&quot;dengue.fasta&quot;</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb3-2"><a class="link link-hover text-zinc-600" href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dengueFreq <span class="ot">&lt;-</span> <span class="fu">count</span>(dengue,<span class="dv">1</span>)</span>
-<span id="cb3-3"><a class="link link-hover text-zinc-600" href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dengueGC <span class="ot">&lt;-</span> <span class="fu">myGC</span>(dengueFreq)</span>
-<span id="cb3-4"><a class="link link-hover text-zinc-600" href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dengueGC</span>
-<span id="cb3-5"><a class="link link-hover text-zinc-600" href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fl">0.4666977</span> </span></code></pre></div>
+<pre class="sourcecode"><code>&gt; dengue &lt;- read.fasta(&quot;dengue.fasta&quot;)[[1]]
+&gt; dengueFreq &lt;- count(dengue,1)
+&gt; dengueGC &lt;- myGC(dengueFreq)
+&gt; dengueGC
+0.4666977 </code></pre>
 <p class="mb-3">Threfore, the dengue sequence has around 47% of GC content. Do the same for zika, by yourself.</p>
 <h2 class="text-xl mt-5 mb-5" data-number="1.1" id="using-seqinr"><span class="header-section-number">1.1</span> Using <code>seqinr</code></h2>
 <p class="mb-3">The library <code>seqinr</code> has a function that automatically calculates the GC content for any sequence.</p>
-<div class="sourceCode mb-3 notranslate" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a class="link link-hover text-zinc-600" href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">GC</span>(dengue)</span>
-<span id="cb4-2"><a class="link link-hover text-zinc-600" href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fl">0.4666977</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; GC(dengue)
+0.4666977</code></pre>
 
   <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
 

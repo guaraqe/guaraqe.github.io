@@ -143,55 +143,55 @@
 
 <p class="mb-3">In this course we will write functions to analyze the GC content of <em>subsequences</em> of a sequence. You can download the sequences right clicking the following link: <a class="link link-hover text-zinc-600" href="data/dengue.fasta">dengue</a> and choosing “Save as…”, saving in choose the <code>Bioinformatics/workspace</code> folder that is in the desktop, as always.</p>
 <p class="mb-3">Before starting, load the data:</p>
-<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(seqinr)</span>
-<span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dengue <span class="ot">&lt;-</span> <span class="fu">read.fasta</span>(<span class="st">&quot;dengue.fasta&quot;</span>)[[<span class="dv">1</span>]]</span></code></pre></div>
+<pre class="sourcecode"><code>library(seqinr)
+dengue &lt;- read.fasta(&quot;dengue.fasta&quot;)[[1]]</code></pre>
 <h1 class="text-2xl mt-5 mb-5" data-number="1" id="gc-content"><span class="header-section-number">1</span> GC Content</h1>
 <p class="mb-3">In the last lecture we defined the GC content of a sequence manually, using the frequencies of <strong>G</strong> and <strong>C</strong> in the sequences. The library <code>seqinr</code> has a function that automatically calculates the GC content for any sequence.</p>
-<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">GC</span>(dengue)</span>
-<span id="cb2-2"><a class="link link-hover text-zinc-600" href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fl">0.4666977</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; GC(dengue)
+0.4666977</code></pre>
 <p class="mb-3">We will use this function instead today.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="2" id="selecting-windows"><span class="header-section-number">2</span> Selecting windows</h1>
 <p class="mb-3">Different parts of the DNA strand behave differently. It is useful to be able to select subparts of it. For example, to select the first 10 nucleotides:</p>
-<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dengue[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
-<span id="cb3-2"><a class="link link-hover text-zinc-600" href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;a&quot;</span> <span class="st">&quot;g&quot;</span> <span class="st">&quot;t&quot;</span> <span class="st">&quot;t&quot;</span> <span class="st">&quot;g&quot;</span> <span class="st">&quot;t&quot;</span> <span class="st">&quot;t&quot;</span> <span class="st">&quot;a&quot;</span> <span class="st">&quot;g&quot;</span> <span class="st">&quot;t&quot;</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; dengue[1:10]
+[1] &quot;a&quot; &quot;g&quot; &quot;t&quot; &quot;t&quot; &quot;g&quot; &quot;t&quot; &quot;t&quot; &quot;a&quot; &quot;g&quot; &quot;t&quot;</code></pre>
 <p class="mb-3">To select <code>n</code> nucleotides, starting from the position <code>s</code>, the operation to be used is <code>dengue[s,(s+n-1)]</code>.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="3" id="choosing-some-windows"><span class="header-section-number">3</span> Choosing some windows</h1>
 <p class="mb-3">Let’s analyze the data for two windows of size 100. We will get the GC content for each slice, and save it in an vector.</p>
-<div class="sourceCode mb-3 notranslate" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a class="link link-hover text-zinc-600" href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create and empty vector</span></span>
-<span id="cb4-2"><a class="link link-hover text-zinc-600" href="#cb4-2" aria-hidden="true" tabindex="-1"></a>gc <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb4-3"><a class="link link-hover text-zinc-600" href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the first element</span></span>
-<span id="cb4-4"><a class="link link-hover text-zinc-600" href="#cb4-4" aria-hidden="true" tabindex="-1"></a>gc[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">GC</span>(dengue[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>])</span>
-<span id="cb4-5"><a class="link link-hover text-zinc-600" href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the second element</span></span>
-<span id="cb4-6"><a class="link link-hover text-zinc-600" href="#cb4-6" aria-hidden="true" tabindex="-1"></a>gc[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">GC</span>(dengue[<span class="dv">101</span><span class="sc">:</span><span class="dv">200</span>])</span></code></pre></div>
+<pre class="sourcecode"><code>#reate and empty vector
+gc &lt;- c()
+#ave the first element
+gc[1] &lt;- GC(dengue[1:100])
+#ave the second element
+gc[2] &lt;- GC(dengue[101:200])</code></pre>
 <p class="mb-3">Now we have a vector:</p>
-<div class="sourceCode mb-3 notranslate" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a class="link link-hover text-zinc-600" href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> gc</span>
-<span id="cb5-2"><a class="link link-hover text-zinc-600" href="#cb5-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.40</span> <span class="fl">0.48</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; gc
+[1] 0.40 0.48</code></pre>
 <p class="mb-3">Which we can plot with <code>barplot(gc)</code>. But how can we do this for all intervals of a given size in a sequence?</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="4" id="getting-all-the-intervals"><span class="header-section-number">4</span> Getting all the intervals</h1>
 <p class="mb-3">We want to obtain an array such as <code>c(1,101,201,301...)</code>, corresponding to the <strong>start</strong> points for the intervals. but that is too long to write by hand. We will use instead the function <code>seq(start,end,by=size)</code> where <code>start</code> is the first element we want, <code>end</code> the last one, and <code>size</code> the size of the interval between elements.</p>
 <p class="mb-3">In the example above, we want:</p>
-<div class="sourceCode mb-3 notranslate" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a class="link link-hover text-zinc-600" href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">size</span>(<span class="dv">1</span>,<span class="fu">length</span>(dengue)<span class="sc">-</span><span class="dv">100</span>,<span class="at">by=</span><span class="dv">100</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>size(1,length(dengue)-100,by=100)</code></pre>
 <h1 class="text-2xl mt-5 mb-5" data-number="5" id="going-through-all-the-elements"><span class="header-section-number">5</span> Going through all the elements</h1>
 <p class="mb-3">To go through all the elements, we will use a <code>for</code> loop. For example, to print all the elements in the vector <code>1:100</code>:</p>
-<div class="sourceCode mb-3 notranslate" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a class="link link-hover text-zinc-600" href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {</span>
-<span id="cb7-2"><a class="link link-hover text-zinc-600" href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
-<span id="cb7-3"><a class="link link-hover text-zinc-600" href="#cb7-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre class="sourcecode"><code>for(i in 1:100) {
+  print(i)
+}</code></pre>
 <h1 class="text-2xl mt-5 mb-5" data-number="6" id="final-result"><span class="header-section-number">6</span> Final result</h1>
 <p class="mb-3">Putting everything together, we can write a function that results into a vector containing the GC content of each piece of the sequence.</p>
-<div class="sourceCode mb-3 notranslate" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a class="link link-hover text-zinc-600" href="#cb8-1" aria-hidden="true" tabindex="-1"></a>windowGC <span class="ot">&lt;-</span> <span class="cf">function</span>(data, window) {</span>
-<span id="cb8-2"><a class="link link-hover text-zinc-600" href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  starts <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">length</span>(data)<span class="sc">-</span>window,<span class="at">by=</span>window)</span>
-<span id="cb8-3"><a class="link link-hover text-zinc-600" href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  gc <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb8-4"><a class="link link-hover text-zinc-600" href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(starts)) {</span>
-<span id="cb8-5"><a class="link link-hover text-zinc-600" href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    start <span class="ot">&lt;-</span> starts[i]</span>
-<span id="cb8-6"><a class="link link-hover text-zinc-600" href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    end <span class="ot">&lt;-</span> start<span class="sc">+</span>window<span class="dv">-1</span></span>
-<span id="cb8-7"><a class="link link-hover text-zinc-600" href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    gc[i] <span class="ot">&lt;-</span> <span class="fu">GC</span>(data[start<span class="sc">:</span>end])</span>
-<span id="cb8-8"><a class="link link-hover text-zinc-600" href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb8-9"><a class="link link-hover text-zinc-600" href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  gc</span>
-<span id="cb8-10"><a class="link link-hover text-zinc-600" href="#cb8-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre class="sourcecode"><code>windowGC &lt;- function(data, window) {
+  starts &lt;- seq(1,length(data)-window,by=window)
+  gc &lt;- c()
+  for(i in 1:length(starts)) {
+    start &lt;- starts[i]
+    end &lt;- start+window-1
+    gc[i] &lt;- GC(data[start:end])
+  }
+  gc
+}</code></pre>
 <p class="mb-3">To calculate for windows of size 1000:</p>
-<div class="sourceCode mb-3 notranslate" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a class="link link-hover text-zinc-600" href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">windowGC</span>(dengue,<span class="dv">1000</span>)</span>
-<span id="cb9-2"><a class="link link-hover text-zinc-600" href="#cb9-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.477</span> <span class="fl">0.453</span> <span class="fl">0.464</span> <span class="fl">0.441</span> <span class="fl">0.471</span> <span class="fl">0.470</span> <span class="fl">0.488</span> <span class="fl">0.470</span> <span class="fl">0.438</span> <span class="fl">0.471</span></span>
-<span id="cb9-3"><a class="link link-hover text-zinc-600" href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">barplot</span>(<span class="fu">windowGC</span>(dengue,<span class="dv">1000</span>))</span></code></pre></div>
+<pre class="sourcecode"><code>&gt; windowGC(dengue,1000)
+[1] 0.477 0.453 0.464 0.441 0.471 0.470 0.488 0.470 0.438 0.471
+&gt; barplot(windowGC(dengue,1000))</code></pre>
 <p class="mb-3"><img class="mx-auto" src="data/168364e27ee6e0dc681bf322607d446d.png" /></p>
 <p class="mb-3">The function above can be used to compare different window sizes. By decreasing the window size, we can see the GC content with more resolution. Try generating each one of these graphs.</p>
 <p class="mb-3"><img class="mx-auto" src="data/c1e1d16948eee263d8373a848e960783.png" /></p>

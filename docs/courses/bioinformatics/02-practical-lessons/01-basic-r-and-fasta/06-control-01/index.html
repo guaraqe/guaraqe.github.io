@@ -145,12 +145,12 @@
 <p class="mb-3">You have <strong>20 minutes</strong>. The information you need to do the exam is in the text, <strong>read it attentively</strong>. You can look at the pages of the previous lessons if you want. <strong>Call me</strong> after you succeed each step.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="1" id="loading-the-library"><span class="header-section-number">1</span> Loading the library</h1>
 <p class="mb-3">In order to use the <code>seqinr</code> library to load and process gene sequence data, run the following command in the <em>console</em>:</p>
-<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(seqinr)</span></code></pre></div>
+<pre class="sourcecode"><code>library(seqinr)</code></pre>
 <p class="mb-3"><em>How to know it worked</em>: RStudio will accept your command, and not produce any errors. The line after the command will be just empty.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="2" id="reading-the-data"><span class="header-section-number">2</span> Reading the data</h1>
 <p class="mb-3">Gene data can be read using the <code>read.fasta("FILE_NAME")</code>, where <code>FILE_NAME</code> corresponds to the name of the file you are loading, which is the file you saved in the first step.</p>
 <p class="mb-3">Save it to a variable named <code>dengue</code>. Remember, that to save the value of some action <code>action</code> to a variable <code>x</code>, you need to write:</p>
-<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> action</span></code></pre></div>
+<pre class="sourcecode"><code>x &lt;- action</code></pre>
 <p class="mb-3">Replace these by suitable names and actions.</p>
 <p class="mb-3"><em>How to know it worked</em>: On the top right panel, in the <code>Environment</code> tab, you will see the variable <code>dengue</code> with the description <code>List of 1</code>.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="3" id="extracting-the-gene-sequence"><span class="header-section-number">3</span> Extracting the gene sequence</h1>

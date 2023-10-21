@@ -145,32 +145,32 @@
 <p class="mb-3"><img class="mx-auto" src="data/40fcef6ec633abc61ffad3a09762bc73.png" /></p>
 <h1 class="text-2xl mt-5 mb-5" data-number="2" id="mapping-codons"><span class="header-section-number">2</span> Mapping codons</h1>
 <p class="mb-3">Translate into the corresponding aminoacids:</p>
-<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> s <span class="ot">&lt;-</span> <span class="fu">DNAString</span>(<span class="st">&quot;ACTGAGACACTTGCG&quot;</span>)</span>
-<span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Biostrings<span class="sc">::</span><span class="fu">translate</span>(s)</span>
-<span id="cb1-3"><a class="link link-hover text-zinc-600" href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">-</span>letter AAString object</span>
-<span id="cb1-4"><a class="link link-hover text-zinc-600" href="#cb1-4" aria-hidden="true" tabindex="-1"></a>seq<span class="sc">:</span> TETLA</span></code></pre></div>
+<pre class="sourcecode"><code>&gt; s &lt;- DNAString(&quot;ACTGAGACACTTGCG&quot;)
+&gt; Biostrings::translate(s)
+5-letter AAString object
+seq: TETLA</code></pre>
 <h1 class="text-2xl mt-5 mb-5" data-number="3" id="genes"><span class="header-section-number">3</span> Genes</h1>
 <p class="mb-3">The molecular gene is a sequence of nucleotides in DNA that is transcribed to produce a functional RNA. Genes can lead to the production of sequences of aminoacids. That is, proteins. There are particular codons that can imply the start and the end of genes:</p>
 <ul class="list-disc list-outside mt-1 mb-3 pl-5">
 <li>Genes start with <code>ATG</code> (Methionine).</li>
 <li>Genes end with <code>TAA</code> (Ochre), <code>TAG</code> (Amber), <code>TGA</code> (Opal).</li>
 </ul>
-<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> start <span class="ot">&lt;-</span> <span class="fu">DNAString</span>(<span class="st">&quot;ATG&quot;</span>)</span>
-<span id="cb2-2"><a class="link link-hover text-zinc-600" href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> end1 <span class="ot">&lt;-</span> <span class="fu">DNAString</span>(<span class="st">&quot;TAA&quot;</span>)</span>
-<span id="cb2-3"><a class="link link-hover text-zinc-600" href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> end2 <span class="ot">&lt;-</span> <span class="fu">DNAString</span>(<span class="st">&quot;TAG&quot;</span>)</span>
-<span id="cb2-4"><a class="link link-hover text-zinc-600" href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> end3 <span class="ot">&lt;-</span> <span class="fu">DNAString</span>(<span class="st">&quot;TGA&quot;</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>&gt; start &lt;- DNAString(&quot;ATG&quot;)
+&gt; end1 &lt;- DNAString(&quot;TAA&quot;)
+&gt; end2 &lt;- DNAString(&quot;TAG&quot;)
+&gt; end3 &lt;- DNAString(&quot;TGA&quot;)</code></pre>
 <p class="mb-3">Apply the function <code>Biostrings::translate</code> to each one of these.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="4" id="and-3-reading-frames"><span class="header-section-number">4</span> 1, 2 and 3 reading frames</h1>
 <p class="mb-3">We can name sites as reading frames 1, 2 or 3 depending if their nucleotide has remainder 0, 1 or 2, respectively when divided by three. Start and end sites must be in the same reading frames.</p>
 <p class="mb-3">By default, a sequence is in the reading frame 1. We can find the other reading frames by skipping the starting position:</p>
-<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> s[<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(s)] <span class="co"># reading frame 1, same as s</span></span>
-<span id="cb3-2"><a class="link link-hover text-zinc-600" href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> s[<span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(s)] <span class="co"># reading frame 2</span></span>
-<span id="cb3-3"><a class="link link-hover text-zinc-600" href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> s[<span class="dv">3</span><span class="sc">:</span><span class="fu">length</span>(s)] <span class="co"># reading frame 3</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; s[1:length(s)] # reading frame 1, same as s
+&gt; s[2:length(s)] # reading frame 2
+&gt; s[3:length(s)] # reading frame 3</code></pre>
 <h1 class="text-2xl mt-5 mb-5" data-number="5" id="exercise-finding-all-possible-codons"><span class="header-section-number">5</span> Exercise: finding all possible codons</h1>
 <p class="mb-3">In the full sequence, genes don’t have to start at the beginning of the sequence. Therefore, there are three possible lists of codons.</p>
-<div class="sourceCode mb-3 notranslate" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a class="link link-hover text-zinc-600" href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> c1 <span class="ot">&lt;-</span> Biostrings<span class="sc">::</span><span class="fu">translate</span>(s[<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(s)])</span>
-<span id="cb4-2"><a class="link link-hover text-zinc-600" href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> c2 <span class="ot">&lt;-</span> Biostrings<span class="sc">::</span><span class="fu">translate</span>(s[<span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(s)])</span>
-<span id="cb4-3"><a class="link link-hover text-zinc-600" href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> c3 <span class="ot">&lt;-</span> Biostrings<span class="sc">::</span><span class="fu">translate</span>(s[<span class="dv">3</span><span class="sc">:</span><span class="fu">length</span>(s)])</span></code></pre></div>
+<pre class="sourcecode"><code>&gt; c1 &lt;- Biostrings::translate(s[1:length(s)])
+&gt; c2 &lt;- Biostrings::translate(s[2:length(s)])
+&gt; c3 &lt;- Biostrings::translate(s[3:length(s)])</code></pre>
 <p class="mb-3">Look at these three sequences, and try to find genes. Remembering, it starts with <code>M</code>, and finishes with <code>*</code>.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="6" id="computationally-find-potential-genes"><span class="header-section-number">6</span> Computationally find potential genes</h1>
 <ol class="list-decimal list-outside mt-1 mb-3 pl-5" type="1">

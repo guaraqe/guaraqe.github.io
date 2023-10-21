@@ -153,8 +153,8 @@
 <p class="mb-3"><img class="mx-auto" src="data/983b437ea763b2228443d2be2ad544dd.png" /></p>
 <h2 class="text-xl mt-5 mb-5" data-number="2.2" id="how-to-make-a-dot-plot"><span class="header-section-number">2.2</span> How to make a dot plot</h2>
 <p class="mb-3">In R, is is possible to make a dot plot using the <code>seqinr</code> library. To do a dot plot for a small part of the dengue gene:</p>
-<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> shortDengue <span class="ot">&lt;-</span> dengue[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>]</span>
-<span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">dotPlot</span>(shortDengue,shortDengue)</span></code></pre></div>
+<pre class="sourcecode"><code>&gt; shortDengue &lt;- dengue[1:100]
+&gt; dotPlot(shortDengue,shortDengue)</code></pre>
 <p class="mb-3">Why a small section? Dot plots are expensive to calculate. For 100 bases, one needs 10,000 operations. For 10,000 bases, one needs 100,000,000 operations. It grows very fast, so it can take a long time to calculate.</p>
 <p class="mb-3"><img class="mx-auto" src="data/00ce6669265d5e06ec115509582cc3cc.png" /></p>
 <h2 class="text-xl mt-5 mb-5" data-number="2.3" id="comparing-the-full-sequence"><span class="header-section-number">2.3</span> Comparing the full sequence</h2>
@@ -166,8 +166,8 @@
 <p class="mb-3"><img class="mx-auto" src="data/ba92d9e96f701a562c9e114a13a0019c.png" /></p>
 <h2 class="text-xl mt-5 mb-5" data-number="2.5" id="comparing-two-sequences"><span class="header-section-number">2.5</span> Comparing two sequences</h2>
 <p class="mb-3">Besides comparing a sequence with itself, we can compare two different sequences:</p>
-<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> shortZika <span class="ot">&lt;-</span> zika[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>]</span>
-<span id="cb2-2"><a class="link link-hover text-zinc-600" href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">dotPlot</span>(shortDengue,shortZika)</span></code></pre></div>
+<pre class="sourcecode"><code>&gt; shortZika &lt;- zika[1:100]
+&gt; dotPlot(shortDengue,shortZika)</code></pre>
 <p class="mb-3"><img class="mx-auto" src="data/536788fb6455178c3f33cebd52c681d2.png" /></p>
 <h2 class="text-xl mt-5 mb-5" data-number="2.6" id="creating-a-dot-plot-2"><span class="header-section-number">2.6</span> Creating a dot plot 2</h2>
 <p class="mb-3">A sequence with another sequence.</p>
@@ -191,6 +191,7 @@ G A - T T A</code></pre>
 <li>Mismatch: -1 points</li>
 <li>Gap: -2 points</li>
 </ul>
+<p class="mb-3"> </p>
 <pre><code>G A  A T  T  C
 G A  T T  -  A
 2 2 -1 2 -2 -1 = 2</code></pre>
@@ -209,23 +210,23 @@ C A T A -</code></pre>
 <h1 class="text-2xl mt-5 mb-5" data-number="4" id="alignment-using-r"><span class="header-section-number">4</span> Alignment using R</h1>
 <h2 class="text-xl mt-5 mb-5" data-number="4.1" id="matching-matrix"><span class="header-section-number">4.1</span> Matching matrix</h2>
 <p class="mb-3">We can use R to determine the best pairwise alignment between two sequences, using the <code>Biostrings</code> library. In order to do so, we first tell how we want to evaluate matches and mismatches. This uses the <code>nucleotideSubstitutionMatrix</code>:</p>
-<div class="sourceCode mb-3 notranslate" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a class="link link-hover text-zinc-600" href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(Biostrings)</span>
-<span id="cb8-2"><a class="link link-hover text-zinc-600" href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sigma <span class="ot">&lt;-</span> <span class="fu">nucleotideSubstitutionMatrix</span>(<span class="at">match =</span> <span class="dv">2</span>, <span class="at">mismatch =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">baseOnly =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb8-3"><a class="link link-hover text-zinc-600" href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> sigma</span>
-<span id="cb8-4"><a class="link link-hover text-zinc-600" href="#cb8-4" aria-hidden="true" tabindex="-1"></a>   A  C  G  T</span>
-<span id="cb8-5"><a class="link link-hover text-zinc-600" href="#cb8-5" aria-hidden="true" tabindex="-1"></a>A  <span class="dv">2</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb8-6"><a class="link link-hover text-zinc-600" href="#cb8-6" aria-hidden="true" tabindex="-1"></a>C <span class="sc">-</span><span class="dv">1</span>  <span class="dv">2</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb8-7"><a class="link link-hover text-zinc-600" href="#cb8-7" aria-hidden="true" tabindex="-1"></a>G <span class="sc">-</span><span class="dv">1</span> <span class="sc">-</span><span class="dv">1</span>  <span class="dv">2</span> <span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb8-8"><a class="link link-hover text-zinc-600" href="#cb8-8" aria-hidden="true" tabindex="-1"></a>T <span class="sc">-</span><span class="dv">1</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">-</span><span class="dv">1</span>  <span class="dv">2</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; library(Biostrings)
+&gt; sigma &lt;- nucleotideSubstitutionMatrix(match = 2, mismatch = -1, baseOnly = TRUE)
+&gt; sigma
+   A  C  G  T
+A  2 -1 -1 -1
+C -1  2 -1 -1
+G -1 -1  2 -1
+T -1 -1 -1  2</code></pre>
 <h2 class="text-xl mt-5 mb-5" data-number="4.2" id="finding-the-best-alignment"><span class="header-section-number">4.2</span> Finding the best alignment</h2>
 <p class="mb-3">To calculate the best alignment, we use the function <code>pairwiseAlignment</code>, which takes the matrix above as a parameter. This uses the Needleman-Wunch algorithm.</p>
-<div class="sourceCode mb-3 notranslate" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a class="link link-hover text-zinc-600" href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> s1 <span class="ot">&lt;-</span> <span class="st">&quot;GAATTC&quot;</span></span>
-<span id="cb9-2"><a class="link link-hover text-zinc-600" href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> s2 <span class="ot">&lt;-</span> <span class="st">&quot;GATTA&quot;</span></span>
-<span id="cb9-3"><a class="link link-hover text-zinc-600" href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">pairwiseAlignment</span>(s1, s2, <span class="at">substitutionMatrix =</span> sigma, <span class="at">gapOpening =</span> <span class="sc">-</span><span class="dv">8</span>, <span class="at">gapExtension =</span> <span class="sc">-</span><span class="dv">2</span>, <span class="at">scoreOnly =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb9-4"><a class="link link-hover text-zinc-600" href="#cb9-4" aria-hidden="true" tabindex="-1"></a>Global Pairwise <span class="fu">Alignment</span> (<span class="dv">1</span> of <span class="dv">1</span>)</span>
-<span id="cb9-5"><a class="link link-hover text-zinc-600" href="#cb9-5" aria-hidden="true" tabindex="-1"></a>pattern<span class="sc">:</span> GAATTC</span>
-<span id="cb9-6"><a class="link link-hover text-zinc-600" href="#cb9-6" aria-hidden="true" tabindex="-1"></a>subject<span class="sc">:</span> GA<span class="sc">-</span>TTA</span>
-<span id="cb9-7"><a class="link link-hover text-zinc-600" href="#cb9-7" aria-hidden="true" tabindex="-1"></a>score<span class="sc">:</span> <span class="sc">-</span><span class="dv">3</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; s1 &lt;- &quot;GAATTC&quot;
+&gt; s2 &lt;- &quot;GATTA&quot;
+&gt; pairwiseAlignment(s1, s2, substitutionMatrix = sigma, gapOpening = -8, gapExtension = -2, scoreOnly = FALSE)
+Global Pairwise Alignment (1 of 1)
+pattern: GAATTC
+subject: GA-TTA
+score: -3</code></pre>
 <h2 class="text-xl mt-5 mb-5" data-number="4.3" id="gap-evaluation"><span class="header-section-number">4.3</span> Gap evaluation</h2>
 <p class="mb-3">The function had two extra parameters, <code>gapOpening</code> and <code>gapExtension</code>. These correspond to how we evaluate gaps:</p>
 <ul class="list-disc list-outside mt-1 mb-3 pl-5">
@@ -244,13 +245,13 @@ A  A  -  -
 2 -2 -8 -2 = -10</code></pre>
 <h2 class="text-xl mt-5 mb-5" data-number="4.5" id="aligning-the-exercise-in-r"><span class="header-section-number">4.5</span> Aligning the exercise in R</h2>
 <p class="mb-3">In the example we did manually:</p>
-<div class="sourceCode mb-3 notranslate" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a class="link link-hover text-zinc-600" href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> s1 <span class="ot">&lt;-</span> <span class="st">&quot;GATTA&quot;</span></span>
-<span id="cb12-2"><a class="link link-hover text-zinc-600" href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> s2 <span class="ot">&lt;-</span> <span class="st">&quot;CATA&quot;</span></span>
-<span id="cb12-3"><a class="link link-hover text-zinc-600" href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">pairwiseAlignment</span>(s1, s2, <span class="at">substitutionMatrix =</span> sigma, <span class="at">gapOpening =</span> <span class="sc">-</span><span class="dv">8</span>, <span class="at">gapExtension =</span> <span class="sc">-</span><span class="dv">2</span>, <span class="at">scoreOnly =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb12-4"><a class="link link-hover text-zinc-600" href="#cb12-4" aria-hidden="true" tabindex="-1"></a>Global <span class="fu">PairwiseAlignmentsSingleSubject</span> (<span class="dv">1</span> of <span class="dv">1</span>)</span>
-<span id="cb12-5"><a class="link link-hover text-zinc-600" href="#cb12-5" aria-hidden="true" tabindex="-1"></a>pattern<span class="sc">:</span> GATTA</span>
-<span id="cb12-6"><a class="link link-hover text-zinc-600" href="#cb12-6" aria-hidden="true" tabindex="-1"></a>subject<span class="sc">:</span> CAT<span class="sc">-</span>A</span>
-<span id="cb12-7"><a class="link link-hover text-zinc-600" href="#cb12-7" aria-hidden="true" tabindex="-1"></a>score<span class="sc">:</span> <span class="sc">-</span><span class="dv">5</span> </span></code></pre></div>
+<pre class="sourcecode"><code>&gt; s1 &lt;- &quot;GATTA&quot;
+&gt; s2 &lt;- &quot;CATA&quot;
+&gt; pairwiseAlignment(s1, s2, substitutionMatrix = sigma, gapOpening = -8, gapExtension = -2, scoreOnly = FALSE)
+Global PairwiseAlignmentsSingleSubject (1 of 1)
+pattern: GATTA
+subject: CAT-A
+score: -5 </code></pre>
 <h1 class="text-2xl mt-5 mb-5" data-number="5" id="next"><span class="header-section-number">5</span> Next</h1>
 <h2 class="text-xl mt-5 mb-5" data-number="5.1" id="next-lectures"><span class="header-section-number">5.1</span> Next lectures</h2>
 <p class="mb-3">In the next two lectures we will study:</p>

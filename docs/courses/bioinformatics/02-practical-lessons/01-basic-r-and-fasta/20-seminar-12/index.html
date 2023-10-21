@@ -144,10 +144,10 @@
 <ol class="list-decimal list-outside mt-1 mb-3 pl-5" type="1">
 <li><p class="mb-3">Sum all the numbers from 1 to 1000. You can do it using the syntax <code>1:1000</code>, which generates a vector with all numbers between 1 and 1000, and the function <code>sum</code>. Do the same with the function <code>mean</code>, which calculates the mean.</p></li>
 <li><p class="mb-3">Write a function called <code>sayHi</code> that takes a parameter <code>name</code>, and returns the sentence <code>Hi name!</code>. For this, you will use the function <code>paste</code>, which can be used as follows:</p>
-<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">paste</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>)</span>
-<span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;A B&quot;</span></span>
-<span id="cb1-3"><a class="link link-hover text-zinc-600" href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">paste</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb1-4"><a class="link link-hover text-zinc-600" href="#cb1-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;AB&quot;</span></span></code></pre></div></li>
+<pre class="sourcecode"><code>&gt; paste(&quot;A&quot;,&quot;B&quot;)
+[1] &quot;A B&quot;
+&gt; paste(&quot;A&quot;,&quot;B&quot;,sep=&quot;&quot;)
+[1] &quot;AB&quot;</code></pre></li>
 <li><p class="mb-3">Create a vector with the name of four of your classmates, using the <code>c(...)</code> construction. Use a <code>for</code> loop to go through these names, an print the say hi sentence for each one of them, using the <code>print</code> function, and the <code>sayHi</code> function that was defined just above.</p></li>
 <li><p class="mb-3">Write a function that takes a vector <code>numbers</code> as argument, and for each one tells if the number is big (&gt;10) or small, using the <code>if/else</code> construction presented in the <em>Conditionals</em> part.</p></li>
 </ol>
@@ -155,79 +155,79 @@
 <p class="mb-3">This section serves as a reference on how to use the most useful constructs in R. Make sure to come back to this page if you forget the syntax of the operations.</p>
 <h2 class="text-xl mt-5 mb-5" data-number="2.1" id="variables"><span class="header-section-number">2.1</span> Variables</h2>
 <p class="mb-3">R can act like a basic calculator that you type commands in to. You can also use it like a more advanced scientific calculator and create <em>variables</em> that store information. In R, we assign values to variables using an arrow-looking function <code>&lt;-</code> the <em>assignment operator</em>. For example, we can assign the value <code>2*3</code> to the variable <code>x</code> using the command:</p>
-<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="dv">3</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; x &lt;- 2*3</code></pre>
 <p class="mb-3">To view the contents of any variable, just type its name, press enter, and the contents of that R object will be displayed:</p>
-<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
-<span id="cb3-2"><a class="link link-hover text-zinc-600" href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">6</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; x
+[1] 6</code></pre>
 <p class="mb-3">What kind of information can you store in a variable? Anything! But the simplest kinds of data are strings, numbers and booleans:</p>
-<div class="sourceCode mb-3 notranslate" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a class="link link-hover text-zinc-600" href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> s <span class="ot">&lt;-</span> <span class="st">&quot;Some String&quot;</span></span>
-<span id="cb4-2"><a class="link link-hover text-zinc-600" href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> n <span class="ot">&lt;-</span> <span class="fl">154.4</span></span>
-<span id="cb4-3"><a class="link link-hover text-zinc-600" href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> b <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; s &lt;- &quot;Some String&quot;
+&gt; n &lt;- 154.4
+&gt; b &lt;- TRUE</code></pre>
 <h2 class="text-xl mt-5 mb-5" data-number="2.2" id="vectors"><span class="header-section-number">2.2</span> Vectors</h2>
 <p class="mb-3">To create a vector, we can use the <code>c()</code> (combine) function. For example, to create a vector called <code>myvector</code> that has elements with values 8, 6, 9, 10, and 5, we type:</p>
-<div class="sourceCode mb-3 notranslate" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a class="link link-hover text-zinc-600" href="#cb5-1" aria-hidden="true" tabindex="-1"></a>myvector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">5</span>) <span class="co"># note: commas between each number!</span></span></code></pre></div>
+<pre class="sourcecode"><code>myvector &lt;- c(8, 6, 9, 10, 5) # note: commas between each number!</code></pre>
 <p class="mb-3">To see the contents of the variable <code>myvector</code>, we can just type its name and press enter:</p>
-<div class="sourceCode mb-3 notranslate" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a class="link link-hover text-zinc-600" href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> myvector</span>
-<span id="cb6-2"><a class="link link-hover text-zinc-600" href="#cb6-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">8</span>  <span class="dv">6</span>  <span class="dv">9</span> <span class="dv">10</span>  <span class="dv">5</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; myvector
+[1]  8  6  9 10  5</code></pre>
 <p class="mb-3">The <code>[1]</code> is the <em>index</em> of the first <em>element</em> in the vector. We can extract any element of the vector by typing the vector name with the index of that element given in <em>square brackets</em> <code>[...]</code>.</p>
 <p class="mb-3">For example, to get the value of the 4th element in the vector <code>myvector</code>, we type:</p>
-<div class="sourceCode mb-3 notranslate" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a class="link link-hover text-zinc-600" href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> myvector[<span class="dv">4</span>]</span>
-<span id="cb7-2"><a class="link link-hover text-zinc-600" href="#cb7-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">10</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; myvector[4]
+[1] 10</code></pre>
 <p class="mb-3">Vectors can also contain letters, such as those designating nucleic acids</p>
-<div class="sourceCode mb-3 notranslate" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a class="link link-hover text-zinc-600" href="#cb8-1" aria-hidden="true" tabindex="-1"></a>my.seq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;T&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;G&quot;</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>my.seq &lt;- c(&quot;A&quot;,&quot;T&quot;,&quot;C&quot;,&quot;G&quot;)</code></pre>
 <p class="mb-3">They can also contain multi-letter <em>strings</em>:</p>
-<div class="sourceCode mb-3 notranslate" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a class="link link-hover text-zinc-600" href="#cb9-1" aria-hidden="true" tabindex="-1"></a>my.oligos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ATCGC&quot;</span>,<span class="st">&quot;TTTCGC&quot;</span>,<span class="st">&quot;CCCGCG&quot;</span>,<span class="st">&quot;GGGCGC&quot;</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>my.oligos &lt;- c(&quot;ATCGC&quot;,&quot;TTTCGC&quot;,&quot;CCCGCG&quot;,&quot;GGGCGC&quot;)</code></pre>
 <h2 class="text-xl mt-5 mb-5" data-number="2.3" id="tables"><span class="header-section-number">2.3</span> Tables</h2>
 <p class="mb-3">If we made a vector variable “nucleotides” containing the of a DNA molecule, we can use the <code>table()</code> function to produce a <strong>table variable</strong> that contains the number of bases with each possible nucleotides:</p>
-<div class="sourceCode mb-3 notranslate" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a class="link link-hover text-zinc-600" href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bases <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;G&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;G&quot;</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>bases &lt;- c(&quot;A&quot;, &quot;T&quot;, &quot;A&quot;, &quot;A&quot;, &quot;T&quot;, &quot;C&quot;, &quot;G&quot;, &quot;C&quot;, &quot;G&quot;)</code></pre>
 <p class="mb-3">Now make the table</p>
-<div class="sourceCode mb-3 notranslate" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a class="link link-hover text-zinc-600" href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(bases)</span>
-<span id="cb11-2"><a class="link link-hover text-zinc-600" href="#cb11-2" aria-hidden="true" tabindex="-1"></a>bases</span>
-<span id="cb11-3"><a class="link link-hover text-zinc-600" href="#cb11-3" aria-hidden="true" tabindex="-1"></a>A C G T </span>
-<span id="cb11-4"><a class="link link-hover text-zinc-600" href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; table(bases)
+bases
+A C G T 
+3 2 2 2</code></pre>
 <h2 class="text-xl mt-5 mb-5" data-number="2.4" id="arguments"><span class="header-section-number">2.4</span> Arguments</h2>
 <p class="mb-3">Functions in R usually require <em>arguments</em>, which are input variables (i.e.. objects) that are <em>passed</em> to them, which they then carry out some operation on. For example, the <code>log10()</code> function is passed a number, and it then calculates the log to the base 10 of that number:</p>
-<div class="sourceCode mb-3 notranslate" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a class="link link-hover text-zinc-600" href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">log10</span>(<span class="dv">100</span>)</span>
-<span id="cb12-2"><a class="link link-hover text-zinc-600" href="#cb12-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">2</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; log10(100)
+[1] 2</code></pre>
 <p class="mb-3">There’s a more generic function, <code>log()</code>, where we pass it not only a number to take the log of, but also the specific <code>base</code> of the logarithm. To take the log base 10 with the <code>log()</code> function we do this</p>
-<div class="sourceCode mb-3 notranslate" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a class="link link-hover text-zinc-600" href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">log</span>(<span class="dv">100</span>, <span class="at">base =</span> <span class="dv">10</span>)</span>
-<span id="cb13-2"><a class="link link-hover text-zinc-600" href="#cb13-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">2</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; log(100, base = 10)
+[1] 2</code></pre>
 <p class="mb-3">We can also take logs with other bases, such as 2:</p>
-<div class="sourceCode mb-3 notranslate" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a class="link link-hover text-zinc-600" href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">log</span>(<span class="dv">100</span>, <span class="at">base =</span> <span class="dv">2</span>)</span>
-<span id="cb14-2"><a class="link link-hover text-zinc-600" href="#cb14-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">6.643856</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; log(100, base = 2)
+[1] 6.643856</code></pre>
 <p class="mb-3">We can perform computations with R using objects such as scalars and vectors. For example, to calculate the average of the values in the vector <code>myvector</code> (i.e.. the average of 8, 6, 9, 10 and 5), we can use the <code>mean()</code> function:</p>
-<div class="sourceCode mb-3 notranslate" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a class="link link-hover text-zinc-600" href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">mean</span>(myvector) <span class="co"># note: no &quot; &quot;</span></span>
-<span id="cb15-2"><a class="link link-hover text-zinc-600" href="#cb15-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">7.6</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; mean(myvector) # note: no &quot; &quot;
+[1] 7.6</code></pre>
 <p class="mb-3">We have been using built-in R functions such as <code>mean()</code>, <code>length()</code>, <code>print()</code>, <code>plot()</code>, etc.</p>
 <h2 class="text-xl mt-5 mb-5" data-number="2.5" id="writing-your-own-functions"><span class="header-section-number">2.5</span> Writing your own functions</h2>
 <p class="mb-3">We can also create our own functions in R to do calculations that you want to carry out very often on different input data sets. For example, we can create a function to calculate the value of 20 plus square of some input number, in the code panel:</p>
-<div class="sourceCode mb-3 notranslate" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a class="link link-hover text-zinc-600" href="#cb16-1" aria-hidden="true" tabindex="-1"></a>myfunction <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb16-2"><a class="link link-hover text-zinc-600" href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> x <span class="sc">*</span> x</span>
-<span id="cb16-3"><a class="link link-hover text-zinc-600" href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">20</span> <span class="sc">+</span> y)</span>
-<span id="cb16-4"><a class="link link-hover text-zinc-600" href="#cb16-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre class="sourcecode"><code>myfunction &lt;- function(x) {
+    y &lt;- x * x
+    return(20 + y)
+}</code></pre>
 <p class="mb-3">This function will calculate the square of a number <code>x</code>, and then add 20 to that value. The <code>return()</code> statement returns the calculated value. Once you have typed in this function, the function is then available for use. For example, we can use the function for different input numbers (e.g.. 10, 25):</p>
-<div class="sourceCode mb-3 notranslate" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a class="link link-hover text-zinc-600" href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">myfunction</span>(<span class="dv">10</span>)</span>
-<span id="cb17-2"><a class="link link-hover text-zinc-600" href="#cb17-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">120</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; myfunction(10)
+[1] 120</code></pre>
 <h2 class="text-xl mt-5 mb-5" data-number="2.6" id="conditionals"><span class="header-section-number">2.6</span> Conditionals</h2>
 <p class="mb-3">It is often useful to execute different operations depending on a condition. Let’s say we want to say if a number if big (larger than 10) or small (otherwise):</p>
-<div class="sourceCode mb-3 notranslate" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a class="link link-hover text-zinc-600" href="#cb18-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb18-2"><a class="link link-hover text-zinc-600" href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">10</span>) {</span>
-<span id="cb18-3"><a class="link link-hover text-zinc-600" href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Big!&quot;</span>)</span>
-<span id="cb18-4"><a class="link link-hover text-zinc-600" href="#cb18-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb18-5"><a class="link link-hover text-zinc-600" href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Small!&quot;</span>)</span>
-<span id="cb18-6"><a class="link link-hover text-zinc-600" href="#cb18-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre class="sourcecode"><code>x &lt;- 5
+if (x &gt; 10) {
+  print(&quot;Big!&quot;)
+} else {
+  print(&quot;Small!&quot;)
+}</code></pre>
 <p class="mb-3">By changing the value of <code>x</code>, you can see either the first or the second piece of code being executed.</p>
 <h2 class="text-xl mt-5 mb-5" data-number="2.7" id="loops"><span class="header-section-number">2.7</span> Loops</h2>
 <p class="mb-3">Finally, sometimes we want to execute an operation many times. The way to do it is using a <code>for</code> loop. For example, to print the numbers from 1 to 10 we can do:</p>
-<div class="sourceCode mb-3 notranslate" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a class="link link-hover text-zinc-600" href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {  </span>
-<span id="cb19-2"><a class="link link-hover text-zinc-600" href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(x)  </span>
-<span id="cb19-3"><a class="link link-hover text-zinc-600" href="#cb19-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre class="sourcecode"><code>for (x in 1:10) {  
+  print(x)  
+}</code></pre>
 <p class="mb-3">Or, to print every element of an array:</p>
-<div class="sourceCode mb-3 notranslate" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a class="link link-hover text-zinc-600" href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dice <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
-<span id="cb20-2"><a class="link link-hover text-zinc-600" href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a class="link link-hover text-zinc-600" href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> dice) {  </span>
-<span id="cb20-4"><a class="link link-hover text-zinc-600" href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(x)  </span>
-<span id="cb20-5"><a class="link link-hover text-zinc-600" href="#cb20-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre class="sourcecode"><code>dice &lt;- c(1, 2, 3, 4, 5, 6)
+
+for (x in dice) {  
+  print(x)  
+}</code></pre>
 
   <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
 

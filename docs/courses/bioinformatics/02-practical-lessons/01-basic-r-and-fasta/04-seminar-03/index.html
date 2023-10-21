@@ -150,37 +150,37 @@
 <p class="mb-3">After a line of descriptions, you should have the sequence of nucleotides found in the Dengue genome. Make sure to not change this file.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="2" id="using-this-file-in-r"><span class="header-section-number">2</span> Using this file in R</h1>
 <p class="mb-3">By default, R doesn’t know how to load genome data. But other people wrote code that can load this data, and we can take advantage of this. To install the <code>seqinr</code> type in console the following:</p>
-<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;seqinr&quot;</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>install.packages(&quot;seqinr&quot;)</code></pre>
 <p class="mb-3">This only needs to be done once. Once the library is installed in the system, you can load it with:</p>
-<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;seqinr&quot;</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>library(&quot;seqinr&quot;)</code></pre>
 <p class="mb-3">And finally, load the data inside the <code>dengue</code> variable using:</p>
-<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dengue <span class="ot">&lt;-</span> <span class="fu">read.fasta</span>(<span class="st">&quot;dengue.fasta&quot;</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>dengue &lt;- read.fasta(&quot;dengue.fasta&quot;)</code></pre>
 <p class="mb-3">You can check the values in this variable by typing <code>dengue</code>. This will contain all the data set. To get only the nucleotides, we can do:</p>
-<div class="sourceCode mb-3 notranslate" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a class="link link-hover text-zinc-600" href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dengueseq <span class="ot">&lt;-</span> <span class="fu">c</span>(dengue<span class="sc">$</span>NC_001477<span class="fl">.1</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>dengueseq &lt;- c(dengue$NC_001477.1)</code></pre>
 <p class="mb-3">this will result in a vector whose entries are the nucleotides. To check the entry, type <code>denqueseq</code>.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="3" id="simple-statistics"><span class="header-section-number">3</span> Simple Statistics</h1>
 <p class="mb-3">Now that we have the data in hand, what can we do with it? The first thing we can do is check nucleotide statistics. Let’s count how many of each of A, C, G and T we have.</p>
-<div class="sourceCode mb-3 notranslate" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a class="link link-hover text-zinc-600" href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> n1 <span class="ot">&lt;-</span> <span class="fu">count</span>(dengueseq,<span class="dv">1</span>)</span>
-<span id="cb5-2"><a class="link link-hover text-zinc-600" href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> n1</span>
-<span id="cb5-3"><a class="link link-hover text-zinc-600" href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a class="link link-hover text-zinc-600" href="#cb5-4" aria-hidden="true" tabindex="-1"></a>   a    c    g    t </span>
-<span id="cb5-5"><a class="link link-hover text-zinc-600" href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3426</span> <span class="dv">2240</span> <span class="dv">2770</span> <span class="dv">2299</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; n1 &lt;- count(dengueseq,1)
+&gt; n1
+
+   a    c    g    t 
+3426 2240 2770 2299</code></pre>
 <p class="mb-3">As you can see, the quantity of each nucleotide is not the same. We can see this more clearly with a barplot:</p>
-<div class="sourceCode mb-3 notranslate" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a class="link link-hover text-zinc-600" href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(n1,<span class="at">main=</span><span class="st">&quot;Nucleotides&quot;</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>barplot(n1,main=&quot;Nucleotides&quot;)</code></pre>
 <p class="mb-3"><img class="mx-auto" src="data/barplot1.png" /></p>
 <p class="mb-3">Individual elements of the vector can be accessed either by position or by name:</p>
 <pre><code>n1[1]
 n1[&#39;aa&#39;]</code></pre>
 <p class="mb-3">Since the first is more explicit, it is often preferred.</p>
 <p class="mb-3">These same statistics can be done for nucleotide pairs: AA , AC, AG, AT, CA, CC, CG, CT, GA, GC, GG, GT, TA, TC, TG and TT:</p>
-<div class="sourceCode mb-3 notranslate" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a class="link link-hover text-zinc-600" href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> n2 <span class="ot">&lt;-</span> <span class="fu">count</span>(dengueseq,<span class="dv">2</span>)</span>
-<span id="cb8-2"><a class="link link-hover text-zinc-600" href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> n2</span>
-<span id="cb8-3"><a class="link link-hover text-zinc-600" href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  aa   ac   ag   at   ca   cc   cg   ct   ga   gc   gg   gt   ta   tc </span>
-<span id="cb8-4"><a class="link link-hover text-zinc-600" href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1108</span>  <span class="dv">720</span>  <span class="dv">890</span>  <span class="dv">708</span>  <span class="dv">901</span>  <span class="dv">523</span>  <span class="dv">261</span>  <span class="dv">555</span>  <span class="dv">976</span>  <span class="dv">500</span>  <span class="dv">787</span>  <span class="dv">507</span>  <span class="dv">440</span>  <span class="dv">497</span> </span>
-<span id="cb8-5"><a class="link link-hover text-zinc-600" href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  tg   tt </span>
-<span id="cb8-6"><a class="link link-hover text-zinc-600" href="#cb8-6" aria-hidden="true" tabindex="-1"></a> <span class="dv">832</span>  <span class="dv">529</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; n2 &lt;- count(dengueseq,2)
+&gt; n2
+  aa   ac   ag   at   ca   cc   cg   ct   ga   gc   gg   gt   ta   tc 
+1108  720  890  708  901  523  261  555  976  500  787  507  440  497 
+  tg   tt 
+ 832  529</code></pre>
 <p class="mb-3">and plot them again:</p>
-<div class="sourceCode mb-3 notranslate" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a class="link link-hover text-zinc-600" href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(n2,<span class="at">main=</span><span class="st">&quot;Nucleotide Pairs&quot;</span>,<span class="at">cex.names=</span><span class="fl">0.8</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>barplot(n2,main=&quot;Nucleotide Pairs&quot;,cex.names=0.8)</code></pre>
 <p class="mb-3"><img class="mx-auto" src="data/barplot2.png" /></p>
 <h1 class="text-2xl mt-5 mb-5" data-number="4" id="exercises"><span class="header-section-number">4</span> Exercises</h1>
 <p class="mb-3">Manually, calculate the nucleotide statistics and draw the histogram for the following sequences.</p>

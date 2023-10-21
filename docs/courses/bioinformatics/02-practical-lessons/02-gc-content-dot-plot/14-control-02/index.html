@@ -145,16 +145,16 @@
 <p class="mb-3"><img class="mx-auto" src="data/6263efd5f082b523c955ac3348e4da13.png" /></p>
 <h1 class="text-2xl mt-5 mb-5" data-number="2" id="loading-the-library"><span class="header-section-number">2</span> Loading the library</h1>
 <p class="mb-3">In order to use the <code>seqinr</code> library to load and process gene sequence data, run the following command in the <em>console</em>:</p>
-<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(seqinr)</span></code></pre></div>
+<pre class="sourcecode"><code>library(seqinr)</code></pre>
 <p class="mb-3"><em>How to know it worked</em>: RStudio will accept your command, and not produce any errors. The line after the command will be just empty.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="3" id="reading-the-data"><span class="header-section-number">3</span> Reading the data</h1>
 <p class="mb-3">Save the <code>dengue.fasta</code> data to the <code>dengue</code> variable, and the <code>zika.fasta</code> data to the <code>zika</code> variable. Remembering, that in order to save the <code>lalala.fasta</code> data to the <code>lalala</code> variable, one must do:</p>
-<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lalala <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">read.fasta</span>(<span class="st">&quot;lalala&quot;</span>)[[<span class="dv">1</span>]])</span></code></pre></div>
+<pre class="sourcecode"><code>lalala &lt;- c(read.fasta(&quot;lalala&quot;)[[1]])</code></pre>
 <p class="mb-3"><em>How to know it worked</em>: On the top right panel, in the <code>Environment</code> tab, you will see the variables <code>dengue</code> and <code>zika</code> with the description <code>'SeqFastadna' ...</code>. If you type either <code>dengue</code> or <code>zika</code>, you will see the sequence of nucleotides.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="4" id="calculating-gc-contents"><span class="header-section-number">4</span> Calculating GC contents</h1>
 <p class="mb-3">Calculate the GC content of the <code>dengue</code> and <code>zika</code> sequences, and save them to the <code>dengueGC</code> and <code>zikaGC</code> variables. In order to do this, use the <code>lalalaGC &lt;- GC(lalala)</code> pattern.</p>
 <p class="mb-3">When both variables are saved, create a plot with:</p>
-<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">c</span>(<span class="at">dengue=</span>dengueGC,<span class="at">zika=</span>zikaGC))</span></code></pre></div>
+<pre class="sourcecode"><code>barplot(c(dengue=dengueGC,zika=zikaGC))</code></pre>
 <p class="mb-3"><em>How to know it worked</em>: You should see a bar plot on the bottom-right panel.</p>
 <p class="mb-3"><strong>Question</strong>: Which DNA strand is more heat resistant: zika or dengue?</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="5" id="creating-a-dot-plot-1"><span class="header-section-number">5</span> Creating a dot plot 1</h1>
@@ -164,14 +164,14 @@
 <p class="mb-3"><strong>Question</strong>: By looking at the image, how do you know this is a dot plot for two equal sequences?</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="6" id="creating-a-dot-plot-2"><span class="header-section-number">6</span> Creating a dot plot 2</h1>
 <p class="mb-3">Create a dot plot comparing the zika and dengue sequences as follows:</p>
-<div class="sourceCode mb-3 notranslate" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a class="link link-hover text-zinc-600" href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotPlot</span>(dengue[<span class="dv">9000</span><span class="sc">:</span><span class="dv">10000</span>], zika[<span class="dv">9000</span><span class="sc">:</span><span class="dv">10000</span>], <span class="at">wsize =</span> <span class="dv">5</span>, <span class="at">nmatch =</span> <span class="dv">5</span>, <span class="at">wstep =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>dotPlot(dengue[9000:10000], zika[9000:10000], wsize = 5, nmatch = 5, wstep = 5)</code></pre>
 <p class="mb-3">reminding that the <code>5</code> used in the function call means we will only mark with a dot matches with a size of 5 or more.</p>
 <p class="mb-3"><em>How to know it worked</em>: You should see a bar plot on the bottom-right panel.</p>
 <p class="mb-3"><strong>Question</strong>: What parts of these subsequences look like each other?</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="7" id="creating-a-dot-plot-3"><span class="header-section-number">7</span> Creating a dot plot 3</h1>
 <p class="mb-3">Coming back to the DNA strands you compared on paper. Save <strong>your personal DNA sequences</strong> in R:</p>
-<div class="sourceCode mb-3 notranslate" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a class="link link-hover text-zinc-600" href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dna1 <span class="ot">&lt;-</span> <span class="fu">s2c</span>(<span class="st">&quot;actcgctgc&quot;</span>)</span>
-<span id="cb6-2"><a class="link link-hover text-zinc-600" href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dna2 <span class="ot">&lt;-</span> <span class="fu">s2c</span>(<span class="st">&quot;cgctgcact&quot;</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>dna1 &lt;- s2c(&quot;actcgctgc&quot;)
+dna2 &lt;- s2c(&quot;cgctgcact&quot;)</code></pre>
 <p class="mb-3">and use <code>dotPlot</code> to build the dot plot. Compare with the one you have on paper.</p>
 
   <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>

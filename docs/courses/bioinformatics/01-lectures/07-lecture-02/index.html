@@ -166,39 +166,39 @@
 <p class="mb-3">It can be measured by observing the melting temperature of the DNA double helix using spectrophotometry. The absorbance of DNA at a wavelength of 260 nm increases when the double-stranded DNA molecule separates into two single strands.</p>
 <h2 class="text-xl mt-5 mb-5" data-number="2.3" id="calculating-from-sequence"><span class="header-section-number">2.3</span> Calculating from sequence</h2>
 <p class="mb-3">GC content can be calculated directly from the gene sequence. It is enough to sum the amounts of G and C and divide by the total amount.</p>
-<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dengue <span class="ot">&lt;-</span> <span class="fu">read.fasta</span>(<span class="st">&quot;dengue.fasta&quot;</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> c1 <span class="ot">&lt;-</span> <span class="fu">count</span>(dengue,<span class="dv">1</span>)</span>
-<span id="cb1-3"><a class="link link-hover text-zinc-600" href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> c1</span>
-<span id="cb1-4"><a class="link link-hover text-zinc-600" href="#cb1-4" aria-hidden="true" tabindex="-1"></a>   a    c    g    t </span>
-<span id="cb1-5"><a class="link link-hover text-zinc-600" href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3426</span> <span class="dv">2240</span> <span class="dv">2770</span> <span class="dv">2299</span> </span>
-<span id="cb1-6"><a class="link link-hover text-zinc-600" href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (c1[<span class="st">&quot;c&quot;</span>] <span class="sc">+</span> c1[<span class="st">&quot;g&quot;</span>]) <span class="sc">/</span> <span class="fu">sum</span>(c1)</span>
-<span id="cb1-7"><a class="link link-hover text-zinc-600" href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fl">0.4666977</span> </span></code></pre></div>
+<pre class="sourcecode"><code>&gt; dengue &lt;- read.fasta(&quot;dengue.fasta&quot;)[[1]]
+&gt; c1 &lt;- count(dengue,1)
+&gt; c1
+   a    c    g    t 
+3426 2240 2770 2299 
+&gt; (c1[&quot;c&quot;] + c1[&quot;g&quot;]) / sum(c1)
+0.4666977 </code></pre>
 <p class="mb-3">Threfore, the dengue sequence has around 47% of GC content.</p>
 <h2 class="text-xl mt-5 mb-5" data-number="2.4" id="using-seqinr"><span class="header-section-number">2.4</span> Using <code>seqinr</code></h2>
 <p class="mb-3">The library <code>seqinr</code> has a function that automatically calculates the GC content for any sequence.</p>
-<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">GC</span>(dengue)</span>
-<span id="cb2-2"><a class="link link-hover text-zinc-600" href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fl">0.4666977</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; GC(dengue)
+0.4666977</code></pre>
 <h2 class="text-xl mt-5 mb-5" data-number="2.5" id="selecting-windows"><span class="header-section-number">2.5</span> Selecting windows</h2>
 <p class="mb-3">Different parts of the DNA strand behave differently. It is useful to be able to select subparts of it. For example, to select the first 10 nucleotides:</p>
-<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dengue[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
-<span id="cb3-2"><a class="link link-hover text-zinc-600" href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;a&quot;</span> <span class="st">&quot;g&quot;</span> <span class="st">&quot;t&quot;</span> <span class="st">&quot;t&quot;</span> <span class="st">&quot;g&quot;</span> <span class="st">&quot;t&quot;</span> <span class="st">&quot;t&quot;</span> <span class="st">&quot;a&quot;</span> <span class="st">&quot;g&quot;</span> <span class="st">&quot;t&quot;</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; dengue[1:10]
+[1] &quot;a&quot; &quot;g&quot; &quot;t&quot; &quot;t&quot; &quot;g&quot; &quot;t&quot; &quot;t&quot; &quot;a&quot; &quot;g&quot; &quot;t&quot;</code></pre>
 <p class="mb-3">To select <code>n</code> nucleotides, starting from the position <code>s</code>, the operation to be used is <code>dengue[s,(s+n-1)]</code>.</p>
 <h2 class="text-xl mt-5 mb-5" data-number="2.6" id="gc-content-in-subsequences"><span class="header-section-number">2.6</span> GC content in subsequences</h2>
 <p class="mb-3">The GC content on a sequence is not always the same depending on the place of the sequence.</p>
 <p class="mb-3">We want to see the GC content on different nucleotide windows. For example, from the 1st to the 1000th, from the 1001st to the 2000th, etc… For this, we define a function:</p>
-<div class="sourceCode mb-3 notranslate" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a class="link link-hover text-zinc-600" href="#cb4-1" aria-hidden="true" tabindex="-1"></a>windowGC <span class="ot">&lt;-</span> <span class="cf">function</span>(data, window) {</span>
-<span id="cb4-2"><a class="link link-hover text-zinc-600" href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  starts <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="fu">length</span>(data)<span class="sc">-</span>window,<span class="at">by=</span>window)</span>
-<span id="cb4-3"><a class="link link-hover text-zinc-600" href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-4"><a class="link link-hover text-zinc-600" href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(starts, <span class="cf">function</span>(start) {</span>
-<span id="cb4-5"><a class="link link-hover text-zinc-600" href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    range <span class="ot">&lt;-</span> start<span class="sc">:</span>(start<span class="sc">+</span>window<span class="dv">-1</span>)</span>
-<span id="cb4-6"><a class="link link-hover text-zinc-600" href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">GC</span>(data[range])</span>
-<span id="cb4-7"><a class="link link-hover text-zinc-600" href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb4-8"><a class="link link-hover text-zinc-600" href="#cb4-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre class="sourcecode"><code>windowGC &lt;- function(data, window) {
+  starts &lt;- seq(1,length(data)-window,by=window)
+  
+  sapply(starts, function(start) {
+    range &lt;- start:(start+window-1)
+    GC(data[range])
+  })
+}</code></pre>
 <h2 class="text-xl mt-5 mb-5" data-number="2.7" id="gc-content-in-subsequences-1"><span class="header-section-number">2.7</span> GC content in subsequences</h2>
 <p class="mb-3">To calculate for windows of size 1000:</p>
-<div class="sourceCode mb-3 notranslate" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a class="link link-hover text-zinc-600" href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">windowGC</span>(dengue,<span class="dv">1000</span>)</span>
-<span id="cb5-2"><a class="link link-hover text-zinc-600" href="#cb5-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.477</span> <span class="fl">0.453</span> <span class="fl">0.464</span> <span class="fl">0.441</span> <span class="fl">0.471</span> <span class="fl">0.470</span> <span class="fl">0.488</span> <span class="fl">0.470</span> <span class="fl">0.438</span> <span class="fl">0.471</span></span>
-<span id="cb5-3"><a class="link link-hover text-zinc-600" href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">barplot</span>(<span class="fu">windowGC</span>(dengue,<span class="dv">1000</span>))</span></code></pre></div>
+<pre class="sourcecode"><code>&gt; windowGC(dengue,1000)
+[1] 0.477 0.453 0.464 0.441 0.471 0.470 0.488 0.470 0.438 0.471
+&gt; barplot(windowGC(dengue,1000))</code></pre>
 <p class="mb-3"><img class="mx-auto" src="data/168364e27ee6e0dc681bf322607d446d.png" /></p>
 <h2 class="text-xl mt-5 mb-5" data-number="2.8" id="different-window-sizes"><span class="header-section-number">2.8</span> Different window sizes</h2>
 <p class="mb-3">The function above can be used to compare different window sizes. By decreasing the window size, we can see the GC content with more resolution:</p>
@@ -211,16 +211,16 @@
 <p class="mb-3"><img class="mx-auto" src="data/983b437ea763b2228443d2be2ad544dd.png" /></p>
 <h2 class="text-xl mt-5 mb-5" data-number="3.2" id="how-to-make-a-dot-plot"><span class="header-section-number">3.2</span> How to make a dot plot</h2>
 <p class="mb-3">In R, is is possible to make a dot plot using the <code>seqinr</code> library. To do a dot plot for a small part of the dengue gene:</p>
-<div class="sourceCode mb-3 notranslate" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a class="link link-hover text-zinc-600" href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> shortDengue <span class="ot">&lt;-</span> dengue[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>]</span>
-<span id="cb6-2"><a class="link link-hover text-zinc-600" href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">dotPlot</span>(shortDengue,shortDengue)</span></code></pre></div>
+<pre class="sourcecode"><code>&gt; shortDengue &lt;- dengue[1:100]
+&gt; dotPlot(shortDengue,shortDengue)</code></pre>
 <p class="mb-3">Why a small section? Dot plots are expensive to calculate. For 100 bases, one needs 10,000 operations. For 10,000 bases, one needs 100,000,000 operations. It grows very fast, so it can take a long time to calculate.</p>
 <p class="mb-3"><img class="mx-auto" src="data/00ce6669265d5e06ec115509582cc3cc.png" /></p>
 <h2 class="text-xl mt-5 mb-5" data-number="3.3" id="comparing-a-sequence-with-itself"><span class="header-section-number">3.3</span> Comparing a sequence with itself</h2>
 <p class="mb-3">Diagonal black lines show parts of both sequences that are the same.</p>
 <p class="mb-3">In this case, we are comparing a sequence to itself. Therefore, the main diagonal of the square is completely black. However, other diagonals can be seen in the graph. This means some chain is also happening elsewhere on the sequence.</p>
 <p class="mb-3">What about the black block we see around the indexes 65 to 80? We can see it is a sequence of <code>T</code>’s.</p>
-<div class="sourceCode mb-3 notranslate" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a class="link link-hover text-zinc-600" href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> shortDengue[<span class="dv">65</span><span class="sc">:</span><span class="dv">80</span>]</span>
-<span id="cb7-2"><a class="link link-hover text-zinc-600" href="#cb7-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;a&quot;</span> <span class="st">&quot;a&quot;</span> <span class="st">&quot;c&quot;</span> <span class="st">&quot;a&quot;</span> <span class="st">&quot;g&quot;</span> <span class="st">&quot;t&quot;</span> <span class="st">&quot;t&quot;</span> <span class="st">&quot;t&quot;</span> <span class="st">&quot;t&quot;</span> <span class="st">&quot;t&quot;</span> <span class="st">&quot;t&quot;</span> <span class="st">&quot;a&quot;</span> <span class="st">&quot;t&quot;</span> <span class="st">&quot;t&quot;</span> <span class="st">&quot;a&quot;</span> <span class="st">&quot;g&quot;</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; shortDengue[65:80]
+[1] &quot;a&quot; &quot;a&quot; &quot;c&quot; &quot;a&quot; &quot;g&quot; &quot;t&quot; &quot;t&quot; &quot;t&quot; &quot;t&quot; &quot;t&quot; &quot;t&quot; &quot;a&quot; &quot;t&quot; &quot;t&quot; &quot;a&quot; &quot;g&quot;</code></pre>
 <p class="mb-3"><img class="mx-auto" src="data/00ce6669265d5e06ec115509582cc3cc.png" /></p>
 <h2 class="text-xl mt-5 mb-5" data-number="3.4" id="comparing-the-full-sequence"><span class="header-section-number">3.4</span> Comparing the full sequence</h2>
 <p class="mb-3">When comparing the full dengue sequence with itself, the result is the following. It took around 20 minutes to calculate in my computer, so it is not practical to do during classes.</p>
@@ -228,8 +228,8 @@
 <p class="mb-3"><img class="mx-auto" src="data/020eeab53cadec564debb6dbc2bdf69f.png" /></p>
 <h2 class="text-xl mt-5 mb-5" data-number="3.5" id="comparing-two-sequences"><span class="header-section-number">3.5</span> Comparing two sequences</h2>
 <p class="mb-3">Besides comparing a sequence with itself, we can compare two different sequences:</p>
-<div class="sourceCode mb-3 notranslate" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a class="link link-hover text-zinc-600" href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> shortZika <span class="ot">&lt;-</span> zika[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>]</span>
-<span id="cb8-2"><a class="link link-hover text-zinc-600" href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">dotPlot</span>(shortDengue,shortZika)</span></code></pre></div>
+<pre class="sourcecode"><code>&gt; shortZika &lt;- zika[1:100]
+&gt; dotPlot(shortDengue,shortZika)</code></pre>
 <p class="mb-3"><img class="mx-auto" src="data/536788fb6455178c3f33cebd52c681d2.png" /></p>
 <h2 class="text-xl mt-5 mb-5" data-number="3.6" id="comparing-a-larger-sequence"><span class="header-section-number">3.6</span> Comparing a larger sequence</h2>
 <p class="mb-3">A larger dot plot for comparing dengue and zika, using the first 1000 bases, is the following. As before, it took a long time to calculate, and it is not very easy to interpret.</p>

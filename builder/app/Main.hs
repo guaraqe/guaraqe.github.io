@@ -41,10 +41,10 @@ buildBooks = do
 
   sections <- mapM
     makeBook
-    [ ( "/home/juan/courses/tdsi/statistics-book",
+    [ ( "/home/juan/Courses/Statistics",
         "courses/statistics"
       ),
-      ( "/home/juan/courses/tdsi/bioinformatics",
+      ( "/home/juan/Courses/Bioinformatics",
         "courses/bioinformatics"
       )
     ]

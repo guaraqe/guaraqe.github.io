@@ -147,63 +147,63 @@
 <h1 class="text-2xl mt-5 mb-5" data-number="1" id="functions"><span class="header-section-number">1</span> Functions</h1>
 <p class="mb-3">Functions are operations that are composed by smaller operations. They are useful for putting together tasks that are always executed together, without being tied to a specific data.</p>
 <p class="mb-3">For example, let’s say we want to print a word together with its number of characters. This can be done as follows:</p>
-<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a>word <span class="ot">&lt;-</span> <span class="st">&quot;Juan&quot;</span></span>
-<span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a>size <span class="ot">&lt;-</span> <span class="fu">nchar</span>(<span class="st">&quot;Juan&quot;</span>)</span>
-<span id="cb1-3"><a class="link link-hover text-zinc-600" href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(word,<span class="st">&quot;has&quot;</span>,size,<span class="st">&quot;letters.&quot;</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>word &lt;- &quot;Juan&quot;
+size &lt;- nchar(&quot;Juan&quot;)
+paste(word,&quot;has&quot;,size,&quot;letters.&quot;)</code></pre>
 <p class="mb-3">The result will be <code>Juan has 4 letters.</code> What if we want to execute this task for any word? We do this by defining a function:</p>
-<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a>countSize <span class="ot">&lt;-</span> <span class="cf">function</span>(word) {</span>
-<span id="cb2-2"><a class="link link-hover text-zinc-600" href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  size <span class="ot">&lt;-</span> <span class="fu">nchar</span>(word)</span>
-<span id="cb2-3"><a class="link link-hover text-zinc-600" href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste</span>(word,<span class="st">&quot;has&quot;</span>,size,<span class="st">&quot;letters.&quot;</span>)</span>
-<span id="cb2-4"><a class="link link-hover text-zinc-600" href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre class="sourcecode"><code>countSize &lt;- function(word) {
+  size &lt;- nchar(word)
+  paste(word,&quot;has&quot;,size,&quot;letters.&quot;)
+}</code></pre>
 <p class="mb-3">and it can be used with different words:</p>
-<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">countSize</span>(<span class="st">&quot;Juan&quot;</span>)</span>
-<span id="cb3-2"><a class="link link-hover text-zinc-600" href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;Juan has 4 letters.&quot;</span></span>
-<span id="cb3-3"><a class="link link-hover text-zinc-600" href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">countSize</span>(<span class="st">&quot;Dengue&quot;</span>)</span>
-<span id="cb3-4"><a class="link link-hover text-zinc-600" href="#cb3-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;Dengue has 6 letters.&quot;</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; countSize(&quot;Juan&quot;)
+[1] &quot;Juan has 4 letters.&quot;
+&gt; countSize(&quot;Dengue&quot;)
+[1] &quot;Dengue has 6 letters.&quot;</code></pre>
 <p class="mb-3">We can apply this method for different operations.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="2" id="loading-gene-sequence-data"><span class="header-section-number">2</span> Loading gene sequence data</h1>
 <p class="mb-3">The idea for this function is to make the file we are reading a function argument. Based on this file, we will build the vector data. Text that are after <code>#</code> are just comments and have no effect on the code.</p>
-<div class="sourceCode mb-3 notranslate" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a class="link link-hover text-zinc-600" href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load vector of nucleotides from file</span></span>
-<span id="cb4-2"><a class="link link-hover text-zinc-600" href="#cb4-2" aria-hidden="true" tabindex="-1"></a>readVector <span class="ot">&lt;-</span> <span class="cf">function</span>(file){</span>
-<span id="cb4-3"><a class="link link-hover text-zinc-600" href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Read data from file</span></span>
-<span id="cb4-4"><a class="link link-hover text-zinc-600" href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">read.fasta</span>(file)</span>
-<span id="cb4-5"><a class="link link-hover text-zinc-600" href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Transform data into just a vector</span></span>
-<span id="cb4-6"><a class="link link-hover text-zinc-600" href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  vector <span class="ot">&lt;-</span> <span class="fu">c</span>(data[[<span class="dv">1</span>]])</span>
-<span id="cb4-7"><a class="link link-hover text-zinc-600" href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return vector</span></span>
-<span id="cb4-8"><a class="link link-hover text-zinc-600" href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(vector)</span>
-<span id="cb4-9"><a class="link link-hover text-zinc-600" href="#cb4-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre class="sourcecode"><code>#oad vector of nucleotides from file
+readVector &lt;- function(file){
+  # Read data from file
+  data &lt;- read.fasta(file)
+  # Transform data into just a vector
+  vector &lt;- c(data[[1]])
+  # Return vector
+  return(vector)
+}</code></pre>
 <p class="mb-3">This can be used to load the zika and dengue data we downloaded before:</p>
-<div class="sourceCode mb-3 notranslate" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a class="link link-hover text-zinc-600" href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dengue <span class="ot">&lt;-</span> <span class="fu">readVector</span>(<span class="st">&quot;dengue.fasta&quot;</span>)</span>
-<span id="cb5-2"><a class="link link-hover text-zinc-600" href="#cb5-2" aria-hidden="true" tabindex="-1"></a>zika <span class="ot">&lt;-</span> <span class="fu">readVector</span>(<span class="st">&quot;zika.fasta&quot;</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>dengue &lt;- readVector(&quot;dengue.fasta&quot;)
+zika &lt;- readVector(&quot;zika.fasta&quot;)</code></pre>
 <p class="mb-3">As a first test, we can compare their sizes:</p>
-<div class="sourceCode mb-3 notranslate" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a class="link link-hover text-zinc-600" href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">length</span>(dengue)</span>
-<span id="cb6-2"><a class="link link-hover text-zinc-600" href="#cb6-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">10735</span></span>
-<span id="cb6-3"><a class="link link-hover text-zinc-600" href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">length</span>(zika)</span>
-<span id="cb6-4"><a class="link link-hover text-zinc-600" href="#cb6-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">10794</span></span></code></pre></div>
+<pre class="sourcecode"><code>&gt; length(dengue)
+[1] 10735
+&gt; length(zika)
+[1] 10794</code></pre>
 <p class="mb-3">their sizes are different, but not too far away from each other.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="3" id="showing-data"><span class="header-section-number">3</span> Showing data</h1>
 <p class="mb-3">Last time, we built tables from this data, and plotted a bar plot with them. This can also become a function:</p>
-<div class="sourceCode mb-3 notranslate" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a class="link link-hover text-zinc-600" href="#cb7-1" aria-hidden="true" tabindex="-1"></a>showBars <span class="ot">&lt;-</span> <span class="cf">function</span>(title,data, n) {</span>
-<span id="cb7-2"><a class="link link-hover text-zinc-600" href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  table <span class="ot">&lt;-</span> <span class="fu">count</span>(data,n)</span>
-<span id="cb7-3"><a class="link link-hover text-zinc-600" href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">barplot</span>(table,<span class="at">main=</span>title)</span>
-<span id="cb7-4"><a class="link link-hover text-zinc-600" href="#cb7-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre class="sourcecode"><code>showBars &lt;- function(title,data, n) {
+  table &lt;- count(data,n)
+  barplot(table,main=title)
+}</code></pre>
 <p class="mb-3">And we can see the bar plots for each distribution:</p>
-<div class="sourceCode mb-3 notranslate" id="cb8"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb8-1"><a class="link link-hover text-zinc-600" href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">showBars</span>(<span class="st">&quot;Dengue&quot;</span><span class="op">,</span>dengue<span class="op">,</span><span class="dv">1</span>)</span>
-<span id="cb8-2"><a class="link link-hover text-zinc-600" href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">showBars</span>(<span class="st">&quot;Zika&quot;</span><span class="op">,</span>zika<span class="op">,</span><span class="dv">1</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>showBars(&quot;Dengue&quot;,dengue,1)
+showBars(&quot;Zika&quot;,zika,1)</code></pre>
 <h1 class="text-2xl mt-5 mb-5" data-number="4" id="comparing-data"><span class="header-section-number">4</span> Comparing data</h1>
 <p class="mb-3">These plots look different. However, we are just showing them one at time. How can we show both at the same time?</p>
 <p class="mb-3">First, we tell R that we want to see data in a table with 1 row and 2 columns:</p>
-<div class="sourceCode mb-3 notranslate" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a class="link link-hover text-zinc-600" href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code></pre></div>
+<pre class="sourcecode"><code>par(mfrow=c(1,2))</code></pre>
 <p class="mb-3">and then, we plot once more our graphs:</p>
-<div class="sourceCode mb-3 notranslate" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a class="link link-hover text-zinc-600" href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">showBars</span>(<span class="st">&quot;Dengue&quot;</span>,dengue,<span class="dv">1</span>)</span>
-<span id="cb10-2"><a class="link link-hover text-zinc-600" href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">showBars</span>(<span class="st">&quot;Zika&quot;</span>,zika,<span class="dv">1</span>)</span></code></pre></div>
+<pre class="sourcecode"><code>showBars(&quot;Dengue&quot;,dengue,1)
+showBars(&quot;Zika&quot;,zika,1)</code></pre>
 <p class="mb-3"><img class="mx-auto" src="data/comparison.png" /></p>
 <p class="mb-3">These graphs have a similar shape, but the quantities of each nucleotide are different. How can we measure this difference? We can write another function.</p>
-<div class="sourceCode mb-3 notranslate" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a class="link link-hover text-zinc-600" href="#cb11-1" aria-hidden="true" tabindex="-1"></a>difference <span class="ot">&lt;-</span> <span class="cf">function</span>(data1,data2,n) {</span>
-<span id="cb11-2"><a class="link link-hover text-zinc-600" href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  table1 <span class="ot">&lt;-</span> <span class="fu">count</span>(data1,n)</span>
-<span id="cb11-3"><a class="link link-hover text-zinc-600" href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  table2 <span class="ot">&lt;-</span> <span class="fu">count</span>(data2,n)</span>
-<span id="cb11-4"><a class="link link-hover text-zinc-600" href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">barplot</span>(table1<span class="sc">-</span>table2,<span class="at">main=</span><span class="st">&quot;Difference&quot;</span>)</span>
-<span id="cb11-5"><a class="link link-hover text-zinc-600" href="#cb11-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre class="sourcecode"><code>difference &lt;- function(data1,data2,n) {
+  table1 &lt;- count(data1,n)
+  table2 &lt;- count(data2,n)
+  barplot(table1-table2,main=&quot;Difference&quot;)
+}</code></pre>
 <p class="mb-3">and execute it with <code>difference(dengue,zika,1)</code>:</p>
 <p class="mb-3"><img class="mx-auto" src="data/difference.png" /> As one can see, there are more <code>A</code> nucleotides in the dengue genome, but less <code>G</code> ones.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="5" id="exercise"><span class="header-section-number">5</span> Exercise</h1>
