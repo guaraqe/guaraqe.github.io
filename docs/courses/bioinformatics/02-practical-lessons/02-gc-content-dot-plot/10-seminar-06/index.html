@@ -5,7 +5,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name=viewport content="width=device-width, initial-scale=1">
-    <title>2.3.4 Aminoacid sequences and base sequences
+    <title>2.2.3 Exercise: Comparing sequences
 </title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/syntax.css">
@@ -113,7 +113,7 @@
 
     <div class="book-navigation-parent">
       <div class="arrow arrow-up"></div>
-      <a href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/index.html">2.3 Codons and gene finding
+      <a href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/index.html">2.2 Basic analysis of genetic data
 </a>
       <div class="arrow arrow-up"></div>
     </div>
@@ -122,11 +122,14 @@
 
        <div class="book-navigation-previous">
          <div class="arrow arrow-left"></div>
-         <a href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/18-control-03/index.html">2.3.3 Theoretical Control
+         <a href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/09-seminar-06/index.html">2.2.2 Subseries GC Content
 </a>
        </div>
 
        <div class="book-navigation-next">
+         <a href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/11-seminar-07/index.html">2.2.4 Creating dot plots
+</a>
+         <div class="arrow arrow-right"></div>
        </div>
     </div>
 
@@ -135,27 +138,38 @@
   </div>
 
     <h1 class="text-3xl mb-5">
-    2.3.4 Aminoacid sequences and base sequences
+    2.2.3 Exercise: Comparing sequences
 
 </h1>
 
-<p class="mb-3">In this lecture we will check how we can find base sequences starting from aminoacid sequences. Suppose you detected the following protein during a study:</p>
-<pre><code>MADINA*</code></pre>
-<p class="mb-3">How can this protein be generated?</p>
-<p class="mb-3"><img class="mx-auto" src="data/bd3c794808da526982ac1dce3472adb6.png" /></p>
-<h1 class="text-2xl mt-5 mb-5" data-number="1" id="question-1"><span class="header-section-number">1</span> Question 1</h1>
-<p class="mb-3">How long is the base sequence generating this protein? How many possible base sequences can result in this aminocid sequence?</p>
-<h1 class="text-2xl mt-5 mb-5" data-number="2" id="question-2"><span class="header-section-number">2</span> Question 2</h1>
-<p class="mb-3">Write all the possible base sequences resulting in this aminoacid table, as a table with 7 columns, with the possible codons in each column.</p>
-<h1 class="text-2xl mt-5 mb-5" data-number="3" id="question-3"><span class="header-section-number">3</span> Question 3</h1>
-<p class="mb-3">Choose three of the sequences found in the previous question. In RStudio, load <code>seqin</code>:</p>
-<pre><code>&gt; library(seqinr)</code></pre>
-<p class="mb-3">and show that these four sequences indeed translate to the protein we want. An example:</p>
-<pre><code>&gt; translate(s2c(&quot;AAA&quot;))
-[1] &quot;K&quot;</code></pre>
-<p class="mb-3">Replace <code>AAA</code> with the chosen sequences.</p>
-<h1 class="text-2xl mt-5 mb-5" data-number="4" id="question-4"><span class="header-section-number">4</span> Question 4</h1>
-<p class="mb-3">Write a base sequence containing one of the sequences above in an open reading frame in second position. Do the same for the third position.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="comparing-sequences-using-gc-content"><span class="header-section-number">1</span> Comparing sequences using GC content</h1>
+<p class="mb-3">You have five DNA strands, but you don’t know the actual sequences.</p>
+<ol class="list-decimal list-outside mt-1 mb-3 pl-5" type="1">
+<li>0.45</li>
+<li>0.55</li>
+<li>0.50</li>
+<li>0.45</li>
+<li>0.55</li>
+</ol>
+<h2 class="text-xl mt-5 mb-5" data-number="1.1" id="question-1"><span class="header-section-number">1.1</span> Question 1</h2>
+<p class="mb-3">Using only the GC content as criterium, which ones of these sequences may actually be the same?</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.2" id="question-2"><span class="header-section-number">1.2</span> Question 2</h2>
+<p class="mb-3">Sort these sequences, from the least heat-resistant to the most heat-resistant.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.3" id="question-3"><span class="header-section-number">1.3</span> Question 3</h2>
+<p class="mb-3">Write a sequence that has a GC content of 0.4.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="comparing-sequences-using-the-sequences"><span class="header-section-number">2</span> Comparing sequences using the sequences</h1>
+<p class="mb-3">You have three DNA strands:</p>
+<ol class="list-decimal list-outside mt-1 mb-3 pl-5" type="1">
+<li>TACGTATGCT</li>
+<li>ATGCCGTAACG</li>
+<li>GCTACGGATC</li>
+</ol>
+<h2 class="text-xl mt-5 mb-5" data-number="2.1" id="question-4"><span class="header-section-number">2.1</span> Question 4</h2>
+<p class="mb-3">Calculate the GC content for each sequence. Are they similar or not?</p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.2" id="question-5"><span class="header-section-number">2.2</span> Question 5</h2>
+<p class="mb-3">Draw dot plots comparing all sequences. You should have three dot plots, comparing 1-2, 1-3 and 2-3. Draw the first one vertically, and the second one horizontally.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.3" id="question-6"><span class="header-section-number">2.3</span> Question 6</h2>
+<p class="mb-3">For each pair of sequences, write the common subsequences between them that have at least three nucleotides. Use the dot plot to find these subsequences.</p>
 
   <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
 
