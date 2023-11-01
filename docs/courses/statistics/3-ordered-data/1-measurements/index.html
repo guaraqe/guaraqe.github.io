@@ -282,17 +282,18 @@
 <p class="mb-3">The way to use this graph is the following. Suppose the question is: which grade you need to that you are in the bottom 20% of grades. This means that your grade is the same or larger than 20% of people. Which means you want to find the first bar that is the same size or larger than 0.2. To find this, find the value 0.2, and draw a line from left to right, and choose the first bar that is taller or equal to this value.</p>
 <p class="mb-3"><img class="mx-auto" src="data/grade-cumulative-probability-bottom.png" /> In this case, the result will be 1, since this is the last bar that is covered before meeting a wall. If we do 30% instead, the result will shift to 2.</p>
 <p class="mb-3">To answer the question about top 20%, the process is similar. You count 20% from the top, that is, 80%, and draw a line from the right, until if faces the last wall. The result is the last bar that is covered, in this case, 5. If we shift the question to top 30% instead, the line will go to the 3 bar, and the result will be 4.</p>
-<p class="mb-3"><img class="mx-auto" src="data/grade-cumulative-probability-top.png" /> # Median</p>
+<p class="mb-3"><img class="mx-auto" src="data/grade-cumulative-probability-top.png" /></p>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="median"><span class="header-section-number">3</span> Median</h1>
 <p class="mb-3">A particular case of quantile is the median, which is the point defining the 50% quantile. In principle, it is the point that divides data in half: half is smaller than it, and half is bigger than it. In practice, it is ambigous since there are two ways you can define it:</p>
 <ul class="list-disc list-outside mt-1 mb-3 pl-5">
 <li>The first point where 50% of the data is smaller or equal to it</li>
 <li>The last point where 50% of the data is larger or equal to it</li>
 </ul>
 <p class="mb-3">When using it in an ambiguous context, one should be clear about which one is being used.</p>
-<h1 class="text-2xl mt-5 mb-5" data-number="3" id="cumulative-counts-in-excel"><span class="header-section-number">3</span> Cumulative counts in Excel</h1>
+<h1 class="text-2xl mt-5 mb-5" data-number="4" id="cumulative-counts-in-excel"><span class="header-section-number">4</span> Cumulative counts in Excel</h1>
 <p class="mb-3">Cumulative counts work just like counts. We will still use the <code>COUNTIF/СЧЁТЕСЛИ</code> functions, but the condition will be different. Instead of just selecting the cell we want to use as criterion as second argument, we will build the string using the less-than sign <code>&lt;=</code> and the value of the cell. To put both together, we use the <code>&amp;</code> operator. So, for example, in the image below, the result is <code>"&lt;="&amp;D13</code>, which should be equivalent to <code>"&lt;=5"</code>, since the value at <code>D13</code> is 5.</p>
 <p class="mb-3"><img class="mx-auto" src="data/cumulative-excel.png" /></p>
-<h1 class="text-2xl mt-5 mb-5" data-number="4" id="exercise"><span class="header-section-number">4</span> Exercise</h1>
+<h1 class="text-2xl mt-5 mb-5" data-number="5" id="exercise"><span class="header-section-number">5</span> Exercise</h1>
 <p class="mb-3">Download <a class="link link-hover text-zinc-600" href="data/ordered-data.xlsx">this file</a> and:</p>
 <ul class="list-disc list-outside mt-1 mb-3 pl-5">
 <li>Fill the first table with probabilities, and create a probabilities histogram.</li>
