@@ -139,41 +139,53 @@
 
 </h1>
 
-<p class="mb-3">In this control, you are going to do, by yourselves, repeat the analyses we did in the last classes. After most steps, you will have to execute some code, either by pressing enter in the console, or by clicking the <code>Run</code> button in the text area. If you see any errors (text in red), call me.</p>
-<p class="mb-3">You have <strong>30 minutes</strong>. The information you need to do the exam is in the text, <strong>read it attentively</strong>. You can look at the pages of the previous lessons if you want. <strong>Call me</strong> after you succeed each step.</p>
-<h1 class="text-2xl mt-5 mb-5" data-number="1" id="using-paper"><span class="header-section-number">1</span> Using paper</h1>
-<p class="mb-3">Ask the teacher for two DNA strands. You will create the dot plot such as the one below, but <strong>using your own sequences</strong>.</p>
+<p class="mb-3">In this control, you are going to do, by yourselves, repeat the analyses we did in the last classes.</p>
+<p class="mb-3">The information you need to do the exam is in the text, <strong>read it attentively</strong>. You can look at the pages of the previous lessons if you want.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="getting-your-sequence"><span class="header-section-number">1</span> Getting your sequence</h1>
+<p class="mb-3">Take your <strong>first name</strong> and <strong>last name</strong> first letters and look the list below. Choose the two sequences corresponding to these two letters.</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>a : <code>gggatggttt</code></li>
+<li>b : <code>tcaacctgtg</code></li>
+<li>c : <code>caggaattgc</code></li>
+<li>d : <code>tagtccactg</code></li>
+<li>e : <code>agcgttcact</code></li>
+<li>f : <code>ataatcccca</code></li>
+<li>g : <code>tttcccttag</code></li>
+<li>h : <code>aggcccagat</code></li>
+<li>i : <code>tgaatttaga</code></li>
+<li>j : <code>tgggggacaa</code></li>
+<li>k : <code>ccgtgatctg</code></li>
+<li>l : <code>aaggggcgca</code></li>
+<li>m : <code>cgtaatagcc</code></li>
+<li>n : <code>aaggctgact</code></li>
+<li>o : <code>cctgctgtac</code></li>
+<li>p : <code>gatctaatcg</code></li>
+<li>q : <code>ataactgaac</code></li>
+<li>r : <code>tccacaaggc</code></li>
+<li>s : <code>aacaggagtt</code></li>
+<li>t : <code>ggaatacact</code></li>
+<li>u : <code>cgagcattga</code></li>
+<li>v : <code>agatttcatt</code></li>
+<li>w : <code>agaatgctgg</code></li>
+<li>x : <code>caagctgtga</code></li>
+<li>y : <code>ggttgcgctc</code></li>
+<li>z : <code>attacagctg</code></li>
+</ul>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="using-paper"><span class="header-section-number">2</span> Using paper</h1>
+<p class="mb-3">Ask the teacher for two DNA strands. You will create the dot plot such as the one below, but <strong>using your own two sequences</strong>.</p>
 <p class="mb-3"><img class="mx-auto" src="data/6263efd5f082b523c955ac3348e4da13.png" /></p>
-<h1 class="text-2xl mt-5 mb-5" data-number="2" id="loading-the-library"><span class="header-section-number">2</span> Loading the library</h1>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="using-the-computer"><span class="header-section-number">3</span> Using the computer</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="3.1" id="loading-the-library"><span class="header-section-number">3.1</span> Loading the library</h2>
 <p class="mb-3">In order to use the <code>seqinr</code> library to load and process gene sequence data, run the following command in the <em>console</em>:</p>
 <pre class="sourcecode"><code>library(seqinr)</code></pre>
 <p class="mb-3"><em>How to know it worked</em>: RStudio will accept your command, and not produce any errors. The line after the command will be just empty.</p>
-<h1 class="text-2xl mt-5 mb-5" data-number="3" id="reading-the-data"><span class="header-section-number">3</span> Reading the data</h1>
-<p class="mb-3">Save the <code>dengue.fasta</code> data to the <code>dengue</code> variable, and the <code>zika.fasta</code> data to the <code>zika</code> variable. Remembering, that in order to save the <code>lalala.fasta</code> data to the <code>lalala</code> variable, one must do:</p>
-<pre class="sourcecode"><code>lalala &lt;- c(read.fasta(&quot;lalala&quot;)[[1]])</code></pre>
-<p class="mb-3"><em>How to know it worked</em>: On the top right panel, in the <code>Environment</code> tab, you will see the variables <code>dengue</code> and <code>zika</code> with the description <code>'SeqFastadna' ...</code>. If you type either <code>dengue</code> or <code>zika</code>, you will see the sequence of nucleotides.</p>
-<h1 class="text-2xl mt-5 mb-5" data-number="4" id="calculating-gc-contents"><span class="header-section-number">4</span> Calculating GC contents</h1>
-<p class="mb-3">Calculate the GC content of the <code>dengue</code> and <code>zika</code> sequences, and save them to the <code>dengueGC</code> and <code>zikaGC</code> variables. In order to do this, use the <code>lalalaGC &lt;- GC(lalala)</code> pattern.</p>
-<p class="mb-3">When both variables are saved, create a plot with:</p>
-<pre class="sourcecode"><code>barplot(c(dengue=dengueGC,zika=zikaGC))</code></pre>
-<p class="mb-3"><em>How to know it worked</em>: You should see a bar plot on the bottom-right panel.</p>
-<p class="mb-3"><strong>Question</strong>: Which DNA strand is more heat resistant: zika or dengue?</p>
-<h1 class="text-2xl mt-5 mb-5" data-number="5" id="creating-a-dot-plot-1"><span class="header-section-number">5</span> Creating a dot plot 1</h1>
-<p class="mb-3">Create a dot plot comparing the first 100 nucleotides of the dengue virus to themselves. To select these, you can use <code>dengue[1:100]</code>. The dot plot can be created for a <code>lalala</code> sequence as follows:</p>
-<pre><code>dotPlot(lalala,lalala)</code></pre>
-<p class="mb-3"><em>How to know it worked</em>: You should see a bar plot on the bottom-right panel.</p>
-<p class="mb-3"><strong>Question</strong>: By looking at the image, how do you know this is a dot plot for two equal sequences?</p>
-<h1 class="text-2xl mt-5 mb-5" data-number="6" id="creating-a-dot-plot-2"><span class="header-section-number">6</span> Creating a dot plot 2</h1>
-<p class="mb-3">Create a dot plot comparing the zika and dengue sequences as follows:</p>
-<pre class="sourcecode"><code>dotPlot(dengue[9000:10000], zika[9000:10000], wsize = 5, nmatch = 5, wstep = 5)</code></pre>
-<p class="mb-3">reminding that the <code>5</code> used in the function call means we will only mark with a dot matches with a size of 5 or more.</p>
-<p class="mb-3"><em>How to know it worked</em>: You should see a bar plot on the bottom-right panel.</p>
-<p class="mb-3"><strong>Question</strong>: What parts of these subsequences look like each other?</p>
-<h1 class="text-2xl mt-5 mb-5" data-number="7" id="creating-a-dot-plot-3"><span class="header-section-number">7</span> Creating a dot plot 3</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="3.2" id="creating-a-dot-plot"><span class="header-section-number">3.2</span> Creating a dot plot</h2>
 <p class="mb-3">Coming back to the DNA strands you compared on paper. Save <strong>your personal DNA sequences</strong> in R:</p>
 <pre class="sourcecode"><code>dna1 &lt;- s2c(&quot;actcgctgc&quot;)
 dna2 &lt;- s2c(&quot;cgctgcact&quot;)</code></pre>
-<p class="mb-3">and use <code>dotPlot</code> to build the dot plot. Compare with the one you have on paper.</p>
+<p class="mb-3">and use <code>dotPlot</code> to build the dot plot. For example, <code>dotPlot(dna1,dna2</code>.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="4" id="sending-the-results"><span class="header-section-number">4</span> Sending the results</h1>
+<p class="mb-3">Take a photo of the computer screen and of the paper you wrote and send me.</p>
 
   <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
 
