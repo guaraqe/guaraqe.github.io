@@ -72,12 +72,14 @@
 <pre><code>25% 4.0</code></pre>
 <p class="mb-3">where the first number is the average usage, and the second is the effective number of used cores. This is an useful summary, and if more detail is needed, one can always open <code>htop</code>.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="1" id="entropy-and-effective-numbers"><span class="header-section-number">1</span> Entropy and effective numbers</h1>
-<p class="mb-3"><a class="link link-hover text-zinc-600" href="https://en.wikipedia.org/wiki/Entropy_(information_theory)">Entropy</a> is number that (in short) indicates how uniform a statistical distribution is. The more the distribution is uniform, the higher the entropy. For a distribution with probabilities <span class="math inline notranslate"><em>p</em><sub>1</sub></span>, …, <span class="math inline notranslate"><em>p</em><sub><em>n</em></sub></span>, entropy is calculated as:</p>
-<p class="mb-3"><span class="math display notranslate">$$
+<p class="mb-3"><a class="link link-hover text-zinc-600" href="https://en.wikipedia.org/wiki/Entropy_(information_theory)">Entropy</a> is number that (in short) indicates how uniform a statistical distribution is. The more the distribution is uniform, the higher the entropy. For a distribution with probabilities <span class="math inline notranslate">p_1</span>, …, <span class="math inline notranslate">p_n</span>, entropy is calculated as:</p>
+<p class="mb-3"><span class="math display notranslate">
 S = - \sum_{k=1}^n p_k \log p_k
-$$</span></p>
+</span></p>
 <p class="mb-3">Less well-known, but closely related are <em>effective numbers</em> or <a class="link link-hover text-zinc-600" href="https://en.wikipedia.org/wiki/Diversity_index"><em>diversity indexes</em></a>. The idea is that in a probability distribution, some states may be overrepresented, and may represent the almost totality of the distribution. Effective numbers are a way to count such states. They are simple to calculate:</p>
-<p class="mb-3"><span class="math display notranslate"><em>N</em> = <em>e</em><sup><em>S</em></sup></span></p>
+<p class="mb-3"><span class="math display notranslate">
+N = e^S
+</span></p>
 <p class="mb-3">This is the number we will report in the status bar.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="2" id="code"><span class="header-section-number">2</span> Code</h1>
 <p class="mb-3">I report the CPU usage using a custom command, which executes the following Python script:</p>

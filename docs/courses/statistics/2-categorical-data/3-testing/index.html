@@ -85,7 +85,7 @@
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/index.html">3 Ordered Data
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/1-measurements/index.html">3.1 Cumulative probabilities
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/2-multiple-variables-models/index.html">3.2 Models and binary diagnosis
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/3-testing/index.html">3.3 Conditional Probability and Model Evaluation
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/3-testing/index.html">3.3 Conditional probabilities and model evaluation
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/index.html">4 Numerical Data
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/1-measurements/index.html">4.1 Measurements
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/2-multiple-variables/index.html">4.2 Multiple Measurements
@@ -218,15 +218,15 @@
 </tbody>
 </table>
 <p class="mb-3">Fisher’s exact test says that the probability of observing such data is:</p>
-<p class="mb-3"><span class="math display notranslate">$$
+<p class="mb-3"><span class="math display notranslate">
 p = \frac{{{{a + b} \choose a}}{{{c + d} \choose c}}}{{n \choose {a + c}}}
 \qquad{(1)}
-$$</span></p>
+</span></p>
 <p class="mb-3">where we use the binomial coefficients:</p>
-<p class="mb-3"><span class="math display notranslate">$$
+<p class="mb-3"><span class="math display notranslate">
 {n \choose m} = \frac{n!}{m!(n-m)!}
 \qquad{(2)}
-$$</span></p>
+</span></p>
 <p class="mb-3">So, using eq. 1 and eq. 2 in this particular case we have: <em>p</em> = 0.0013 That is, a chance of 0.13% of observing this data, which is very low and is therefore evidence for the difference between distributions.</p>
 <p class="mb-3">In Excel, the binomial coefficients can be calculated using the <code>COMBIN</code>/<code>ЧИСЛКОМБ</code> function.</p>
 <h2 class="text-xl mt-5 mb-5" data-number="3.1" id="exercise"><span class="header-section-number">3.1</span> Exercise</h2>
@@ -348,9 +348,9 @@ $$</span></p>
 </tbody>
 </table>
 <p class="mb-3">Then, for each cell we calculate the <em>chi-square</em> value for each cell, which is:</p>
-<p class="mb-3"><span class="math display notranslate">$$
+<p class="mb-3"><span class="math display notranslate">
 \chi = \frac{(O - E)^2}{E}
-$$</span></p>
+</span></p>
 <p class="mb-3">where <em>O</em> is the observed value, and <em>E</em> the expected one, and then sum the values.</p>
 <p class="mb-3">Finally, we need the degrees of freedom. In our case it’s the number of rows minus one, times the number of columns minus one, that is, K - 1.</p>
 <p class="mb-3">Then, we use these two values and consult a chi-square values table, such as this one:</p>

@@ -18,6 +18,7 @@ import Text.Pandoc
   ( Pandoc (..),
     ReaderOptions (..),
     WriterOptions (..),
+    HTMLMathMethod (..),
     def,
     pandocExtensions,
     runIO,
@@ -44,7 +45,8 @@ writeHtmlAndMeta pandoc value = do
   let writeOpts =
         def
           { writerNumberSections = True,
-            writerReferenceLinks = True
+            writerReferenceLinks = True,
+            writerHTMLMathMethod = KaTeX ""
           }
 
   pandocWithRefs <-
