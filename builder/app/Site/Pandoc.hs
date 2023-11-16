@@ -46,7 +46,7 @@ writeHtmlAndMeta pandoc value = do
         def
           { writerNumberSections = True,
             writerReferenceLinks = True,
-            writerHTMLMathMethod = KaTeX ""
+            writerHTMLMathMethod = KaTeX "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist"
           }
 
   pandocWithRefs <-

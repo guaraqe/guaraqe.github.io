@@ -18,8 +18,20 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
 
     <!-- To automatically render math in text elements, include the auto-render extension: -->
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   var macros = [];
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      macros: macros,
+      fleqn: false
+     });
+  }}});
+    </script>
 
 </head>
 <body>
@@ -145,77 +157,77 @@
 <h1 class="text-2xl mt-5 mb-5" data-number="1" id="introduction"><span class="header-section-number">1</span> Introduction</h1>
 <p class="mb-3">Today we will be studying codon frequencies, and automatically find genes in DNA sequences. You can download the sequences by clicking the following links: <a class="link link-hover text-zinc-600" href="data/dengue.fasta">dengue</a> and <a class="link link-hover text-zinc-600" href="data/zika.fasta">zika</a>. Right click it, and choose “Save as…” and choose the <code>Bioinformatics/workspace</code> folder that is in the desktop, as always.</p>
 <p class="mb-3">After, copy and paste the following code in the RStudio console, which we will use during the class.</p>
-<pre class="sourcecode"><code>library(seqinr)
-library(Biostrings)
-
-# Load vector of nucleotides from file
-readDNAString &lt;- function(file) {
-  DNAString(toupper(c2s(read.fasta(file)[[1]])))
-}
-
-# Start and end codons
-start = &quot;M&quot;
-end = &quot;*&quot;
-
-# Translate a sequence of bases into codons
-translateAndRegularize &lt;- function(data, index) {
-  l &lt;- (length(data)- index+1) %/% 3 * 3
-  reg &lt;- data[index:(l+index-1)]
-  Biostrings::translate(reg,no.init.codon = TRUE)
-}
-
-# Get first element satisfying constraint
-firstCompatible &lt;- function(s, es) {
-  if(length(es) &gt;= 1) {
-    for (i in 1:length(es)) {
-      e &lt;- es[i]
-      if(e &gt; s) {
-        return(e)
-      }
-    }
-  }
-  return(NA)
-}
-
-# Get possible genes for a sequence
-getPossibleGenes &lt;- function(dna) {
-  starts &lt;- Biostrings::matchPattern(start, dna)@ranges@start
-  ends &lt;- Biostrings::matchPattern(end, dna)@ranges@start
-  sequences &lt;- c()
-  for(i in 1:length(starts)) {
-    startEnd &lt;- firstCompatible(starts[i], ends)
-    if(!is.na(startEnd)) {
-      sequences &lt;- c(sequences,dna[starts[i]:startEnd])
-    }
-  }
-  sequences
-}
-
-# Get all possible genes, using the three frames
-getAllPossibleGenes &lt;- function(data) {
-  l1 &lt;- getPossibleGenes(translateAndRegularize(data,1))
-  l2 &lt;- getPossibleGenes(translateAndRegularize(data,2))
-  l3 &lt;- getPossibleGenes(translateAndRegularize(data,3))
-  gs &lt;- c(l1,l2,l3)
-  len &lt;- sapply(gs,length)
-  gs[order(len)]
-}
-
-# Plot frequencies
-frequencies &lt;- function(data) {
-  barplot(table(strsplit(as.character(data),split=&quot;&quot;)),cex.names=0.6)
-}</code></pre>
+<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(seqinr)</span>
+<span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Biostrings)</span>
+<span id="cb1-3"><a class="link link-hover text-zinc-600" href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a class="link link-hover text-zinc-600" href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load vector of nucleotides from file</span></span>
+<span id="cb1-5"><a class="link link-hover text-zinc-600" href="#cb1-5" aria-hidden="true" tabindex="-1"></a>readDNAString <span class="ot">&lt;-</span> <span class="cf">function</span>(file) {</span>
+<span id="cb1-6"><a class="link link-hover text-zinc-600" href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">DNAString</span>(<span class="fu">toupper</span>(<span class="fu">c2s</span>(<span class="fu">read.fasta</span>(file)[[<span class="dv">1</span>]])))</span>
+<span id="cb1-7"><a class="link link-hover text-zinc-600" href="#cb1-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-8"><a class="link link-hover text-zinc-600" href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a class="link link-hover text-zinc-600" href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Start and end codons</span></span>
+<span id="cb1-10"><a class="link link-hover text-zinc-600" href="#cb1-10" aria-hidden="true" tabindex="-1"></a>start <span class="ot">=</span> <span class="st">&quot;M&quot;</span></span>
+<span id="cb1-11"><a class="link link-hover text-zinc-600" href="#cb1-11" aria-hidden="true" tabindex="-1"></a>end <span class="ot">=</span> <span class="st">&quot;*&quot;</span></span>
+<span id="cb1-12"><a class="link link-hover text-zinc-600" href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a class="link link-hover text-zinc-600" href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Translate a sequence of bases into codons</span></span>
+<span id="cb1-14"><a class="link link-hover text-zinc-600" href="#cb1-14" aria-hidden="true" tabindex="-1"></a>translateAndRegularize <span class="ot">&lt;-</span> <span class="cf">function</span>(data, index) {</span>
+<span id="cb1-15"><a class="link link-hover text-zinc-600" href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  l <span class="ot">&lt;-</span> (<span class="fu">length</span>(data)<span class="sc">-</span> index<span class="sc">+</span><span class="dv">1</span>) <span class="sc">%/%</span> <span class="dv">3</span> <span class="sc">*</span> <span class="dv">3</span></span>
+<span id="cb1-16"><a class="link link-hover text-zinc-600" href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  reg <span class="ot">&lt;-</span> data[index<span class="sc">:</span>(l<span class="sc">+</span>index<span class="dv">-1</span>)]</span>
+<span id="cb1-17"><a class="link link-hover text-zinc-600" href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  Biostrings<span class="sc">::</span><span class="fu">translate</span>(reg,<span class="at">no.init.codon =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-18"><a class="link link-hover text-zinc-600" href="#cb1-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-19"><a class="link link-hover text-zinc-600" href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a class="link link-hover text-zinc-600" href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Get first element satisfying constraint</span></span>
+<span id="cb1-21"><a class="link link-hover text-zinc-600" href="#cb1-21" aria-hidden="true" tabindex="-1"></a>firstCompatible <span class="ot">&lt;-</span> <span class="cf">function</span>(s, es) {</span>
+<span id="cb1-22"><a class="link link-hover text-zinc-600" href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(es) <span class="sc">&gt;=</span> <span class="dv">1</span>) {</span>
+<span id="cb1-23"><a class="link link-hover text-zinc-600" href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(es)) {</span>
+<span id="cb1-24"><a class="link link-hover text-zinc-600" href="#cb1-24" aria-hidden="true" tabindex="-1"></a>      e <span class="ot">&lt;-</span> es[i]</span>
+<span id="cb1-25"><a class="link link-hover text-zinc-600" href="#cb1-25" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span>(e <span class="sc">&gt;</span> s) {</span>
+<span id="cb1-26"><a class="link link-hover text-zinc-600" href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span>(e)</span>
+<span id="cb1-27"><a class="link link-hover text-zinc-600" href="#cb1-27" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb1-28"><a class="link link-hover text-zinc-600" href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-29"><a class="link link-hover text-zinc-600" href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-30"><a class="link link-hover text-zinc-600" href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="cn">NA</span>)</span>
+<span id="cb1-31"><a class="link link-hover text-zinc-600" href="#cb1-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-32"><a class="link link-hover text-zinc-600" href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a class="link link-hover text-zinc-600" href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Get possible genes for a sequence</span></span>
+<span id="cb1-34"><a class="link link-hover text-zinc-600" href="#cb1-34" aria-hidden="true" tabindex="-1"></a>getPossibleGenes <span class="ot">&lt;-</span> <span class="cf">function</span>(dna) {</span>
+<span id="cb1-35"><a class="link link-hover text-zinc-600" href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  starts <span class="ot">&lt;-</span> Biostrings<span class="sc">::</span><span class="fu">matchPattern</span>(start, dna)<span class="sc">@</span>ranges<span class="sc">@</span>start</span>
+<span id="cb1-36"><a class="link link-hover text-zinc-600" href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  ends <span class="ot">&lt;-</span> Biostrings<span class="sc">::</span><span class="fu">matchPattern</span>(end, dna)<span class="sc">@</span>ranges<span class="sc">@</span>start</span>
+<span id="cb1-37"><a class="link link-hover text-zinc-600" href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  sequences <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb1-38"><a class="link link-hover text-zinc-600" href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(starts)) {</span>
+<span id="cb1-39"><a class="link link-hover text-zinc-600" href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    startEnd <span class="ot">&lt;-</span> <span class="fu">firstCompatible</span>(starts[i], ends)</span>
+<span id="cb1-40"><a class="link link-hover text-zinc-600" href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.na</span>(startEnd)) {</span>
+<span id="cb1-41"><a class="link link-hover text-zinc-600" href="#cb1-41" aria-hidden="true" tabindex="-1"></a>      sequences <span class="ot">&lt;-</span> <span class="fu">c</span>(sequences,dna[starts[i]<span class="sc">:</span>startEnd])</span>
+<span id="cb1-42"><a class="link link-hover text-zinc-600" href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-43"><a class="link link-hover text-zinc-600" href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-44"><a class="link link-hover text-zinc-600" href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  sequences</span>
+<span id="cb1-45"><a class="link link-hover text-zinc-600" href="#cb1-45" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-46"><a class="link link-hover text-zinc-600" href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a class="link link-hover text-zinc-600" href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Get all possible genes, using the three frames</span></span>
+<span id="cb1-48"><a class="link link-hover text-zinc-600" href="#cb1-48" aria-hidden="true" tabindex="-1"></a>getAllPossibleGenes <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb1-49"><a class="link link-hover text-zinc-600" href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  l1 <span class="ot">&lt;-</span> <span class="fu">getPossibleGenes</span>(<span class="fu">translateAndRegularize</span>(data,<span class="dv">1</span>))</span>
+<span id="cb1-50"><a class="link link-hover text-zinc-600" href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  l2 <span class="ot">&lt;-</span> <span class="fu">getPossibleGenes</span>(<span class="fu">translateAndRegularize</span>(data,<span class="dv">2</span>))</span>
+<span id="cb1-51"><a class="link link-hover text-zinc-600" href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  l3 <span class="ot">&lt;-</span> <span class="fu">getPossibleGenes</span>(<span class="fu">translateAndRegularize</span>(data,<span class="dv">3</span>))</span>
+<span id="cb1-52"><a class="link link-hover text-zinc-600" href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  gs <span class="ot">&lt;-</span> <span class="fu">c</span>(l1,l2,l3)</span>
+<span id="cb1-53"><a class="link link-hover text-zinc-600" href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  len <span class="ot">&lt;-</span> <span class="fu">sapply</span>(gs,length)</span>
+<span id="cb1-54"><a class="link link-hover text-zinc-600" href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  gs[<span class="fu">order</span>(len)]</span>
+<span id="cb1-55"><a class="link link-hover text-zinc-600" href="#cb1-55" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-56"><a class="link link-hover text-zinc-600" href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a class="link link-hover text-zinc-600" href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot frequencies</span></span>
+<span id="cb1-58"><a class="link link-hover text-zinc-600" href="#cb1-58" aria-hidden="true" tabindex="-1"></a>frequencies <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb1-59"><a class="link link-hover text-zinc-600" href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">barplot</span>(<span class="fu">table</span>(<span class="fu">strsplit</span>(<span class="fu">as.character</span>(data),<span class="at">split=</span><span class="st">&quot;&quot;</span>)),<span class="at">cex.names=</span><span class="fl">0.6</span>)</span>
+<span id="cb1-60"><a class="link link-hover text-zinc-600" href="#cb1-60" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p class="mb-3">After that, load the dengue and zika sequences:</p>
-<pre class="sourcecode"><code>dengue &lt;- readDNAString(&quot;dengue.fasta&quot;)
-zika &lt;- readDNAString(&quot;zika.fasta&quot;)</code></pre>
+<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dengue <span class="ot">&lt;-</span> <span class="fu">readDNAString</span>(<span class="st">&quot;dengue.fasta&quot;</span>)</span>
+<span id="cb2-2"><a class="link link-hover text-zinc-600" href="#cb2-2" aria-hidden="true" tabindex="-1"></a>zika <span class="ot">&lt;-</span> <span class="fu">readDNAString</span>(<span class="st">&quot;zika.fasta&quot;</span>)</span></code></pre></div>
 <h1 class="text-2xl mt-5 mb-5" data-number="2" id="codon-frequencies"><span class="header-section-number">2</span> Codon frequencies</h1>
 <p class="mb-3">Previously, we studied base sequences:</p>
-<pre class="sourcecode"><code>frequencies(dengue)</code></pre>
+<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frequencies</span>(dengue)</span></code></pre></div>
 <p class="mb-3"><img class="mx-auto" src="data/a68fd58e4f48c3e3fd4128f17060645f.png" /></p>
 <p class="mb-3">The same can be done for codons. However, there are three possible positions for codons, so we need to graph these thee:</p>
-<pre class="sourcecode"><code>&gt; frequencies(translateAndRegularize(dengue,1))
-&gt; frequencies(translateAndRegularize(dengue,2))
-&gt; frequencies(translateAndRegularize(dengue,3))</code></pre>
+<div class="sourceCode mb-3 notranslate" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a class="link link-hover text-zinc-600" href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">frequencies</span>(<span class="fu">translateAndRegularize</span>(dengue,<span class="dv">1</span>))</span>
+<span id="cb4-2"><a class="link link-hover text-zinc-600" href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">frequencies</span>(<span class="fu">translateAndRegularize</span>(dengue,<span class="dv">2</span>))</span>
+<span id="cb4-3"><a class="link link-hover text-zinc-600" href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">frequencies</span>(<span class="fu">translateAndRegularize</span>(dengue,<span class="dv">3</span>))</span></code></pre></div>
 <p class="mb-3">The first one looks like this:</p>
 <p class="mb-3"><img class="mx-auto" src="data/dabc782d5dcf3304d8b1cb57f3c5fd95.png" /></p>
 <h2 class="text-xl mt-5 mb-5" data-number="2.1" id="questions"><span class="header-section-number">2.1</span> Questions</h2>
@@ -225,16 +237,16 @@ zika &lt;- readDNAString(&quot;zika.fasta&quot;)</code></pre>
 </ol>
 <h1 class="text-2xl mt-5 mb-5" data-number="3" id="gene-finding"><span class="header-section-number">3</span> Gene finding</h1>
 <p class="mb-3">In the previous classes we learned about the simple method for looking for genes in a sequence. This method is implemented in the <code>getAllPossibleGenes</code> function. For example:</p>
-<pre class="sourcecode"><code>&gt; getAllPossibleGenes(DNAString(&quot;ATGTAG&quot;))
-[[1]]
-2-letter AAString object
-seq: M*</code></pre>
+<div class="sourceCode mb-3 notranslate" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a class="link link-hover text-zinc-600" href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">getAllPossibleGenes</span>(<span class="fu">DNAString</span>(<span class="st">&quot;ATGTAG&quot;</span>))</span>
+<span id="cb5-2"><a class="link link-hover text-zinc-600" href="#cb5-2" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]]</span>
+<span id="cb5-3"><a class="link link-hover text-zinc-600" href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">-</span>letter AAString object</span>
+<span id="cb5-4"><a class="link link-hover text-zinc-600" href="#cb5-4" aria-hidden="true" tabindex="-1"></a>seq<span class="sc">:</span> M<span class="sc">*</span></span></code></pre></div>
 <p class="mb-3">The advantage of this function is that we can do that for larger sequences:</p>
-<pre class="sourcecode"><code>&gt; dengueGenes &lt;- getAllPossibleGenes(dengue)
-&gt; dengueGenes</code></pre>
+<div class="sourceCode mb-3 notranslate" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a class="link link-hover text-zinc-600" href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dengueGenes <span class="ot">&lt;-</span> <span class="fu">getAllPossibleGenes</span>(dengue)</span>
+<span id="cb6-2"><a class="link link-hover text-zinc-600" href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dengueGenes</span></code></pre></div>
 <p class="mb-3">Each identified sequence has a different size, and as discussed during the letter, this is one of the main characteristics used to discern between false and true genes. The resulting list is sorted, look at the sizes for each sequence.</p>
 <p class="mb-3">One can plot sizes with:</p>
-<pre class="sourcecode"><code>hist(sapply(dengueGenes,length),100,main=&quot;ORF Lengths&quot;,xlab=&quot;Length&quot;)</code></pre>
+<div class="sourceCode mb-3 notranslate" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a class="link link-hover text-zinc-600" href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">sapply</span>(dengueGenes,length),<span class="dv">100</span>,<span class="at">main=</span><span class="st">&quot;ORF Lengths&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Length&quot;</span>)</span></code></pre></div>
 <p class="mb-3"><img class="mx-auto" src="data/28c5367cf8cefe40cee94449d26e574b.png" /></p>
 <p class="mb-3">This plot makes it simpler to draw a boundary between sequences that are two small and those who have a sufficient size.</p>
 <h2 class="text-xl mt-5 mb-5" data-number="3.1" id="questions-1"><span class="header-section-number">3.1</span> Questions</h2>
