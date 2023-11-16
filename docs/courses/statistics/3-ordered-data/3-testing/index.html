@@ -5,7 +5,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name=viewport content="width=device-width, initial-scale=1">
-    <title>3.3 Testing
+    <title>3.3 Conditional Probability and Model Evaluation
 </title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/syntax.css">
@@ -84,8 +84,8 @@
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/2-categorical-data/3-testing/index.html">2.3 Testing Categorical Data
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/index.html">3 Ordered Data
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/1-measurements/index.html">3.1 Cumulative probabilities
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/2-multiple-variables-models/index.html">3.2 Multiple variables
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/3-testing/index.html">3.3 Testing
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/2-multiple-variables-models/index.html">3.2 Models and binary diagnosis
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/3-testing/index.html">3.3 Conditional Probability and Model Evaluation
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/index.html">4 Numerical Data
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/1-measurements/index.html">4.1 Measurements
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/2-multiple-variables/index.html">4.2 Multiple Measurements
@@ -107,7 +107,7 @@
 
        <div class="book-navigation-previous">
          <div class="arrow arrow-left"></div>
-         <a href="/courses/statistics/3-ordered-data/2-multiple-variables-models/index.html">3.2 Multiple variables
+         <a href="/courses/statistics/3-ordered-data/2-multiple-variables-models/index.html">3.2 Models and binary diagnosis
 </a>
        </div>
 
@@ -120,11 +120,265 @@
   </div>
 
     <h1 class="text-3xl mb-5">
-    3.3 Testing
+    3.3 Conditional Probability and Model Evaluation
 
 </h1>
 
-
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="conditional-probabilities"><span class="header-section-number">1</span> Conditional probabilities</h1>
+<p class="mb-3">In medical research, one often deals with <em>populations</em>. Medical data from whole populations can give responses to questions such as:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>How often people have a given disease?</li>
+<li>How often people people with a given disease survive or die?</li>
+<li>Does the prevalence of a given disease change between men and women?</li>
+</ul>
+<p class="mb-3">The technique to extract such responses is given by probability theory.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.1" id="total-numbers-and-probabilities"><span class="header-section-number">1.1</span> Total Numbers and Probabilities</h2>
+<p class="mb-3">Let’s start using the following data, where <span class="math inline notranslate"><em>M</em></span> represent males, and <span class="math inline notranslate"><em>F</em></span> females, <span class="math inline notranslate"><em>L</em></span> represents left-handed people and <span class="math inline notranslate"><em>R</em></span> represents right-handed people.</p>
+<table class="table border-collapse mb-3">
+<thead>
+<tr class="header">
+<th class="border">ID</th>
+<th class="border">Male/Female</th>
+<th class="border">Left/Right Handed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="border">1</td>
+<td class="border">M</td>
+<td class="border">L</td>
+</tr>
+<tr class="even">
+<td class="border">2</td>
+<td class="border">F</td>
+<td class="border">R</td>
+</tr>
+<tr class="odd">
+<td class="border">3</td>
+<td class="border">M</td>
+<td class="border">R</td>
+</tr>
+<tr class="even">
+<td class="border">4</td>
+<td class="border">F</td>
+<td class="border">R</td>
+</tr>
+<tr class="odd">
+<td class="border">5</td>
+<td class="border">F</td>
+<td class="border">L</td>
+</tr>
+</tbody>
+</table>
+<p class="mb-3">The first important statistic is the <strong>total number</strong> of data points, which correspond to the total number of people in this case. For this data set we have:</p>
+<p class="mb-3"><span class="math display notranslate"><em>N</em> = 5</span></p>
+<p class="mb-3">This gets more interesting when we begin counting particular characteristics. For example, what is the <strong>number of females</strong> in the data set? For this, we count the rows which have an <span class="math inline notranslate"><em>F</em></span> and get:</p>
+<p class="mb-3"><span class="math display notranslate"><em>N</em>(<em>F</em>) = 3</span></p>
+<p class="mb-3"><strong>Probabilites</strong> are derived from total numbers. The formula for the probability of a given characteristic is <strong>number with characteristic / total number</strong>. That is, for example above, we have the probability for a person being female in the data set as:</p>
+<p class="mb-3"><span class="math display notranslate">$$
+P(F) = \frac{N(F)}{N} = 3/5 = 0.6 = 60\%
+$$</span></p>
+<p class="mb-3">Let’s repeat the calculation once more with left-handed people. The total number of left-handed people is: <span class="math display notranslate"><em>N</em>(<em>L</em>) = 2</span> which can be found by counting lines in the table. Therefore, the probability of a person being left-handed in this data set is: <span class="math display notranslate">$$
+P(L) = \frac{N(L)}{N} = 2/5 = 0.4 = 40\\%
+$$</span></p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.2" id="composite-probabilities"><span class="header-section-number">1.2</span> Composite Probabilities</h2>
+<p class="mb-3">Probabilites don’t need to be limited to just one characteristic. We can also study <strong>composite characteristics</strong>, and all the reasoning will be exactly the same. For example, what is the probability of someone in the data set being both <strong>male and right-handed</strong>? First we count the rows with the right characteristics to find that:</p>
+<p class="mb-3"><span class="math display notranslate"><em>N</em>(<em>M</em>,<em>R</em>) = 1</span></p>
+<p class="mb-3">which means that the corresponding probability is: <span class="math display notranslate">$$
+P(M,R) = \frac{N(M,R)}{N} = 1/5 = 0.2 = 20\\%
+$$</span> Let’s do this again with <strong>right-handed females</strong>. By counting rows we find that:</p>
+<p class="mb-3"><span class="math display notranslate"><em>N</em>(<em>F</em>,<em>R</em>) = 2</span></p>
+<p class="mb-3">which means that: <span class="math display notranslate">$$
+P(F,R) = \frac{N(F,R)}{N} = 2/5 = 0.4 = 40\\%
+$$</span></p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.3" id="conditional-probabilites"><span class="header-section-number">1.3</span> Conditional Probabilites</h2>
+<p class="mb-3">Sometimes we want to focus our study on a <strong>sub-population</strong>. For example, only females, or only right-handed people. For this case, conditional probabilities are useful. For example, we write:</p>
+<p class="mb-3"><span class="math display notranslate"><em>P</em>(<em>F</em>|<em>R</em>)</span></p>
+<p class="mb-3">to represent the probability of being a female, <strong>given that</strong> one is right-handed. That is, the sub-population we are studiying appears after the | symbol in the formula. Conditional probabilities can be calculated as:</p>
+<p class="mb-3"><span class="math display notranslate">$$
+P(F\|R) = \frac{P(F,R)}{P(R)}
+$$</span></p>
+<p class="mb-3">which means we can calculate them using only regular and composite probabilites. Let’s calculate the probability of a right-handed person being female using the formula above:</p>
+<p class="mb-3"><span class="math display notranslate">$$
+P(F\|R) = \frac{P(F,R)}{P(R)} = \frac{0.4}{0.6} = \frac{2}{3} = 0.66 = 66\\%
+$$</span></p>
+<p class="mb-3">As you can see, this is different from the probability of being a female in the total population, which was calculated as 60% above.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.4" id="exercises"><span class="header-section-number">1.4</span> Exercises</h2>
+<p class="mb-3">For the exercise below, we are going to use the following data, where <span class="math inline notranslate"><em>M</em></span> represent males, and <span class="math inline notranslate"><em>F</em></span> females, <span class="math inline notranslate"><em>Y</em></span> represents young people and <span class="math inline notranslate"><em>O</em></span> represents old people, and <em>H</em> represents people with heart disease and <span class="math inline notranslate"><em>N</em></span> people with no heart disease.</p>
+<table class="table border-collapse mb-3">
+<thead>
+<tr class="header">
+<th class="border">ID</th>
+<th class="border">Male/Female</th>
+<th class="border">Young/Old</th>
+<th class="border">Heart Disease/No Heart Disease</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="border">1</td>
+<td class="border">M</td>
+<td class="border">Y</td>
+<td class="border">N</td>
+</tr>
+<tr class="even">
+<td class="border">2</td>
+<td class="border">M</td>
+<td class="border">O</td>
+<td class="border">H</td>
+</tr>
+<tr class="odd">
+<td class="border">3</td>
+<td class="border">F</td>
+<td class="border">O</td>
+<td class="border">N</td>
+</tr>
+<tr class="even">
+<td class="border">4</td>
+<td class="border">M</td>
+<td class="border">Y</td>
+<td class="border">N</td>
+</tr>
+<tr class="odd">
+<td class="border">5</td>
+<td class="border">F</td>
+<td class="border">O</td>
+<td class="border">H</td>
+</tr>
+<tr class="even">
+<td class="border">6</td>
+<td class="border">F</td>
+<td class="border">Y</td>
+<td class="border">N</td>
+</tr>
+<tr class="odd">
+<td class="border">7</td>
+<td class="border">F</td>
+<td class="border">Y</td>
+<td class="border">N</td>
+</tr>
+<tr class="even">
+<td class="border">8</td>
+<td class="border">M</td>
+<td class="border">Y</td>
+<td class="border">H</td>
+</tr>
+<tr class="odd">
+<td class="border">9</td>
+<td class="border">F</td>
+<td class="border">O</td>
+<td class="border">N</td>
+</tr>
+<tr class="even">
+<td class="border">10</td>
+<td class="border">M</td>
+<td class="border">O</td>
+<td class="border">N</td>
+</tr>
+</tbody>
+</table>
+<ol class="list-decimal list-outside mt-1 mb-3 pl-5" type="1">
+<li>What are the probabilities of being male and female in the data set?</li>
+<li>What are the probabilities of being young and old in the data set?</li>
+<li>What are the probabilities of having heart disease and not having heart disease in the data set?</li>
+<li>What is bigger: the probability of being a male with heart disease, or being a female with heart disease? Write down the probabilities.</li>
+<li>What is bigger: the probability of being an young person with heart disease or being an old person with heart disease? Write down the probabilites.</li>
+<li>What is the probability of an young person having heart disease?</li>
+<li>What is the probability of an old person having heart disease?</li>
+<li>What is the probability of a male having heart disease?</li>
+<li>What is the probability of a female having heart disease?</li>
+<li>What is bigger: the probability of an old person having heart disease, or the probability of a person with heart disease being old? Write down the probabilities.</li>
+</ol>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="model-evaluation"><span class="header-section-number">2</span> Model evaluation</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="2.1" id="conditional-probabilities-from-data"><span class="header-section-number">2.1</span> Conditional probabilities from data</h2>
+<p class="mb-3">Let’s look again at the data we used last time:</p>
+<table class="table border-collapse mb-3">
+<thead>
+<tr class="header">
+<th class="border">Tumour Size</th>
+<th class="border">Quantity</th>
+<th class="border">Quantity with cancer</th>
+<th class="border">Proportion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="border">1</td>
+<td class="border">N1</td>
+<td class="border">Q1</td>
+<td class="border">N1/Q1</td>
+</tr>
+</tbody>
+</table>
+<p class="mb-3">For each tumour size, we collected:</p>
+<ol class="list-decimal list-outside mt-1 mb-3 pl-5" type="1">
+<li>The quantity of cases with this given size</li>
+<li>The quantity of cases with this given size and cancer</li>
+<li>The proportion of the second in the first</li>
+</ol>
+<p class="mb-3">If we divide these quantities by the total number of cases N:</p>
+<table class="table border-collapse mb-3">
+<thead>
+<tr class="header">
+<th class="border">Tumour Size</th>
+<th class="border">Probability</th>
+<th class="border">Probability of cancer</th>
+<th class="border">Proportion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="border">1</td>
+<td class="border">N1/N</td>
+<td class="border">Q1/N</td>
+<td class="border">N1/Q1</td>
+</tr>
+</tbody>
+</table>
+<p class="mb-3">we get instead:</p>
+<ol class="list-decimal list-outside mt-1 mb-3 pl-5" type="1">
+<li>The probability of having a case with this given size: <span class="math inline notranslate"><em>P</em>(Size=<em>n</em>)</span></li>
+<li>The probability of having a case with this given size and cancer: <span class="math inline notranslate"><em>P</em>(Size=<em>n</em>,Cancer)</span></li>
+<li>The proportion of the second in the first</li>
+</ol>
+<p class="mb-3">This last quantity has a name: a <em>conditional probability</em>. It is written as:</p>
+<p class="mb-3"><span class="math display notranslate">$$
+P(\text{Cancer} \mid \text{Size} = n) = \frac{P(\text{Size}=n, \text{Cancer})}{P(\text{Size}=n)}
+$$</span></p>
+<p class="mb-3">and pronounced as: the probability of having cancer <em>given that</em> the size is <em>n</em>.</p>
+<p class="mb-3">In general, we write it as <span class="math inline notranslate"><em>P</em>(<em>A</em>∣<em>B</em>)</span> and there is a relation:</p>
+<p class="mb-3"><span class="math display notranslate"><em>P</em>(<em>A</em>∣<em>B</em>)<em>P</em>(<em>B</em>) = <em>P</em>(<em>A</em>,<em>B</em>) = <em>P</em>(<em>B</em>∣<em>A</em>)<em>P</em>(<em>A</em>)</span></p>
+<p class="mb-3">which is called <em>Bayes’ rule</em>.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.2" id="evaluating-models"><span class="header-section-number">2.2</span> Evaluating models</h2>
+<p class="mb-3">In the first lesson, we created a diagnostic model – from tumour size, it gave a diagnostic: cancer or not cancer. The concept of conditional probability can be used to evaluate the quality of the model.</p>
+<p class="mb-3">The two variables we have are:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>Whether the patient has cancer or not</li>
+<li>The result of our model</li>
+</ul>
+<p class="mb-3">In the previous course we learned about how to classify these results:</p>
+<p class="mb-3"><img class="mx-auto" src="data/table.png" /></p>
+<p class="mb-3">From these variables, we can define four important quantities (also called operational characteristics): sensity, specificity, positive and negative predictive values for this particular model:</p>
+<p class="mb-3">The first one is <strong>sensitivity</strong>, which tests which proportion of sick people was correctly identified:</p>
+<p class="mb-3"><span class="math display notranslate">$$
+\text{Sensitivity} = P(\text{Positive} \mid \text{Sick}) = \frac{\text{Positive test and sick}}{\text{Total sick}} = \frac{A}{A+C}
+$$</span></p>
+<p class="mb-3">The second one is <strong>specificity</strong>, which tests which proportion of healthy people was correctly identified:</p>
+<p class="mb-3"><span class="math display notranslate">$$
+\text{Specificity} = P(\text{Negative} \mid \text{Healthy}) = \frac{\text{Negative test and healthy}}{\text{Total healthy}} = \frac{D}{B+D}
+$$</span></p>
+<p class="mb-3">The third one is <strong>positive predictive value</strong>, or <strong>PPV</strong>, which tests which proportion of positive tests was actually correct:</p>
+<p class="mb-3"><span class="math display notranslate">$$
+\text{PPV} = P(\text{Sick} \mid \text{Positive}) = \frac{\text{Positive test and sick}}{\text{Positive test}} = \frac{A}{A+B}
+$$</span></p>
+<p class="mb-3">The fourth one is <strong>negative predictive value</strong>, or <strong>NPV</strong>, which tests which proportion of negative tests was actually correct:</p>
+<p class="mb-3"><span class="math display notranslate">$$
+\text{NPV} = P(\text{Healthy} \mid \text{Negative}) = \frac{\text{Negative test and healthy}}{\text{Negative test}} = \frac{D}{C+D}
+$$</span></p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.3" id="practice"><span class="header-section-number">2.3</span> Practice</h2>
+<p class="mb-3">We are going to use data from benign and malignant tumours, available <a class="link link-hover text-zinc-600" href="data/breast-cancer-wisconsin.xlsx">here</a>.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="control"><span class="header-section-number">3</span> Control</h1>
+<p class="mb-3">You will reproduce the analysis by filling the following <a class="link link-hover text-zinc-600" href="data/control.xlsx">control exercise</a>. The description of the exercise can be found in <a class="link link-hover text-zinc-600" href="data/control-EN.docx">English</a> and <a class="link link-hover text-zinc-600" href="data/control-RU.docx">Russian</a>.</p>
 
   <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
 

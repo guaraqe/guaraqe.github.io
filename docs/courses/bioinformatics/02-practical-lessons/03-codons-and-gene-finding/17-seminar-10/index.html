@@ -148,23 +148,23 @@
 <pre class="sourcecode"><code>library(seqinr)
 library(Biostrings)
 
-#oad vector of nucleotides from file
+# Load vector of nucleotides from file
 readDNAString &lt;- function(file) {
   DNAString(toupper(c2s(read.fasta(file)[[1]])))
 }
 
-#tart and end codons
+# Start and end codons
 start = &quot;M&quot;
 end = &quot;*&quot;
 
-#ranslate a sequence of bases into codons
+# Translate a sequence of bases into codons
 translateAndRegularize &lt;- function(data, index) {
   l &lt;- (length(data)- index+1) %/% 3 * 3
   reg &lt;- data[index:(l+index-1)]
   Biostrings::translate(reg,no.init.codon = TRUE)
 }
 
-#et first element satisfying constraint
+# Get first element satisfying constraint
 firstCompatible &lt;- function(s, es) {
   if(length(es) &gt;= 1) {
     for (i in 1:length(es)) {
@@ -177,7 +177,7 @@ firstCompatible &lt;- function(s, es) {
   return(NA)
 }
 
-#et possible genes for a sequence
+# Get possible genes for a sequence
 getPossibleGenes &lt;- function(dna) {
   starts &lt;- Biostrings::matchPattern(start, dna)@ranges@start
   ends &lt;- Biostrings::matchPattern(end, dna)@ranges@start
@@ -191,7 +191,7 @@ getPossibleGenes &lt;- function(dna) {
   sequences
 }
 
-#et all possible genes, using the three frames
+# Get all possible genes, using the three frames
 getAllPossibleGenes &lt;- function(data) {
   l1 &lt;- getPossibleGenes(translateAndRegularize(data,1))
   l2 &lt;- getPossibleGenes(translateAndRegularize(data,2))
@@ -201,7 +201,7 @@ getAllPossibleGenes &lt;- function(data) {
   gs[order(len)]
 }
 
-#lot frequencies
+# Plot frequencies
 frequencies &lt;- function(data) {
   barplot(table(strsplit(as.character(data),split=&quot;&quot;)),cex.names=0.6)
 }</code></pre>
