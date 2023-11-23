@@ -5,7 +5,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name=viewport content="width=device-width, initial-scale=1">
-    <title>4.3 Testing
+    <title>4.3 Normal Distribution and Testing
 </title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/syntax.css">
@@ -99,9 +99,9 @@
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/2-multiple-variables-models/index.html">3.2 Models and binary diagnosis
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/3-testing/index.html">3.3 Conditional probabilities and model evaluation
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/index.html">4 Numerical Data
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/1-measurements/index.html">4.1 Normal Distribution
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/1-measurements/index.html">4.1 Numerical data
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/2-multiple-variables/index.html">4.2 Multiple Measurements
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/3-testing/index.html">4.3 Testing
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/3-testing/index.html">4.3 Normal Distribution and Testing
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li></ul>
              </div>
            </div>
@@ -132,11 +132,120 @@
   </div>
 
     <h1 class="text-3xl mb-5">
-    4.3 Testing
+    4.3 Normal Distribution and Testing
 
 </h1>
 
-
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="normal-distributions"><span class="header-section-number">1</span> Normal Distributions</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="1.1" id="coin-toss---1"><span class="header-section-number">1.1</span> Coin Toss - 1</h2>
+<p class="mb-3">Toss a coin, and every time it gives <strong>head</strong>, mark the result as <strong>0</strong>. When it gives the result <strong>tails</strong> (the one with the number), mark the result as <strong>1</strong>. Toss is 10 times. Each person will have 10 numbers that are either 0 or 1.</p>
+<p class="mb-3">Make a graph of the number of results, such as this one: <img class="mx-auto" src="data/43d8a78ec1c60ae01d19f3713b6c4e8f.png" /> What are the mean and standard deviation of this?</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.2" id="coin-toss---2"><span class="header-section-number">1.2</span> Coin Toss - 2</h2>
+<p class="mb-3">Take two coins, and toss them same as before, but sum their values now. Make 10 tosses of the 2 coins. That is, each person will have 10 numbers between 0 and 2. Make a graph of the number of results, such as this one:</p>
+<p class="mb-3"><img class="mx-auto" src="data/0db6a1ba81234e28a1da79b1f265741d.png" /> What are the mean and standard deviation of this?</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.3" id="coin-toss---5"><span class="header-section-number">1.3</span> Coin Toss - 5</h2>
+<p class="mb-3">Each person in the class throws 5 coins and sum them, 5 times. That is, each person will have five numbers between 0 and 5. Make a graph, such as the following:</p>
+<p class="mb-3"><img class="mx-auto" src="data/b59e57355a8c609e87c0236f5db4d941.png" /> What are the mean and standard deviation of this?</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.4" id="what-if-we-keep-going"><span class="header-section-number">1.4</span> What if we keep going?</h2>
+<p class="mb-3">We can keep doing that, for larger and larger numbers of coins. For each one of these, we will get a sample of the <strong>binomial distribution</strong>.</p>
+<p class="mb-3"><img class="mx-auto" src="data/a2fba63e22616935a756e13a3abed64e.png" /></p>
+<p class="mb-3">Its formula is the following:</p>
+<p class="mb-3"><img class="mx-auto" src="data/24b9037032f020cc7177d28c285bfa51.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.5" id="comparing-to-the-binomial-distribution"><span class="header-section-number">1.5</span> Comparing to the binomial distribution</h2>
+<p class="mb-3">The mean of the distribution is <span class="math inline notranslate">n/2</span>, and the standard deviation <span class="math inline notranslate">\sqrt{n}/2</span>. Make a table with the sampled results and the ideal ones:</p>
+<table class="table border-collapse mb-3">
+<thead>
+<tr class="header">
+<th class="border"></th>
+<th class="border">Mean (Sample)</th>
+<th class="border">Mean (Ideal)</th>
+<th class="border">STD (Sample)</th>
+<th class="border">STD (Ideal)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="border">1</td>
+<td class="border"></td>
+<td class="border"></td>
+<td class="border"></td>
+<td class="border"></td>
+</tr>
+<tr class="even">
+<td class="border">2</td>
+<td class="border"></td>
+<td class="border"></td>
+<td class="border"></td>
+<td class="border"></td>
+</tr>
+<tr class="odd">
+<td class="border">5</td>
+<td class="border"></td>
+<td class="border"></td>
+<td class="border"></td>
+<td class="border"></td>
+</tr>
+</tbody>
+</table>
+<h2 class="text-xl mt-5 mb-5" data-number="1.6" id="what-if-we-never-stop"><span class="header-section-number">1.6</span> What if we never stop?</h2>
+<p class="mb-3">In the limit of an infinite amount of coins, we will get a curve shape like the following:</p>
+<p class="mb-3"><img class="mx-auto" src="data/e1c4a9fb7bfd3d7e1da2dcd11ecbc50b.png" /></p>
+<p class="mb-3">This curve is called a <strong>normal distribution</strong>.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.7" id="how-can-we-see-this"><span class="header-section-number">1.7</span> How can we see this?</h2>
+<p class="mb-3">We can superpose the graphs, and they will progressively get closer to each other.</p>
+<p class="mb-3"><img class="mx-auto" src="data/6d003119e439273141928820cb354327.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.8" id="why-is-this-important"><span class="header-section-number">1.8</span> Why is this important?</h2>
+<p class="mb-3">We saw examples of two important laws:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li><strong>The law of large numbers</strong>: if take the average of a large number of samples of a random event, we progressively approach the <em>ideal</em> value of the mean.</li>
+<li><strong>The central limit theorem</strong>: if we take the sum of a large number of <strong>independent</strong> random variable, and sample it many times, the resulting distribution progressively approaches a normal distribution.</li>
+</ul>
+<p class="mb-3">This last point shows why normal distributions are common in nature: observables that result from the added effect of multiple independent and similar effects will follow a normal distribution.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.9" id="brownian-motion"><span class="header-section-number">1.9</span> Brownian motion</h2>
+<p class="mb-3">Grains of pollen follow a seemingly random motion on water, due to the collisions with water molecules. The distribution of these movements is <strong>normal</strong>. Studying this led to Einstein’s Nobel prize.</p>
+<p class="mb-3"><img class="mx-auto" src="data/0e0a1c32361d97184465b275510585ef.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.10" id="exercise"><span class="header-section-number">1.10</span> Exercise</h2>
+<p class="mb-3">Let’s make a table in the classroom with the following numbers:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>Height in centimeters</li>
+<li>Shoe size</li>
+<li>Age in days</li>
+</ul>
+<p class="mb-3">We will check whether these distributions are normal or not by doing histograms.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="comparing-distributions"><span class="header-section-number">2</span> Comparing distributions</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="2.1" id="how-can-we-compare-distributions"><span class="header-section-number">2.1</span> How can we compare distributions?</h2>
+<p class="mb-3">There are many ways to comparing distributions, including looking at histograms and thinking whether they look alike or not.</p>
+<p class="mb-3">When we have two variables that follow a <strong>normal distribution</strong>, there are two tests that can give us a number telling us whether two distributions are similar or not.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.2" id="student-t-test"><span class="header-section-number">2.2</span> Student t-test</h2>
+<p class="mb-3">The student test checks whether the mean of two normal distributions is the same.</p>
+<p class="mb-3"><img class="mx-auto" src="data/944d32185d376467da7cf87ab06dbd2c.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.3" id="how-to-do-it"><span class="header-section-number">2.3</span> How to do it?</h2>
+<p class="mb-3">The statistics is:</p>
+<p class="mb-3"><img class="mx-auto" src="data/053378d2826e4d2ca7bf28e4b227afca.png" /> where: <img class="mx-auto" src="data/423118c76e688557e2cd1e1e2ab86035.png" /></p>
+<p class="mb-3">where the <code>s</code> are the unbiased sample variances. Basically, we test how means are different measured in standard deviations.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.4" id="f-test"><span class="header-section-number">2.4</span> F-test</h2>
+<p class="mb-3">The student test checks whether the standard deviation of two normal distributions is the same.</p>
+<p class="mb-3"><img class="mx-auto" src="data/6c6ddb1e439229b223337d7755dcc002.png" /></p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.5" id="how-to-do-it-1"><span class="header-section-number">2.5</span> How to do it?</h2>
+<p class="mb-3">The statistics for distributions with the same mean is:</p>
+<p class="mb-3"><img class="mx-auto" src="data/d3f2a2e864ebc2263fa3286751ccb083.png" /></p>
+<p class="mb-3">When they are the same, we expect them to be one.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.6" id="exercise-1"><span class="header-section-number">2.6</span> Exercise</h2>
+<p class="mb-3">Let’s split the classroom in two, and take the statistics above: height, shoe size, age in days.</p>
+<p class="mb-3">Apply the t-test and F-test to each and answer the following questions:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>Can we make a difference between the means?</li>
+<li>Does it make sense to apply the t-test here?</li>
+<li>Can we make a difference between the standard deviations?</li>
+<li>Does it make sense to apply the F-test here?</li>
+</ul>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="on-the-computer"><span class="header-section-number">3</span> On the computer</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="3.1" id="data-analysis"><span class="header-section-number">3.1</span> Data analysis</h2>
+<p class="mb-3">A data set is availabe, together with its description:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li><a class="link link-hover text-zinc-600" href="data/birthweight_data.xlsx">Data set</a></li>
+<li><a class="link link-hover text-zinc-600" href="data/notes.docx">Data set description</a></li>
+</ul>
 
   <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
 
