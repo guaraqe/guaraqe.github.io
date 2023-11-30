@@ -5,7 +5,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name=viewport content="width=device-width, initial-scale=1">
-    <title>4.2 Multiple Measurements
+    <title>4.2 Covariance, Correlation, Regression
 </title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/syntax.css">
@@ -100,7 +100,7 @@
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/3-ordered-data/3-testing/index.html">3.3 Conditional probabilities and model evaluation
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/index.html">4 Numerical Data
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/1-measurements/index.html">4.1 Numerical data
-</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/2-multiple-variables/index.html">4.2 Multiple Measurements
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/2-multiple-variables/index.html">4.2 Covariance, Correlation, Regression
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/statistics/4-numerical-data/3-testing/index.html">4.3 Normal Distribution and Testing
 </a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li></ul>
              </div>
@@ -135,11 +135,109 @@
   </div>
 
     <h1 class="text-3xl mb-5">
-    4.2 Multiple Measurements
+    4.2 Covariance, Correlation, Regression
 
 </h1>
 
-
+<p class="mb-3">When doing science, we often want to study the <em>relation</em> between two observables <code>A</code> and <code>B</code>. Most of the time, we want to foresee the future with partial information:</p>
+<blockquote>
+<p class="mb-3">Can we foresee the behavior of <code>A</code> by knowing <code>B</code>? Or maybe the opposite? When one grows, what happens to the other?</p>
+</blockquote>
+<p class="mb-3">We will use the following data to exemplify the following techniques:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li><a class="link link-hover text-zinc-600" href="data/birthweight_description.pdf">Birth Data Description</a></li>
+<li><a class="link link-hover text-zinc-600" href="data/birthweight_data.xlsx">Birth Data</a></li>
+</ul>
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="manual-experiment"><span class="header-section-number">1</span> Manual Experiment</h1>
+<p class="mb-3">The class will compile a list with the following information:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>Height</li>
+<li>Shoe size</li>
+<li>Number of brothers and sisters</li>
+</ul>
+<p class="mb-3">We will make a graph with this information in Excel. What values seem to grow together? Which values seem to have no relation between them.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="correlation"><span class="header-section-number">2</span> Correlation</h1>
+<p class="mb-3">Correlation is a measure of how two things behave similarly. For example:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>People’s height is <em>positively correlated</em> with their weight – that’s because a bigger height in general means a bigger weight.</li>
+<li>In a house, the amount of people is <em>negatively correlated</em> with the amount of space per person – that’s because the more people you have, the less space each one can have for themselves.</li>
+</ul>
+<p class="mb-3">These behaviors can be seen in a graph. For example, look at this graph:</p>
+<p class="mb-3"><img class="mx-auto" src="data/correlation.png" /></p>
+<p class="mb-3">As we can see, the values tend to grow from the left to the right, together. This is the sign of a positive correlation.</p>
+<p class="mb-3">Mathematically, there is a formula for correlation, which takes value from -1 up to 1. It goes from negatively correlated (-1), to uncorrelated (0) to positively correlated (1).</p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.1" id="formula"><span class="header-section-number">2.1</span> Formula</h2>
+<p class="mb-3">In order to calculate correlation, one needs sequences pairs of numbers. These sequences will be written <span class="math inline notranslate">x_1, ..., x_n</span> and <span class="math inline notranslate">y_1, ..., y_n</span>. Writing <span class="math inline notranslate">M_x</span> for the average of <span class="math inline notranslate">x</span> and <span class="math inline notranslate">M_y</span> for the correlation of <span class="math inline notranslate">y</span>, then the formula for <em>correlation</em> is:</p>
+<p class="mb-3"><span class="math display notranslate">
+r\_{xy} = \frac{\sum\_{i=1}^n (x_i-M_x) (y_i-M_y)}{\sqrt{\sum\_{i=1}^n (x_i-M_x)^2} \sqrt{\sum\_{i=1}^n (y_i - M_y)^2}}
+</span></p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.2" id="in-excel"><span class="header-section-number">2.2</span> In Excel</h2>
+<p class="mb-3">In Excel, the correlation between two data sets can be calculated using the <code>CORREL(A1:A100,B1:B100)</code> function, replacing the data ranges by the desired values.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.3" id="exercises"><span class="header-section-number">2.3</span> Exercises</h2>
+<p class="mb-3">In the babies data set, there are many measurements. For any pair of measurements, we can:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>Create a X-Y scatter plot to visualize the data</li>
+<li>Analyze it, and try to infer if there is a positive, negative or no correlation.</li>
+<li>In a separate cell, measure the correlation using <code>CORREL</code>.</li>
+</ul>
+<p class="mb-3">Some interesting pairs for doing it are:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>Size and weight</li>
+<li>Size and number of cigarettes smoked by the mother</li>
+<li>Weight and number of cigarettes smoked by the mother</li>
+<li>Size and father height</li>
+<li>Size and father years of education</li>
+</ul>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="regression"><span class="header-section-number">3</span> Regression</h1>
+<p class="mb-3">In the section above we studied correlation. In some cases, such as weight and size, there is a very clear relation between the two variables. This deserves a question: can we model this relation with a straight line?</p>
+<p class="mb-3"><img class="mx-auto" src="data/regression.png" /></p>
+<p class="mb-3">Look at the graph above: each blue dot has a coordinate <span class="math inline notranslate">(x,y)</span>. The straight line, is also composed by pairs of coordinates, such as the points, but its points follow a rule: <span class="math display notranslate">
+y = \beta + \alpha x
+</span> In this formula, there are two coefficients:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li><span class="math inline notranslate">\beta</span> is the intersection coefficient: <span class="math inline notranslate">y = \beta</span> when <span class="math inline notranslate">x = 0</span></li>
+<li><span class="math inline notranslate">\alpha</span> is the inclination coefficient: it measures the speed of increase or decrease of the variable</li>
+</ul>
+<p class="mb-3">How should we draw this line? After all, we can draw any line in the graph, and it will be a model – but its quality can be better or worse, depending on the coefficients.</p>
+<p class="mb-3">In order to choose the coefficients, we evaluate the error term:</p>
+<p class="mb-3"><img class="mx-auto" src="data/regression-2.png" /></p>
+<p class="mb-3">The error term measures the difference between the measured value (one of the <span class="math inline notranslate">y_k</span> values) and the value predicted by the model (calculated by <span class="math inline notranslate">\beta + \alpha x_k</span>). The best model is the one which makes the error, measured by: <span class="math display notranslate">
+\epsilon(\alpha,\beta) = \sum_{k = 1}^n (y_k - \beta - \alpha x_k)^2
+</span> as small as possible. The square (²) is there to make calculations easier.</p>
+<p class="mb-3">If we use this criterion, we can calculate the regression coefficients as:</p>
+<p class="mb-3"><span class="math display notranslate">
+\beta = M_y − \alpha M_x
+</span></p>
+<p class="mb-3">and</p>
+<p class="mb-3"><span class="math display notranslate">
+\alpha = r_{xy} \frac{\sigma_y}{\sigma_x}
+</span></p>
+<p class="mb-3">where <span class="math inline notranslate">M</span> represents the mean, <span class="math inline notranslate">r</span> the regression coefficient, and <span class="math inline notranslate">\sigma</span> the standard deviation.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.1" id="practice"><span class="header-section-number">3.1</span> Practice</h2>
+<p class="mb-3">Choose a pair of measurements. For this pair we will create a table with:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>Average of <span class="math inline notranslate">x</span> (<span class="math inline notranslate">M_x</span>)</li>
+<li>Average of <span class="math inline notranslate">y</span> (<span class="math inline notranslate">M_y</span>)</li>
+<li>Standard deviation of <span class="math inline notranslate">x</span> (<span class="math inline notranslate">\sigma_x</span>)</li>
+<li>Standard deviation of <span class="math inline notranslate">y</span> (<span class="math inline notranslate">\sigma_y</span>)</li>
+<li>Correlation of <span class="math inline notranslate">x</span> and <span class="math inline notranslate">y</span> (<span class="math inline notranslate">r_{xy}</span>)</li>
+<li>The <span class="math inline notranslate">\beta</span> coefficient</li>
+<li>The <span class="math inline notranslate">\alpha</span> coefficient</li>
+<li>The optimal <span class="math inline notranslate">\beta</span></li>
+<li>The optimal <span class="math inline notranslate">\alpha</span></li>
+</ul>
+<p class="mb-3">Next to it, two columns:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>One with the prediction <span class="math inline notranslate">\beta + \alpha x</span></li>
+<li>Another with the error <span class="math inline notranslate">y − \beta − \alpha x</span></li>
+</ul>
+<h1 class="text-2xl mt-5 mb-5" data-number="4" id="control"><span class="header-section-number">4</span> Control</h1>
+<p class="mb-3">Download the following:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>Control description: <a class="link link-hover text-zinc-600" href="data/control-1-RU.docx">Russian</a> or <a class="link link-hover text-zinc-600" href="data/control-1-EN.docx">English</a></li>
+<li>Control spreadsheet: <a class="link link-hover text-zinc-600" href="data/control-1.xlsx">English</a></li>
+</ul>
+<p class="mb-3">And follow the instructions. We will make rounds so all students can do the control by themselves.</p>
 
   <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
 
