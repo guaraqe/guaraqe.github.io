@@ -28,6 +28,13 @@ copyStaticFiles = do
   void $ forP filepaths $ \filepath ->
     copyFileChanged ("site" </> filepath) (outputFolder </> filepath)
 
+copyExam :: Action ()
+copyExam = do
+  let path = "/home/juan/Code/guaraqe/tdsi-questions/build-github"
+  filepaths <- getDirectoryFiles path ["//*"]
+  void $ forP filepaths $ \filepath ->
+    copyFileChanged (path </> filepath) (outputFolder </> "courses" </> "bioinformatics-exam" </> filepath)
+
 buildBlog :: Action [Blog.Post]
 buildBlog = do
   posts <- Blog.build "site/posts" (outputFolder </> "posts")
@@ -137,6 +144,7 @@ buildRules = do
   buildCV
   buildProjects
   copyStaticFiles
+  copyExam
 
 main :: IO ()
 main = do

@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "https://guaraqe.github.io/courses/bioinformatics-exam/static/css/main.c9aeafae.css",
+    "main.js": "https://guaraqe.github.io/courses/bioinformatics-exam/static/js/main.7d2a416e.js",
+    "static/media/codon-table.png": "https://guaraqe.github.io/courses/bioinformatics-exam/static/media/codon-table.54ae5f4a3dfb047e4276.png",
+    "index.html": "https://guaraqe.github.io/courses/bioinformatics-exam/index.html",
+    "static/media/getFetch.cjs": "https://guaraqe.github.io/courses/bioinformatics-exam/static/media/getFetch.40f37ddea2378391108f.cjs",
+    "main.c9aeafae.css.map": "https://guaraqe.github.io/courses/bioinformatics-exam/static/css/main.c9aeafae.css.map",
+    "main.7d2a416e.js.map": "https://guaraqe.github.io/courses/bioinformatics-exam/static/js/main.7d2a416e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c9aeafae.css",
+    "static/js/main.7d2a416e.js"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "bioinformatics": {
+    "coding": {
+      "text": "First, load the library `seqinr` using:\n\n```R\nlibrary(seqinr)\n```\n\nThen save your DNA sequence in a variable which is **your first name**, using the following example as a reference:\n\n```R\nteacher <- s2c(tolower(\"AAACCCGGGTTT\"))\n```\n\nUsing this variable, calculate:\n\n- The nucleotide statistics, using the `count` function. For example, it can be used as `count(teacher,1)`.\n- Display the dot plot comparing the sequence with itself using the `dotPlot` function. For example, this function can be used as `dotPlot(dna1, dna2)`.",
+      "title": "Programming"
+    },
+    "instructions": {
+      "coding": "Programming",
+      "oral": "Oral Question",
+      "question": "Questions",
+      "text": "This exam has three parts: questions to be answered in this page, a programming exercise, and an oral question. All three parts must be done, but they can be done in any order. Whenever you finish a part, call the teacher to show the result.\n\nFor some of these questions you will you need to use a DNA sequence, which is the one below. Do **not** reload the page, otherwise you will lose your answers, and the DNA sequence will change.",
+      "title": "Instructions"
+    },
+    "oral": {
+      "gene": "What is a gene? What is the full process for transforming it into a protein?",
+      "orf": "What is an open reading frame in a DNA strand? How can we identify them? Why are they useful?",
+      "rna": "What are the nucleotides that compose RNA? How are nucleotides in a DNA strand translated into RNA?",
+      "title": "Oral Question"
+    },
+    "questions": {
+      "complementary": "Write the DNA sequence complementary to the given one. Make sure it is written in the 5' to 3' direction.",
+      "gc": "What is the GC content of the DNA sequence? Write it in percentage, without the percent sign. For example, \"60\".",
+      "orf": "Find an aminoacid sequence that could be coded by RNA trascribed by an open reading frame (RNA) in either the DNA sequence or its complementary sequence. Use the table below as a reference.\n\nWrite the full sequence, for example, \"MCK*\". If many sequences are possible, write just one.",
+      "rna": "Write the RNA that would be obtained by the transcription of the DNA sequence.",
+      "rna-complementary": "Write the RNA that would be obtained by the transcription of the complementary DNA sequence found in the previous question."
+    }
+  },
+  "calculator": {
+    "name": "Calculator",
+    "text": "Use this calculator to evaluate mathematical expressions, such as \"1 + 2\", \"2 * 3\" or \"20 / 5\"."
+  },
+  "notes": {
+    "name": "Notes",
+    "text": "Use this space to take notes for yourself, and to help with questions."
+  },
+  "questions": {
+    "answer": "Answer",
+    "check": "Check",
+    "correct": "Correct",
+    "question": "Question"
+  },
+  "ui": {
+    "language": "Language",
+    "title": "TSDI - Bioinformatics"
+  }
+}
