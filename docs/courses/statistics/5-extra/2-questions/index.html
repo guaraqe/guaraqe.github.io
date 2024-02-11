@@ -5,7 +5,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name=viewport content="width=device-width, initial-scale=1">
-    <title>3.2 Models and binary diagnosis
+    <title>5.2 Questions
 </title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/syntax.css">
@@ -113,7 +113,7 @@
 
     <div class="book-navigation-parent">
       <div class="arrow arrow-up"></div>
-      <a href="/courses/statistics/3-ordered-data/index.html">3 Ordered Data
+      <a href="/courses/statistics/5-extra/index.html">5 Extra
 </a>
       <div class="arrow arrow-up"></div>
     </div>
@@ -122,14 +122,11 @@
 
        <div class="book-navigation-previous">
          <div class="arrow arrow-left"></div>
-         <a href="/courses/statistics/3-ordered-data/1-measurements/index.html">3.1 Cumulative probabilities
+         <a href="/courses/statistics/5-extra/1-control/index.html">5.1 Control
 </a>
        </div>
 
        <div class="book-navigation-next">
-         <a href="/courses/statistics/3-ordered-data/3-testing/index.html">3.3 Conditional probabilities and model evaluation
-</a>
-         <div class="arrow arrow-right"></div>
        </div>
     </div>
 
@@ -138,71 +135,43 @@
   </div>
 
     <h1 class="text-3xl mb-5">
-    3.2 Models and binary diagnosis
+    5.2 Questions
 
 </h1>
 
-<h1 class="text-2xl mt-5 mb-5" data-number="1" id="binary-diagnosis"><span class="header-section-number">1</span> Binary Diagnosis</h1>
-<p class="mb-3">Binary diagnosis is the process of evaluating data and classifying it in one of two categories. For example, one can look at a patient, and decide if they are sick or not. Another example are PCR tests for Covid, which identify the presence or not of the virus in the patient. The purpose of this class is to discuss how we can measure the <strong>quality</strong> of a binary diagnosis test.</p>
-<p class="mb-3">We are going to use data from benign and malignant tumours, available <a class="link link-hover text-zinc-600" href="data/breast-cancer-wisconsin.xlsx">here</a>.</p>
-<h2 class="text-xl mt-5 mb-5" data-number="1.1" id="classifying-results"><span class="header-section-number">1.1</span> Classifying Results</h2>
-<p class="mb-3">Suppose you are analysing a new diagnostic test. You test it with two groups of people: a group you know is sick, and another which is healthy. You test each one of these people, and you get the results: <em>positive</em> for sick people, <em>negative</em> for healthy people. These results can placed in a table such as the one below:</p>
-<p class="mb-3"><img class="mx-auto" src="data/table.png" /></p>
-<p class="mb-3">We can classify results in four ways:</p>
-<ul class="list-disc list-outside mt-1 mb-3 pl-5">
-<li><strong>True Positive</strong>: a sick patient had a positive result</li>
-<li><strong>False Positive</strong>: a healthy patient had a positive result</li>
-<li><strong>False Negative</strong>: a sick patient had a negative result</li>
-<li><strong>True Negative</strong>: a healthy patient had a negative result</li>
-</ul>
-<h2 class="text-xl mt-5 mb-5" data-number="1.2" id="in-practice"><span class="header-section-number">1.2</span> In Practice</h2>
-<p class="mb-3">In the Excel file, we have data for breast tumours, with different categorized characteristics. The most important column is the last one, Class, which says whether the tumour is benign (2) or malignant (4). We will try to create a method to diagnose a tumour, and see how it performs.</p>
-<p class="mb-3"><a class="link link-hover text-zinc-600" href="https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29">Source</a></p>
-<h1 class="text-2xl mt-5 mb-5" data-number="2" id="probabilistic-methods"><span class="header-section-number">2</span> Probabilistic methods</h1>
-<p class="mb-3">Every measurement will have a different relation to the diagnostic. In the example of the previous class, for example, we saw a model that put a relation between tumour size and malignant cancer.</p>
-<p class="mb-3">How can we evaluate the effect of a quantity on the cancer? For example, for tumour size, we can make a table:</p>
-<table class="table border-collapse mb-3">
-<thead>
-<tr class="header">
-<th class="border">Tumour Size</th>
-<th class="border">Quantity</th>
-<th class="border">Quantity with cancer</th>
-<th class="border">Proportion</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td class="border">1</td>
-<td class="border">N1</td>
-<td class="border">Q1</td>
-<td class="border">N1/Q1</td>
-</tr>
-<tr class="even">
-<td class="border">…</td>
-<td class="border">…</td>
-<td class="border">…</td>
-<td class="border">…</td>
-</tr>
-<tr class="odd">
-<td class="border">10</td>
-<td class="border">N10</td>
-<td class="border">Q10</td>
-<td class="border">N10/Q10</td>
-</tr>
-</tbody>
-</table>
-<p class="mb-3">The last column, <em>Proportion</em>, with show the proportion of cancers with the given size which are malignant. This table can be made with use of the <code>COUNTIFS/СЧЁТЕСЛИМН</code> function from Excel.</p>
-<p class="mb-3">With this table, we have a probabilistic diagnostic tool. Let’s say your patient has a cancer of size 2 – look at the table, and you know the probability of it being malignant.</p>
-<p class="mb-3">We can also make this table using more than one parameter at the same time. For example, we can use tumour size and cell size uniformity. Then we need to make a new table, and check the two parameters together – we cannot just use the result of the two previous tables together and combine them.</p>
-<p class="mb-3">To be done in class:</p>
-<ul class="list-disc list-outside mt-1 mb-3 pl-5">
-<li>Table for tumour size</li>
-<li>Table for uniformity of cell size</li>
-<li>Table for uniformity of cell shape</li>
-<li>What happens when we take two criteria into account?</li>
-</ul>
-<h1 class="text-2xl mt-5 mb-5" data-number="3" id="control"><span class="header-section-number">3</span> Control</h1>
-<p class="mb-3">You will reproduce the analysis by filling the following <a class="link link-hover text-zinc-600" href="data/control.xlsx">control exercise</a>. The description of the exercise can be found in <a class="link link-hover text-zinc-600" href="data/control-EN.docx">English</a> and <a class="link link-hover text-zinc-600" href="data/control-RU.docx">Russian</a>.</p>
+<ol class="list-decimal list-outside mt-1 mb-3 pl-5" type="1">
+<li>For which kinds of data can we make a histogram using just counts?</li>
+<li>For which kinds of data can we make a cumulative count graph?</li>
+<li>What is the probability of the value “Cat” in this data set: Mouse, Cat, Mouse, Dog, Mouse, Dog, Mouse, Mouse</li>
+<li>What is the probability of the value “Dog” in this data set: Mouse, Cat, Mouse, Dog, Mouse, Dog, Mouse, Mouse</li>
+<li>What is the probability of the value “Mouse” in this data set: Mouse, Cat, Mouse, Dog, Mouse, Dog, Mouse, Mouse</li>
+<li>What is the median of the following values: 2, 5, 3, 4, 1</li>
+<li>What is the median of the values 2, 2, 6, 4, 6, 4</li>
+<li>What is the median of the following grades, knowing that grades follow the order F, D, C, B, A: F, B, D, A, C, C, B, A, F</li>
+<li>What is the mean of the following values: 1, 4, 3, 7, 5</li>
+<li>What is the mean of the following values: 14, 25, 46, 34, 11</li>
+<li>What is the standard deviation of the following values: 1, 3</li>
+<li>What is the standard deviation of the following values: 10, 25</li>
+<li>To which kind of data can you apply Pearson’s chi-squared test?</li>
+<li>To which kind of data can you apply Fishers’s exact test?</li>
+<li>To which kind of data can you apply Student’s T test?</li>
+<li>To which kind of data can you apply Fisher’s exact test?</li>
+<li>You apply Pearson’s chi-squared test, and it returned a p-value of 3%. What is the meaning of this?</li>
+<li>You apply Fisher’s exact test, and it returned a p-value of 12%. What is the meaning of this?</li>
+<li>You apply Student’s T test, and it returned a p-value of 1%. What is the meaning of this?</li>
+<li>You apply an F test, and it returned a p-value of 20%. What is the meaning of this?</li>
+<li>A diagnostic test has it results written as (A,B), where both A and B can be either P (for positive) or F (for negative), and the first entry represents the reference for the test, and the second the result of the diagnostic. The results were (T,T), (T,F), (F,T), (T,T), (F,F), (F,T), (T,T). How many true positives does this test has?</li>
+<li>A diagnostic test has it results written as (A,B), where both A and B can be either P (for positive) or F (for negative), and the first entry represents the reference for the test, and the second the result of the diagnostic. The results were (T,T), (T,F), (F,T), (T,T), (F,F), (F,T), (T,T). How many false positives does this test has?</li>
+<li>A diagnostic test has it results written as (A,B), where both A and B can be either P (for positive) or F (for negative), and the first entry represents the reference for the test, and the second the result of the diagnostic. The results were (T,T), (T,F), (F,T), (T,T), (F,F), (F,T), (T,T). How many false negatives does this test has?</li>
+<li>A diagnostic test has it results written as (A,B), where both A and B can be either P (for positive) or F (for negative), and the first entry represents the reference for the test, and the second the result of the diagnostic. The results were (T,T), (T,F), (F,T), (T,T), (F,F), (F,T), (T,T). How many true negatives does this test has?</li>
+<li>A diagnostic test has it results written as (A,B), where both A and B can be either P (for positive) or F (for negative), and the first entry represents the reference for the test, and the second the result of the diagnostic. The results were (T,T), (T,F), (F,T), (T,T), (F,F), (F,T), (T,T). What is the sensitivity of this test?</li>
+<li>A diagnostic test has it results written as (A,B), where both A and B can be either P (for positive) or F (for negative), and the first entry represents the reference for the test, and the second the result of the diagnostic. The results were (T,T), (T,F), (F,T), (T,T), (F,F), (F,T), (T,T). What is the specificity of this test?</li>
+<li>A diagnostic test has it results written as (A,B), where both A and B can be either P (for positive) or F (for negative), and the first entry represents the reference for the test, and the second the result of the diagnostic. The results were (T,T), (T,F), (F,T), (T,T), (F,F), (F,T), (T,T). What is the PPV of this test?</li>
+<li>A diagnostic test has it results written as (A,B), where both A and B can be either P (for positive) or F (for negative), and the first entry represents the reference for the test, and the second the result of the diagnostic. The results were (T,T), (T,F), (F,T), (T,T), (F,F), (F,T), (T,T). What is the NPV of this test?</li>
+<li>Which ones of these is type of text weight in Word?</li>
+<li>Which ones of these are types of text alignment in Word?</li>
+<li>Which ones of these are types of text justification in Word?</li>
+</ol>
 
   <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
 
