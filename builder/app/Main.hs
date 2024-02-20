@@ -28,8 +28,15 @@ copyStaticFiles = do
   void $ forP filepaths $ \filepath ->
     copyFileChanged ("site" </> filepath) (outputFolder </> filepath)
 
-copyExam :: Action ()
-copyExam = do
+copyBioinformaticsExam :: Action ()
+copyBioinformaticsExam = do
+  let path = "/home/juan/Code/guaraqe/tdsi-statistics-exam/build-github"
+  filepaths <- getDirectoryFiles path ["//*"]
+  void $ forP filepaths $ \filepath ->
+    copyFileChanged (path </> filepath) (outputFolder </> "courses" </> "statistics-exam" </> filepath)
+
+copyStatisticsExam :: Action ()
+copyStatisticsExam = do
   let path = "/home/juan/Code/guaraqe/tdsi-questions/build-github"
   filepaths <- getDirectoryFiles path ["//*"]
   void $ forP filepaths $ \filepath ->
@@ -144,7 +151,8 @@ buildRules = do
   buildCV
   buildProjects
   copyStaticFiles
-  copyExam
+  copyBioinformaticsExam
+  copyStatisticsExam
 
 main :: IO ()
 main = do
