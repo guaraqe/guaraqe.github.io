@@ -60,6 +60,9 @@ buildBooks = do
       ),
       ( "/home/juan/Courses/Bioinformatics",
         "courses/bioinformatics"
+      ),
+      ( "/home/juan/Courses/Physics",
+        "courses/physics"
       )
     ]
 
