@@ -42,6 +42,13 @@ copyStatisticsExam = do
   void $ forP filepaths $ \filepath ->
     copyFileChanged (path </> filepath) (outputFolder </> "courses" </> "bioinformatics-exam" </> filepath)
 
+copyPhysicsExam :: Action ()
+copyPhysicsExam = do
+  let path = "/home/juan/Code/guaraqe/tdsi-physics-exam/build-github"
+  filepaths <- getDirectoryFiles path ["//*"]
+  void $ forP filepaths $ \filepath ->
+    copyFileChanged (path </> filepath) (outputFolder </> "courses" </> "physics-exam" </> filepath)
+
 buildBlog :: Action [Blog.Post]
 buildBlog = do
   posts <- Blog.build "site/posts" (outputFolder </> "posts")
@@ -156,6 +163,7 @@ buildRules = do
   copyStaticFiles
   copyBioinformaticsExam
   copyStatisticsExam
+  copyPhysicsExam
 
 main :: IO ()
 main = do
