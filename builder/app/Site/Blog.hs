@@ -18,7 +18,6 @@ import Data.List (sortOn)
 import Data.Ord (Down (..))
 import Data.Text qualified as T
 import Data.Time
-import Data.Time.Format (formatTime, defaultTimeLocale)
 import Development.Shake
 import Development.Shake.Classes
 import Development.Shake.FilePath
@@ -33,7 +32,7 @@ build :: FilePath -> FilePath -> Action [Post]
 build inputFolder outputFolder = do
   copyStaticFiles inputFolder outputFolder
   posts <- buildPosts inputFolder outputFolder
-  pure $ sortOn (Down . (.date)) posts
+  pure $ sortOn (Down . (.sortDate)) posts
 
 --------------------------------------------------------------------------------
 -- Static
@@ -78,6 +77,7 @@ data Post = Post
     url :: String,
     fullUrl :: String,
     date :: String,
+    sortDate :: String,
     summary :: Maybe String
   }
   deriving (Generic, Eq, Ord, Show, FromJSON, ToJSON, Binary)
@@ -98,6 +98,7 @@ buildPost outputFolder srcPath = cacheAction ("post" :: T.Text, srcPath) $ do
 
   let fullPostData =
         setObjectAttribute "date" (formatTime defaultTimeLocale "%B %e, %Y" date)
+          . setObjectAttribute "sortDate" (showGregorian date)
           . setObjectAttribute "dateISO" (showGregorian date)
           . setObjectAttribute "url" postUrl
           . setObjectAttribute "fullUrl" ("posts" </> postUrl)

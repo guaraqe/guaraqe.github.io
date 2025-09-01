@@ -16,7 +16,6 @@ import Site.Book qualified as Book
 import Site.Layout qualified as Layout
 import Site.Sitemap qualified as Sitemap
 import Data.Text qualified as Text
-import Site.Pandoc qualified as Pandoc
 import Slick
 import Data.Aeson (toJSON, object)
 

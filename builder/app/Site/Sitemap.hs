@@ -3,9 +3,7 @@
 
 module Site.Sitemap (buildSitemap) where
 
-import Data.List (intercalate)
 import Data.Time
-import Data.Time.Format (formatTime, defaultTimeLocale)
 import Development.Shake
 import Development.Shake.FilePath
 import Site.Blog (Post)

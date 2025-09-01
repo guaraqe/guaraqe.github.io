@@ -31,14 +31,14 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/posts/2017-11-02-type-classes-incidental-non-examples.html</loc>
-    <lastmod>November  </lastmod>
+    <loc>https://guaraqe.github.io/posts/2023-01-02-cpu-usage.html</loc>
+    <lastmod>January  2</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/posts/2017-11-01-type-classes-laws.html</loc>
-    <lastmod>November  </lastmod>
+    <loc>https://guaraqe.github.io/posts/2021-04-15-arrows-through-a-different-lens.html</loc>
+    <lastmod>April 15, </lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -55,25 +55,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/posts/2019-01-23-ihaskell.html</loc>
-    <lastmod>January 23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://guaraqe.github.io/posts/2023-01-02-cpu-usage.html</loc>
-    <lastmod>January  2</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://guaraqe.github.io/posts/2019-02-28-jupyterwith.html</loc>
-    <lastmod>February 2</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://guaraqe.github.io/posts/2017-02-24-article.html</loc>
     <lastmod>February 2</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -85,14 +67,32 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://guaraqe.github.io/posts/2019-01-23-ihaskell.html</loc>
+    <lastmod>January 23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://guaraqe.github.io/posts/2018-04-17-nix-haskell-clusters.html</loc>
     <lastmod>April 17, </lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/posts/2021-04-15-arrows-through-a-different-lens.html</loc>
-    <lastmod>April 15, </lastmod>
+    <loc>https://guaraqe.github.io/posts/2017-11-02-type-classes-incidental-non-examples.html</loc>
+    <lastmod>November  </lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guaraqe.github.io/posts/2017-11-01-type-classes-laws.html</loc>
+    <lastmod>November  </lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guaraqe.github.io/posts/2017-02-24-article.html</loc>
+    <lastmod>February 2</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

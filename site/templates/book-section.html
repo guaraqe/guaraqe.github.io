@@ -29,9 +29,7 @@
 
     {{#parentTitle}}
     <div class="book-navigation-parent">
-      <div class="arrow arrow-up"></div>
-      <a href="{{parentUrl}}">{{parentTitle}}</a>
-      <div class="arrow arrow-up"></div>
+      <a href="{{parentUrl}}">↑ {{parentTitle}}</a>
     </div>
     {{/parentTitle}}
 
@@ -39,7 +37,6 @@
 
        <div class="book-navigation-previous">
          {{#previousTitle}}
-         <div class="arrow arrow-left"></div>
          <a href="{{previousUrl}}">{{previousTitle}}</a>
          {{/previousTitle}}
        </div>
@@ -47,16 +44,17 @@
        <div class="book-navigation-next">
          {{#nextTitle}}
          <a href="{{nextUrl}}">{{nextTitle}}</a>
-         <div class="arrow arrow-right"></div>
          {{/nextTitle}}
        </div>
     </div>
 
-    <div id="google_translate_element" style="margin-top:1em;"></div>
-
   </div>
 
     {{{content}}}
+
+    <div class="google-translate-container">
+      <div id="google_translate_element"></div>
+    </div>
 
 </article>
   <script type="text/javascript">
