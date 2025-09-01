@@ -104,7 +104,24 @@
         <h1 class="text-3xl mb-5">
             Projects
         </h1>
-        <div class="max-w-4xl mx-auto px-6 py-8">
+        <style>
+.tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+}
+.tag-haskell { background-color: #f3e8ff; color: #7c3aed; }
+.tag-web { background-color: #dbeafe; color: #2563eb; }
+.tag-nix { background-color: #ecfdf5; color: #059669; }
+.tag-postgres { background-color: #dbeafe; color: #2563eb; }
+.tag-docker { background-color: #dbeafe; color: #2563eb; }
+.tag-education { background-color: #fef3c7; color: #d97706; }
+.tag-ipfs { background-color: #fed7aa; color: #ea580c; }
+.tag-research { background-color: #f3e8ff; color: #7c3aed; }
+</style>
+
+<div class="max-w-4xl mx-auto px-6 py-8">
     <h1 class="text-4xl font-bold mb-6">Open Source Impact</h1>
 
     <div class="bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-lg mb-8">
@@ -143,7 +160,12 @@
             </div>
         </div>
         
-        <p class="text-sm text-gray-600 italic mt-4">Impact: Advanced computational methods for embryonic development studies</p>
+        <div class="flex flex-wrap gap-2 mt-4 mb-3">
+            <span class="tag tag-haskell">Haskell</span>
+            <span class="tag tag-research">Research</span>
+            <span class="tag tag-nix">Nix</span>
+        </div>
+        <p class="text-sm text-gray-600 italic">Impact: Advanced computational methods for embryonic development studies</p>
     </div>
 
     <div class="bg-white border border-gray-200 rounded-lg p-6 mb-8 shadow-sm">
@@ -173,7 +195,26 @@
             </div>
         </div>
         
-        <p class="text-sm text-gray-600 italic mt-4">Status: Working full-stack decentralization platform</p>
+        <div class="flex flex-wrap gap-2 mt-4 mb-3">
+            <span class="tag tag-haskell">Haskell</span>
+            <span class="tag tag-web">Web</span>
+            <span class="tag tag-postgres">PostgreSQL</span>
+            <span class="tag tag-ipfs">IPFS</span>
+            <span class="tag tag-docker">Docker</span>
+        </div>
+        <p class="text-sm text-gray-600 italic">Status: Working full-stack decentralization platform</p>
+    </div>
+
+    <div class="bg-white border border-gray-200 rounded-lg p-5 mb-8 shadow-sm">
+        <h3 class="text-lg font-bold mb-2">
+            <a href="https://github.com/guaraqe/gnuhealth-nix-docker" class="text-blue-600 hover:text-blue-800">GNUHealth Nix Docker</a>
+        </h3>
+        <p class="text-gray-700 mb-3">Configurable Docker deployment for GNUHealth medical information systems. Simplifies deployment using Nix reproducibility and Docker containerization, practical for small deployments when teaching medical information systems.</p>
+        <div class="flex flex-wrap gap-2">
+            <span class="tag tag-docker">Docker</span>
+            <span class="tag tag-nix">Nix</span>
+            <span class="tag tag-education">Education</span>
+        </div>
     </div>
 
     <h2 class="text-2xl font-semibold mb-6 flex items-center">
@@ -186,8 +227,7 @@
                 <a href="https://github.com/guaraqe/constraint-classes" class="text-blue-600 hover:text-blue-800">constraint-classes</a>
             </h3>
             <p class="text-gray-700 mb-3">Haskell library addressing type class limitations using ConstraintKinds. Enables flexible abstractions while preserving type inference.</p>
-            <span class="inline-block bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Type-level programming</span>
-            <span class="inline-block bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full ml-2">Constraint handling</span>
+            <span class="tag tag-haskell">Haskell</span>
         </div>
 
         <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
@@ -195,8 +235,8 @@
                 <a href="https://github.com/guaraqe/reflex-elm" class="text-blue-600 hover:text-blue-800">reflex-elm</a>
             </h3>
             <p class="text-gray-700 mb-3">Elm-inspired development model for Haskell web applications. Combines Reflex reactive programming with Elm's architecture.</p>
-            <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Reactive programming</span>
-            <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full ml-2">Web development</span>
+            <span class="tag tag-haskell">Haskell</span>
+            <span class="tag tag-web">Web</span>
         </div>
 
         <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
@@ -204,8 +244,7 @@
                 <a href="https://github.com/guaraqe/LATS" class="text-blue-600 hover:text-blue-800">LATS</a>
             </h3>
             <p class="text-gray-700 mb-3">Functional programming utilities for Haskell development. Patterns and abstractions from consulting experience.</p>
-            <span class="inline-block bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full">Haskell utilities</span>
-            <span class="inline-block bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full ml-2">Developer tools</span>
+            <span class="tag tag-haskell">Haskell</span>
         </div>
     </div>
 
