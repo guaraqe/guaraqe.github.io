@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>Summarizing multicore usage using entropy
+</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   var macros = [];
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      macros: macros,
+      fleqn: false
+     });
+  }}});
+    </script>
+
+</head>
+<body>
+    <header>
+        <div class="navbar bg-base-100 px-4 py-3">
+          <div class="navbar-start">
+            <a href="/" class="flex items-center group">
+              <img src="/images/juan.png" alt="Juan Simões" class="w-8 h-8 rounded-full object-cover mr-3 group-hover:scale-105 transition-transform">
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors hidden sm:inline">Juan Raphael Diaz Simões</span>
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors sm:hidden">Juan Simões</span>
+            </a>
+          </div>
+          <div class="navbar-end">
+            <ul class="menu menu-horizontal text-sm space-x-1">
+              <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Posts</a></li>
+              <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors hidden sm:inline-block">Courses</a></li>
+              <li><a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">CV</a></li>
+              <li><a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors hidden sm:inline-block">Projects</a></li>
+            </ul>
+          </div>
+        </div>
+    </header>
+    <div class="md:flex justify-center bg-base-100">
+    <article class="prose max-w-prose">
+        <h1 class="text-3xl mb-5">
+            Summarizing multicore usage using entropy
+
+        </h1>
+        <div class="mb-5">2023-01-02</div>
+
+        <p class="mb-3">I am an xmonad user, and use xmobar as my status bar. Previously, I had a 4-core CPU, and showed the CPU usage in the status bar using the <code>MultiCpu</code> plugin, which gave me something like:</p>
+<pre><code>0% 10% 1% 2%</code></pre>
+<p class="mb-3">which is fairly simple to read. However, I just changed laptops, and now I have a 16-core CPU, resulting in something like:</p>
+<pre><code>0% 10% 1% 2% 0% 12% 3% 0% 1% 0% 5% 6% 0% 2% 3% 1%</code></pre>
+<p class="mb-3">which is hard to understand. I thought about replacing it by just the average usage, but sometimes it’s useful to know how some software is using the cores – just one core with 100% and sixteen cores with 6.25% are very different.</p>
+<p class="mb-3">Here, I will propose a solution where one can report the following CPU usage:</p>
+<pre><code>100% 100% 100% 100% 0% 0% 0% 0% 0% 0% 0% 0% 0% 0% 0% 0%</code></pre>
+<p class="mb-3">as</p>
+<pre><code>25% 4.0</code></pre>
+<p class="mb-3">where the first number is the average usage, and the second is the effective number of used cores. This is an useful summary, and if more detail is needed, one can always open <code>htop</code>.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="entropy-and-effective-numbers"><span class="header-section-number">1</span> Entropy and effective numbers</h1>
+<p class="mb-3"><a class="link link-hover text-zinc-600" href="https://en.wikipedia.org/wiki/Entropy_(information_theory)">Entropy</a> is number that (in short) indicates how uniform a statistical distribution is. The more the distribution is uniform, the higher the entropy. For a distribution with probabilities <span class="math inline notranslate">p_1</span>, …, <span class="math inline notranslate">p_n</span>, entropy is calculated as:</p>
+<p class="mb-3"><span class="math display notranslate">
+S = - \sum_{k=1}^n p_k \log p_k
+</span></p>
+<p class="mb-3">Less well-known, but closely related are <em>effective numbers</em> or <a class="link link-hover text-zinc-600" href="https://en.wikipedia.org/wiki/Diversity_index"><em>diversity indexes</em></a>. The idea is that in a probability distribution, some states may be overrepresented, and may represent the almost totality of the distribution. Effective numbers are a way to count such states. They are simple to calculate:</p>
+<p class="mb-3"><span class="math display notranslate">
+N = e^S
+</span></p>
+<p class="mb-3">This is the number we will report in the status bar.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="code"><span class="header-section-number">2</span> Code</h1>
+<p class="mb-3">I report the CPU usage using a custom command, which executes the following Python script:</p>
+<div class="sourceCode mb-3 notranslate" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a class="link link-hover text-zinc-600" href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> psutil</span>
+<span id="cb5-2"><a class="link link-hover text-zinc-600" href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-3"><a class="link link-hover text-zinc-600" href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sc</span>
+<span id="cb5-4"><a class="link link-hover text-zinc-600" href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a class="link link-hover text-zinc-600" href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get CPU usage, using a 2 second time interval</span></span>
+<span id="cb5-6"><a class="link link-hover text-zinc-600" href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span> <span class="op">=</span> psutil.cpu_percent(percpu<span class="op">=</span><span class="va">True</span>, interval<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-7"><a class="link link-hover text-zinc-600" href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a class="link link-hover text-zinc-600" href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the total usage, abort earlier if this is 0 somehow.</span></span>
+<span id="cb5-9"><a class="link link-hover text-zinc-600" href="#cb5-9" aria-hidden="true" tabindex="-1"></a>tot <span class="op">=</span> <span class="bu">sum</span>(<span class="bu">list</span>)</span>
+<span id="cb5-10"><a class="link link-hover text-zinc-600" href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> tot <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb5-11"><a class="link link-hover text-zinc-600" href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;0% 16.0&quot;</span>)</span>
+<span id="cb5-12"><a class="link link-hover text-zinc-600" href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a class="link link-hover text-zinc-600" href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform the usage numbers into a probability distribution</span></span>
+<span id="cb5-14"><a class="link link-hover text-zinc-600" href="#cb5-14" aria-hidden="true" tabindex="-1"></a>probs <span class="op">=</span> np.asarray(<span class="bu">list</span>) <span class="op">/</span> tot</span>
+<span id="cb5-15"><a class="link link-hover text-zinc-600" href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a class="link link-hover text-zinc-600" href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the effective number</span></span>
+<span id="cb5-17"><a class="link link-hover text-zinc-600" href="#cb5-17" aria-hidden="true" tabindex="-1"></a>av <span class="op">=</span> tot <span class="op">/</span> <span class="bu">len</span>(<span class="bu">list</span>)</span>
+<span id="cb5-18"><a class="link link-hover text-zinc-600" href="#cb5-18" aria-hidden="true" tabindex="-1"></a>eff <span class="op">=</span> np.exp(sc.stats.entropy(probs))</span>
+<span id="cb5-19"><a class="link link-hover text-zinc-600" href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a class="link link-hover text-zinc-600" href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="sc">{0:.0f}</span><span class="st">% </span><span class="sc">{1:.1f}</span><span class="st">&quot;</span>.<span class="bu">format</span>(av ,eff))</span></code></pre></div>
+<p class="mb-3">This should be simple to adapt to other use cases.</p>
+
+        <br>
+        <br>
+    </article>
+</div>
+
+</body>
+</html>

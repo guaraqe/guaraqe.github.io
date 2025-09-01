@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>Running Haskell applications in clusters using Nix
+</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   var macros = [];
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      macros: macros,
+      fleqn: false
+     });
+  }}});
+    </script>
+
+</head>
+<body>
+    <header>
+        <div class="navbar bg-base-100 px-4 py-3">
+          <div class="navbar-start">
+            <a href="/" class="flex items-center group">
+              <img src="/images/juan.png" alt="Juan Simões" class="w-8 h-8 rounded-full object-cover mr-3 group-hover:scale-105 transition-transform">
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors hidden sm:inline">Juan Raphael Diaz Simões</span>
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors sm:hidden">Juan Simões</span>
+            </a>
+          </div>
+          <div class="navbar-end">
+            <ul class="menu menu-horizontal text-sm space-x-1">
+              <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Posts</a></li>
+              <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors hidden sm:inline-block">Courses</a></li>
+              <li><a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">CV</a></li>
+              <li><a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors hidden sm:inline-block">Projects</a></li>
+            </ul>
+          </div>
+        </div>
+    </header>
+    <div class="md:flex justify-center bg-base-100">
+    <article class="prose max-w-prose">
+        <h1 class="text-3xl mb-5">
+            Running Haskell applications in clusters using Nix
+
+        </h1>
+        <div class="mb-5">2018-04-17</div>
+
+        <p class="mb-3">Haskell is my favorite programming language, and Nix my favorite way of setting up development environments for programming and running algorithms.</p>
+<p class="mb-3">One drawback of using these is the fact that they are difficult to use in very restricted environments, like high-performance scientific clusters, since they are non-standard tools. GHC is almost never included in these environments, which is a blocker for Haskell. While Nix can solve this problem, users do not have root access in general.</p>
+<p class="mb-3">A possible solution for this is <a class="link link-hover text-zinc-600" href="https://github.com/matthewbauer/nix-bundle">nix-bundle</a>. However, it uses <a class="link link-hover text-zinc-600" href="https://github.com/lethalman/nix-user-chroot">nix-user-chroot</a>, that needs user namespaces, requiring at least Linux 3.8. I had version 2.6.</p>
+<p class="mb-3">This post describes a rustic solution inspired by the above (i.e. reading the source) that worked very well in my case. The idea is to copy the closure of of the desired executable to a local <code>nix</code> folder, and create a virtual environment where this folder is mounted on <code>/</code> using PRoot.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="0.1" id="generating-the-closure"><span class="header-section-number">0.1</span> Generating the closure</h2>
+<p class="mb-3">We suppose that <code>./nixpkgs.nix</code> is an overlayed Nixpkgs that contains the executable we want to run, identified as <code>my-executable</code>. More information about using Haskell with Nix can be found in <a class="link link-hover text-zinc-600" href="https://github.com/Gabriel439/haskell-nix">Gabriel Gonzalez guide</a>. The script for setting up the local environment is the following:</p>
+<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a class="link link-hover text-zinc-600" href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Instantiate the derivation</span></span>
+<span id="cb1-4"><a class="link link-hover text-zinc-600" href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">drv</span><span class="op">=</span><span class="va">$(</span><span class="ex">nix-instantiate</span> <span class="at">--no-gc-warning</span> <span class="at">-E</span> <span class="st">&#39;with import ./nixpkgs.nix {}; my-executable&#39;</span><span class="va">)</span></span>
+<span id="cb1-5"><a class="link link-hover text-zinc-600" href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a class="link link-hover text-zinc-600" href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the derivation</span></span>
+<span id="cb1-7"><a class="link link-hover text-zinc-600" href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="va">bld</span><span class="op">=</span><span class="va">$(</span><span class="ex">nix-store</span> <span class="at">--no-gc-warning</span> <span class="at">-r</span> <span class="st">&quot;</span><span class="va">$drv</span><span class="st">&quot;</span><span class="va">)</span></span>
+<span id="cb1-8"><a class="link link-hover text-zinc-600" href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a class="link link-hover text-zinc-600" href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy all its dependencies to the local nix store</span></span>
+<span id="cb1-10"><a class="link link-hover text-zinc-600" href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">nix-store</span> <span class="at">-qR</span> <span class="st">&quot;</span><span class="va">$bld</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-I</span> {} cp <span class="at">-r</span> {} ./nix/store/</span>
+<span id="cb1-11"><a class="link link-hover text-zinc-600" href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a class="link link-hover text-zinc-600" href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the executable to the local folder</span></span>
+<span id="cb1-13"><a class="link link-hover text-zinc-600" href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> package/<span class="st">&quot;</span><span class="va">$bld</span><span class="st">&quot;</span>/bin/my-executable my-executable</span></code></pre></div>
+<p class="mb-3">This should give you a local <code>./nix</code> folder with all the necessary libraries for your executable, and <code>./my-executable</code> locally.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="0.2" id="running-the-executable"><span class="header-section-number">0.2</span> Running the executable</h2>
+<p class="mb-3">The first step is to download <a class="link link-hover text-zinc-600" href="https://proot-me.github.io/#downloads">PRoot</a>, which we will refer to as <code>proot</code> in the command line. Since this is a statically compiled binary, it has no dependencies. In order to run the executable one only needs to:</p>
+<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./proot</span> <span class="at">-b</span> ./nix:/nix ./my-executable <span class="at">--flag</span> value</span></code></pre></div>
+<p class="mb-3">The <code>-b</code> flag says that we want to mount <code>./nix</code> to <code>/nix</code>, and the following arguments are the executable itself and the flags passed to it.</p>
+<p class="mb-3">And that’s it! Now you should be able to use Haskell in scientific clusters!</p>
+<h2 class="text-xl mt-5 mb-5" data-number="0.3" id="comments"><span class="header-section-number">0.3</span> Comments</h2>
+<p class="mb-3">In order for this to work, the processor architecture of your personal computer and the cluster’s one should be the same. In my case, both were <code>x86-64</code>.</p>
+<p class="mb-3">When running, I got the following error message:</p>
+<pre><code>ERROR: ld.so: object &#39;libcr_run.so&#39; from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.</code></pre>
+<p class="mb-3">However, it did not affect the execution of my process.</p>
+
+        <br>
+        <br>
+    </article>
+</div>
+
+</body>
+</html>

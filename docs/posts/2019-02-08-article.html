@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>Brownian-like deviation of neighboring cells in the early embryogenesis
+of the zebrafish
+</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   var macros = [];
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      macros: macros,
+      fleqn: false
+     });
+  }}});
+    </script>
+
+</head>
+<body>
+    <header>
+        <div class="navbar bg-base-100 px-4 py-3">
+          <div class="navbar-start">
+            <a href="/" class="flex items-center group">
+              <img src="/images/juan.png" alt="Juan Simões" class="w-8 h-8 rounded-full object-cover mr-3 group-hover:scale-105 transition-transform">
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors hidden sm:inline">Juan Raphael Diaz Simões</span>
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors sm:hidden">Juan Simões</span>
+            </a>
+          </div>
+          <div class="navbar-end">
+            <ul class="menu menu-horizontal text-sm space-x-1">
+              <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Posts</a></li>
+              <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors hidden sm:inline-block">Courses</a></li>
+              <li><a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">CV</a></li>
+              <li><a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors hidden sm:inline-block">Projects</a></li>
+            </ul>
+          </div>
+        </div>
+    </header>
+    <div class="md:flex justify-center bg-base-100">
+    <article class="prose max-w-prose">
+        <h1 class="text-3xl mb-5">
+            Brownian-like deviation of neighboring cells in the early embryogenesis
+of the zebrafish
+
+        </h1>
+        <div class="mb-5">2019-02-08</div>
+
+        <p class="mb-3">I published an article in <em>Physical Biology</em> with my PhD supervisors: Paul Bourgine, Denis Grebenkov and Nadine Peyriéras.</p>
+<p class="mb-3">In this article we investigate how neighboring cells deviate from each other during the early embryogenesis of the zebrafish. The main discovery of the article is that this motion is similar to Brownian motion, having independent increments. However, the distribution of each increment is not Gaussian, and we give a model that fits it well.</p>
+<p class="mb-3">You can find it in <a class="link link-hover text-zinc-600" href="https://iopscience.iop.org/article/10.1088/1478-3975/aaf92d/meta">IOP</a> and <a class="link link-hover text-zinc-600" href="https://iopscience.iop.org/article/10.1088/1478-3975/aaf92d/meta">Arxiv</a>.</p>
+
+        <br>
+        <br>
+    </article>
+</div>
+
+</body>
+</html>

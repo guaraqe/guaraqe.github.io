@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>Arrows, through a different lens
+</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   var macros = [];
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      macros: macros,
+      fleqn: false
+     });
+  }}});
+    </script>
+
+</head>
+<body>
+    <header>
+        <div class="navbar bg-base-100 px-4 py-3">
+          <div class="navbar-start">
+            <a href="/" class="flex items-center group">
+              <img src="/images/juan.png" alt="Juan Simões" class="w-8 h-8 rounded-full object-cover mr-3 group-hover:scale-105 transition-transform">
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors hidden sm:inline">Juan Raphael Diaz Simões</span>
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors sm:hidden">Juan Simões</span>
+            </a>
+          </div>
+          <div class="navbar-end">
+            <ul class="menu menu-horizontal text-sm space-x-1">
+              <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Posts</a></li>
+              <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors hidden sm:inline-block">Courses</a></li>
+              <li><a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">CV</a></li>
+              <li><a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors hidden sm:inline-block">Projects</a></li>
+            </ul>
+          </div>
+        </div>
+    </header>
+    <div class="md:flex justify-center bg-base-100">
+    <article class="prose max-w-prose">
+        <h1 class="text-3xl mb-5">
+            Arrows, through a different lens
+
+        </h1>
+        <div class="mb-5">2021-04-15</div>
+
+        <p class="mb-3">I wrote a post for <a class="link link-hover text-zinc-600" href="https://www.tweag.io">Tweag</a> on how profunctor lenses are useful for working in arrow-based pipelines. You can find the original <a class="link link-hover text-zinc-600" href="https://www.tweag.io/blog/2021-04-15-arrows-through-a-different-lens/">here</a>.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="introduction"><span class="header-section-number">1</span> Introduction</h1>
+<p class="mb-3">Our previous posts on computational pipelines, such as those introducing <a class="link link-hover text-zinc-600" href="https://www.tweag.io/blog/2018-04-25-funflow.html">Funflow</a> and <a class="link link-hover text-zinc-600" href="https://www.tweag.io/blog/2019-10-30-porcupine.html">Porcupine</a>, show that Arrows are very useful for data science workflows. They allow the construction of effectful and composable pipelines whose structure is known at compile time, which is not possible when using <code>Monad</code>s. However, Arrows may seem awkward to work with at first. For instance, it’s not obvious how to use <em>lenses</em> to access record fields in Arrows.</p>
+<p class="mb-3">My goal in this post is to show how lenses and other optics can be used in Arrow-based workflows. Doing so is greatly simplified thanks to <a class="link link-hover text-zinc-600" href="https://arxiv.org/abs/1703.10857">Profunctor optics</a> and some utilities that I helped add to the latest version of the <a class="link link-hover text-zinc-600" href="https://hackage.haskell.org/package/lens-5.0.1">lens</a> library.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="optics-on-functions"><span class="header-section-number">2</span> Optics on functions</h1>
+<p class="mb-3">We’re used to think of lenses in terms of getters and setters, but I’m more interested today in the functions <code>over</code> and <code>traverseOf</code>.</p>
+<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- We will use this prefix for the remaining of the post.</span></span>
+<span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- VL stands for Van Laarhoven lenses.</span></span>
+<span id="cb1-3"><a class="link link-hover text-zinc-600" href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Control.Lens</span> <span class="kw">as</span> <span class="dt">VL</span></span>
+<span id="cb1-4"><a class="link link-hover text-zinc-600" href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a class="link link-hover text-zinc-600" href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Transform a pure function.</span></span>
+<span id="cb1-6"><a class="link link-hover text-zinc-600" href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ot">over ::</span> <span class="dt">VL.Lens</span> s t a b <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> (s <span class="ot">-&gt;</span> t)</span>
+<span id="cb1-7"><a class="link link-hover text-zinc-600" href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a class="link link-hover text-zinc-600" href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- Transform an effectful function.</span></span>
+<span id="cb1-9"><a class="link link-hover text-zinc-600" href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ot">traverseOf ::</span> <span class="dt">VL.Traversal</span> s t a b <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> m b) <span class="ot">-&gt;</span> (s <span class="ot">-&gt;</span> m t)</span></code></pre></div>
+<p class="mb-3">We would like to use similar functions on Arrow-based workflows, something like</p>
+<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ot">overArrow ::</span> <span class="dt">VL.Lens</span> s t a b <span class="ot">-&gt;</span> <span class="dt">Task</span> a b <span class="ot">-&gt;</span> <span class="dt">Task</span> s t</span></code></pre></div>
+<p class="mb-3">However, the type of lenses:</p>
+<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> <span class="dt">Lens</span> s t a b <span class="ot">=</span> <span class="kw">forall</span> f<span class="op">.</span> <span class="dt">Functor</span> f <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> f b) <span class="ot">-&gt;</span> s <span class="ot">-&gt;</span> f t</span></code></pre></div>
+<p class="mb-3">doesn’t make it very obvious how to define <code>overArrow</code>.</p>
+<p class="mb-3">On the other hand, Arrows come equipped with functions <code>first</code> and <code>second</code>:</p>
+<div class="sourceCode mb-3 notranslate" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a class="link link-hover text-zinc-600" href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ot">first ::</span> <span class="dt">Task</span> b c <span class="ot">-&gt;</span> <span class="dt">Task</span> (b, d) (c, d)</span>
+<span id="cb4-2"><a class="link link-hover text-zinc-600" href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ot">second ::</span> <span class="dt">Task</span> b c <span class="ot">-&gt;</span> <span class="dt">Task</span> (d, b) (d, c)</span></code></pre></div>
+<p class="mb-3">which very much feel like specialised versions of <code>overArrow</code> for the lenses</p>
+<div class="sourceCode mb-3 notranslate" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a class="link link-hover text-zinc-600" href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ot">_1 ::</span> <span class="dt">VL.Lens</span> (b, d) (c, d) b c</span>
+<span id="cb5-2"><a class="link link-hover text-zinc-600" href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ot">_2 ::</span> <span class="dt">VL.Lens</span> (d, b) (d, c) b c</span></code></pre></div>
+<p class="mb-3">so maybe there is a common framework that can take both of these into account? The answer is yes, and the solution is lenses – but lenses of a different type.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="profunctor-optics"><span class="header-section-number">3</span> Profunctor optics</h1>
+<p class="mb-3">There is an alternative and equivalent formulation of optics, called <a class="link link-hover text-zinc-600" href="https://arxiv.org/abs/1703.10857">Profunctor optics</a>, that works very well with <code>Arrows</code>. Optics in the <code>Profunctor</code> framework have the following shape:</p>
+<div class="sourceCode mb-3 notranslate" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a class="link link-hover text-zinc-600" href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> <span class="dt">Optic</span> p s t a b <span class="ot">=</span> p a b <span class="ot">-&gt;</span> p s t</span></code></pre></div>
+<p class="mb-3">with more precise optics such as <code>Lens</code> being obtained by imposing constraints to <code>p</code> coming from the different <a class="link link-hover text-zinc-600" href="https://hackage.haskell.org/package/profunctors-5.5.2/docs/Data-Profunctor.html">Profunctor</a> classes. In other words, an <code>Optic</code> is <em>precisely</em> a higher-order function acting on some profunctor. Because every Arrow is also a Profunctor<a class="link link-hover text-zinc-600" href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, the shape of an <code>Optic</code> is precisely what is needed to act on Arrows! Moreover, like the optics of the <code>lens</code> library, profunctor optics can be composed like regular functions, with <code>(.)</code>.</p>
+<p class="mb-3">The <code>lens</code> library now includes a <a class="link link-hover text-zinc-600" href="https://hackage.haskell.org/package/lens-5/docs/Control-Lens-Profunctor.html">module</a> containing functions that convert between standard and profunctor optics, which makes using them very convenient.</p>
+<p class="mb-3">In the following sections, we will go through the use and the intuition of the most common optics: <code>Lens</code>, <code>Prism</code> and <code>Traversal</code>. But first, let’s import the compatibility module for profunctor optics:</p>
+<div class="sourceCode mb-3 notranslate" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a class="link link-hover text-zinc-600" href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- PL for Profunctor Lenses</span></span>
+<span id="cb7-2"><a class="link link-hover text-zinc-600" href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="dt">Control.Lens.Profunctor</span> <span class="kw">as</span> <span class="dt">PL</span></span></code></pre></div>
+<h1 class="text-2xl mt-5 mb-5" data-number="4" id="lenses"><span class="header-section-number">4</span> Lenses</h1>
+<p class="mb-3">Standard lenses are all about products – <code>view</code>, for example, is used to deconstruct records:</p>
+<div class="sourceCode mb-3 notranslate" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a class="link link-hover text-zinc-600" href="#cb8-1" aria-hidden="true" tabindex="-1"></a>view<span class="ot"> _fst ::</span> (a, b) <span class="ot">-&gt;</span> a</span></code></pre></div>
+<p class="mb-3">Therefore, it makes sense for Profunctor lenses to also talk about products. Indeed, that is exactly what happens, through the <code>Strong</code> type class:</p>
+<div class="sourceCode mb-3 notranslate" id="cb9"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb9-1"><a class="link link-hover text-zinc-600" href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="dt">Profunctor</span> p <span class="ot">=&gt;</span> <span class="dt">Strong</span> p <span class="kw">where</span></span>
+<span id="cb9-2"><a class="link link-hover text-zinc-600" href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ot">  first&#39; ::</span> p a b <span class="ot">-&gt;</span> p (a, c) (b, c)</span>
+<span id="cb9-3"><a class="link link-hover text-zinc-600" href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ot">  second&#39; ::</span> p a b <span class="ot">-&gt;</span> p (c, a) (c, b)</span></code></pre></div>
+<p class="mb-3">With profunctor optics, a <code>Lens</code> is defined as follows:</p>
+<div class="sourceCode mb-3 notranslate" id="cb10"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a class="link link-hover text-zinc-600" href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> <span class="dt">Lens</span> s t a b <span class="ot">=</span> <span class="kw">forall</span> p<span class="op">.</span> <span class="dt">Strong</span> p <span class="ot">=&gt;</span> p a b <span class="ot">-&gt;</span> p s t</span></code></pre></div>
+<p class="mb-3">Every <code>Arrow</code> satisfies the <code>Strong</code> class. If we squint, we can rewrite the type of these functions as:</p>
+<div class="sourceCode mb-3 notranslate" id="cb11"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb11-1"><a class="link link-hover text-zinc-600" href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ot">first&#39; ::</span> <span class="dt">Lens&#39;</span> (a,c) (b,c) a b</span>
+<span id="cb11-2"><a class="link link-hover text-zinc-600" href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ot">second&#39; ::</span> <span class="dt">Lens&#39;</span> (c,a) (c,b) a b</span></code></pre></div>
+<p class="mb-3">That is, a <code>Strong</code> profunctor is equipped with lenses to reach inside products. One can always convert a record into nested pairs and act on them using <code>Strong</code> – the <code>Lens</code> just makes this much more convenient.</p>
+<p class="mb-3">But how do we build a <code>Lens</code>? Besides writing them manually, we can also use all <code>Lens</code>es from <code>lens</code>:</p>
+<div class="sourceCode mb-3 notranslate" id="cb12"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb12-1"><a class="link link-hover text-zinc-600" href="#cb12-1" aria-hidden="true" tabindex="-1"></a>PL.fromLens<span class="ot"> ::</span> <span class="dt">VL.Lens</span> s t a b <span class="ot">-&gt;</span> <span class="dt">Lens</span> s t a b</span></code></pre></div>
+<p class="mb-3">which means we can still use all the lenses we know and love. For example, one can apply a task to a tuple of arbitrary size:</p>
+<div class="sourceCode mb-3 notranslate" id="cb13"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb13-1"><a class="link link-hover text-zinc-600" href="#cb13-1" aria-hidden="true" tabindex="-1"></a>PL.fromLens<span class="ot"> _1 ::</span> <span class="dt">Task</span> a b <span class="ot">-&gt;</span> <span class="dt">Task</span> (a,x,y) (b,x,y)</span></code></pre></div>
+<p class="mb-3">Summarizing, a <code>Strong</code> profunctor is one we can apply lenses to. Since every <code>Arrow</code> is also a <code>Strong</code> profunctor, one can use <code>Lens</code>es with them.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="5" id="prisms"><span class="header-section-number">5</span> Prisms</h1>
+<p class="mb-3">Standard prisms are all about sums – <code>preview</code>, for example, is used to deconstruct sum-types:</p>
+<div class="sourceCode mb-3 notranslate" id="cb14"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb14-1"><a class="link link-hover text-zinc-600" href="#cb14-1" aria-hidden="true" tabindex="-1"></a>view<span class="ot"> _Left ::</span> <span class="dt">Either</span> a b <span class="ot">-&gt;</span> <span class="dt">Maybe</span> a</span></code></pre></div>
+<p class="mb-3">Therefore, it makes sense for Profunctor prisms to also talk about sums. Indeed, that is exactly what happens, through the <code>Choice</code> type class:</p>
+<div class="sourceCode mb-3 notranslate" id="cb15"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb15-1"><a class="link link-hover text-zinc-600" href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="dt">Profunctor</span> p <span class="ot">=&gt;</span> <span class="dt">Choice</span> p <span class="kw">where</span></span>
+<span id="cb15-2"><a class="link link-hover text-zinc-600" href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ot">  left&#39; ::</span> p a b <span class="ot">-&gt;</span> p (<span class="dt">Either</span> a c) (<span class="dt">Either</span> b c)</span>
+<span id="cb15-3"><a class="link link-hover text-zinc-600" href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ot">  right&#39; ::</span> p a b <span class="ot">-&gt;</span> p (<span class="dt">Either</span> c a) (<span class="dt">Either</span> c b)</span></code></pre></div>
+<p class="mb-3">With profunctor optics, a <code>Prism</code> is defined as follows:</p>
+<div class="sourceCode mb-3 notranslate" id="cb16"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb16-1"><a class="link link-hover text-zinc-600" href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> <span class="dt">Prism</span> s t a b <span class="ot">=</span> <span class="kw">forall</span> p<span class="op">.</span> <span class="dt">Choice</span> p <span class="ot">=&gt;</span> p a b <span class="ot">-&gt;</span> p s t</span></code></pre></div>
+<p class="mb-3">Every <code>ArrowChoice</code> satisfies the <code>Choice</code> class. Once more, we can rewrite the type of these functions as:</p>
+<div class="sourceCode mb-3 notranslate" id="cb17"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb17-1"><a class="link link-hover text-zinc-600" href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ot">left&#39; ::</span> <span class="dt">Prism</span> (<span class="dt">Either</span> a c) (<span class="dt">Either</span> b c) a b</span>
+<span id="cb17-2"><a class="link link-hover text-zinc-600" href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ot">right&#39; ::</span> <span class="dt">Prism</span> (<span class="dt">Either</span> c a) (<span class="dt">Either</span> c b) a b</span></code></pre></div>
+<p class="mb-3">That is, a <code>Choice</code> profunctor is equipped with prisms to discriminate sums. One can always convert a sum into nested <code>Either</code>s and act on them using <code>Choice</code> – the <code>Prism</code> just makes this much more convenient.</p>
+<p class="mb-3">But how do we build a <code>Prism</code>? We can also use any prisms from <code>lens</code> with a simple conversion:</p>
+<div class="sourceCode mb-3 notranslate" id="cb18"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb18-1"><a class="link link-hover text-zinc-600" href="#cb18-1" aria-hidden="true" tabindex="-1"></a>PL.fromPrism<span class="ot"> ::</span> <span class="dt">VL.Prism</span> s t a b <span class="ot">-&gt;</span> <span class="dt">Prism</span> s t a b</span></code></pre></div>
+<p class="mb-3">For example, one can execute a task conditionally, depending on the existence of the input:</p>
+<div class="sourceCode mb-3 notranslate" id="cb19"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb19-1"><a class="link link-hover text-zinc-600" href="#cb19-1" aria-hidden="true" tabindex="-1"></a>PL.fromPrism<span class="ot"> _Just ::</span> <span class="dt">Action</span> a b <span class="ot">-&gt;</span> <span class="dt">Action</span> (<span class="dt">Maybe</span> a) (<span class="dt">Maybe</span> b)</span></code></pre></div>
+<p class="mb-3">Summarizing, a <code>Choice</code> profunctor is one we can apply prisms to. Since every <code>ArrowChoice</code> can be a <code>Choice</code> profunctor, one can uses prisms with them.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="6" id="traversals"><span class="header-section-number">6</span> Traversals</h1>
+<p class="mb-3">Standard traversals are all about <code>Traversable</code> structures – <code>mapMOf</code>, for example, is used to execute effectful functions:</p>
+<div class="sourceCode mb-3 notranslate" id="cb20"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb20-1"><a class="link link-hover text-zinc-600" href="#cb20-1" aria-hidden="true" tabindex="-1"></a>mapMOf <span class="fu">traverse</span><span class="ot"> readFile ::</span> [<span class="dt">FilePath</span>] <span class="ot">-&gt;</span> <span class="dt">IO</span> [<span class="dt">String</span>]</span></code></pre></div>
+<p class="mb-3">Therefore, it makes sense for Profunctor traversals to also talk about these traversable structures. Indeed, that is exactly what happens, through the <code>Traversing</code> type class:</p>
+<div class="sourceCode mb-3 notranslate" id="cb21"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb21-1"><a class="link link-hover text-zinc-600" href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> (<span class="dt">Choice</span> p, <span class="dt">Strong</span> p) <span class="ot">=&gt;</span> <span class="dt">Traversing</span> p <span class="kw">where</span></span>
+<span id="cb21-2"><a class="link link-hover text-zinc-600" href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ot">  traverse&#39; ::</span> <span class="dt">Traversable</span> f <span class="ot">=&gt;</span> p a b <span class="ot">-&gt;</span> p (f a) (f b)</span></code></pre></div>
+<p class="mb-3">With profunctor optics, a <code>Traversal</code> is defined as follows:</p>
+<div class="sourceCode mb-3 notranslate" id="cb22"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb22-1"><a class="link link-hover text-zinc-600" href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> <span class="dt">Traversal</span> s t a b <span class="ot">=</span> <span class="kw">forall</span> p<span class="op">.</span> <span class="dt">Traversing</span> p <span class="ot">=&gt;</span> p a b <span class="ot">-&gt;</span> p s t</span></code></pre></div>
+<p class="mb-3">There is no associated <code>Arrow</code> class that corresponds to this class, but many <code>Arrow</code>s, such as <code>Kleisli</code>, satisfy it. We can rewrite the type of this functions as:</p>
+<div class="sourceCode mb-3 notranslate" id="cb23"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb23-1"><a class="link link-hover text-zinc-600" href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ot">traverse&#39; ::</span> <span class="dt">Traversable</span> f <span class="ot">=&gt;</span> <span class="dt">Traversal</span> (f a) (f b) a b</span></code></pre></div>
+<p class="mb-3">That is, a <code>Traversing</code> profunctor can be lifted through <code>Traversable</code> functors.</p>
+<p class="mb-3">But how do we build a <code>Traversal</code>? We can also use any <code>Traversal</code> from <code>lens</code> with a simple conversion:</p>
+<div class="sourceCode mb-3 notranslate" id="cb24"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb24-1"><a class="link link-hover text-zinc-600" href="#cb24-1" aria-hidden="true" tabindex="-1"></a>PL.fromTraversal<span class="ot"> ::</span> <span class="dt">VL.Traversal</span> s t a b <span class="ot">-&gt;</span> <span class="dt">Traversal</span> s t a b</span></code></pre></div>
+<p class="mb-3">For example, one can have a task and apply it to a list of inputs:</p>
+<div class="sourceCode mb-3 notranslate" id="cb25"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb25-1"><a class="link link-hover text-zinc-600" href="#cb25-1" aria-hidden="true" tabindex="-1"></a>PL.fromTraversal<span class="ot"> traverse ::</span> <span class="dt">Action</span> a b <span class="ot">-&gt;</span> <span class="dt">Action</span> [a] [b]</span></code></pre></div>
+<h1 class="text-2xl mt-5 mb-5" data-number="7" id="conclusion"><span class="header-section-number">7</span> Conclusion</h1>
+<p class="mb-3">Using Arrows does not stop us from taking advantage of the Haskell ecosystem. In particular, optics interact very naturally with Arrows, both in their classical and profunctor formulations. For the moment, the ecosystem is still lacking a standard library for Profunctor optics, but this is not a show stopper — the <code>lens</code> library itself has most of the tools we need. So the next time you are trying out <a class="link link-hover text-zinc-600" href="https://www.tweag.io/blog/2018-04-25-funflow.html">Funflow</a> or <a class="link link-hover text-zinc-600" href="https://www.tweag.io/blog/2019-10-30-porcupine.html">Porcupine</a>, don’t shy away from using <code>lens</code>!</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol class="list-decimal list-outside mt-1 mb-3 pl-5">
+<li id="fn1"><p class="mb-3">The fact that these hierarchies are separated is due to historical reasons.<a class="link link-hover text-zinc-600" href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+        <br>
+        <br>
+    </article>
+</div>
+
+</body>
+</html>

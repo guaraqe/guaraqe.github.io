@@ -73,7 +73,7 @@ data Post = Post
     content :: String,
     url :: String,
     date :: String,
-    summary :: String
+    summary :: Maybe String
   }
   deriving (Generic, Eq, Ord, Show, FromJSON, ToJSON, Binary)
 
@@ -93,7 +93,7 @@ buildPost outputFolder srcPath = cacheAction ("post" :: T.Text, srcPath) $ do
 
   let fullPostData =
         setObjectAttribute "date" (showGregorian date)
-          . setObjectAttribute "url" ("posts" </> postUrl)
+          . setObjectAttribute "url" postUrl
           $ postData
 
   template <- compileTemplate' "site/templates/post.html"

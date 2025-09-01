@@ -14,7 +14,6 @@ import Development.Shake.Forward
 import Site.Blog qualified as Blog
 import Site.Book qualified as Book
 import Site.Layout qualified as Layout
-import Site.Json
 import Data.Text qualified as Text
 import Site.Pandoc qualified as Pandoc
 import Slick
@@ -79,7 +78,6 @@ buildBooks = do
 buildIndex :: [Blog.Post] -> Action ()
 buildIndex posts = do
   let path :: FilePath = "site/index.html"
-  htmlContent <- Text.pack <$> readFile' path
   
   -- Compile the HTML content as a template and substitute posts data
   htmlTemplate <- compileTemplate' path
@@ -126,27 +124,24 @@ buildCV = do
 
 buildProjects :: Action ()
 buildProjects = do
-  let path :: FilePath = "site/projects.md"
-  postContent <- Text.pack <$> readFile' path
-  (pandoc, meta) <- Pandoc.readMarkdownAndMeta postContent
-  postData <- Pandoc.writeHtmlAndMeta pandoc meta
-
-  template <- compileTemplate' "site/templates/default.html"
-
-  post <- convert postData
+  let path :: FilePath = "site/projects.html"
+  htmlTemplate <- compileTemplate' path
+  let templateData = object []
+      processedContent = substitute htmlTemplate templateData
+  defaultTemplate <- compileTemplate' "site/templates/default.html"
+  let wrappedData = object [("title", toJSON ("Projects" :: String)), ("content", toJSON (Text.unpack processedContent))]
+      finalContent = substitute defaultTemplate wrappedData
 
   let layout =
         Layout.Layout
           { title = "Projects",
-            content = Text.unpack $ substitute template postData,
+            content = Text.unpack finalContent,
             latex = True,
             page = "Projects",
             pageLink = "/projects.html"
           }
 
   Layout.build (outputFolder </> "projects.html") layout
-
-  pure post
 
 
 buildRules :: Action ()
