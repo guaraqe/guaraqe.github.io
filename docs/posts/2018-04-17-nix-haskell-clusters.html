@@ -2,11 +2,60 @@
 <html lang="en">
 <head profile="http://www.w3.org/2005/10/profile">
     <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="description" content="Deploying Haskell applications on HPC clusters using Nix and PRoot
+without root access
+">
+    <meta name="author" content="Juan Raphael Diaz Simões">
+    <meta name="keywords" content="Haskell, functional programming, software engineering, bioinformatics, performance optimization, Juan Simões">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
     <title>Running Haskell applications in clusters using Nix
 </title>
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Running Haskell applications in clusters using Nix
+">
+    <meta property="og:description" content="Deploying Haskell applications on HPC clusters using Nix and PRoot
+without root access
+">
+    <meta property="og:url" content="https://guaraqe.github.io/posts/2018-04-17-nix-haskell-clusters.html">
+    <meta property="og:site_name" content="Juan Raphael Diaz Simões">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Running Haskell applications in clusters using Nix
+">
+    <meta name="twitter:description" content="Deploying Haskell applications on HPC clusters using Nix and PRoot
+without root access
+">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://guaraqe.github.io/posts/2018-04-17-nix-haskell-clusters.html">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "name": "Running Haskell applications in clusters using Nix
+",
+      "description": "Deploying Haskell applications on HPC clusters using Nix and PRoot
+without root access
+",
+      "url": "https://guaraqe.github.io/posts/2018-04-17-nix-haskell-clusters.html",
+      "author": {
+        "@type": "Person",
+        "name": "Juan Raphael Diaz Simões",
+        "url": "https://guaraqe.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Juan Raphael Diaz Simões"
+      },
+      "inLanguage": "en-US"
+    }
+    </script>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/syntax.css">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
@@ -66,13 +115,16 @@
     </header>
     <div class="md:flex justify-center bg-base-100">
     <article class="prose max-w-prose">
-        <h1 class="text-3xl mb-5">
-            Running Haskell applications in clusters using Nix
+        <header>
+            <h1 class="text-3xl mb-5">
+                Running Haskell applications in clusters using Nix
 
-        </h1>
-        <div class="mb-5">2018-04-17</div>
+            </h1>
+            <time class="mb-5 block text-gray-600" datetime="2018-04-17">April 17, 2018</time>
+        </header>
 
-        <p class="mb-3">Haskell is my favorite programming language, and Nix my favorite way of setting up development environments for programming and running algorithms.</p>
+        <main>
+            <p class="mb-3">Haskell is my favorite programming language, and Nix my favorite way of setting up development environments for programming and running algorithms.</p>
 <p class="mb-3">One drawback of using these is the fact that they are difficult to use in very restricted environments, like high-performance scientific clusters, since they are non-standard tools. GHC is almost never included in these environments, which is a blocker for Haskell. While Nix can solve this problem, users do not have root access in general.</p>
 <p class="mb-3">A possible solution for this is <a class="link link-hover text-zinc-600" href="https://github.com/matthewbauer/nix-bundle">nix-bundle</a>. However, it uses <a class="link link-hover text-zinc-600" href="https://github.com/lethalman/nix-user-chroot">nix-user-chroot</a>, that needs user namespaces, requiring at least Linux 3.8. I had version 2.6.</p>
 <p class="mb-3">This post describes a rustic solution inspired by the above (i.e. reading the source) that worked very well in my case. The idea is to copy the closure of of the desired executable to a local <code>nix</code> folder, and create a virtual environment where this folder is mounted on <code>/</code> using PRoot.</p>
@@ -102,6 +154,7 @@
 <p class="mb-3">When running, I got the following error message:</p>
 <pre><code>ERROR: ld.so: object &#39;libcr_run.so&#39; from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.</code></pre>
 <p class="mb-3">However, it did not affect the execution of my process.</p>
+        </main>
 
         <br>
         <br>

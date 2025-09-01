@@ -22,7 +22,10 @@ data Layout = Layout
     content :: String,
     latex :: Bool,
     page :: String,
-    pageLink :: String
+    pageLink :: String,
+    description :: String,
+    currentUrl :: String,
+    isPost :: Bool
   }
   deriving (Generic, Eq, Ord, Show, FromJSON, ToJSON, Binary)
 

@@ -2,11 +2,60 @@
 <html lang="en">
 <head profile="http://www.w3.org/2005/10/profile">
     <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="description" content="Reference compilation of mathematical laws for Haskell’s core type
+classes
+">
+    <meta name="author" content="Juan Raphael Diaz Simões">
+    <meta name="keywords" content="Haskell, functional programming, software engineering, bioinformatics, performance optimization, Juan Simões">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
     <title>Haskell type classes: a compilation of laws
 </title>
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Haskell type classes: a compilation of laws
+">
+    <meta property="og:description" content="Reference compilation of mathematical laws for Haskell’s core type
+classes
+">
+    <meta property="og:url" content="https://guaraqe.github.io/posts/2017-11-01-type-classes-laws.html">
+    <meta property="og:site_name" content="Juan Raphael Diaz Simões">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Haskell type classes: a compilation of laws
+">
+    <meta name="twitter:description" content="Reference compilation of mathematical laws for Haskell’s core type
+classes
+">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://guaraqe.github.io/posts/2017-11-01-type-classes-laws.html">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "name": "Haskell type classes: a compilation of laws
+",
+      "description": "Reference compilation of mathematical laws for Haskell’s core type
+classes
+",
+      "url": "https://guaraqe.github.io/posts/2017-11-01-type-classes-laws.html",
+      "author": {
+        "@type": "Person",
+        "name": "Juan Raphael Diaz Simões",
+        "url": "https://guaraqe.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Juan Raphael Diaz Simões"
+      },
+      "inLanguage": "en-US"
+    }
+    </script>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/syntax.css">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
@@ -66,17 +115,20 @@
     </header>
     <div class="md:flex justify-center bg-base-100">
     <article class="prose max-w-prose">
-        <h1 class="text-3xl mb-5">
-            Haskell type classes: a compilation of laws
+        <header>
+            <h1 class="text-3xl mb-5">
+                Haskell type classes: a compilation of laws
 
-        </h1>
-        <div class="mb-5">2017-11-01</div>
+            </h1>
+            <time class="mb-5 block text-gray-600" datetime="2017-11-01">November  1, 2017</time>
+        </header>
 
-        <p class="mb-3">This post is a reference for type classes’ laws. It will be expanded with time.</p>
+        <main>
+            <p class="mb-3">This post is a reference for type classes’ laws. It will be expanded with time.</p>
 <hr />
 <h1 class="text-2xl mt-5 mb-5" data-number="1" id="functor"><span class="header-section-number">1</span> Functor</h1>
-<pre><code>class Functor f where
-  fmap :: (a -&gt; b) -&gt; f a -&gt; f b</code></pre>
+<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="dt">Functor</span> f <span class="kw">where</span></span>
+<span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ot">  fmap ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f b</span></code></pre></div>
 <h2 class="text-xl mt-5 mb-5" data-number="1.1" id="laws"><span class="header-section-number">1.1</span> Laws</h2>
 <ul class="list-disc list-outside mt-1 mb-3 pl-5">
 <li><code>fmap id = id</code></li>
@@ -84,13 +136,13 @@
 </ul>
 <hr />
 <h1 class="text-2xl mt-5 mb-5" data-number="2" id="applicative"><span class="header-section-number">2</span> Applicative</h1>
-<pre><code>class Functor f =&gt; Applicative f where
-  pure :: a -&gt; f a
-  &lt;*&gt; :: f (a -&gt; b) -&gt; f a -&gt; f b</code></pre>
+<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="dt">Functor</span> f <span class="ot">=&gt;</span> <span class="dt">Applicative</span> f <span class="kw">where</span></span>
+<span id="cb2-2"><a class="link link-hover text-zinc-600" href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ot">  pure ::</span> a <span class="ot">-&gt;</span> f a</span>
+<span id="cb2-3"><a class="link link-hover text-zinc-600" href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;*&gt;</span><span class="ot"> ::</span> f (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f b</span></code></pre></div>
 <p class="mb-3">An alternative definition could be:</p>
-<pre><code>class Functor f =&gt; Applicative f where
-  pure :: a -&gt; f a
-  zip :: (f a, f b) -&gt; f (a, b)</code></pre>
+<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="dt">Functor</span> f <span class="ot">=&gt;</span> <span class="dt">Applicative</span> f <span class="kw">where</span></span>
+<span id="cb3-2"><a class="link link-hover text-zinc-600" href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ot">  pure ::</span> a <span class="ot">-&gt;</span> f a</span>
+<span id="cb3-3"><a class="link link-hover text-zinc-600" href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ot">  zip ::</span> (f a, f b) <span class="ot">-&gt;</span> f (a, b)</span></code></pre></div>
 <h2 class="text-xl mt-5 mb-5" data-number="2.1" id="laws-1"><span class="header-section-number">2.1</span> Laws</h2>
 <ul class="list-disc list-outside mt-1 mb-3 pl-5">
 <li><code>pure id &lt;*&gt; v = v</code></li>
@@ -177,6 +229,7 @@ t (a &lt;*&gt; b) = t a &lt;*&gt; t b</code></pre>
 <li><code>traverse (Identity . f) = Identity . fmap f</code></li>
 <li><code>traverse (Const . f) = Const . foldMap f</code></li>
 </ul>
+        </main>
 
         <br>
         <br>

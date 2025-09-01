@@ -2,11 +2,60 @@
 <html lang="en">
 <head profile="http://www.w3.org/2005/10/profile">
     <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="description" content="Why some types like Set and Map don’t fit standard type classes and
+possible solutions
+">
+    <meta name="author" content="Juan Raphael Diaz Simões">
+    <meta name="keywords" content="Haskell, functional programming, software engineering, bioinformatics, performance optimization, Juan Simões">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
     <title>Haskell type classes: incidental non-examples
 </title>
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Haskell type classes: incidental non-examples
+">
+    <meta property="og:description" content="Why some types like Set and Map don’t fit standard type classes and
+possible solutions
+">
+    <meta property="og:url" content="https://guaraqe.github.io/posts/2017-11-02-type-classes-incidental-non-examples.html">
+    <meta property="og:site_name" content="Juan Raphael Diaz Simões">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Haskell type classes: incidental non-examples
+">
+    <meta name="twitter:description" content="Why some types like Set and Map don’t fit standard type classes and
+possible solutions
+">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://guaraqe.github.io/posts/2017-11-02-type-classes-incidental-non-examples.html">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "name": "Haskell type classes: incidental non-examples
+",
+      "description": "Why some types like Set and Map don’t fit standard type classes and
+possible solutions
+",
+      "url": "https://guaraqe.github.io/posts/2017-11-02-type-classes-incidental-non-examples.html",
+      "author": {
+        "@type": "Person",
+        "name": "Juan Raphael Diaz Simões",
+        "url": "https://guaraqe.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Juan Raphael Diaz Simões"
+      },
+      "inLanguage": "en-US"
+    }
+    </script>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/syntax.css">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
@@ -66,19 +115,22 @@
     </header>
     <div class="md:flex justify-center bg-base-100">
     <article class="prose max-w-prose">
-        <h1 class="text-3xl mb-5">
-            Haskell type classes: incidental non-examples
+        <header>
+            <h1 class="text-3xl mb-5">
+                Haskell type classes: incidental non-examples
 
-        </h1>
-        <div class="mb-5">2017-11-02</div>
+            </h1>
+            <time class="mb-5 block text-gray-600" datetime="2017-11-02">November  2, 2017</time>
+        </header>
 
-        <p class="mb-3">This post is a tour of some Haskell type classes, and why some types don’t fit them, but in a non-fundamental way. That means that one could change the encoding of these type classes in order to make these types fit into them, without changing their mathematical meaning.</p>
+        <main>
+            <p class="mb-3">This post is a tour of some Haskell type classes, and why some types don’t fit them, but in a non-fundamental way. That means that one could change the encoding of these type classes in order to make these types fit into them, without changing their mathematical meaning.</p>
 <p class="mb-3">This list will evolve in time.</p>
 <hr />
 <h1 class="text-2xl mt-5 mb-5" data-number="1" id="functor"><span class="header-section-number">1</span> Functor</h1>
 <p class="mb-3">The most common type class on Haskell, inspired by the category theory <a class="link link-hover text-zinc-600" href="https://en.wikipedia.org/wiki/Functor">concept</a> with same name. In Haskell all functors are endofunctors, that is, they have the same domain and target categories.</p>
-<pre><code>class Functor f where
-  fmap :: (a -&gt; b) -&gt; f a -&gt; f b</code></pre>
+<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="dt">Functor</span> f <span class="kw">where</span></span>
+<span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ot">  fmap ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f b</span></code></pre></div>
 <h2 class="text-xl mt-5 mb-5" data-number="1.1" id="non-examples"><span class="header-section-number">1.1</span> Non-examples</h2>
 <p class="mb-3">The most common non-example is <code>Set</code>. A reason for this is that <code>Set</code> contains only unique elements, following their <code>Eq</code> instance, but Haskell functions are not required to follow this instance. That is, <code>x == y</code> does not imply <code>f x == f y</code>, which is the property known as <a class="link link-hover text-zinc-600" href="https://en.wikipedia.org/wiki/Equality_(mathematics)#Equality_in_mathematical_logic">Leibniz equality</a>. If we define for any type a newtype:</p>
 <pre><code>newtype Same a = Same { getSame :: a }
@@ -107,6 +159,7 @@ instance Ord (Same a) where
 <p class="mb-3">However, <code>&lt;*&gt;</code> is perfectly implementable, and could be defined as <code>instersectWith ($)</code>, which is equivalent to the composition of <code>&lt;*&gt;</code> for <code>(k -&gt;)</code> and <code>Maybe</code>.</p>
 <p class="mb-3">Another similar example are <code>ZipVector</code>s, which are vectors where <code>(&lt;*&gt;) = zipWith ($)</code>. For this instance to be lawful, one would need <code>pure</code> to produce an infinite vector, which is not possible. This is however possible for lists and is implemented in <a class="link link-hover text-zinc-600" href="http://hackage.haskell.org/package/base-4.9.1.0/docs/Control-Applicative.html#t:ZipList">Control.Applicative</a>.</p>
 <p class="mb-3">A solution to this problem is to split the <code>Applicative</code> class in two parts. You can find these parts as <code>Pointed</code> in <a class="link link-hover text-zinc-600" href="https://hackage.haskell.org/package/pointed">pointed</a> and <code>Apply</code> in <a class="link link-hover text-zinc-600" href="https://hackage.haskell.org/package/semigroupoids">semigroupoids</a>. This separation has been also implemented in <a class="link link-hover text-zinc-600" href="https://pursuit.purescript.org/packages/purescript-prelude/3.1.0/docs/Control.Apply">purescript</a>.</p>
+        </main>
 
         <br>
         <br>

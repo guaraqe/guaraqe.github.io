@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://guaraqe.github.io/</loc>
+    <lastmod>2025-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guaraqe.github.io/posts</loc>
+    <lastmod>2025-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guaraqe.github.io/cv.html</loc>
+    <lastmod>2025-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guaraqe.github.io/projects.html</loc>
+    <lastmod>2025-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guaraqe.github.io/courses</loc>
+    <lastmod>2025-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guaraqe.github.io/posts/2017-11-02-type-classes-incidental-non-examples.html</loc>
+    <lastmod>November  </lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guaraqe.github.io/posts/2017-11-01-type-classes-laws.html</loc>
+    <lastmod>November  </lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guaraqe.github.io/posts/2020-03-05-peirce.html</loc>
+    <lastmod>March  5, </lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guaraqe.github.io/posts/2020-01-31-performance-bottlenecks.html</loc>
+    <lastmod>January 31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guaraqe.github.io/posts/2019-01-23-ihaskell.html</loc>
+    <lastmod>January 23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guaraqe.github.io/posts/2023-01-02-cpu-usage.html</loc>
+    <lastmod>January  2</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guaraqe.github.io/posts/2019-02-28-jupyterwith.html</loc>
+    <lastmod>February 2</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guaraqe.github.io/posts/2017-02-24-article.html</loc>
+    <lastmod>February 2</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guaraqe.github.io/posts/2019-02-08-article.html</loc>
+    <lastmod>February  </lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guaraqe.github.io/posts/2018-04-17-nix-haskell-clusters.html</loc>
+    <lastmod>April 17, </lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guaraqe.github.io/posts/2021-04-15-arrows-through-a-different-lens.html</loc>
+    <lastmod>April 15, </lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

@@ -1,11 +1,15 @@
 <div class="md:flex justify-center bg-base-100">
     <article class="prose max-w-prose">
-        <h1 class="text-3xl mb-5">
-            {{title}}
-        </h1>
-        <div class="mb-5">{{date}}</div>
+        <header>
+            <h1 class="text-3xl mb-5">
+                {{title}}
+            </h1>
+            <time class="mb-5 block text-gray-600" datetime="{{dateISO}}">{{date}}</time>
+        </header>
 
-        {{{content}}}
+        <main>
+            {{{content}}}
+        </main>
 
         <br>
         <br>

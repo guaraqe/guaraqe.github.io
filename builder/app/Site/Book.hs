@@ -96,7 +96,10 @@ writeSection outputFolder section = do
             content = T.unpack $ substitute template value,
             latex = True,
             page = "Courses",
-            pageLink = "/courses"
+            pageLink = "/courses",
+            description = section.title ++ " - Course material by Juan Raphael Diaz Simões",
+            currentUrl = section.url,
+            isPost = False
           }
   Layout.build postPath layout
   forM_ section.subsections $ \subsection ->
@@ -221,7 +224,10 @@ buildList outputFolder sections = do
             content = T.unpack $ substitute indexT (toJSON indexInfo),
             latex = False,
             page = "Courses",
-            pageLink = "/courses"
+            pageLink = "/courses",
+            description = "University courses on statistics, bioinformatics, and physics by Juan Raphael Diaz Simões",
+            currentUrl = "/courses",
+            isPost = False
           }
   Layout.build (outputFolder </> "index.html") layout
 

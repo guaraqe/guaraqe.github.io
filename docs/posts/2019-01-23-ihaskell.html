@@ -2,11 +2,60 @@
 <html lang="en">
 <head profile="http://www.w3.org/2005/10/profile">
     <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="description" content="Setting up IHaskell kernel in JupyterLab for interactive Haskell data
+analysis
+">
+    <meta name="author" content="Juan Raphael Diaz Simões">
+    <meta name="keywords" content="Haskell, functional programming, software engineering, bioinformatics, performance optimization, Juan Simões">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
     <title>Towards interactive data science in Haskell: Haskell in JupyterLab
 </title>
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Towards interactive data science in Haskell: Haskell in JupyterLab
+">
+    <meta property="og:description" content="Setting up IHaskell kernel in JupyterLab for interactive Haskell data
+analysis
+">
+    <meta property="og:url" content="https://guaraqe.github.io/posts/2019-01-23-ihaskell.html">
+    <meta property="og:site_name" content="Juan Raphael Diaz Simões">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Towards interactive data science in Haskell: Haskell in JupyterLab
+">
+    <meta name="twitter:description" content="Setting up IHaskell kernel in JupyterLab for interactive Haskell data
+analysis
+">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://guaraqe.github.io/posts/2019-01-23-ihaskell.html">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "name": "Towards interactive data science in Haskell: Haskell in JupyterLab
+",
+      "description": "Setting up IHaskell kernel in JupyterLab for interactive Haskell data
+analysis
+",
+      "url": "https://guaraqe.github.io/posts/2019-01-23-ihaskell.html",
+      "author": {
+        "@type": "Person",
+        "name": "Juan Raphael Diaz Simões",
+        "url": "https://guaraqe.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Juan Raphael Diaz Simões"
+      },
+      "inLanguage": "en-US"
+    }
+    </script>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/syntax.css">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
@@ -66,13 +115,16 @@
     </header>
     <div class="md:flex justify-center bg-base-100">
     <article class="prose max-w-prose">
-        <h1 class="text-3xl mb-5">
-            Towards interactive data science in Haskell: Haskell in JupyterLab
+        <header>
+            <h1 class="text-3xl mb-5">
+                Towards interactive data science in Haskell: Haskell in JupyterLab
 
-        </h1>
-        <div class="mb-5">2019-01-23</div>
+            </h1>
+            <time class="mb-5 block text-gray-600" datetime="2019-01-23">January 23, 2019</time>
+        </header>
 
-        <p class="mb-3">This blog post was written for <a class="link link-hover text-zinc-600" href="https://www.tweag.io">Tweag</a> with Matthias Meschede on IHaskell. You can find it the original <a class="link link-hover text-zinc-600" href="https://www.tweag.io/blog/2019-01-23-jupyterlab-ihaskell/">here</a>.</p>
+        <main>
+            <p class="mb-3">This blog post was written for <a class="link link-hover text-zinc-600" href="https://www.tweag.io">Tweag</a> with Matthias Meschede on IHaskell. You can find it the original <a class="link link-hover text-zinc-600" href="https://www.tweag.io/blog/2019-01-23-jupyterlab-ihaskell/">here</a>.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="1" id="introduction"><span class="header-section-number">1</span> Introduction</h1>
 <p class="mb-3">Haskell and data science - on first sight a great match: native function composition, lazy evaluation, fast execution times, and lots of code checks. These sound like ingredients for scalable, production-ready data transformation pipelines. What is missing then? Why is Haskell not widely used in data science?</p>
 <p class="mb-3">One of the reasons is that Haskell lacks a standardized data analysis environment. For example, Python has a <em>de facto</em> standard library set with <code>numpy</code>, <code>pandas</code> and <code>scikit-learn</code> that form the backbone, and many other well-supported specialized libraries such as <code>keras</code> and <code>tensorflow</code> that are easily accessible. These libraries are distributed with user friendly package managers and explained in a plethora of tutorials, Stack Overflow questions and millions of Jupyter notebooks. Most problems from beginner to advanced level can be solved by adapting and combining these existing solutions.</p>
@@ -231,6 +283,7 @@ channel: &quot;iopub&quot;</code></pre>
 <p class="mb-3">JupyterLab provides a REPL-like workflow that is convenient for quick exploratory data analysis and reporting. Haskell can benefit in particular from JupyterLab’s rendering capacities, its pleasant user interface and its familiarity in the data science community. If you want to try it yourself, this blog post has been written directly as a notebook that is stored in <a class="link link-hover text-zinc-600" href="https://github.com/tweag/jupyterWith/tree/master/example">this folder</a> (with a dataset from Wikipedia). The IHaskell setup with this example notebook is available as a docker image that you can run with:</p>
 <div class="sourceCode mb-3 notranslate" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a class="link link-hover text-zinc-600" href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-p</span> 8888:8888 tweag/jupyterwith:latest</span></code></pre></div>
 <p class="mb-3">Alternatively, if you are a Nix user, you can try our <a class="link link-hover text-zinc-600" href="https://github.com/tweag/jupyterWith">declarative JupyterLab-on-Nix setup</a> that is the subject of our next post.</p>
+        </main>
 
         <br>
         <br>

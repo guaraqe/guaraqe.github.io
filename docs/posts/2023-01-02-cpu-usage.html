@@ -2,11 +2,60 @@
 <html lang="en">
 <head profile="http://www.w3.org/2005/10/profile">
     <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="description" content="Python script using entropy and effective numbers to display multicore
+CPU usage in status bars
+">
+    <meta name="author" content="Juan Raphael Diaz Simões">
+    <meta name="keywords" content="Haskell, functional programming, software engineering, bioinformatics, performance optimization, Juan Simões">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
     <title>Summarizing multicore usage using entropy
 </title>
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Summarizing multicore usage using entropy
+">
+    <meta property="og:description" content="Python script using entropy and effective numbers to display multicore
+CPU usage in status bars
+">
+    <meta property="og:url" content="https://guaraqe.github.io/posts/2023-01-02-cpu-usage.html">
+    <meta property="og:site_name" content="Juan Raphael Diaz Simões">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Summarizing multicore usage using entropy
+">
+    <meta name="twitter:description" content="Python script using entropy and effective numbers to display multicore
+CPU usage in status bars
+">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://guaraqe.github.io/posts/2023-01-02-cpu-usage.html">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "name": "Summarizing multicore usage using entropy
+",
+      "description": "Python script using entropy and effective numbers to display multicore
+CPU usage in status bars
+",
+      "url": "https://guaraqe.github.io/posts/2023-01-02-cpu-usage.html",
+      "author": {
+        "@type": "Person",
+        "name": "Juan Raphael Diaz Simões",
+        "url": "https://guaraqe.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Juan Raphael Diaz Simões"
+      },
+      "inLanguage": "en-US"
+    }
+    </script>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/syntax.css">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
@@ -66,13 +115,16 @@
     </header>
     <div class="md:flex justify-center bg-base-100">
     <article class="prose max-w-prose">
-        <h1 class="text-3xl mb-5">
-            Summarizing multicore usage using entropy
+        <header>
+            <h1 class="text-3xl mb-5">
+                Summarizing multicore usage using entropy
 
-        </h1>
-        <div class="mb-5">2023-01-02</div>
+            </h1>
+            <time class="mb-5 block text-gray-600" datetime="2023-01-02">January  2, 2023</time>
+        </header>
 
-        <p class="mb-3">I am an xmonad user, and use xmobar as my status bar. Previously, I had a 4-core CPU, and showed the CPU usage in the status bar using the <code>MultiCpu</code> plugin, which gave me something like:</p>
+        <main>
+            <p class="mb-3">I am an xmonad user, and use xmobar as my status bar. Previously, I had a 4-core CPU, and showed the CPU usage in the status bar using the <code>MultiCpu</code> plugin, which gave me something like:</p>
 <pre><code>0% 10% 1% 2%</code></pre>
 <p class="mb-3">which is fairly simple to read. However, I just changed laptops, and now I have a 16-core CPU, resulting in something like:</p>
 <pre><code>0% 10% 1% 2% 0% 12% 3% 0% 1% 0% 5% 6% 0% 2% 3% 1%</code></pre>
@@ -115,6 +167,7 @@ N = e^S
 <span id="cb5-19"><a class="link link-hover text-zinc-600" href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-20"><a class="link link-hover text-zinc-600" href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="sc">{0:.0f}</span><span class="st">% </span><span class="sc">{1:.1f}</span><span class="st">&quot;</span>.<span class="bu">format</span>(av ,eff))</span></code></pre></div>
 <p class="mb-3">This should be simple to adapt to other use cases.</p>
+        </main>
 
         <br>
         <br>

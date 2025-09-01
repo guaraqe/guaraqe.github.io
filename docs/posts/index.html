@@ -2,10 +2,46 @@
 <html lang="en">
 <head profile="http://www.w3.org/2005/10/profile">
     <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="description" content="Technical writing on programming languages, software engineering, bioinformatics, and performance optimization by Juan Raphael Diaz Simões">
+    <meta name="author" content="Juan Raphael Diaz Simões">
+    <meta name="keywords" content="Haskell, functional programming, software engineering, bioinformatics, performance optimization, Juan Simões">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
     <title>Posts</title>
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Posts">
+    <meta property="og:description" content="Technical writing on programming languages, software engineering, bioinformatics, and performance optimization by Juan Raphael Diaz Simões">
+    <meta property="og:url" content="https://guaraqe.github.io/posts">
+    <meta property="og:site_name" content="Juan Raphael Diaz Simões">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Posts">
+    <meta name="twitter:description" content="Technical writing on programming languages, software engineering, bioinformatics, and performance optimization by Juan Raphael Diaz Simões">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://guaraqe.github.io/posts">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Posts",
+      "description": "Technical writing on programming languages, software engineering, bioinformatics, and performance optimization by Juan Raphael Diaz Simões",
+      "url": "https://guaraqe.github.io/posts",
+      "author": {
+        "@type": "Person",
+        "name": "Juan Raphael Diaz Simões",
+        "jobTitle": "Software Engineer",
+        "knowsAbout": ["Haskell", "Functional Programming", "Bioinformatics", "Performance Optimization"],
+        "url": "https://guaraqe.github.io"
+      },
+      "inLanguage": "en-US"
+    }
+    </script>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/syntax.css">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
@@ -61,107 +97,10 @@
             <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
                 <div class="flex items-start justify-between mb-2">
                     <h3 class="text-lg font-semibold flex-1 mr-4">
-                        <a href="2023-01-02-cpu-usage.html" class="text-gray-900 hover:text-blue-600">Summarizing multicore usage using entropy
-</a>
-                    </h3>
-                    <span class="text-sm text-gray-500 whitespace-nowrap">2023-01-02</span>
-                </div>
-                <p class="text-sm text-gray-600 mb-2">Python script using entropy and effective numbers to display multicore
-CPU usage in status bars
-</p>
-            </article>
-            <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
-                <div class="flex items-start justify-between mb-2">
-                    <h3 class="text-lg font-semibold flex-1 mr-4">
-                        <a href="2021-04-15-arrows-through-a-different-lens.html" class="text-gray-900 hover:text-blue-600">Arrows, through a different lens
-</a>
-                    </h3>
-                    <span class="text-sm text-gray-500 whitespace-nowrap">2021-04-15</span>
-                </div>
-                <p class="text-sm text-gray-600 mb-2">Using profunctor optics with Arrow-based workflows for better
-composability
-</p>
-            </article>
-            <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
-                <div class="flex items-start justify-between mb-2">
-                    <h3 class="text-lg font-semibold flex-1 mr-4">
-                        <a href="2020-03-05-peirce.html" class="text-gray-900 hover:text-blue-600">Code is engineering, types are science
-</a>
-                    </h3>
-                    <span class="text-sm text-gray-500 whitespace-nowrap">2020-03-05</span>
-                </div>
-                <p class="text-sm text-gray-600 mb-2">Exploring deduction, induction, and abduction in software development
-through Peirce’s theory
-</p>
-            </article>
-            <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
-                <div class="flex items-start justify-between mb-2">
-                    <h3 class="text-lg font-semibold flex-1 mr-4">
-                        <a href="2020-01-31-performance-bottlenecks.html" class="text-gray-900 hover:text-blue-600">Locating performance bottlenecks in large Haskell codebases
-</a>
-                    </h3>
-                    <span class="text-sm text-gray-500 whitespace-nowrap">2020-01-31</span>
-                </div>
-                <p class="text-sm text-gray-600 mb-2">Manual cost center profiling technique achieving 100x speedups in
-production systems
-</p>
-            </article>
-            <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
-                <div class="flex items-start justify-between mb-2">
-                    <h3 class="text-lg font-semibold flex-1 mr-4">
-                        <a href="2019-02-28-jupyterwith.html" class="text-gray-900 hover:text-blue-600">JupyterWith: declarative, reproducible notebook environments
-</a>
-                    </h3>
-                    <span class="text-sm text-gray-500 whitespace-nowrap">2019-02-28</span>
-                </div>
-                <p class="text-sm text-gray-600 mb-2">Nix-based solution for reproducible Jupyter environments with multiple
-language kernels
-</p>
-            </article>
-            <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
-                <div class="flex items-start justify-between mb-2">
-                    <h3 class="text-lg font-semibold flex-1 mr-4">
-                        <a href="2019-02-08-article.html" class="text-gray-900 hover:text-blue-600">Brownian-like deviation of neighboring cells in the early embryogenesis
-of the zebrafish
-</a>
-                    </h3>
-                    <span class="text-sm text-gray-500 whitespace-nowrap">2019-02-08</span>
-                </div>
-                <p class="text-sm text-gray-600 mb-2">Research paper on cell movement patterns during zebrafish embryonic
-development
-</p>
-            </article>
-            <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
-                <div class="flex items-start justify-between mb-2">
-                    <h3 class="text-lg font-semibold flex-1 mr-4">
-                        <a href="2019-01-23-ihaskell.html" class="text-gray-900 hover:text-blue-600">Towards interactive data science in Haskell: Haskell in JupyterLab
-</a>
-                    </h3>
-                    <span class="text-sm text-gray-500 whitespace-nowrap">2019-01-23</span>
-                </div>
-                <p class="text-sm text-gray-600 mb-2">Setting up IHaskell kernel in JupyterLab for interactive Haskell data
-analysis
-</p>
-            </article>
-            <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
-                <div class="flex items-start justify-between mb-2">
-                    <h3 class="text-lg font-semibold flex-1 mr-4">
-                        <a href="2018-04-17-nix-haskell-clusters.html" class="text-gray-900 hover:text-blue-600">Running Haskell applications in clusters using Nix
-</a>
-                    </h3>
-                    <span class="text-sm text-gray-500 whitespace-nowrap">2018-04-17</span>
-                </div>
-                <p class="text-sm text-gray-600 mb-2">Deploying Haskell applications on HPC clusters using Nix and PRoot
-without root access
-</p>
-            </article>
-            <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
-                <div class="flex items-start justify-between mb-2">
-                    <h3 class="text-lg font-semibold flex-1 mr-4">
                         <a href="2017-11-02-type-classes-incidental-non-examples.html" class="text-gray-900 hover:text-blue-600">Haskell type classes: incidental non-examples
 </a>
                     </h3>
-                    <span class="text-sm text-gray-500 whitespace-nowrap">2017-11-02</span>
+                    <span class="text-sm text-gray-500 whitespace-nowrap">November  2, 2017</span>
                 </div>
                 <p class="text-sm text-gray-600 mb-2">Why some types like Set and Map don’t fit standard type classes and
 possible solutions
@@ -173,10 +112,70 @@ possible solutions
                         <a href="2017-11-01-type-classes-laws.html" class="text-gray-900 hover:text-blue-600">Haskell type classes: a compilation of laws
 </a>
                     </h3>
-                    <span class="text-sm text-gray-500 whitespace-nowrap">2017-11-01</span>
+                    <span class="text-sm text-gray-500 whitespace-nowrap">November  1, 2017</span>
                 </div>
                 <p class="text-sm text-gray-600 mb-2">Reference compilation of mathematical laws for Haskell’s core type
 classes
+</p>
+            </article>
+            <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-start justify-between mb-2">
+                    <h3 class="text-lg font-semibold flex-1 mr-4">
+                        <a href="2020-03-05-peirce.html" class="text-gray-900 hover:text-blue-600">Code is engineering, types are science
+</a>
+                    </h3>
+                    <span class="text-sm text-gray-500 whitespace-nowrap">March  5, 2020</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Exploring deduction, induction, and abduction in software development
+through Peirce’s theory
+</p>
+            </article>
+            <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-start justify-between mb-2">
+                    <h3 class="text-lg font-semibold flex-1 mr-4">
+                        <a href="2020-01-31-performance-bottlenecks.html" class="text-gray-900 hover:text-blue-600">Locating performance bottlenecks in large Haskell codebases
+</a>
+                    </h3>
+                    <span class="text-sm text-gray-500 whitespace-nowrap">January 31, 2020</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Manual cost center profiling technique achieving 100x speedups in
+production systems
+</p>
+            </article>
+            <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-start justify-between mb-2">
+                    <h3 class="text-lg font-semibold flex-1 mr-4">
+                        <a href="2019-01-23-ihaskell.html" class="text-gray-900 hover:text-blue-600">Towards interactive data science in Haskell: Haskell in JupyterLab
+</a>
+                    </h3>
+                    <span class="text-sm text-gray-500 whitespace-nowrap">January 23, 2019</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Setting up IHaskell kernel in JupyterLab for interactive Haskell data
+analysis
+</p>
+            </article>
+            <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-start justify-between mb-2">
+                    <h3 class="text-lg font-semibold flex-1 mr-4">
+                        <a href="2023-01-02-cpu-usage.html" class="text-gray-900 hover:text-blue-600">Summarizing multicore usage using entropy
+</a>
+                    </h3>
+                    <span class="text-sm text-gray-500 whitespace-nowrap">January  2, 2023</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Python script using entropy and effective numbers to display multicore
+CPU usage in status bars
+</p>
+            </article>
+            <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-start justify-between mb-2">
+                    <h3 class="text-lg font-semibold flex-1 mr-4">
+                        <a href="2019-02-28-jupyterwith.html" class="text-gray-900 hover:text-blue-600">JupyterWith: declarative, reproducible notebook environments
+</a>
+                    </h3>
+                    <span class="text-sm text-gray-500 whitespace-nowrap">February 28, 2019</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Nix-based solution for reproducible Jupyter environments with multiple
+language kernels
 </p>
             </article>
             <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
@@ -186,10 +185,47 @@ classes
 morphogenetic fields in animal embryogenesis
 </a>
                     </h3>
-                    <span class="text-sm text-gray-500 whitespace-nowrap">2017-02-24</span>
+                    <span class="text-sm text-gray-500 whitespace-nowrap">February 24, 2017</span>
                 </div>
                 <p class="text-sm text-gray-600 mb-2">Algorithm for clustering embryonic cells using quantum
 mechanics-inspired path integrals
+</p>
+            </article>
+            <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-start justify-between mb-2">
+                    <h3 class="text-lg font-semibold flex-1 mr-4">
+                        <a href="2019-02-08-article.html" class="text-gray-900 hover:text-blue-600">Brownian-like deviation of neighboring cells in the early embryogenesis
+of the zebrafish
+</a>
+                    </h3>
+                    <span class="text-sm text-gray-500 whitespace-nowrap">February  8, 2019</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Research paper on cell movement patterns during zebrafish embryonic
+development
+</p>
+            </article>
+            <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-start justify-between mb-2">
+                    <h3 class="text-lg font-semibold flex-1 mr-4">
+                        <a href="2018-04-17-nix-haskell-clusters.html" class="text-gray-900 hover:text-blue-600">Running Haskell applications in clusters using Nix
+</a>
+                    </h3>
+                    <span class="text-sm text-gray-500 whitespace-nowrap">April 17, 2018</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Deploying Haskell applications on HPC clusters using Nix and PRoot
+without root access
+</p>
+            </article>
+            <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-start justify-between mb-2">
+                    <h3 class="text-lg font-semibold flex-1 mr-4">
+                        <a href="2021-04-15-arrows-through-a-different-lens.html" class="text-gray-900 hover:text-blue-600">Arrows, through a different lens
+</a>
+                    </h3>
+                    <span class="text-sm text-gray-500 whitespace-nowrap">April 15, 2021</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Using profunctor optics with Arrow-based workflows for better
+composability
 </p>
             </article>
         </div>

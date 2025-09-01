@@ -14,6 +14,7 @@ import Development.Shake.Forward
 import Site.Blog qualified as Blog
 import Site.Book qualified as Book
 import Site.Layout qualified as Layout
+import Site.Sitemap qualified as Sitemap
 import Data.Text qualified as Text
 import Site.Pandoc qualified as Pandoc
 import Slick
@@ -24,7 +25,7 @@ outputFolder = "docs/"
 
 copyStaticFiles :: Action ()
 copyStaticFiles = do
-  filepaths <- getDirectoryFiles "site" ["images//*", "css//*", "js//*"]
+  filepaths <- getDirectoryFiles "site" ["images//*", "css//*", "js//*", "robots.txt"]
   void $ forP filepaths $ \filepath ->
     copyFileChanged ("site" </> filepath) (outputFolder </> filepath)
 
@@ -95,7 +96,10 @@ buildIndex posts = do
             content = Text.unpack finalContent,
             latex = True,
             page = "Home",
-            pageLink = "/"
+            pageLink = "/",
+            description = "Juan Raphael Diaz Simões - Software engineer specializing in Haskell, functional programming, bioinformatics, and performance optimization",
+            currentUrl = "/",
+            isPost = False
           }
 
   Layout.build (outputFolder </> "index.html") layout
@@ -116,7 +120,10 @@ buildCV = do
             content = Text.unpack finalContent,
             latex = True,
             page = "CV",
-            pageLink = "/cv.html"
+            pageLink = "/cv.html",
+            description = "CV of Juan Raphael Diaz Simões - Software engineer with expertise in functional programming, bioinformatics, and distributed systems",
+            currentUrl = "/cv.html",
+            isPost = False
           }
 
   Layout.build (outputFolder </> "cv.html") layout
@@ -138,7 +145,10 @@ buildProjects = do
             content = Text.unpack finalContent,
             latex = True,
             page = "Projects",
-            pageLink = "/projects.html"
+            pageLink = "/projects.html",
+            description = "Open source projects and software by Juan Raphael Diaz Simões",
+            currentUrl = "/projects.html",
+            isPost = False
           }
 
   Layout.build (outputFolder </> "projects.html") layout
@@ -151,6 +161,7 @@ buildRules = do
   buildIndex posts
   buildCV
   buildProjects
+  Sitemap.buildSitemap outputFolder posts
   copyStaticFiles
   copyBioinformaticsExam
   copyStatisticsExam

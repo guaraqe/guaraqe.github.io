@@ -18,6 +18,7 @@ import Data.List (sortOn)
 import Data.Ord (Down (..))
 import Data.Text qualified as T
 import Data.Time
+import Data.Time.Format (formatTime, defaultTimeLocale)
 import Development.Shake
 import Development.Shake.Classes
 import Development.Shake.FilePath
@@ -61,7 +62,10 @@ buildIndex outputFolder posts = do
             content = T.unpack $ substitute indexT (toJSON indexInfo),
             latex = False,
             page = "Posts",
-            pageLink = "/posts"
+            pageLink = "/posts",
+            description = "Technical writing on programming languages, software engineering, bioinformatics, and performance optimization by Juan Raphael Diaz Simões",
+            currentUrl = "/posts",
+            isPost = False
           }
   Layout.build (outputFolder </> "index.html") layout
 
@@ -93,7 +97,8 @@ buildPost outputFolder srcPath = cacheAction ("post" :: T.Text, srcPath) $ do
       date = prefixToDate postUrl
 
   let fullPostData =
-        setObjectAttribute "date" (showGregorian date)
+        setObjectAttribute "date" (formatTime defaultTimeLocale "%B %e, %Y" date)
+          . setObjectAttribute "dateISO" (showGregorian date)
           . setObjectAttribute "url" postUrl
           . setObjectAttribute "fullUrl" ("posts" </> postUrl)
           $ postData
@@ -108,7 +113,10 @@ buildPost outputFolder srcPath = cacheAction ("post" :: T.Text, srcPath) $ do
             content = T.unpack $ substitute template fullPostData,
             latex = True,
             page = "Posts",
-            pageLink = "/posts"
+            pageLink = "/posts",
+            description = maybe (take 160 $ post.title ++ " - Technical article by Juan Raphael Diaz Simões") id post.summary,
+            currentUrl = "/posts/" ++ postUrl,
+            isPost = True
           }
 
   Layout.build (outputFolder </> postUrl) layout

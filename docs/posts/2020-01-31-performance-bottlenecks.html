@@ -2,11 +2,60 @@
 <html lang="en">
 <head profile="http://www.w3.org/2005/10/profile">
     <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="description" content="Manual cost center profiling technique achieving 100x speedups in
+production systems
+">
+    <meta name="author" content="Juan Raphael Diaz Simões">
+    <meta name="keywords" content="Haskell, functional programming, software engineering, bioinformatics, performance optimization, Juan Simões">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
     <title>Locating performance bottlenecks in large Haskell codebases
 </title>
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Locating performance bottlenecks in large Haskell codebases
+">
+    <meta property="og:description" content="Manual cost center profiling technique achieving 100x speedups in
+production systems
+">
+    <meta property="og:url" content="https://guaraqe.github.io/posts/2020-01-31-performance-bottlenecks.html">
+    <meta property="og:site_name" content="Juan Raphael Diaz Simões">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Locating performance bottlenecks in large Haskell codebases
+">
+    <meta name="twitter:description" content="Manual cost center profiling technique achieving 100x speedups in
+production systems
+">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://guaraqe.github.io/posts/2020-01-31-performance-bottlenecks.html">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "name": "Locating performance bottlenecks in large Haskell codebases
+",
+      "description": "Manual cost center profiling technique achieving 100x speedups in
+production systems
+",
+      "url": "https://guaraqe.github.io/posts/2020-01-31-performance-bottlenecks.html",
+      "author": {
+        "@type": "Person",
+        "name": "Juan Raphael Diaz Simões",
+        "url": "https://guaraqe.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Juan Raphael Diaz Simões"
+      },
+      "inLanguage": "en-US"
+    }
+    </script>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/syntax.css">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
@@ -66,13 +115,16 @@
     </header>
     <div class="md:flex justify-center bg-base-100">
     <article class="prose max-w-prose">
-        <h1 class="text-3xl mb-5">
-            Locating performance bottlenecks in large Haskell codebases
+        <header>
+            <h1 class="text-3xl mb-5">
+                Locating performance bottlenecks in large Haskell codebases
 
-        </h1>
-        <div class="mb-5">2020-01-31</div>
+            </h1>
+            <time class="mb-5 block text-gray-600" datetime="2020-01-31">January 31, 2020</time>
+        </header>
 
-        <p class="mb-3">I wrote a post for <a class="link link-hover text-zinc-600" href="https://www.tweag.io">Tweag</a> on Haskell profiling. You can find the original <a class="link link-hover text-zinc-600" href="https://www.tweag.io/blog/2020-01-30-haskell-profiling/">here</a>.</p>
+        <main>
+            <p class="mb-3">I wrote a post for <a class="link link-hover text-zinc-600" href="https://www.tweag.io">Tweag</a> on Haskell profiling. You can find the original <a class="link link-hover text-zinc-600" href="https://www.tweag.io/blog/2020-01-30-haskell-profiling/">here</a>.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="1" id="introduction"><span class="header-section-number">1</span> Introduction</h1>
 <p class="mb-3">Recently, a major French bank asked Tweag to help fix a performance problem they had in a large Haskell codebase. In this blog post, we show the technique we used to locate the performance bottlenecks in that codebase. Once they were located, we were able to address them and eventually obtain a speed-up of two orders of magnitude. This post also includes a <a class="link link-hover text-zinc-600" href="https://github.com/tweag/blog-resources/tree/master/profiling">repository</a> with sample code profiled using the method described here, with all runnable commands in a Makefile—so you can easily experiment.</p>
 <h1 class="text-2xl mt-5 mb-5" data-number="2" id="preamble-cost-centers-and-inlining"><span class="header-section-number">2</span> Preamble: cost centers and inlining</h1>
@@ -125,12 +177,12 @@
 </ul>
 <h1 class="text-2xl mt-5 mb-5" data-number="4" id="application-of-the-method"><span class="header-section-number">4</span> Application of the method</h1>
 <p class="mb-3">The naive method (and easiest) is to use the default profiling methods from Cabal or Stack, which add cost centers automatically when compiling with profiling activated. We want to avoid it, so at compilation time we pass the GHC flag <code>-fno-prof-auto</code> to the executable and its dependencies (see the appendix). For Cabal one only needs to make the flag explicit:</p>
-<pre><code>cabal build --enable-profiling --ghc-options=&quot;-fno-prof-auto&quot;</code></pre>
+<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cabal</span> build <span class="at">--enable-profiling</span> <span class="at">--ghc-options</span><span class="op">=</span><span class="st">&quot;-fno-prof-auto&quot;</span></span></code></pre></div>
 <p class="mb-3">For Stack, one needs to add the following flags at the top-level to <code>stack.yaml</code>:</p>
-<pre><code>apply-ghc-options: everything
-rebuild-ghc-options: true</code></pre>
+<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply-ghc-options</span><span class="kw">:</span><span class="at"> everything</span></span>
+<span id="cb3-2"><a class="link link-hover text-zinc-600" href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rebuild-ghc-options</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div>
 <p class="mb-3">and build with:</p>
-<pre><code>stack build --profile --ghc-options=&quot;-fno-prof-auto&quot;</code></pre>
+<div class="sourceCode mb-3 notranslate" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a class="link link-hover text-zinc-600" href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">stack</span> build <span class="at">--profile</span> <span class="at">--ghc-options</span><span class="op">=</span><span class="st">&quot;-fno-prof-auto&quot;</span></span></code></pre></div>
 <p class="mb-3">In all of these methods, the executable should be run with <code>example +RTS -p</code> in order to produce the <code>.prof</code> file, that can be analyzed with many tools, like Flamegraph or Profiterole.</p>
 <p class="mb-3">To show this choice of flags makes a difference, these are the runtimes of the executable above in three situations:</p>
 <ul class="list-disc list-outside mt-1 mb-3 pl-5">
@@ -178,6 +230,7 @@ COST CENTRE     MODULE entries %time %alloc   %time %alloc
 <p class="mb-3">This method works well with large codebases—one can start by profiling key functions at the top level, and little by little add cost centers to locations that are deeper in the file hierarchy, up to the point where it finds the actual bottleneck.</p>
 <p class="mb-3">Since this method requires very precise flags to work, one must be sure that these are being passed correctly to the repository at hand. If even one dependency gets cost centers automatically attributed, it can compromise the whole profiling result. However, this should be easy to diagnose, since one would see the dependency code in the profiling report.</p>
 <p class="mb-3">Remember to check out the <a class="link link-hover text-zinc-600" href="https://github.com/tweag/blog-resources/tree/master/profiling">repository</a> we included—so you can easily experiment with the code and commands above!</p>
+        </main>
 
         <br>
         <br>
