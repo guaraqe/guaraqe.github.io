@@ -72,6 +72,7 @@ data Post = Post
   { title :: String,
     content :: String,
     url :: String,
+    fullUrl :: String,
     date :: String,
     summary :: Maybe String
   }
@@ -94,6 +95,7 @@ buildPost outputFolder srcPath = cacheAction ("post" :: T.Text, srcPath) $ do
   let fullPostData =
         setObjectAttribute "date" (showGregorian date)
           . setObjectAttribute "url" postUrl
+          . setObjectAttribute "fullUrl" ("posts" </> postUrl)
           $ postData
 
   template <- compileTemplate' "site/templates/post.html"

@@ -44,12 +44,22 @@
             </a>
           </div>
           <div class="navbar-end">
-            <ul class="menu menu-horizontal text-sm space-x-1">
-              <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Posts</a></li>
-              <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors hidden sm:inline-block">Courses</a></li>
-              <li><a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">CV</a></li>
-              <li><a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors hidden sm:inline-block">Projects</a></li>
-            </ul>
+            <div class="hidden sm:block">
+              <ul class="menu menu-horizontal text-sm space-x-1">
+                <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Writing</a></li>
+                <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Education</a></li>
+                <li><a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">CV</a></li>
+                <li><a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Projects</a></li>
+              </ul>
+            </div>
+            <div class="block sm:hidden">
+              <div class="grid grid-cols-2 gap-1 text-xs">
+                <a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Writing</a>
+                <a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">CV</a>
+                <a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Education</a>
+                <a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Projects</a>
+              </div>
+            </div>
           </div>
         </div>
     </header>
@@ -83,7 +93,7 @@
 <p class="mb-3"><strong>Published researcher</strong> in computational biology with work featured in <em>Physical Biology</em> and international conferences.</p>
 
 <hr />
-<p class="mb-3"><strong>Explore</strong>: <a class="link link-hover text-zinc-600" href="/cv.html">Professional CV</a> • <a class="link link-hover text-zinc-600" href="/projects.html">Open Source Projects</a> • <a class="link link-hover text-zinc-600" href="/posts">Technical Thoughts</a> • <a class="link link-hover text-zinc-600" href="/courses">Teaching Materials</a></p>
+<p class="mb-3"><strong>Explore</strong>: <a class="link link-hover text-zinc-600" href="/cv.html">Professional CV</a> • <a class="link link-hover text-zinc-600" href="/projects.html">Open Source Projects</a> • <a class="link link-hover text-zinc-600" href="/posts">Technical Writing</a> • <a class="link link-hover text-zinc-600" href="/courses">Education</a></p>
 
 <h2 class="text-xl mt-8 mb-4">Technical Writing</h2>
 

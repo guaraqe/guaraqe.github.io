@@ -119,6 +119,7 @@ pre {
   margin: 0 0 1rem 0;
   background: #f1f5f9;
   border-radius: 0.375rem;
+  overflow-x: auto;
 }
 
 .sourceCode pre {
@@ -135,9 +136,7 @@ pre {
   font-family: "DejaVu Sans Mono", monospace;
   line-height: 140%;
   white-space: pre;
-  white-space: pre-wrap;
-  white-space: -moz-pre-wrap;
-  white-space: -o-pre-wrap;
+  overflow-x: auto;
   background: #f1f5f9;
   border-radius: 0.375rem;
 }
