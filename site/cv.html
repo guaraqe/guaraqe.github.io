@@ -1,7 +1,7 @@
 <div class="bg-gradient-to-r from-slate-50 to-blue-50 p-6 rounded-lg mb-8">
     <h2 class="text-2xl font-bold mb-2">Juan Raphael Diaz Simões</h2>
     <p class="text-lg text-blue-800 mb-3">Senior Software Engineer & Research Scientist</p>
-    <p class="text-sm text-gray-600 mb-4">📍 Remote • 📧 juanrapha(at)gmail.com • 🇧🇷 Brazilian</p>
+    <p class="text-sm text-gray-600 mb-4">📍 Remote • 🇧🇷 Brazilian</p>
     <div class="flex flex-wrap gap-2">
         <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Distributed Systems</span>
         <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">Haskell Expert</span>
@@ -9,6 +9,35 @@
         <span class="px-3 py-1 bg-orange-100 text-orange-800 text-xs rounded-full">Technical Leader</span>
     </div>
 </div>
+
+<div class="bg-blue-50 border border-blue-200 p-3 rounded-lg mt-6 mb-6 text-center">
+    <p class="text-gray-700 mb-0 text-sm">Interested in collaboration, consulting, or discussing technical subjects?</p>
+    <button onclick="revealEmail()" id="email-btn" class="btn btn-primary btn-xs">
+        📧 Contact
+    </button>
+    <div id="email-content" class="hidden mt-1">
+        <a href="#" id="email-link" class="text-blue-600 hover:text-blue-800 text-sm"></a>
+    </div>
+</div>
+
+<script>
+function revealEmail() {
+    const emailBtn = document.getElementById('email-btn');
+    const emailContent = document.getElementById('email-content');
+    const emailLink = document.getElementById('email-link');
+    
+    // Construct email from parts to avoid spam bots
+    const user = 'juanrapha';
+    const domain = 'gmail.com';
+    const email = user + '@' + domain;
+    
+    emailLink.href = 'mailto:' + email;
+    emailLink.textContent = email;
+    
+    emailBtn.style.display = 'none';
+    emailContent.classList.remove('hidden');
+}
+</script>
 
 <h2 class="text-2xl font-bold mb-6">1. Professional Experience</h2>
 
