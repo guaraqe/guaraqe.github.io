@@ -9,7 +9,7 @@ This post is a reference for type classes' laws. It will be expanded with time.
 
 # Functor
 
-```
+```haskell
 class Functor f where
   fmap :: (a -> b) -> f a -> f b
 ```
@@ -23,7 +23,7 @@ class Functor f where
 
 # Applicative
 
-```
+```haskell
 class Functor f => Applicative f where
   pure :: a -> f a
   <*> :: f (a -> b) -> f a -> f b
@@ -31,7 +31,7 @@ class Functor f => Applicative f where
 
 An alternative definition could be:
 
-```
+```haskell
 class Functor f => Applicative f where
   pure :: a -> f a
   zip :: (f a, f b) -> f (a, b)

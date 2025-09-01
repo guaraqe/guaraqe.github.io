@@ -104,21 +104,21 @@ profiling activated. We want to avoid it, so at compilation time we pass the
 GHC flag `-fno-prof-auto` to the executable and its dependencies (see the
 appendix). For Cabal one only needs to make the flag explicit:
 
-```
+```bash
 cabal build --enable-profiling --ghc-options="-fno-prof-auto"
 ```
 
 For Stack, one needs to add the following flags at the top-level to
 `stack.yaml`:
 
-```
+```yaml
 apply-ghc-options: everything
 rebuild-ghc-options: true
 ```
 
 and build with:
 
-```
+```bash
 stack build --profile --ghc-options="-fno-prof-auto"
 ```
 

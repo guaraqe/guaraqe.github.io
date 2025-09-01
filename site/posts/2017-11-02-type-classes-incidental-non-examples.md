@@ -19,7 +19,7 @@ The most common type class on Haskell, inspired by the category theory
 functors are endofunctors, that is, they have the same domain and target
 categories.
 
-```
+```haskell
 class Functor f where
   fmap :: (a -> b) -> f a -> f b
 ```
