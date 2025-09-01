@@ -1,5 +1,6 @@
 ---
 title: Locating performance bottlenecks in large Haskell codebases
+summary: Manual cost center profiling technique achieving 100x speedups in production systems
 ---
 
 I wrote a post for [Tweag](https://www.tweag.io) on Haskell profiling. You can

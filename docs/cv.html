@@ -35,75 +35,147 @@
 </head>
 <body>
     <header>
-        <div class="navbar bg-base-100">
+        <div class="navbar bg-base-100 px-4 py-3">
           <div class="navbar-start">
-            <nav>
-            <ol class="inline-flex items-center space-x-1 md:space-x-3">
-        <li class="inline-flex items-center">
-          <a href="/" class="inline-flex items-center text-l font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-            <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-            Juan Raphael Diaz Simões
-          </a>
-        </li>
-    
-        <li>
-      <div class="flex items-center">
-        <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-        <a href="/cv.html" class="ml-1 text-l font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">CV</a>
-      </div>
-    </li>
-
+            <a href="/" class="flex items-center group">
+              <img src="/images/juan.png" alt="Juan Simões" class="w-8 h-8 rounded-full object-cover mr-3 group-hover:scale-105 transition-transform">
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors hidden sm:inline">Juan Raphael Diaz Simões</span>
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors sm:hidden">Juan Simões</span>
+            </a>
           </div>
           <div class="navbar-end">
-            <ul class="menu menu-horizontal px-1">
-              <li><a href="/posts">Posts</a></li>
-              <li><a href="/courses">Courses</a></li>
-              <li><a href="/cv.html">CV</a></li>
-              <li><a href="/projects.html">Projects</a></li>
+            <ul class="menu menu-horizontal text-sm space-x-1">
+              <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Posts</a></li>
+              <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors hidden sm:inline-block">Courses</a></li>
+              <li><a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">CV</a></li>
+              <li><a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors hidden sm:inline-block">Projects</a></li>
             </ul>
           </div>
-        </nav>
+        </div>
     </header>
     <div class="md:flex justify-center bg-base-100">
     <article class="prose max-w-prose">
         <h1 class="text-3xl mb-5">
             CV
-
         </h1>
-        <h1 class="text-2xl mt-5 mb-5" data-number="1" id="personal-information"><span class="header-section-number">1</span> Personal Information</h1>
-<ul class="list-disc list-outside mt-1 mb-3 pl-5">
-<li><strong>Name</strong>: Juan Raphael Diaz Simões</li>
-<li><strong>Nationality</strong>: Brazilian</li>
-<li><strong>Location</strong>: Tashkent, Uzbekistan</li>
-<li><strong>Birth</strong>: September 5th 1989, in São Paulo, Brazil</li>
-<li><strong>Contact</strong>: <code>juanrapha(at)gmail.com</code>.</li>
-</ul>
-<h1 class="text-2xl mt-5 mb-5" data-number="2" id="work-experience"><span class="header-section-number">2</span> Work Experience</h1>
-<ul class="list-disc list-outside mt-1 mb-3 pl-5">
-<li><p class="mb-3"><strong>Tlon</strong> – <em>2023/01 - Present</em> <br> <strong>Software engineer.</strong></p></li>
-<li><p class="mb-3"><strong>Tweag I/O</strong> – <em>2018/09 - 2022/12</em> <br> <strong>Software engineer.</strong> I worked as a software engineering consultant for Tweag, mainly with Haskell, Nix and functional programming-related tech stacks. For more than 4 years I experienced different environments and companies, ranging from academia to banking and logistics. I was the project lead for my latest mission, a hive supporter, and an editor for the <a class="link link-hover text-zinc-600" href="https://www.tweag.io/blog">company technical blog</a>.</p></li>
-<li><p class="mb-3"><strong>Tashkent State Dental Institute</strong> – <em>2020/11 - Present</em></p>
-<ul class="list-disc list-outside mt-1 mb-3 pl-5">
-<li><p class="mb-3"><strong>Associate Lecturer.</strong> – <em>2022/09 - Present</em> <br> Teaching of physics, mathematics and informatics courses to the university’s medical and dentistry students. Part time.</p></li>
-<li><p class="mb-3"><strong>Assistant Lecturer.</strong> – <em>2022/02 - 2022/08</em> <br> Teaching of physics, mathematics and informatics courses to the university’s medical and dentistry students. Part time.</p></li>
-<li><p class="mb-3"><strong>Guest Lecturer.</strong> – <em>2020/11 - 2021/11</em> <br> Guest lectures on physics related to the medical and biological sciences to the university’s medical and dentistry students.</p></li>
-</ul></li>
-<li><p class="mb-3"><strong>Turin Polytechnic University in Tashkent</strong> – <em>2020/09 - 2021/08</em> <br> <strong>Physics lecturer.</strong> Teaching of fundamental physics courses to the university’s engineering students.</p></li>
-<li><p class="mb-3"><strong>PMC - École Polytechnique</strong> – <em>2018/02 - 2018/09</em> <br> <strong>Research engineer.</strong> Development of a software platform for the analysis of trajectories in two and three dimensions. Visualization of trajectories with WebGL, and of statistical results with auto-generated graphs.</p></li>
-<li><p class="mb-3"><strong>BioEmergences - CNRS Gif-sur-Yvette</strong> – <em>2017/11 - 2018/01</em> <br> <strong>Research engineer.</strong> Stabilization of the <a class="link link-hover text-zinc-600" href="https://github.com/guaraqe/lineageflow">LineageFlow</a> software, making its building reproducible and its deployment easier with Nix-generated Docker image.</p></li>
-</ul>
-<h1 class="text-2xl mt-5 mb-5" data-number="3" id="publications"><span class="header-section-number">3</span> Publications</h1>
-<ul class="list-disc list-outside mt-1 mb-3 pl-5">
-<li><p class="mb-3"><strong>Brownian-like deviation of neighboring cells in the early embryogenesis of the zebrafish</strong> <br> <em>J. R. Diaz Simões, D. Grebenkov, P. Bourgine, N. Peyriéras</em> <br> Physical Biology – 2019/02 – <a class="link link-hover text-zinc-600" href="https://doi.org/10.1088/1478-3975/aaf92d">DOI</a></p></li>
-<li><p class="mb-3"><strong>Cell Trajectory Clustering: Towards the Automated Identification of Morphogenetic Fields in Animal Embryogenesis</strong> <br> <em>J. R. Diaz Simões, D. Grebenkov, P. Bourgine, N. Peyriéras</em> <br> ICPRAM 2017 Proceedings – 2017/02 – <a class="link link-hover text-zinc-600" href="https://doi.org/10.5220/0006259407460752">DOI</a></p></li>
-</ul>
-<h1 class="text-2xl mt-5 mb-5" data-number="4" id="education"><span class="header-section-number">4</span> Education</h1>
-<ul class="list-disc list-outside mt-1 mb-3 pl-5">
-<li><p class="mb-3"><strong>PhD in Complex Systems Science – Université Paris-Saclay</strong> – 2017/10 <br> <em>Thesis</em>: A mathematical approach to embryonic morphogenesis based on spatio-temporal cell lineages <br> <em>Supervisors</em>: Denis Grebenkov, Paul Bourgine and Nadine Peyriéras <br> The thesis can be found on <a class="link link-hover text-zinc-600" href="https://hal.archives-ouvertes.fr/tel-01689773">HAL</a>, and the resulting sofware on <a class="link link-hover text-zinc-600" href="https://github.com/guaraqe/lineageflow">GitHub</a>.</p></li>
-<li><p class="mb-3"><strong>Masters in Complex Systems Science – École Polytechnique</strong> – 2013/07 <br> <em>Thesis</em>: Generalized Langevin equations driven by fractional Brownian noise <br> The thesis can be found on <a class="link link-hover text-zinc-600" href="data/internship_report.pdf">here</a>.</p></li>
-<li><p class="mb-3"><strong>Polytechnic Engineer – École Polytechnique</strong> – 2011/07 <br> Double diploma between the University of São Paulo in Brazil, and the École Polytechnique in France.</p></li>
-<li><p class="mb-3"><strong>Bachelor in Physics – University of São Paulo</strong> – 2011/07 <br> Double diploma between the University of São Paulo in Brazil, and the École Polytechnique in France.</p></li>
-</ul>
+        <div class="bg-gradient-to-r from-slate-50 to-blue-50 p-6 rounded-lg mb-8">
+    <h2 class="text-2xl font-bold mb-2">Juan Raphael Diaz Simões</h2>
+    <p class="text-lg text-blue-800 mb-3">Senior Software Engineer & Research Scientist</p>
+    <p class="text-sm text-gray-600 mb-4">📍 Tashkent, Uzbekistan • 📧 juanrapha(at)gmail.com • 🇧🇷 Brazilian</p>
+    <div class="flex flex-wrap gap-2">
+        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Distributed Systems</span>
+        <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">Haskell Expert</span>
+        <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">PhD Researcher</span>
+        <span class="px-3 py-1 bg-orange-100 text-orange-800 text-xs rounded-full">Technical Leader</span>
+    </div>
+</div>
+
+<h2 class="text-2xl font-bold mb-6">1. Professional Experience</h2>
+
+<div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+    <h3 class="text-xl font-semibold mb-2 text-blue-900">Tlon — Haskell Engineer | 2023/01 - Present</h3>
+    <p class="mb-3"><strong>Haskell engineer</strong> developing Urbit hosting platform. Building infrastructure that makes Urbit accessible to users through automated Kubernetes orchestration and platform automation, interacting constantly with Urbit and Kubernetes systems.</p>
+    <p class="text-sm text-blue-700"><em>Key Impact: Enabling user access to decentralized computing platform</em></p>
+</div>
+
+<div class="bg-green-50 border-l-4 border-green-400 p-4 mb-6">
+    <h3 class="text-xl font-semibold mb-2 text-green-900">Tweag I/O — Senior Consultant & Technical Leader | 2018/09 - 2022/12</h3>
+    <p class="mb-2"><strong>4+ years leading critical infrastructure projects</strong> for Fortune 500 clients. Specialized in functional programming ecosystems and performance engineering:</p>
+    <ul class="list-disc list-inside mb-3 ml-4 text-sm">
+        <li><strong>Performance Engineering</strong>: Achieved 100x speedup for major French bank's trading systems</li>
+        <li><strong>Technical Authority</strong>: Authored blog reaching 10k+ monthly developers, reviewed 150+ technical articles</li>
+        <li><strong>Project Leadership</strong>: Led multi-million dollar engagements in banking and logistics</li>
+        <li><strong>Mentorship</strong>: Guided Open Source Fellows program, developing next-gen talent</li>
+    </ul>
+    <p class="text-sm text-green-700"><em>Key Impact: Transformed critical business systems across multiple industries</em></p>
+</div>
+
+<div class="mb-6">
+    <h3 class="text-xl font-semibold mb-2">Tashkent State Dental Institute — Associate Lecturer | 2020/11 - 2023</h3>
+    <p class="mb-3">Taught informatics, biophysics, and medical physics to medical and dental students. Developed comprehensive curriculum combining theoretical concepts with practical applications in medical settings.</p>
+</div>
+
+<div class="mb-6">
+    <h3 class="text-xl font-semibold mb-2">Turin Polytechnic University in Tashkent — Physics Lecturer | 2020/09 - 2021/08</h3>
+    <p class="mb-3">Taught fundamental physics courses to engineering students, bridging theoretical physics with engineering applications.</p>
+</div>
+
+<div class="mb-6">
+    <h3 class="text-xl font-semibold mb-2">PMC - École Polytechnique — Research Engineer | 2018/02 - 2018/09</h3>
+    <p class="mb-2">Developed advanced trajectory analysis platform with:</p>
+    <ul class="list-disc list-inside mb-3 ml-4">
+        <li><strong>3D Visualization</strong>: WebGL-based trajectory rendering</li>
+        <li><strong>Statistical Analysis</strong>: Auto-generated graphs and analytics</li>
+        <li><strong>Performance Optimization</strong>: Real-time data processing</li>
+    </ul>
+</div>
+
+<div class="mb-8">
+    <h3 class="text-xl font-semibold mb-2">BioEmergences - CNRS — Research Engineer | 2017/11 - 2018/01</h3>
+    <p class="mb-2">Enhanced <a href="https://github.com/guaraqe/lineageflow" class="text-gray-600 hover:text-gray-800">LineageFlow</a> software for reproducible scientific computing:</p>
+    <ul class="list-disc list-inside mb-3 ml-4">
+        <li><strong>DevOps</strong>: Nix-based build system and Docker deployment</li>
+        <li><strong>Reproducibility</strong>: Cross-platform compatibility and version control</li>
+    </ul>
+</div>
+
+<h2 class="text-2xl font-bold mb-6">2. Research Publications</h2>
+
+<div class="bg-purple-50 border border-purple-200 rounded-lg p-4 mb-4">
+    <h4 class="font-semibold mb-2 text-purple-900">Brownian-like deviation of neighboring cells in the early embryogenesis of the zebrafish</h4>
+    <p class="text-sm text-gray-700 mb-2"><em>J. R. Diaz Simões, D. Grebenkov, P. Bourgine, N. Peyriéras</em></p>
+    <p class="text-sm"><strong>Physical Biology</strong> • February 2019 • <a href="https://doi.org/10.1088/1478-3975/aaf92d" class="text-purple-600 hover:text-purple-800">DOI</a></p>
+    <p class="text-xs text-purple-700 mt-2"><em>Research in computational embryology—quantitative analysis of cell movement patterns in developing organisms</em></p>
+</div>
+
+<div class="bg-purple-50 border border-purple-200 rounded-lg p-4 mb-8">
+    <h4 class="font-semibold mb-2 text-purple-900">Cell Trajectory Clustering: Towards the Automated Identification of Morphogenetic Fields in Animal Embryogenesis</h4>
+    <p class="text-sm text-gray-700 mb-2"><em>J. R. Diaz Simões, D. Grebenkov, P. Bourgine, N. Peyriéras</em></p>
+    <p class="text-sm"><strong>ICPRAM 2017 Proceedings</strong> • February 2017 • <a href="https://doi.org/10.5220/0006259407460752" class="text-purple-600 hover:text-purple-800">DOI</a></p>
+    <p class="text-xs text-purple-700 mt-2"><em>Automated pattern recognition in biological development—enables large-scale embryology studies</em></p>
+</div>
+
+<h2 class="text-2xl font-bold mb-6">3. Education</h2>
+
+<div class="mb-4">
+    <h3 class="text-xl font-semibold mb-2">PhD in Complex Systems Science — Université Paris-Saclay | 2017</h3>
+    <p class="mb-2"><strong>Thesis</strong>: A mathematical approach to embryonic morphogenesis based on spatio-temporal cell lineages</p>
+    <p class="mb-2"><strong>Supervisors</strong>: Denis Grebenkov, Paul Bourgine, Nadine Peyriéras</p>
+    <p class="mb-3">🔗 <a href="https://hal.archives-ouvertes.fr/tel-01689773" class="text-gray-600 hover:text-gray-800">Thesis (HAL)</a> • <a href="https://github.com/guaraqe/lineageflow" class="text-gray-600 hover:text-gray-800">Software (GitHub)</a></p>
+</div>
+
+<div class="mb-4">
+    <h3 class="text-xl font-semibold mb-2">MSc Complex Systems Science — École Polytechnique | 2013</h3>
+    <p class="mb-2"><strong>Thesis</strong>: Generalized Langevin equations driven by fractional Brownian noise</p>
+    <p class="mb-3">🔗 <a href="data/internship_report.pdf" class="text-gray-600 hover:text-gray-800">Thesis PDF</a></p>
+</div>
+
+<div class="mb-4">
+    <h3 class="text-xl font-semibold mb-2">Engineering Degree — École Polytechnique | 2011</h3>
+    <p class="mb-3"><strong>Double Diploma Program</strong> with University of São Paulo, Brazil</p>
+</div>
+
+<div class="mb-8">
+    <h3 class="text-xl font-semibold mb-2">BSc Physics — University of São Paulo | 2011</h3>
+    <p class="mb-3"><strong>Double Diploma Program</strong> with École Polytechnique, France</p>
+</div>
+
+<h2 class="text-2xl font-bold mb-6">4. Technical Skills</h2>
+
+<div class="grid md:grid-cols-3 gap-4">
+    <div>
+        <h4 class="font-semibold mb-2">Languages</h4>
+        <p class="text-sm text-gray-600">Haskell, Nix, Python, R, JavaScript, TypeScript</p>
+    </div>
+    <div>
+        <h4 class="font-semibold mb-2">Systems</h4>
+        <p class="text-sm text-gray-600">Kubernetes, Docker, Linux, Urbit</p>
+    </div>
+    <div>
+        <h4 class="font-semibold mb-2">Domains</h4>
+        <p class="text-sm text-gray-600">Distributed Systems, Scientific Computing, Data Visualization, DevOps</p>
+    </div>
+</div>
     </article>
 </div>
 

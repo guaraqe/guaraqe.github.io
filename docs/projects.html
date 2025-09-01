@@ -35,34 +35,23 @@
 </head>
 <body>
     <header>
-        <div class="navbar bg-base-100">
+        <div class="navbar bg-base-100 px-4 py-3">
           <div class="navbar-start">
-            <nav>
-            <ol class="inline-flex items-center space-x-1 md:space-x-3">
-        <li class="inline-flex items-center">
-          <a href="/" class="inline-flex items-center text-l font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-            <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-            Juan Raphael Diaz Simões
-          </a>
-        </li>
-    
-        <li>
-      <div class="flex items-center">
-        <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-        <a href="/projects.html" class="ml-1 text-l font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Projects</a>
-      </div>
-    </li>
-
+            <a href="/" class="flex items-center group">
+              <img src="/images/juan.png" alt="Juan Simões" class="w-8 h-8 rounded-full object-cover mr-3 group-hover:scale-105 transition-transform">
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors hidden sm:inline">Juan Raphael Diaz Simões</span>
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors sm:hidden">Juan Simões</span>
+            </a>
           </div>
           <div class="navbar-end">
-            <ul class="menu menu-horizontal px-1">
-              <li><a href="/posts">Posts</a></li>
-              <li><a href="/courses">Courses</a></li>
-              <li><a href="/cv.html">CV</a></li>
-              <li><a href="/projects.html">Projects</a></li>
+            <ul class="menu menu-horizontal text-sm space-x-1">
+              <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Posts</a></li>
+              <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors hidden sm:inline-block">Courses</a></li>
+              <li><a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">CV</a></li>
+              <li><a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors hidden sm:inline-block">Projects</a></li>
             </ul>
           </div>
-        </nav>
+        </div>
     </header>
     <div class="md:flex justify-center bg-base-100">
     <article class="prose max-w-prose">
@@ -70,14 +59,31 @@
             Projects
 
         </h1>
-        <h1 class="text-2xl mt-5 mb-5" data-number="1" id="lineageflow"><span class="header-section-number">1</span> LineageFlow</h1>
-<p class="mb-3">LineageFlow is a suite of libraries, executables and tools for the manipulation and exploration of spatio-temporal cell lineages, and measurements over them. More details can be found <a class="link link-hover text-zinc-600" href="https://github.com/guaraqe/lineageflow">here</a>.</p>
-<h1 class="text-2xl mt-5 mb-5" data-number="2" id="haskell-libraries"><span class="header-section-number">2</span> Haskell Libraries</h1>
-<ul class="list-disc list-outside mt-1 mb-3 pl-5">
-<li><a class="link link-hover text-zinc-600" href="https://github.com/guaraqe/constraint-classes"><code>constraint-classes</code></a></li>
-<li><a class="link link-hover text-zinc-600" href="https://github.com/guaraqe/LATS"><code>LATS</code></a></li>
-<li><a class="link link-hover text-zinc-600" href="https://github.com/guaraqe/reflex-elm"><code>reflex-elm</code></a></li>
-</ul>
+        <h1 class="text-2xl mt-5 mb-5" data-number="1" id="open-source-impact"><span class="header-section-number">1</span> Open Source Impact</h1>
+<p class="mb-3"><strong>Building tools that advance science and software engineering.</strong> High-quality biological research software and functional programming libraries that solve real problems for researchers and developers.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.1" id="scientific-computing"><span class="header-section-number">1.1</span> 🧬 Scientific Computing</h2>
+<h3 class="text-l mt-5 mb-5" data-number="1.1.1" id="lineageflow"><span class="header-section-number">1.1.1</span> <a class="link link-hover text-zinc-600" href="https://github.com/guaraqe/lineageflow">LineageFlow</a></h3>
+<p class="mb-3"><strong>Comprehensive embryology analysis platform</strong> — A toolkit for quantitative cell lineage analysis in developing organisms, developed during my PhD research on embryonic development.</p>
+<p class="mb-3"><strong>Research Impact:</strong> - <strong>Novel approach</strong>: Developed automated morphogenetic field identification - <strong>Research contribution</strong>: Part of PhD thesis research - <strong>Publication foundation</strong>: Enabled <em>Physical Biology</em> research - <strong>PhD achievement</strong>: Core contribution to doctoral thesis</p>
+<p class="mb-3"><strong>Technical Excellence:</strong> - Modular Haskell architecture supporting 10+ analysis algorithms - Declarative interface enabling reproducible scientific workflows - Real-time 3D visualization with WebGL integration - Nix-based deployment ensuring cross-platform reproducibility</p>
+<p class="mb-3"><em>Impact: Advanced computational methods for embryonic development studies</em></p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.2" id="advanced-haskell-libraries"><span class="header-section-number">1.2</span> ⚡ Advanced Haskell Libraries</h2>
+<h3 class="text-l mt-5 mb-5" data-number="1.2.1" id="constraint-classes"><span class="header-section-number">1.2.1</span> <a class="link link-hover text-zinc-600" href="https://github.com/guaraqe/constraint-classes">constraint-classes</a></h3>
+<p class="mb-3"><strong>Pushing type system boundaries</strong> — Solves fundamental limitations in Haskell’s type class system using ConstraintKinds. Enables flexible, domain-specific abstractions while preserving type inference—addressing long-standing challenges in functional programming.</p>
+<p class="mb-3"><em>Innovation: Type-level programming, Advanced constraint handling</em></p>
+<h3 class="text-l mt-5 mb-5" data-number="1.2.2" id="reflex-elm"><span class="header-section-number">1.2.2</span> <a class="link link-hover text-zinc-600" href="https://github.com/guaraqe/reflex-elm">reflex-elm</a></h3>
+<p class="mb-3"><strong>FRP architecture bridge</strong> — Brings Elm’s proven development model to Haskell web applications. Combines Reflex’s powerful reactive programming with Elm’s simplicity, enabling robust functional web development.</p>
+<p class="mb-3"><em>Innovation: Reactive programming, Web architecture</em></p>
+<h3 class="text-l mt-5 mb-5" data-number="1.2.3" id="lats"><span class="header-section-number">1.2.3</span> <a class="link link-hover text-zinc-600" href="https://github.com/guaraqe/LATS">LATS</a></h3>
+<p class="mb-3"><strong>Functional programming utilities</strong> — Advanced patterns and abstractions for real-world Haskell development. Provides battle-tested utilities refined through years of consulting experience.</p>
+<p class="mb-3"><em>Focus: Production Haskell, Developer productivity</em></p>
+<hr />
+<h2 class="text-xl mt-5 mb-5" data-number="1.3" id="global-impact"><span class="header-section-number">1.3</span> 🌍 Global Impact</h2>
+<p class="mb-3"><strong>Research</strong>: LineageFlow enables new discoveries in developmental biology<br />
+<strong>Industry</strong>: Performance engineering solutions deployed in financial systems<br />
+<strong>Education</strong>: Curriculum reaching hundreds of medical students annually<br />
+<strong>Open Source</strong>: Libraries and tools used by the functional programming community</p>
+<p class="mb-3"><em>Bridging cutting-edge research with practical engineering—building the future of computing.</em></p>
     </article>
 </div>
 

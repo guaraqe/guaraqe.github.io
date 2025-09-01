@@ -1,0 +1,55 @@
+<div class="flex items-center gap-4 mb-4">
+    <img src="/images/juan.png" alt="Juan Raphael Diaz Simões" class="w-20 h-20 rounded-full object-cover flex-shrink-0">
+    <div>
+        <h2 class="text-2xl mb-1"><strong>Juan Raphael Diaz Simões</strong></h2>
+        <h3 class="text-xl text-gray-600">Senior Software Engineer & Research Scientist</h3>
+    </div>
+</div>
+
+<p class="mb-6">I build distributed systems at <strong>Tlon</strong>, engineering the infrastructure that makes Urbit accessible to mainstream users. With 7+ years spanning cutting-edge tech companies and academia, I bridge theoretical computer science with high-impact engineering.</p>
+
+<h2 class="text-xl mt-5 mb-5">What I Do</h2>
+
+<p class="mb-3"><strong>🚀 Platform Engineering</strong> — Haskell engineer developing Urbit hosting platform at Tlon, focusing on Kubernetes orchestration and distributed system automation.</p>
+
+<p class="mb-3"><strong>📚 Research & Teaching</strong> — Former Associate Professor at Tashkent State Dental Institute, developed curriculum that connects computational thinking with real-world medical applications.</p>
+
+<p class="mb-3"><strong>✍️ Technical Leadership</strong> — Former Tweag consultant and technical blog editor, delivering performance engineering solutions for major financial institutions (2+ orders of magnitude speedups).</p>
+
+<h2 class="text-xl mt-5 mb-5">Background</h2>
+
+<p class="mb-3"><strong>PhD in Complex Systems Science</strong> from Paris-Saclay University, where I developed <a class="link link-hover text-zinc-600" href="https://github.com/guaraqe/lineageflow">LineageFlow</a>—software for analyzing embryonic development.</p>
+
+<p class="mb-3"><strong>Published researcher</strong> in computational biology with work featured in <em>Physical Biology</em> and international conferences.</p>
+
+<hr />
+<p class="mb-3"><strong>Explore</strong>: <a class="link link-hover text-zinc-600" href="/cv.html">Professional CV</a> • <a class="link link-hover text-zinc-600" href="/projects.html">Open Source Projects</a> • <a class="link link-hover text-zinc-600" href="/posts">Technical Thoughts</a> • <a class="link link-hover text-zinc-600" href="/courses">Teaching Materials</a></p>
+
+<h2 class="text-xl mt-8 mb-4">Technical Writing</h2>
+
+<div class="bg-gradient-to-r from-orange-50 to-red-50 p-4 rounded-lg mb-6">
+    <h3 class="text-lg font-semibold mb-2">Programming & Research</h3>
+    <p class="text-gray-700 mb-3 text-sm">Technical articles covering programming languages, development tools, performance optimization, and computational biology. Insights from professional software development and academic research.</p>
+    <div class="flex flex-wrap gap-2">
+        <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full">Programming</span>
+        <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">Performance</span>
+        <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Research</span>
+    </div>
+</div>
+<div class="space-y-4">
+{{#posts}}
+        <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between mb-2">
+                <h3 class="text-lg font-semibold flex-1 mr-4">
+                    <a href="{{{url}}}" class="text-gray-900 hover:text-blue-600">{{{title}}}</a>
+                </h3>
+                <span class="text-sm text-gray-500 whitespace-nowrap">{{{date}}}</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-2">{{{summary}}}</p>
+        </article>
+{{/posts}}
+</div>
+
+<div class="bg-gray-50 p-4 rounded-lg mt-6">
+    <p class="text-sm text-gray-700 text-center"><strong>Focus:</strong> Programming languages, development tools, performance engineering • Insights from consulting and research</p>
+</div>

@@ -35,106 +35,207 @@
 </head>
 <body>
     <header>
-        <div class="navbar bg-base-100">
+        <div class="navbar bg-base-100 px-4 py-3">
           <div class="navbar-start">
-            <nav>
-            <ol class="inline-flex items-center space-x-1 md:space-x-3">
-        <li class="inline-flex items-center">
-          <a href="/" class="inline-flex items-center text-l font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-            <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-            Juan Raphael Diaz Simões
-          </a>
-        </li>
-    
-        <li>
-      <div class="flex items-center">
-        <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-        <a href="/" class="ml-1 text-l font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Home</a>
-      </div>
-    </li>
-
+            <a href="/" class="flex items-center group">
+              <img src="/images/juan.png" alt="Juan Simões" class="w-8 h-8 rounded-full object-cover mr-3 group-hover:scale-105 transition-transform">
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors hidden sm:inline">Juan Raphael Diaz Simões</span>
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors sm:hidden">Juan Simões</span>
+            </a>
           </div>
           <div class="navbar-end">
-            <ul class="menu menu-horizontal px-1">
-              <li><a href="/posts">Posts</a></li>
-              <li><a href="/courses">Courses</a></li>
-              <li><a href="/cv.html">CV</a></li>
-              <li><a href="/projects.html">Projects</a></li>
+            <ul class="menu menu-horizontal text-sm space-x-1">
+              <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Posts</a></li>
+              <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors hidden sm:inline-block">Courses</a></li>
+              <li><a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">CV</a></li>
+              <li><a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors hidden sm:inline-block">Projects</a></li>
             </ul>
           </div>
-        </nav>
+        </div>
     </header>
     <div class="md:flex justify-center bg-base-100">
     <article class="prose max-w-prose">
         <h1 class="text-3xl mb-5">
             Home
-
         </h1>
-        <p class="mb-3">Hello, my name is <strong>Juan Raphael Diaz Simões</strong>.</p>
-<p class="mb-3">I work as a software engineer for Tlon, working on their Urbit hosting platform. I have more than 5 years of experience in different environments and companies, ranging from academia to banking and logistics.</p>
-<p class="mb-3">I previously worked as a software engineering consultant for Tweag, mainly with Haskell, Nix and functional programming-related tech stacks.I was the project lead for my latest mission, and am an editor for the company technical blog.</p>
-<p class="mb-3">I am an associate professor at the Tashkent State Dental Institute, teaching informatics, biophysics and bioinformatics to medical students. I have a PhD in Complex Systems Sciences from the Paris-Saclay University, where I worked on quantitative methods in embryology. You can find my dissertation <a class="link link-hover text-zinc-600" href="https://hal.archives-ouvertes.fr/tel-01689773">here</a>.</p>
-<p class="mb-3">Here you can find my <a class="link link-hover text-zinc-600" href="/cv.html">CV</a>, my <a class="link link-hover text-zinc-600" href="/projects.html">projects</a> and random thoughts on various subjects.</p>
-        <div class="md:flex justify-center bg-base-100">
-            <article class="prose max-w-prose">
-                <h1 class="text-2xl mb-5">
-                    Posts
-                </h1>
-        
-                <ul class="list-disc list-outside mt-1 pl-5">
-                        <li>
-                    <a href="posts/2023-01-02-cpu-usage.html"><span class="date">2023-01-02</span> · Summarizing multicore usage using entropy
+        <div class="flex items-center gap-4 mb-4">
+    <img src="/images/juan.png" alt="Juan Raphael Diaz Simões" class="w-20 h-20 rounded-full object-cover flex-shrink-0">
+    <div>
+        <h2 class="text-2xl mb-1"><strong>Juan Raphael Diaz Simões</strong></h2>
+        <h3 class="text-xl text-gray-600">Senior Software Engineer & Research Scientist</h3>
+    </div>
+</div>
+
+<p class="mb-6">I build distributed systems at <strong>Tlon</strong>, engineering the infrastructure that makes Urbit accessible to mainstream users. With 7+ years spanning cutting-edge tech companies and academia, I bridge theoretical computer science with high-impact engineering.</p>
+
+<h2 class="text-xl mt-5 mb-5">What I Do</h2>
+
+<p class="mb-3"><strong>🚀 Platform Engineering</strong> — Haskell engineer developing Urbit hosting platform at Tlon, focusing on Kubernetes orchestration and distributed system automation.</p>
+
+<p class="mb-3"><strong>📚 Research & Teaching</strong> — Former Associate Professor at Tashkent State Dental Institute, developed curriculum that connects computational thinking with real-world medical applications.</p>
+
+<p class="mb-3"><strong>✍️ Technical Leadership</strong> — Former Tweag consultant and technical blog editor, delivering performance engineering solutions for major financial institutions (2+ orders of magnitude speedups).</p>
+
+<h2 class="text-xl mt-5 mb-5">Background</h2>
+
+<p class="mb-3"><strong>PhD in Complex Systems Science</strong> from Paris-Saclay University, where I developed <a class="link link-hover text-zinc-600" href="https://github.com/guaraqe/lineageflow">LineageFlow</a>—software for analyzing embryonic development.</p>
+
+<p class="mb-3"><strong>Published researcher</strong> in computational biology with work featured in <em>Physical Biology</em> and international conferences.</p>
+
+<hr />
+<p class="mb-3"><strong>Explore</strong>: <a class="link link-hover text-zinc-600" href="/cv.html">Professional CV</a> • <a class="link link-hover text-zinc-600" href="/projects.html">Open Source Projects</a> • <a class="link link-hover text-zinc-600" href="/posts">Technical Thoughts</a> • <a class="link link-hover text-zinc-600" href="/courses">Teaching Materials</a></p>
+
+<h2 class="text-xl mt-8 mb-4">Technical Writing</h2>
+
+<div class="bg-gradient-to-r from-orange-50 to-red-50 p-4 rounded-lg mb-6">
+    <h3 class="text-lg font-semibold mb-2">Programming & Research</h3>
+    <p class="text-gray-700 mb-3 text-sm">Technical articles covering programming languages, development tools, performance optimization, and computational biology. Insights from professional software development and academic research.</p>
+    <div class="flex flex-wrap gap-2">
+        <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full">Programming</span>
+        <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">Performance</span>
+        <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Research</span>
+    </div>
+</div>
+<div class="space-y-4">
+        <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between mb-2">
+                <h3 class="text-lg font-semibold flex-1 mr-4">
+                    <a href="posts/2023-01-02-cpu-usage.html" class="text-gray-900 hover:text-blue-600">Summarizing multicore usage using entropy
 </a>
-                </li>
-                <li>
-                    <a href="posts/2021-04-15-arrows-through-a-different-lens.html"><span class="date">2021-04-15</span> · Arrows, through a different lens
+                </h3>
+                <span class="text-sm text-gray-500 whitespace-nowrap">2023-01-02</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-2">Python script using entropy and effective numbers to display multicore
+CPU usage in status bars
+</p>
+        </article>
+        <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between mb-2">
+                <h3 class="text-lg font-semibold flex-1 mr-4">
+                    <a href="posts/2021-04-15-arrows-through-a-different-lens.html" class="text-gray-900 hover:text-blue-600">Arrows, through a different lens
 </a>
-                </li>
-                <li>
-                    <a href="posts/2020-03-05-peirce.html"><span class="date">2020-03-05</span> · Code is engineering, types are science
+                </h3>
+                <span class="text-sm text-gray-500 whitespace-nowrap">2021-04-15</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-2">Using profunctor optics with Arrow-based workflows for better
+composability
+</p>
+        </article>
+        <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between mb-2">
+                <h3 class="text-lg font-semibold flex-1 mr-4">
+                    <a href="posts/2020-03-05-peirce.html" class="text-gray-900 hover:text-blue-600">Code is engineering, types are science
 </a>
-                </li>
-                <li>
-                    <a href="posts/2020-01-31-performance-bottlenecks.html"><span class="date">2020-01-31</span> · Locating performance bottlenecks in large Haskell codebases
+                </h3>
+                <span class="text-sm text-gray-500 whitespace-nowrap">2020-03-05</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-2">Exploring deduction, induction, and abduction in software development
+through Peirce’s theory
+</p>
+        </article>
+        <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between mb-2">
+                <h3 class="text-lg font-semibold flex-1 mr-4">
+                    <a href="posts/2020-01-31-performance-bottlenecks.html" class="text-gray-900 hover:text-blue-600">Locating performance bottlenecks in large Haskell codebases
 </a>
-                </li>
-                <li>
-                    <a href="posts/2019-02-28-jupyterwith.html"><span class="date">2019-02-28</span> · JupyterWith: declarative, reproducible notebook environments
+                </h3>
+                <span class="text-sm text-gray-500 whitespace-nowrap">2020-01-31</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-2">Manual cost center profiling technique achieving 100x speedups in
+production systems
+</p>
+        </article>
+        <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between mb-2">
+                <h3 class="text-lg font-semibold flex-1 mr-4">
+                    <a href="posts/2019-02-28-jupyterwith.html" class="text-gray-900 hover:text-blue-600">JupyterWith: declarative, reproducible notebook environments
 </a>
-                </li>
-                <li>
-                    <a href="posts/2019-02-08-article.html"><span class="date">2019-02-08</span> · Brownian-like deviation of neighboring cells in the early embryogenesis
+                </h3>
+                <span class="text-sm text-gray-500 whitespace-nowrap">2019-02-28</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-2">Nix-based solution for reproducible Jupyter environments with multiple
+language kernels
+</p>
+        </article>
+        <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between mb-2">
+                <h3 class="text-lg font-semibold flex-1 mr-4">
+                    <a href="posts/2019-02-08-article.html" class="text-gray-900 hover:text-blue-600">Brownian-like deviation of neighboring cells in the early embryogenesis
 of the zebrafish
 </a>
-                </li>
-                <li>
-                    <a href="posts/2019-01-23-ihaskell.html"><span class="date">2019-01-23</span> · Towards interactive data science in Haskell: Haskell in JupyterLab
+                </h3>
+                <span class="text-sm text-gray-500 whitespace-nowrap">2019-02-08</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-2">Research paper on cell movement patterns during zebrafish embryonic
+development
+</p>
+        </article>
+        <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between mb-2">
+                <h3 class="text-lg font-semibold flex-1 mr-4">
+                    <a href="posts/2019-01-23-ihaskell.html" class="text-gray-900 hover:text-blue-600">Towards interactive data science in Haskell: Haskell in JupyterLab
 </a>
-                </li>
-                <li>
-                    <a href="posts/2018-04-17-nix-haskell-clusters.html"><span class="date">2018-04-17</span> · Running Haskell applications in clusters using Nix
+                </h3>
+                <span class="text-sm text-gray-500 whitespace-nowrap">2019-01-23</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-2">Setting up IHaskell kernel in JupyterLab for interactive Haskell data
+analysis
+</p>
+        </article>
+        <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between mb-2">
+                <h3 class="text-lg font-semibold flex-1 mr-4">
+                    <a href="posts/2018-04-17-nix-haskell-clusters.html" class="text-gray-900 hover:text-blue-600">Running Haskell applications in clusters using Nix
 </a>
-                </li>
-                <li>
-                    <a href="posts/2017-11-02-type-classes-incidental-non-examples.html"><span class="date">2017-11-02</span> · Haskell type classes: incidental non-examples
+                </h3>
+                <span class="text-sm text-gray-500 whitespace-nowrap">2018-04-17</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-2">Deploying Haskell applications on HPC clusters using Nix and PRoot
+without root access
+</p>
+        </article>
+        <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between mb-2">
+                <h3 class="text-lg font-semibold flex-1 mr-4">
+                    <a href="posts/2017-11-02-type-classes-incidental-non-examples.html" class="text-gray-900 hover:text-blue-600">Haskell type classes: incidental non-examples
 </a>
-                </li>
-                <li>
-                    <a href="posts/2017-11-01-type-classes-laws.html"><span class="date">2017-11-01</span> · Haskell type classes: a compilation of laws
+                </h3>
+                <span class="text-sm text-gray-500 whitespace-nowrap">2017-11-02</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-2">Why some types like Set and Map don’t fit standard type classes and
+possible solutions
+</p>
+        </article>
+        <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between mb-2">
+                <h3 class="text-lg font-semibold flex-1 mr-4">
+                    <a href="posts/2017-11-01-type-classes-laws.html" class="text-gray-900 hover:text-blue-600">Haskell type classes: a compilation of laws
 </a>
-                </li>
-                <li>
-                    <a href="posts/2017-02-24-article.html"><span class="date">2017-02-24</span> · Cell trajectory clustering: towards the automated identification of
+                </h3>
+                <span class="text-sm text-gray-500 whitespace-nowrap">2017-11-01</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-2">Reference compilation of mathematical laws for Haskell’s core type
+classes
+</p>
+        </article>
+        <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between mb-2">
+                <h3 class="text-lg font-semibold flex-1 mr-4">
+                    <a href="posts/2017-02-24-article.html" class="text-gray-900 hover:text-blue-600">Cell trajectory clustering: towards the automated identification of
 morphogenetic fields in animal embryogenesis
 </a>
-                </li>
-        </ul>
-        
-            </article>
-        </div>
-        
-        
-        
+                </h3>
+                <span class="text-sm text-gray-500 whitespace-nowrap">2017-02-24</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-2">Algorithm for clustering embryonic cells using quantum
+mechanics-inspired path integrals
+</p>
+        </article>
+</div>
+
+<div class="bg-gray-50 p-4 rounded-lg mt-6">
+    <p class="text-sm text-gray-700 text-center"><strong>Focus:</strong> Programming languages, development tools, performance engineering • Insights from consulting and research</p>
+</div>
     </article>
 </div>
 

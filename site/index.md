@@ -2,14 +2,39 @@
 title: Home
 ---
 
-Hello, my name is **Juan Raphael Diaz Simões**.
+![Juan Raphael Diaz Simões](/images/juan.png){ class="w-20 h-20 rounded-full object-cover flex-shrink-0" style="float: left; margin-right: 1rem; margin-bottom: 1rem;" }
 
-I work as a software engineer for Tlon, working on their Urbit hosting platform. I have more than 5 years of experience in different environments and companies, ranging from academia to banking and logistics.
+# **Juan Raphael Diaz Simões**
+### Senior Software Engineer & Research Scientist
 
-I previously worked as a software engineering consultant for Tweag, mainly with Haskell, Nix and functional programming-related tech stacks.I was the project lead for my latest mission, and am an editor for the company technical blog.
+I build distributed systems at **Tlon**, engineering the infrastructure that makes Urbit accessible to mainstream users. With 7+ years spanning cutting-edge tech companies and academia, I bridge theoretical computer science with high-impact engineering.
 
-I am an associate professor at the Tashkent State Dental Institute, teaching informatics, biophysics and bioinformatics to medical students.
-I have a PhD in Complex Systems Sciences from the Paris-Saclay University, where I worked on quantitative methods in embryology.
-You can find my dissertation [here](https://hal.archives-ouvertes.fr/tel-01689773).
+## What I Do
 
-Here you can find my [CV](/cv.html), my [projects](/projects.html) and random thoughts on various subjects.
+**🚀 Platform Engineering** — Haskell engineer developing Urbit hosting platform at Tlon, focusing on Kubernetes orchestration and distributed system automation.
+
+**📚 Research & Teaching** — Former Associate Professor at Tashkent State Dental Institute, developed curriculum that connects computational thinking with real-world medical applications.
+
+**✍️ Technical Leadership** — Former Tweag consultant and technical blog editor, delivering performance engineering solutions for major financial institutions (2+ orders of magnitude speedups).
+
+## Background
+
+**PhD in Complex Systems Science** from Paris-Saclay University, where I developed [LineageFlow](https://github.com/guaraqe/lineageflow)—software for analyzing embryonic development.
+
+**Published researcher** in computational biology with work featured in *Physical Biology* and international conferences.
+
+---
+
+**Explore**: [Professional CV](/cv.html) • [Open Source Projects](/projects.html) • [Technical Thoughts](/posts) • [Teaching Materials](/courses)
+
+## Technical Writing
+
+Programming & Research articles covering development tools, performance optimization, and computational biology. Insights from professional software development and academic research.
+
+{{#posts}}
+- [{{{title}}}]({{{url}}}) - *{{{date}}}*
+  
+  {{{summary}}}
+{{/posts}}
+
+**Focus**: Programming languages, development tools, performance engineering • Insights from consulting and research

@@ -1,5 +1,6 @@
 ---
 title: "Haskell type classes: incidental non-examples"
+summary: Why some types like Set and Map don't fit standard type classes and possible solutions
 ---
 
 This post is a tour of some Haskell type classes, and why some types don't fit

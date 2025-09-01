@@ -1,5 +1,6 @@
 ---
 title: Arrows, through a different lens
+summary: Using profunctor optics with Arrow-based workflows for better composability
 ---
 
 I wrote a post for [Tweag](https://www.tweag.io) on how profunctor lenses are

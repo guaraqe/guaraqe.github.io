@@ -1,5 +1,6 @@
 ---
 title: "Haskell type classes: a compilation of laws"
+summary: Reference compilation of mathematical laws for Haskell's core type classes
 ---
 
 This post is a reference for type classes' laws. It will be expanded with time.

@@ -1,16 +1,36 @@
 <div class="md:flex justify-center bg-base-100">
     <article class="prose max-w-prose">
-        <h1 class="text-2xl mb-5">
-            Posts
-        </h1>
+        <h1 class="text-3xl mb-6">Technical Writing</h1>
+        
+        <div class="bg-gradient-to-r from-orange-50 to-red-50 p-4 rounded-lg mb-6">
+            <h2 class="text-lg font-semibold mb-2">Programming & Research</h2>
+            <p class="text-gray-700 mb-3 text-sm">Technical articles covering programming languages, development tools, performance optimization, and computational biology. Insights from professional software development and academic research.</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full">Programming</span>
+                <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">Performance</span>
+                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Research</span>
+            </div>
+        </div>
 
-        <ul class="list-disc list-outside mt-1 pl-5">
+        <div class="space-y-4">
             {{#posts}}
-                <li>
-                    <a href="{{url}}"><span class="date">{{date}}</span> · {{title}}</a>
-                </li>
+            <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-start justify-between mb-2">
+                    <h3 class="text-lg font-semibold flex-1 mr-4">
+                        <a href="{{url}}" class="text-gray-900 hover:text-blue-600">{{title}}</a>
+                    </h3>
+                    <span class="text-sm text-gray-500 whitespace-nowrap">{{date}}</span>
+                </div>
+                {{#summary}}
+                <p class="text-sm text-gray-600 mb-2">{{summary}}</p>
+                {{/summary}}
+            </article>
             {{/posts}}
-        </ul>
+        </div>
+
+        <div class="bg-gray-50 p-4 rounded-lg mt-6">
+            <p class="text-sm text-gray-700 text-center"><strong>Focus:</strong> Programming languages, development tools, performance engineering • Insights from consulting and research</p>
+        </div>
 
     </article>
 </div>

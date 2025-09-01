@@ -72,7 +72,8 @@ data Post = Post
   { title :: String,
     content :: String,
     url :: String,
-    date :: String
+    date :: String,
+    summary :: String
   }
   deriving (Generic, Eq, Ord, Show, FromJSON, ToJSON, Binary)
 

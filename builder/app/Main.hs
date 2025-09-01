@@ -18,6 +18,7 @@ import Site.Json
 import Data.Text qualified as Text
 import Site.Pandoc qualified as Pandoc
 import Slick
+import Data.Aeson (toJSON, object)
 
 outputFolder :: FilePath
 outputFolder = "docs/"
@@ -77,23 +78,23 @@ buildBooks = do
 
 buildIndex :: [Blog.Post] -> Action ()
 buildIndex posts = do
-  let path :: FilePath = "site/index.md"
-  postContent <- Text.pack <$> readFile' path
-  (pandoc, meta) <- Pandoc.readMarkdownAndMeta postContent
-  postData <- Pandoc.writeHtmlAndMeta pandoc meta
+  let path :: FilePath = "site/index.html"
+  htmlContent <- Text.pack <$> readFile' path
+  
+  -- Compile the HTML content as a template and substitute posts data
+  htmlTemplate <- compileTemplate' path
+  let templateData = object [("posts", toJSON posts)]
+      processedContent = substitute htmlTemplate templateData
 
-  let fullPostData =
-          setObjectAttribute "posts" posts
-          $ postData
-
-  template <- compileTemplate' "site/templates/index.html"
-
-  post <- convert fullPostData
+  -- Apply the default template for proper layout
+  defaultTemplate <- compileTemplate' "site/templates/default.html"
+  let wrappedData = object [("title", toJSON ("Home" :: String)), ("content", toJSON (Text.unpack processedContent))]
+      finalContent = substitute defaultTemplate wrappedData
 
   let layout =
         Layout.Layout
           { title = "Home",
-            content = Text.unpack $ substitute template fullPostData,
+            content = Text.unpack finalContent,
             latex = True,
             page = "Home",
             pageLink = "/"
@@ -101,31 +102,26 @@ buildIndex posts = do
 
   Layout.build (outputFolder </> "index.html") layout
 
-  pure post
-
 buildCV :: Action ()
 buildCV = do
-  let path :: FilePath = "site/cv.md"
-  postContent <- Text.pack <$> readFile' path
-  (pandoc, meta) <- Pandoc.readMarkdownAndMeta postContent
-  postData <- Pandoc.writeHtmlAndMeta pandoc meta
+  let path :: FilePath = "site/cv.html"
+  htmlContent <- Text.pack <$> readFile' path
 
-  template <- compileTemplate' "site/templates/default.html"
-
-  post <- convert postData
+  -- Apply the default template for proper layout
+  defaultTemplate <- compileTemplate' "site/templates/default.html"
+  let wrappedData = object [("title", toJSON ("CV" :: String)), ("content", toJSON (Text.unpack htmlContent))]
+      finalContent = substitute defaultTemplate wrappedData
 
   let layout =
         Layout.Layout
           { title = "CV",
-            content = Text.unpack $ substitute template postData,
+            content = Text.unpack finalContent,
             latex = True,
             page = "CV",
             pageLink = "/cv.html"
           }
 
   Layout.build (outputFolder </> "cv.html") layout
-
-  pure post
 
 
 buildProjects :: Action ()

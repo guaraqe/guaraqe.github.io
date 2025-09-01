@@ -36,34 +36,23 @@
 </head>
 <body>
     <header>
-        <div class="navbar bg-base-100">
+        <div class="navbar bg-base-100 px-4 py-3">
           <div class="navbar-start">
-            <nav>
-            <ol class="inline-flex items-center space-x-1 md:space-x-3">
-        <li class="inline-flex items-center">
-          <a href="/" class="inline-flex items-center text-l font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-            <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-            Juan Raphael Diaz Simões
-          </a>
-        </li>
-    
-        <li>
-      <div class="flex items-center">
-        <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-        <a href="/courses" class="ml-1 text-l font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Courses</a>
-      </div>
-    </li>
-
+            <a href="/" class="flex items-center group">
+              <img src="/images/juan.png" alt="Juan Simões" class="w-8 h-8 rounded-full object-cover mr-3 group-hover:scale-105 transition-transform">
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors hidden sm:inline">Juan Raphael Diaz Simões</span>
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors sm:hidden">Juan Simões</span>
+            </a>
           </div>
           <div class="navbar-end">
-            <ul class="menu menu-horizontal px-1">
-              <li><a href="/posts">Posts</a></li>
-              <li><a href="/courses">Courses</a></li>
-              <li><a href="/cv.html">CV</a></li>
-              <li><a href="/projects.html">Projects</a></li>
+            <ul class="menu menu-horizontal text-sm space-x-1">
+              <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Posts</a></li>
+              <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors hidden sm:inline-block">Courses</a></li>
+              <li><a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">CV</a></li>
+              <li><a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors hidden sm:inline-block">Projects</a></li>
             </ul>
           </div>
-        </nav>
+        </div>
     </header>
     <div class="md:flex justify-center bg-base-100">
 <article class="prose max-w-prose mb-5">
