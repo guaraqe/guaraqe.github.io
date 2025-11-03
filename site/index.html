@@ -1,92 +1,81 @@
-<div class="flex items-center gap-4 mb-4">
+<div class="flex items-center gap-4 mb-6">
     <img src="/images/juan.png" alt="Juan Raphael Diaz Simões" class="w-20 h-20 rounded-full object-cover flex-shrink-0">
     <div>
         <h2 class="text-2xl mb-1"><strong>Juan Raphael Diaz Simões</strong></h2>
-        <h3 class="text-xl text-gray-600">Senior Software Engineer & Research Scientist</h3>
+        <h3 class="text-xl text-gray-600">Senior Software Engineer</h3>
     </div>
 </div>
 
-<p class="mb-6">I build distributed systems at <strong>Tlon</strong>, engineering the infrastructure that makes Urbit accessible to users. With 8+ years in tech companies and 5+ in academia, I work across practical engineering and rigorous science.</p>
+<p class="mb-4">I work as a platform engineer at Tlon, developing Haskell-based infrastructure for Urbit hosting on Kubernetes. My background combines software engineering with computational science research.</p>
 
-<h2 class="text-xl mt-5 mb-5">What I Do</h2>
+<p class="text-sm text-slate-600 text-center">Interested in talking about technical chalenges or consulting? Send me a message.</p>
 
-<p class="mb-3"><strong>🚀 Platform Engineering</strong> — Haskell engineer developing Urbit hosting platform at Tlon, focusing on Kubernetes orchestration and distributed system automation.</p>
-
-<p class="mb-3"><strong>📚 Research & Teaching</strong> — Former lecturer at Tashkent State Dental Institute and Turin Polytechnic University, developing curriculum connecting computational thinking with medical and engineering applications.</p>
-
-<p class="mb-3"><strong>✍️ Technical Consulting</strong> — Former Tweag senior consultant and technical blog editor, delivering performance engineering solutions across multiple industries.</p>
-
-<div class="bg-blue-50 border border-blue-200 p-3 rounded-lg mt-4 text-center">
-    <p class="text-gray-700 mb-0 text-sm">Interested in collaboration, consulting, or discussing technical subjects?</p>
-    <div class="flex justify-center items-center gap-3 mt-2">
-        <button onclick="revealEmail()" id="email-btn" class="btn btn-primary btn-xs">
-            📧 Contact
+<div class="mt-1">
+    <div class="flex flex-wrap gap-3 justify-center items-center">
+        <button onclick="revealEmail()" id="email-btn" class="btn btn-sm btn-outline border-slate-400 text-slate-700 hover:bg-slate-100 hover:text-slate-700 hover:border-slate-400 flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+            </svg>
+            <span id="email-btn-text">Contact</span>
         </button>
-        <a href="https://github.com/guaraqe" target="_blank" class="btn btn-outline btn-xs">
-            📦 GitHub
+        <a href="https://github.com/guaraqe" target="_blank" class="btn btn-sm btn-outline border-slate-400 text-slate-700 hover:bg-slate-100 hover:text-slate-700 hover:border-slate-400 flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            GitHub
         </a>
-        <a href="https://www.linkedin.com/in/juan-raphael-diaz-sim%C3%B5es-aa690717a/" target="_blank" class="btn btn-outline btn-xs">
-            💼 LinkedIn
+        <a href="https://www.linkedin.com/in/juan-raphael-diaz-sim%C3%B5es-aa690717a/" target="_blank" class="btn btn-sm btn-outline border-slate-400 text-slate-700 hover:bg-slate-100 hover:text-slate-700 hover:border-slate-400 flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/>
+            </svg>
+            LinkedIn
         </a>
     </div>
-    <div id="email-content" class="hidden mt-1">
-        <a href="#" id="email-link" class="text-blue-600 hover:text-blue-800 text-sm"></a>
+    <div id="email-content" class="hidden mt-2 text-center">
+        <a href="#" id="email-link" class="text-slate-600 hover:text-slate-800 text-sm"></a>
     </div>
 </div>
 
-<h2 class="text-xl mt-5 mb-5">Background</h2>
+<h2 class="text-xl mt-6 mb-4">Current Work</h2>
 
-<p class="mb-3"><strong>PhD in Complex Systems Science</strong> from Paris-Saclay University, where I developed <a class="link link-hover text-zinc-600" href="https://github.com/guaraqe/lineageflow">LineageFlow</a>—software for analyzing embryonic development.</p>
+<p class="mb-3"><strong>Tlon</strong> — Haskell engineer developing platform automation and Kubernetes orchestration for Urbit hosting infrastructure.</p>
 
-<p class="mb-3"><strong>Published researcher</strong> in computational biology with work featured in <em>Physical Biology</em> and international conferences.</p>
+<p class="mb-3"><strong>Previous</strong> — Senior consultant at Tweag, working on performance engineering and technical architecture. Lecturer at Tashkent State Dental Institute teaching biophysics and informatics.</p>
 
-<hr />
-<p class="mb-3"><strong>Explore</strong>: <a class="link link-hover text-zinc-600" href="/cv.html">Professional CV</a> • <a class="link link-hover text-zinc-600" href="/projects.html">Open Source Projects</a> • <a class="link link-hover text-zinc-600" href="/posts">Technical Writing</a> • <a class="link link-hover text-zinc-600" href="/courses">Education</a></p>
+<h2 class="text-xl mt-6 mb-4">Research Background</h2>
 
-<h2 class="text-xl mt-8 mb-4">Technical Writing</h2>
+<p class="mb-3">PhD in Complex Systems Science from Paris-Saclay University. Developed <a class="link link-hover text-slate-600" href="https://github.com/guaraqe/lineageflow">LineageFlow</a>, software for computational analysis of embryonic development. Published in Physical Biology and conference proceedings.</p>
 
-<div class="bg-gradient-to-r from-orange-50 to-red-50 p-4 rounded-lg mb-6">
-    <h3 class="text-lg font-semibold mb-2">Programming & Research</h3>
-    <p class="text-gray-700 mb-3 text-sm">Technical articles covering programming languages, development tools, performance optimization, and computational biology. Insights from professional software development and academic research.</p>
-    <div class="flex flex-wrap gap-2">
-        <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full">Programming</span>
-        <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">Performance</span>
-        <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Research</span>
-    </div>
-</div>
-<div class="space-y-4">
+<h2 class="text-xl mt-8 mb-2">Recent Writing</h2>
+
+<p class="text-sm text-slate-600 mb-4">Technical articles on programming languages, development tools, and computational biology.</p>
+
+<div class="space-y-3">
 {{#posts}}
-        <article class="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
-            <div class="flex items-start justify-between mb-2">
-                <h3 class="text-lg font-semibold flex-1 mr-4">
-                    <a href="{{{fullUrl}}}" class="text-gray-900 hover:text-blue-600">{{{title}}}</a>
-                </h3>
-                <span class="text-sm text-gray-500 whitespace-nowrap">{{{date}}}</span>
-            </div>
-            <p class="text-sm text-gray-600 mb-2">{{{summary}}}</p>
-        </article>
+    <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
+        <div class="flex items-start justify-between mb-1">
+            <h3 class="text-base font-semibold flex-1 mr-4">
+                <a href="{{{fullUrl}}}" class="text-slate-800 hover:text-slate-600">{{{title}}}</a>
+            </h3>
+            <span class="text-sm text-slate-500 whitespace-nowrap">{{{date}}}</span>
+        </div>
+        <p class="text-sm text-slate-600">{{{summary}}}</p>
+    </article>
 {{/posts}}
-</div>
-
-<div class="bg-gray-50 p-4 rounded-lg mt-6">
-    <p class="text-sm text-gray-700 text-center"><strong>Focus:</strong> Programming languages, development tools, performance engineering • Insights from consulting and research</p>
 </div>
 
 <script>
 function revealEmail() {
-    const emailBtn = document.getElementById('email-btn');
     const emailContent = document.getElementById('email-content');
     const emailLink = document.getElementById('email-link');
-    
-    // Construct email from parts to avoid spam bots
+
     const user = 'juanrapha';
     const domain = 'gmail.com';
     const email = user + '@' + domain;
-    
+
     emailLink.href = 'mailto:' + email;
     emailLink.textContent = email;
-    
-    emailBtn.style.display = 'none';
+
     emailContent.classList.remove('hidden');
 }
 </script>

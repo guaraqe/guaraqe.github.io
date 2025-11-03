@@ -24,7 +24,7 @@ outputFolder = "docs/"
 
 copyStaticFiles :: Action ()
 copyStaticFiles = do
-  filepaths <- getDirectoryFiles "site" ["images//*", "css//*", "js//*", "robots.txt"]
+  filepaths <- getDirectoryFiles "site" ["images//*", "css//*", "js//*", "robots.txt", "CNAME"]
   void $ forP filepaths $ \filepath ->
     copyFileChanged ("site" </> filepath) (outputFolder </> filepath)
 

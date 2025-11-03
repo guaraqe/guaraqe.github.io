@@ -1,7 +1,20 @@
+/* Professional color palette - Cool neutrals */
+:root {
+  --color-primary: #475569;     /* slate-600 */
+  --color-secondary: #64748b;   /* slate-500 */
+  --color-accent: #3b82f6;      /* blue-500 */
+  --color-background: #f8fafc;  /* slate-50 */
+  --color-surface: #ffffff;     /* white */
+  --color-text: #1e293b;        /* slate-800 */
+  --color-text-muted: #64748b;  /* slate-500 */
+  --color-border: #cbd5e1;      /* slate-300 */
+}
+
 /* Modern typography and spacing */
 .prose {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   line-height: 1.75;
+  color: var(--color-text);
 }
 
 .prose p {
@@ -11,27 +24,38 @@
 .prose h1 {
   margin-bottom: 2rem;
   font-weight: 700;
+  color: var(--color-primary);
+}
+
+.prose h2 {
+  color: var(--color-primary);
+}
+
+.prose h3 {
+  color: var(--color-primary);
 }
 
 /* Visual hierarchy */
 .navbar {
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
 }
 
 article.prose {
   padding: 2rem;
-  background: white;
+  background: var(--color-surface);
 }
 
 /* Modern link styling */
 .prose a:not(.btn) {
-  color: #6b7280;
+  color: var(--color-secondary);
   transition: color 0.2s ease;
+  text-decoration: none;
 }
 
 .prose a:not(.btn):hover {
-  color: #374151;
+  color: var(--color-primary);
 }
 
 img.inline-math {
@@ -133,15 +157,11 @@ div.book-navigation-next a::after {
 /* Mobile color consistency fixes */
 @media (max-width: 768px) {
   .prose a:not(.btn) {
-    color: #6b7280 !important;
+    color: var(--color-secondary) !important;
   }
-  
+
   .prose a:not(.btn):hover {
-    color: #374151 !important;
-  }
-  
-  .bg-gradient-to-r {
-    background: #fef7f0 !important;
+    color: var(--color-primary) !important;
   }
 }
 
