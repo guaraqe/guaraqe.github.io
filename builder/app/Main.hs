@@ -49,6 +49,13 @@ copyPhysicsExam = do
   void $ forP filepaths $ \filepath ->
     copyFileChanged (path </> filepath) (outputFolder </> "courses" </> "physics-exam" </> filepath)
 
+copyMicroMacro :: Action ()
+copyMicroMacro = do
+  let path = "/home/juan/Code/guaraqe/micro-macro/crates/micro-macro/web/dist-release"
+  filepaths <- getDirectoryFiles path ["//*"]
+  void $ forP filepaths $ \filepath ->
+    copyFileChanged (path </> filepath) (outputFolder </> "micro-macro" </> filepath)
+
 buildBlog :: Action [Blog.Post]
 buildBlog = do
   posts <- Blog.build "site/posts" (outputFolder </> "posts")
@@ -165,6 +172,7 @@ buildRules = do
   copyBioinformaticsExam
   copyStatisticsExam
   copyPhysicsExam
+  copyMicroMacro
 
 main :: IO ()
 main = do
