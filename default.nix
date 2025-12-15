@@ -1,6 +1,6 @@
 { forShell ? false }:
 
-with import ./nix;
+with import <nixpkgs> {};
 with builtins;
 
 let

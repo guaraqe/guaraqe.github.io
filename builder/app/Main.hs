@@ -18,6 +18,7 @@ import Site.Sitemap qualified as Sitemap
 import Data.Text qualified as Text
 import Slick
 import Data.Aeson (toJSON, object)
+import Site.Note qualified as Note
 
 outputFolder :: FilePath
 outputFolder = "docs/"
@@ -49,12 +50,19 @@ copyPhysicsExam = do
   void $ forP filepaths $ \filepath ->
     copyFileChanged (path </> filepath) (outputFolder </> "courses" </> "physics-exam" </> filepath)
 
-copyMicroMacro :: Action ()
+  copyMicroMacro :: Action ()
 copyMicroMacro = do
   let path = "/home/juan/Code/guaraqe/micro-macro/crates/micro-macro/web/dist-release"
   filepaths <- getDirectoryFiles path ["//*"]
   void $ forP filepaths $ \filepath ->
     copyFileChanged (path </> filepath) (outputFolder </> "micro-macro" </> filepath)
+
+buildNotes :: Action ()
+buildNotes = do
+  let input = "/home/juan/Obsidian/Science/Generalized-Entropies/generalized-entropies.md"
+      output = "notes/generalized-entropies"
+      assets = Just "/home/juan/Obsidian/Science/Generalized-Entropies/images"
+  Note.buildNote outputFolder input output assets
 
 buildBlog :: Action [Blog.Post]
 buildBlog = do
@@ -173,6 +181,7 @@ buildRules = do
   copyStatisticsExam
   copyPhysicsExam
   copyMicroMacro
+  buildNotes
 
 main :: IO ()
 main = do

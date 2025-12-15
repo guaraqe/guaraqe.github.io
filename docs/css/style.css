@@ -199,6 +199,47 @@ div.book-navigation-next a::after {
   color: #374151 !important;
 }
 
+/* Obsidian-style callouts */
+.callout {
+  border-left: 4px solid var(--color-border);
+  background: #f8fafc;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+
+.callout-title {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.callout-title strong {
+  font-size: 0.95rem;
+}
+
+.callout-definition {
+  border-color: #0284c7;
+  background: #f0f9ff;
+}
+
+.callout-definition .callout-title {
+  color: #075985;
+}
+
+.callout-theorem {
+  border-color: #7c3aed;
+  background: #f5f3ff;
+}
+
+.callout-theorem .callout-title {
+  color: #5b21b6;
+}
+
 code {
   font-family: "DejaVu Sans Mono", monospace;
   background: #f1f5f9;
@@ -248,4 +289,3 @@ pre {
     display: none !important;
   }
 }
-

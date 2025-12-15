@@ -20,6 +20,7 @@ executable builder
     Site.Json
     Site.Layout
     Site.Pandoc
+    Site.Note
     Site.Sitemap
     Site.Translate
 
@@ -33,10 +34,9 @@ executable builder
     , hashable
     , http-client
     , http-client-tls
-    , latex-formulae-image
-    , latex-formulae-pandoc
     , lens
     , lens-aeson
+    , directory
     , pandoc
     , pandoc-crossref
     , shake
@@ -44,6 +44,7 @@ executable builder
     , text
     , time
     , unordered-containers
+    , pandoc-types
 
   hs-source-dirs:   app
   default-language: GHC2021

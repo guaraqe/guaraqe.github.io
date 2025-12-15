@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <meta name="description" content="Generalized effective numbers and entropies
+ - Notes">
+    <meta name="author" content="Juan Raphael Diaz Simões">
+    <meta name="keywords" content="Haskell, functional programming, software engineering, bioinformatics, performance optimization, Juan Simões">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
+    <title>Generalized effective numbers and entropies
+</title>
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Generalized effective numbers and entropies
+">
+    <meta property="og:description" content="Generalized effective numbers and entropies
+ - Notes">
+    <meta property="og:url" content="https://guaraqe.github.io/notes/generalized-entropies">
+    <meta property="og:site_name" content="Juan Raphael Diaz Simões">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Generalized effective numbers and entropies
+">
+    <meta name="twitter:description" content="Generalized effective numbers and entropies
+ - Notes">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://guaraqe.github.io/notes/generalized-entropies">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Generalized effective numbers and entropies
+",
+      "description": "Generalized effective numbers and entropies
+ - Notes",
+      "url": "https://guaraqe.github.io/notes/generalized-entropies",
+      "author": {
+        "@type": "Person",
+        "name": "Juan Raphael Diaz Simões",
+        "jobTitle": "Software Engineer",
+        "knowsAbout": ["Haskell", "Functional Programming", "Bioinformatics", "Performance Optimization"],
+        "url": "https://guaraqe.github.io"
+      },
+      "inLanguage": "en-US"
+    }
+    </script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   var macros = [];
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      macros: macros,
+      fleqn: false
+     });
+  }}});
+    </script>
+
+</head>
+<body>
+    <header>
+        <div class="navbar no-print bg-base-100 px-4 py-3">
+          <div class="navbar-start">
+            <a href="/" class="flex items-center group">
+              <img src="/images/juan.png" alt="Juan Simões" class="w-8 h-8 rounded-full object-cover mr-3 group-hover:scale-105 transition-transform">
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors hidden sm:inline">Juan Raphael Diaz Simões</span>
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors sm:hidden">Juan Simões</span>
+            </a>
+          </div>
+          <div class="navbar-end">
+            <div class="hidden sm:block">
+              <ul class="menu menu-horizontal text-sm space-x-1">
+                <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Writing</a></li>
+                <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Teaching</a></li>
+                <li><a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">CV</a></li>
+                <li><a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Projects</a></li>
+              </ul>
+            </div>
+            <div class="block sm:hidden">
+              <div class="grid grid-cols-2 gap-1 text-xs">
+                <a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Writing</a>
+                <a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">CV</a>
+                <a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Teaching</a>
+                <a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Projects</a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </header>
+    <div class="md:flex justify-center bg-base-100">
+    <article class="prose max-w-prose">
+        <h1 class="text-3xl mb-5">
+            Generalized effective numbers and entropies
+
+        </h1>
+        <p class="mb-3">This text defines generalized entropies and some of their properties. In the following we define <span class="math inline notranslate">P(I)</span> to be the space of probability distributions on the set <span class="math inline notranslate">I</span>. For simplicity, we take <span class="math inline notranslate">I</span> to be finite and its size written <span class="math inline notranslate">|I|</span>. Given a probability distribution <span class="math inline notranslate">p</span>, it’s value at the point <span class="math inline notranslate">i</span> will be denoted by <span class="math inline notranslate">p_i</span>.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="size-estimates-and-averaging"><span class="header-section-number">1</span> Size estimates and averaging</h1>
+<p class="mb-3">Given a known probability distribution <span class="math inline notranslate">p</span> in <span class="math inline notranslate">I</span>, given a random sample <span class="math inline notranslate">i</span>, we can estimate the size of <span class="math inline notranslate">I</span> by <span class="math inline notranslate">\frac{1}{p_1}</span>. In the case of an uniform distribution, this estimate is exact and equal to <span class="math inline notranslate">|I|</span>. Now, given a sequence of iid samples <span class="math inline notranslate">i_1,...,i_n</span>, we can obtain a better estimate of the size through a generalized <span class="math inline notranslate">f</span>-mean:</p>
+<p class="mb-3"><span class="math display notranslate">
+f^{-1}\left[\frac{1}{n}\sum_{k=1}^n f\left( \frac{1}{p_{i_k}} \right) \right]
+</span></p>
+<p class="mb-3">which, because of the law of large numbers, converges to:</p>
+<p class="mb-3"><span class="math display notranslate">
+f^{-1}\left[\sum_i p_i f\left( \frac{1}{p_i} \right) \right]
+</span></p>
+<p class="mb-3">This is well defined for <span class="math inline notranslate">f</span> that are injective and continuous. The application of <span class="math inline notranslate">f^{-1}</span> in both cases is justified because they are convex combinations of elements in the image of <span class="math inline notranslate">f</span>.</p>
+<p class="mb-3">This will be the starting point of our explanation.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="effective-numbers"><span class="header-section-number">2</span> Effective numbers</h1>
+<p class="mb-3">We start by defining the <span class="math inline notranslate">f</span>-effective number, which will be our main concept:</p>
+<div class="callout callout-definition">
+<div class="callout-title">
+<strong>Definition:</strong> Generalized Effective Number Let <span class="math inline notranslate">f</span> be a continuous, injective real function. Then the <span class="math inline notranslate">f</span>-effective number of the probability distribution <span class="math inline notranslate">p \in P(I)</span> is defined as:
+</div>
+<p class="mb-3"><span class="math display notranslate">
+N_f(p)
+  = f^{-1}\left[ S_f(p)) \right]
+  = f^{-1}\left[\sum_i p_i f\left( \frac{1}{p_i} \right) \right]
+</span></p>
+</div>
+<p class="mb-3">For any such <span class="math inline notranslate">f</span>, <span class="math inline notranslate">N_f</span> acts the same over the uniform distribution, where every <span class="math inline notranslate">p_i = 1/|I|</span>:</p>
+<p class="mb-3"><span class="math display notranslate">
+\begin{align*}
+N_f
+  &amp;= f^{-1}\left[\sum_i \frac{1}{|I|} f\left( |I| \right) \right] \\
+  &amp;= f^{-1}\left[f\left( |I| \right) \right] \\
+  &amp;= |I|
+\end{align*}
+</span></p>
+<p class="mb-3">Different can generate the same effective number. For any two constants <span class="math inline notranslate">a</span> and <span class="math inline notranslate">b</span>, if <span class="math inline notranslate">g(x) = a f(x) + b</span> then <span class="math inline notranslate">N_g = N_f</span>.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="product-decomposition"><span class="header-section-number">3</span> Product decomposition</h1>
+<p class="mb-3">If <span class="math inline notranslate">p</span> and <span class="math inline notranslate">q</span> are independent probability distributions in <span class="math inline notranslate">I</span> and <span class="math inline notranslate">J</span>, then <span class="math inline notranslate">pq</span> defined by <span class="math inline notranslate">pq_{ij} = p_i q_j</span> is the resulting probability distribution in <span class="math inline notranslate">I \times J</span>.</p>
+<p class="mb-3">For the uniform distribution, we have <span class="math inline notranslate">N_f(pq) = |I||J| = N_f(p) N_f(q)</span>. However this is not true for arbitrary <span class="math inline notranslate">f</span> and <span class="math inline notranslate">p</span>,<span class="math inline notranslate">q</span>. This is true however for a family of functions. Besides the example of <span class="math inline notranslate">f = \ln</span>, which implies the classical Gibbs-Boltzmann effective number:</p>
+<p class="mb-3"><span class="math display notranslate">
+N_f(p) = \exp \left[ -\sum_i p_i \ln p_i \right]
+</span></p>
+<p class="mb-3">for functions <span class="math inline notranslate">f(x) = x^{1-\alpha}</span> this also holds:</p>
+<p class="mb-3"><span class="math display notranslate">
+N_f(p) = \left[ \sum_i p_i^{\alpha} \right]^{\frac{1}{1-\alpha}}
+</span></p>
+<p class="mb-3">From now on, we will focus on these families of <span class="math inline notranslate">f</span>.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="4" id="logarithms-and-exponentials"><span class="header-section-number">4</span> Logarithms and exponentials</h1>
+<p class="mb-3">As mentioned before, many functions can define the same effective number, and the same is the fase for the power functions. In order to choose canonical members from these families of power functions, we define the <span class="math inline notranslate">\alpha</span>-logarithms and <span class="math inline notranslate">\alpha</span>-exponentials:</p>
+<div class="callout callout-definition">
+<div class="callout-title">
+<strong>Definition:</strong> Generalized Logarithm Let <span class="math inline notranslate">\alpha</span> be a real number. Then the <span class="math inline notranslate">\alpha</span>-logarithm is defined as:
+</div>
+<p class="mb-3"><span class="math display notranslate">
+l_\alpha(x) = \frac{x^{1-\alpha}-1}{1 - \alpha}
+</span></p>
+</div>
+<p class="mb-3">A first important property of this logarithm is that:</p>
+<p class="mb-3"><span class="math display notranslate">
+\lim_{\alpha \to 1} l_\alpha(x) = \ln(x)
+</span></p>
+<p class="mb-3">meaning that by defining <span class="math inline notranslate">l_1 = \ln</span> we can unify all of these functions in a single family.</p>
+<p class="mb-3">In general, these logarithms behave differently from the standard logarithm. First, they do not transform products into sums:</p>
+<p class="mb-3"><span class="math display notranslate">
+l_q(xy) = l_q(x) + l_q(y) + (1-q) \, l_q(x) \, l_q(y) 
+</span></p>
+<p class="mb-3">and their relation to inverses is different, creating a connection between <span class="math inline notranslate">\alpha</span> and <span class="math inline notranslate">2 - \alpha</span>:</p>
+<p class="mb-3"><span class="math display notranslate">
+l_\alpha\left(\frac{1}{x}\right) = - l_{2 - \alpha}(x)
+</span></p>
+<p class="mb-3">Their derivatives are also power function, but with different exponents:</p>
+<p class="mb-3"><span class="math display notranslate">
+\frac{d l_\alpha}{d x}(x) = x^{-\alpha}
+</span></p>
+<p class="mb-3">For all of these logarithms, <span class="math inline notranslate">l_\alpha(1) = 0</span> and <span class="math inline notranslate">l&#39;_\alpha(1) = 1</span>. In the domain <span class="math inline notranslate">[1,\infty)</span>, for <span class="math inline notranslate">\alpha \leq 1</span>, the image of <span class="math inline notranslate">l_\alpha</span> is <span class="math inline notranslate">[0,\infty)</span>, and for <span class="math inline notranslate">\alpha &gt; 1</span> the image is <span class="math inline notranslate">[0,\frac{1}{\alpha - 1}]</span>. For <span class="math inline notranslate">\alpha &gt; 0</span> these logarithms are concave. These are their graphs for a few selected <span class="math inline notranslate">\alpha</span>:</p>
+<p class="mb-3">![[logs.png]]</p>
+<p class="mb-3">The inverses of these <span class="math inline notranslate">\alpha</span>-logarithms are the <span class="math inline notranslate">\alpha</span>-exponentials:</p>
+<div class="callout callout-definition">
+<div class="callout-title">
+<strong>Definition:</strong> Generalized Exponential Let <span class="math inline notranslate">\alpha</span> be a real number. Then the <span class="math inline notranslate">\alpha</span>-exponential is defined as:
+</div>
+<p class="mb-3"><span class="math display notranslate">
+e_\alpha(x) = [(1-\alpha)x + 1]^{\frac{1}{1-\alpha}}
+</span></p>
+</div>
+<p class="mb-3">Similarly to the logarithm we have that:</p>
+<p class="mb-3"><span class="math display notranslate">
+\lim_{\alpha \to 1} e_\alpha(x) = \exp(x)
+</span></p>
+<p class="mb-3">meaning that by defining <span class="math inline notranslate">e_1 = \exp</span> we unify all these effective numbers that preserve products into a single family.</p>
+<p class="mb-3">The behavior of these exponentials related to products is different than standard exponentials:</p>
+<p class="mb-3"><span class="math display notranslate">
+e_\alpha(x)e_\alpha(y) = e_\alpha(x + y + (1 - \alpha)xy)
+</span></p>
+<p class="mb-3">and their relation to inverses is different, creating a connection between and <span class="math inline notranslate">2 - \alpha</span>, like for logarithms:</p>
+<p class="mb-3"><span class="math display notranslate">
+\frac{1}{e_\alpha(x)} = e_{2 - \alpha}(-x)
+</span></p>
+<p class="mb-3">As for derivatives, their are powers of the function itself:</p>
+<p class="mb-3"><span class="math display notranslate">
+\frac{d e_\alpha}{d x}(x) = e_\alpha(x)^\alpha
+</span></p>
+<p class="mb-3">For all of these exponentials, <span class="math inline notranslate">e_\alpha(0) = 1</span> and <span class="math inline notranslate">e_\alpha(0) = 1</span>. For <span class="math inline notranslate">\alpha \leq 1</span>, the domain of is <span class="math inline notranslate">[0,\infty)</span>, and for <span class="math inline notranslate">\alpha &gt; 1</span> the domain is <span class="math inline notranslate">[0,\frac{1}{\alpha - 1}]</span>. For <span class="math inline notranslate">\alpha &gt; 0</span>, these logarithms are convex. These are their graphs for a few selected <span class="math inline notranslate">\alpha</span>:</p>
+<p class="mb-3">![[exps.png]]</p>
+<p class="mb-3">If we define the <span class="math inline notranslate">\alpha</span>-sum as:</p>
+<p class="mb-3"><span class="math display notranslate">
+x \oplus_\alpha y = l_\alpha(e_\alpha(x)e_\alpha(y)) = x + y + (1 - \alpha)xy
+</span></p>
+<p class="mb-3">which implies that <span class="math inline notranslate">\oplus_1 = +</span>, then we can find additiveness-like properties:</p>
+<p class="mb-3"><span class="math display notranslate">
+\begin{align*}
+l_\alpha(xy) &amp;= l_\alpha(x) \oplus_\alpha l_\alpha(y) \\
+e_\alpha(x)e_\alpha(y) &amp;= e_\alpha(x \oplus_\alpha y)
+\end{align*}
+</span></p>
+<p class="mb-3">which will be useful later.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="5" id="hill-numbers"><span class="header-section-number">5</span> Hill numbers</h1>
+<p class="mb-3">In the literature, the effective numbers <span class="math inline notranslate">N_\alpha = N_{l_\alpha}</span> are called Hill numbers:</p>
+<div class="callout callout-definition">
+<div class="callout-title">
+<strong>Definition:</strong> Hill numbers The Hill number of order <span class="math inline notranslate">\alpha</span> is defined as:
+</div>
+<p class="mb-3"><span class="math display notranslate">
+N_\alpha(p)
+= e_\alpha\left[\sum_i p_i l_\alpha\left( \frac{1}{p_i} \right) \right]
+= \left( \sum_i p_i^{\alpha} \right)^{\frac{1}{1-\alpha}}
+</span></p>
+<p class="mb-3">for <span class="math inline notranslate">\alpha \neq 1</span> and otherwise as:</p>
+<p class="mb-3"><span class="math display notranslate">
+N_1(p)
+= \exp\left[\sum_i p_i \ln\left( \frac{1}{p_i} \right) \right]
+= \prod_i p_i^{-p_i}
+</span></p>
+</div>
+<p class="mb-3">For Bernouilli distributions they look like this:</p>
+<p class="mb-3">![[effs.png]]</p>
+<p class="mb-3">As you can see, all of them agree on the value for the uniform distribution.</p>
+<p class="mb-3">The higher , the smaller the estimate. So for <span class="math inline notranslate">\alpha &gt; 1</span>, we expect the effective state to actually be smaller, indicating “attractive correlations”. For <span class="math inline notranslate">\alpha &lt; 1</span> we see the opposite, “repulsive correlations”, a bigger space state.</p>
+<p class="mb-3">The function <span class="math inline notranslate">N_\alpha</span> is only concave for <span class="math inline notranslate">0 &lt; \alpha &lt; 2</span>, so this will be the interval of <span class="math inline notranslate">\alpha</span> that we will use for applications.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="6" id="entropies"><span class="header-section-number">6</span> Entropies</h1>
+<p class="mb-3">Normally the entropy is defined as the main subject, but here it is defined in terms of effective numbers:</p>
+<div class="callout callout-definition">
+<div class="callout-title">
+<strong>Definition:</strong> Generalized Entropy Let <span class="math inline notranslate">f</span> be a continuous, injective real function. Then the <span class="math inline notranslate">f</span>-entropy of the probability distribution <span class="math inline notranslate">p \in P(I)</span> is defined as:
+</div>
+<p class="mb-3"><span class="math display notranslate">
+S_f(p) = f(N_f) = \sum_i p_i f\left( \frac{1}{p_i} \right)
+</span></p>
+</div>
+<p class="mb-3">In general, different <span class="math inline notranslate">f</span> will generate different entropies, which differs from effective numbers. The main use of entropies is that they are simpler to calculate, because they do not involve <span class="math inline notranslate">f^{-1}</span>.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="7" id="tsallis-entropies"><span class="header-section-number">7</span> Tsallis entropies</h1>
+<p class="mb-3">In the literature, the entropies <span class="math inline notranslate">S_\alpha = S_{l_\alpha}</span> are called Tsallis entropies:</p>
+<div class="callout callout-definition">
+<div class="callout-title">
+<strong>Definition:</strong> Tsallis entropy The Tsallis entropy of order <span class="math inline notranslate">\alpha</span> is defined as:
+</div>
+<p class="mb-3"><span class="math display notranslate">
+N_\alpha(p)
+= e_\alpha\left[\sum_i p_i l_\alpha\left( \frac{1}{p_i} \right) \right]
+= \left( \sum_i p_i^{\alpha} \right)^{\frac{1}{1-\alpha}}
+</span></p>
+<p class="mb-3">for <span class="math inline notranslate">\alpha \neq 1</span> and otherwise as:</p>
+<p class="mb-3"><span class="math display notranslate">
+S_1(p)
+= \sum_i p_i \ln\left( \frac{1}{p_i} \right)
+</span></p>
+</div>
+<p class="mb-3">For Bernouilli distributions they look like this:</p>
+<p class="mb-3">![[ents.png]]</p>
+<p class="mb-3"><span class="math inline notranslate">S_\alpha</span> is concave for all <span class="math inline notranslate">\alpha &gt; 0</span>.</p>
+<p class="mb-3">Now we are ready to study how entropies decompose. Using the identities <span class="math inline notranslate">S_f(p) = l_\alpha(N_\alpha(p))</span> and <span class="math inline notranslate">N_f(p) = e_\alpha(S_\alpha(p))</span> we have:</p>
+<p class="mb-3"><span class="math display notranslate">
+\begin{align*}
+S_\alpha(pq)
+  &amp;= l_\alpha [ N_\alpha(pq) ] \\
+  &amp;= l_\alpha [ N_\alpha(p) N_\alpha(q) ] \\
+  &amp;= l_\alpha [ e_\alpha(S_\alpha(p)) e_\alpha(S_\alpha(q)) ] \\
+  &amp;= S_\alpha(p) \oplus_\alpha S_\alpha(q) \\
+  &amp;= S_\alpha(p) + S_\alpha(q) + (1 - \alpha)S_\alpha(p) S_\alpha(q)
+\end{align*}
+</span></p>
+<p class="mb-3">which reduces to the traditional sum decomposition formula for the regular entropy, but means that this family of entropies is non-extensive in general.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="8" id="conditional-decomposition"><span class="header-section-number">8</span> Conditional decomposition</h1>
+<p class="mb-3">Let <span class="math inline notranslate">p</span> be a probability distribution in <span class="math inline notranslate">I \times J</span>. Let <span class="math inline notranslate">p^I</span> be the marginal distributions in <span class="math inline notranslate">I</span>, and for each <span class="math inline notranslate">i</span>, <span class="math inline notranslate">p^i</span> the conditional distribution in <span class="math inline notranslate">J</span>. Then:</p>
+<p class="mb-3"><span class="math display notranslate">
+\begin{align*}
+N_\alpha(p)
+&amp;= \left[ \sum_{ij} p_{ij}^{\alpha} \right]^{\frac{1}{1-\alpha}} \\
+&amp;= \left[ \sum_{ij} (p^i_j p^I_i)^{\alpha} \right]^{\frac{1}{1-\alpha}} \\
+&amp;= \left[ \sum_i (p^I_i)^{\alpha} \sum_j (p^i_j)^{\alpha} \right]^{\frac{1}{1-\alpha}} \\
+&amp;= \left[ \sum_i (p^I_i)^{\alpha} N_\alpha(p^i)^{1-\alpha} \right]^{\frac{1}{1-\alpha}} \\
+&amp;= \left[ \sum_i p^I_i \left(\frac{ N_\alpha(p^i)}{p^I_i}\right)^{1-\alpha} \right]^{\frac{1}{1-\alpha}} \\
+&amp;= N_\alpha(p^I,N_\alpha(p^\square))
+\end{align*}
+</span></p>
+<p class="mb-3"><span class="math display notranslate">
+\begin{align*}
+S_\alpha(p) 
+&amp;= \sum_{ij} p_{ij} l_\alpha\left(\frac{1}{p_{ij}}\right) \\
+&amp;= \sum_{ij} p^i_j p^I_i l_\alpha\left(\frac{1}{p^i_jp^I_i}\right) \\
+&amp;= \sum_{i} p^I_i l_\alpha\left(\frac{1}{p^I_i}\right)
++ \sum_{ij} p^i_j p^I_i l_\alpha\left(\frac{1}{p^i_j}\right)
++ (1-\alpha)\sum_{ij} p^i_j p^I_i  l_\alpha\left(\frac{1}{p^i_j}\right) l_\alpha\left(\frac{1}{p^I_i}\right) \\
+&amp;= S_\alpha(p^I) + \sum_i p^I_i S_\alpha(p^i)
++ (1-\alpha)\sum_{i} p^I_i l_\alpha\left(\frac{1}{p^I_i}\right) S_\alpha(p^i) \\
+&amp;= S_\alpha(p^I) + S_\alpha(p|p^I)
++ (1-\alpha)\sum_{i} p^I_i l_\alpha\left(\frac{1}{p^I_i}\right) S_\alpha(p^i) 
+\end{align*}
+</span></p>
+<h1 class="text-2xl mt-5 mb-5" data-number="9" id="gibbs-inequality-and-divergence"><span class="header-section-number">9</span> Gibbs’ inequality and divergence</h1>
+<p class="mb-3">For any <span class="math inline notranslate">f</span> that is concave and such that <span class="math inline notranslate">f(1) = 0</span> and <span class="math inline notranslate">f&#39;(1) = 1</span>, we can derive Gibbs’ inequality. Counting only <span class="math inline notranslate">i</span> where <span class="math inline notranslate">q_i &gt; 0</span></p>
+<p class="mb-3"><span class="math display notranslate">
+\sum_i p_i f\left( \frac{q_i}{p_i} \right)
+\leq \sum_i p_i \left( \frac{q_i}{p_i} - 1\right) \leq 0
+</span></p>
+<p class="mb-3">Applying this to <span class="math inline notranslate">\alpha</span>-logarithms, and the inverse relations, we have that:</p>
+<p class="mb-3"><span class="math display notranslate">
+\sum_i p_i l_\alpha\left( \frac{p_i}{q_i} \right) \geq 0
+</span></p>
+<p class="mb-3">Therefore, we can generalize Kullback-Leibler divergences:</p>
+<div class="callout callout-definition">
+<div class="callout-title">
+<strong>Definition:</strong> Generalized divergence The generalized divergence of order <span class="math inline notranslate">\alpha</span> is defined as:
+</div>
+<p class="mb-3"><span class="math display notranslate">
+D_\alpha(p||q) = \sum_i p_i l_\alpha\left( \frac{p_i}{q_i} \right)
+</span></p>
+</div>
+<p class="mb-3">Their decomposition of products into sums is also not linear, albeit simple:</p>
+<p class="mb-3"><span class="math display notranslate">
+\begin{align*}
+D_\alpha(pq||rs)
+&amp;= \sum_{ij} p_iq_j l_\alpha\left( \frac{p_iq_j}{r_is_j} \right) \\
+&amp;= \sum_i p_i l_\alpha\left( \frac{p_i}{r_i} \right)
++ \sum_j p_j l_\alpha\left( \frac{q_j}{s_j} \right)
++ (1 - \alpha) \sum_{ij} p_i q_j l_\alpha\left( \frac{p_i}{r_i} \right)l_\alpha\left( \frac{q_j}{s_j} \right) \\
+&amp;= D_\alpha(p||r) + D_\alpha(q||s) + (1-\alpha)D_\alpha(p||r)D_\alpha(q||s) \\
+&amp;= D_\alpha(p||r) \oplus_\alpha D_\alpha(q||s) 
+\end{align*}
+</span></p>
+<h1 class="text-2xl mt-5 mb-5" data-number="10" id="evaluating-independence"><span class="header-section-number">10</span> Evaluating independence</h1>
+<p class="mb-3">We can measure <span class="math inline notranslate">D(p||p^I \times p^J)</span>, this is called the mutual information, it is <span class="math inline notranslate">0</span> if the distribution is a product of independent variables.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="11" id="stuff"><span class="header-section-number">11</span> Stuff</h1>
+<p class="mb-3">I noticed that if the process is deterministic, effectively <span class="math inline notranslate">|X^N| = |X|</span> so <span class="math inline notranslate">|X^N|^{1/N}</span> goes to <span class="math inline notranslate">1</span>. The idea is to use instead <span class="math inline notranslate">|X^N|^{1/N^\alpha}</span>, and then <span class="math inline notranslate">\alpha = 0</span> would be the right choice here. I still don’t know how to reconcile this with Hölder means.</p>
+    </article>
+</div>
+
+</body>
+</html>
