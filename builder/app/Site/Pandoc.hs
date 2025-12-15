@@ -97,13 +97,18 @@ convertBlockQuote (BlockQuote (firstBlock : rest)) =
               ["callout", calloutClass (kind info)],
               []
             )
-       in Div attr (titleBlock : rest)
+          bodyBlocks =
+            case body info of
+              Nothing -> []
+              Just inlines -> [Para inlines]
+       in Div attr (titleBlock : bodyBlocks <> rest)
 convertBlockQuote block = block
 
 data CalloutInfo = CalloutInfo
   { kind :: CalloutKind,
     title :: [Inline],
-    anchor :: Maybe String
+    anchor :: Maybe String,
+    body :: Maybe [Inline]
   }
 
 parseCalloutHeader :: Block -> Maybe CalloutInfo
@@ -115,12 +120,15 @@ parseCalloutHeader = \case
     parseInlines (Str tag : rest)
       | Just calloutKind <- parseTag (T.unpack tag) =
           let trimmedRest = trimSpaces rest
-              (titleInlines, anchorId) = stripAnchor trimmedRest
+              (headerRaw, bodyRest) = splitHeaderBody trimmedRest
+              (titleInlines, anchorId) = stripAnchor headerRaw
+              bodyInlines = nonEmptyList (trimSpaces bodyRest)
            in Just
                 CalloutInfo
                   { kind = calloutKind,
                     title = titleInlines,
-                    anchor = anchorId
+                    anchor = anchorId,
+                    body = bodyInlines
                   }
     parseInlines _ = Nothing
 
@@ -160,6 +168,22 @@ isSpaceLike = \case
   SoftBreak -> True
   LineBreak -> True
   _ -> False
+
+isSoftBreak :: Inline -> Bool
+isSoftBreak = \case
+  SoftBreak -> True
+  LineBreak -> True
+  _ -> False
+
+splitHeaderBody :: [Inline] -> ([Inline], [Inline])
+splitHeaderBody inlines =
+  let (headerPart, rest) = break isSoftBreak inlines
+      bodyPart = dropWhile isSoftBreak rest
+   in (headerPart, bodyPart)
+
+nonEmptyList :: [a] -> Maybe [a]
+nonEmptyList [] = Nothing
+nonEmptyList xs = Just xs
 
 buildTitle :: CalloutInfo -> Block
 buildTitle info =
