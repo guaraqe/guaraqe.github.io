@@ -38,6 +38,7 @@ import Text.Pandoc.Walk (walk)
 
 readMarkdownAndMeta :: Text -> Action (Pandoc, Value)
 readMarkdownAndMeta markdown = do
+  let markdown' = convertObsidianImages markdown
   let readOpts =
         def
           { readerExtensions = pandocExtensions
@@ -45,7 +46,7 @@ readMarkdownAndMeta markdown = do
 
       reader = readMarkdown readOpts
 
-  makePandocReader reader markdown
+  makePandocReader reader markdown'
 
 writeHtmlAndMeta :: Pandoc -> Value -> Action Value
 writeHtmlAndMeta pandoc value = do
@@ -84,6 +85,26 @@ data CalloutKind
 
 convertCallouts :: Pandoc -> Pandoc
 convertCallouts = walk convertBlockQuote
+
+convertObsidianImages :: Text -> Text
+convertObsidianImages input =
+  case T.breakOn "![[" input of
+    (before, rest)
+      | T.null rest -> input
+      | otherwise ->
+          let afterPrefix = T.drop 3 rest
+              (target, closingRest) = T.breakOn "]]" afterPrefix
+           in if T.isPrefixOf "]]" closingRest
+                then
+                  let remaining = T.drop 2 closingRest
+                      base =
+                        case reverse (T.splitOn "/" target) of
+                          [] -> target
+                          (x : _) -> x
+                      replacement =
+                        "![](images/" <> target <> ")"
+                   in before <> replacement <> convertObsidianImages remaining
+                else before <> rest
 
 convertBlockQuote :: Block -> Block
 convertBlockQuote (BlockQuote (firstBlock : rest)) =
