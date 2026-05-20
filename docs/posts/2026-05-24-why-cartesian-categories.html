@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <meta name="description" content="Introducing WireCat, a GHC plugin for writing typed categorical wiring
+diagrams with proc notation
+">
+    <meta name="author" content="Juan Raphael Diaz Simões">
+    <meta name="keywords" content="Haskell, functional programming, software engineering, bioinformatics, performance optimization, Juan Simões">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
+    <title>Why cartesian categories?
+</title>
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Why cartesian categories?
+">
+    <meta property="og:description" content="Introducing WireCat, a GHC plugin for writing typed categorical wiring
+diagrams with proc notation
+">
+    <meta property="og:url" content="https://guaraqe.github.io/posts/2026-05-24-why-cartesian-categories.html">
+    <meta property="og:site_name" content="Juan Raphael Diaz Simões">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Why cartesian categories?
+">
+    <meta name="twitter:description" content="Introducing WireCat, a GHC plugin for writing typed categorical wiring
+diagrams with proc notation
+">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://guaraqe.github.io/posts/2026-05-24-why-cartesian-categories.html">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "name": "Why cartesian categories?
+",
+      "description": "Introducing WireCat, a GHC plugin for writing typed categorical wiring
+diagrams with proc notation
+",
+      "url": "https://guaraqe.github.io/posts/2026-05-24-why-cartesian-categories.html",
+      "author": {
+        "@type": "Person",
+        "name": "Juan Raphael Diaz Simões",
+        "url": "https://guaraqe.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Juan Raphael Diaz Simões"
+      },
+      "inLanguage": "en-US"
+    }
+    </script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   var macros = [];
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      macros: macros,
+      fleqn: false
+     });
+  }}});
+    </script>
+
+</head>
+<body>
+    <header>
+        <div class="navbar no-print bg-base-100 px-4 py-3">
+          <div class="navbar-start">
+            <a href="/" class="flex items-center group">
+              <img src="/images/juan.png" alt="Juan Simões" class="w-8 h-8 rounded-full object-cover mr-3 group-hover:scale-105 transition-transform">
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors hidden sm:inline">Juan Raphael Diaz Simões</span>
+              <span class="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors sm:hidden">Juan Simões</span>
+            </a>
+          </div>
+          <div class="navbar-end">
+            <div class="hidden sm:block">
+              <ul class="menu menu-horizontal text-sm space-x-1">
+                <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Writing</a></li>
+                <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Teaching</a></li>
+                <li><a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">CV</a></li>
+                <li><a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Projects</a></li>
+              </ul>
+            </div>
+            <div class="block sm:hidden">
+              <div class="grid grid-cols-2 gap-1 text-xs">
+                <a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Writing</a>
+                <a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">CV</a>
+                <a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Teaching</a>
+                <a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Projects</a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </header>
+    <div class="md:flex justify-center bg-base-100">
+    <article class="prose max-w-prose">
+        <header>
+            <h1 class="text-3xl mb-5">
+                Why cartesian categories?
+
+            </h1>
+            <time class="mb-5 block text-gray-600" datetime="2026-05-24">May 24, 2026</time>
+        </header>
+
+        <main>
+            <p class="mb-3">The main bottleneck in programming is not in code production, but in code understanding. This became even more pronounced with the monumental quantities of code AI is capable of producing. This means we desperately need tools that help us manage this uncontrolled growth.</p>
+<p class="mb-3">Aiming for correct and intelligible code is not new, and most software engineering patterns have this exact goal. In the context of Haskell, we have a wealth of patterns, effect libraries, etc. The question is which ones are also well adapted to this new reality.</p>
+<p class="mb-3">The approach I want to take here is to use effects that allow a <em>graphical representation of code</em>. That is, tools that allow us to look at code in a way that is <em>equivalent</em> to the code that is written.</p>
+<p class="mb-3"><img class="mx-auto" src="./img/wirecat.svg" style="width:50.0%" /></p>
+<p class="mb-3">In short, WireCat is a GHC plugin, a library, and a visualization tool based on cartesian categories and extensible records that allows us to write code like this:</p>
+<div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">wordCount ::</span> <span class="dt">WordCount</span> <span class="op">:&gt;</span> cat <span class="ot">=&gt;</span> cat <span class="dt">Empty</span> <span class="dt">Empty</span></span>
+<span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a>wordCount <span class="ot">=</span> proc <span class="dt">R</span> {} <span class="ot">-&gt;</span> <span class="kw">do</span></span>
+<span id="cb1-3"><a class="link link-hover text-zinc-600" href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">R</span> {path} <span class="ot">&lt;-</span> readPath <span class="op">-&lt;</span> <span class="dt">R</span> {}</span>
+<span id="cb1-4"><a class="link link-hover text-zinc-600" href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">R</span> {text} <span class="ot">&lt;-</span> loadText <span class="op">-&lt;</span> <span class="dt">R</span> {path}</span>
+<span id="cb1-5"><a class="link link-hover text-zinc-600" href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">R</span> {<span class="fu">words</span>} <span class="ot">&lt;-</span> countWords <span class="op">-&lt;</span> <span class="dt">R</span> {text}</span>
+<span id="cb1-6"><a class="link link-hover text-zinc-600" href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">R</span> {<span class="fu">lines</span>} <span class="ot">&lt;-</span> countLines <span class="op">-&lt;</span> <span class="dt">R</span> {text}</span>
+<span id="cb1-7"><a class="link link-hover text-zinc-600" href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">R</span> {chars} <span class="ot">&lt;-</span> countChars <span class="op">-&lt;</span> <span class="dt">R</span> {text}</span>
+<span id="cb1-8"><a class="link link-hover text-zinc-600" href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  writeReport <span class="op">-&lt;</span> <span class="dt">R</span> {path, <span class="fu">words</span>, <span class="fu">lines</span>, chars}</span></code></pre></div>
+<p class="mb-3">That can be interpreted in IO, or rendered like this:</p>
+<figure>
+<img class="mx-auto" src="./img/wirecat-word-count.png" alt="The word count program rendered as a wiring diagram" />
+<figcaption aria-hidden="true">The word count program rendered as a wiring diagram</figcaption>
+</figure>
+<p class="mb-3">The operations become nodes, and the fields in the records become named ports. The same definition can be run with a concrete interpreter, captured as a free categorical term, or exported as DOT, SVG, and JSON for the viewer.</p>
+<p class="mb-3">The motivation for this series of posts was Chris Penner’s post on using <a class="link link-hover text-zinc-600" href="https://chrispenner.ca/posts/arrow-effects">Arrows to sequence effects</a>, which I highly recommend. However, the solution I propose here is not arrows, but instead the closely related <em>cartesian categories</em>. The code for the plugin was heavily based on <a class="link link-hover text-zinc-600" href="https://github.com/phadej/overloaded">overloaded</a> by Oleg Grenrus.</p>
+<p class="mb-3">The goal of this blog post is to explain why I think this is the right abstraction. In the following posts I will discuss further details like desugaring, dealing with cases (i.e. bicategories), how to use this as an effects library, etc.</p>
+<p class="mb-3">WireCat is highly experimental code, and can change at any moment, which means that care is advised. At the moment the plugin covers the cartesian fragment: composition, projection, combination, relabeling, and primitive operations. Case analysis is still future work.</p>
+<p class="mb-3">Ideas and collaborations are always welcome!</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="code-and-graphs"><span class="header-section-number">1</span> Code and graphs</h1>
+<p class="mb-3">Programs always have two layers – one is the <em>structure</em> of the code, and the other is its <em>interpretation</em>. We write code in text, which has syntax that gives structure to it, and when the code is run, we interpret it.</p>
+<p class="mb-3">If we try to represent all code graphically, we can end up with something like Scratch, which exists, but is hard to manipulate at larger scales. The control flow of complex software can be very complicated, and its graphical representation is no less complicated. Any sufficiently detailed description of software will tend towards <a class="link link-hover text-zinc-600" href="https://haskellforall.com/2026/03/a-sufficiently-detailed-spec-is-code">code itself</a>.</p>
+<p class="mb-3">However, in Haskell it’s very easy to define EDSLs that add an extra level to it. We have a data structure that itself is interpreted as Haskell code, which is then interpreted again. That is, we can define an <em>intermediate language</em> that we choose to represent graphically, and that has good properties. This intermediate language, however, will be non-exhaustive and have details left to interpretation.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="cartesian-categories-and-string-diagrams"><span class="header-section-number">2</span> Cartesian categories and string diagrams</h1>
+<p class="mb-3">In Chris’ post we can see the graphical representation of many programs:</p>
+<figure>
+<img class="mx-auto" src="./img/wirecat-arrow-effects.png" alt="Arrow effects rendered as graphs" />
+<figcaption aria-hidden="true">Arrow effects rendered as graphs</figcaption>
+</figure>
+<p class="mb-3">These graphs are very similar to something in category theory: <em>string diagrams</em>. These diagrams give a very powerful equational language to reason about definitions and propositions. In mathematical texts they will look like this, with operations as nodes, and objects as wires:</p>
+<figure>
+<img class="mx-auto" src="./img/wirecat-string-diagram.png" alt="A mathematical string diagram" />
+<figcaption aria-hidden="true">A mathematical string diagram</figcaption>
+</figure>
+<p class="mb-3">So, if we can produce such images with arrows, why not use them? What makes the arrow diagrams not as powerful is <code>arr</code>. Indeed we can see this in the definition of <code>CommandRecorder</code>:</p>
+<div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Arrow</span> <span class="dt">CommandRecorder</span> <span class="kw">where</span></span>
+<span id="cb2-2"><a class="link link-hover text-zinc-600" href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  arr _ <span class="ot">=</span> <span class="dt">CommandRecorder</span> []</span></code></pre></div>
+<p class="mb-3">which means that when we translate to the visual language, we lose information.</p>
+<p class="mb-3">The problem is that <code>arr</code> lets arbitrary Haskell functions enter the arrow. Once that happens, the graph can no longer faithfully represent the internal structure of the program; it can only record that some opaque Haskell computation happened there.</p>
+<p class="mb-3">Cartesian categories don’t have this problem, as they are essentially <code>Arrow</code> without <code>arr</code>. This means we can recover the structure of the code directly from its graphical representation.</p>
+<p class="mb-3">The price is that the set of programs we can write in this language is more restricted. And what we lose is essentially the possibility of having <code>let</code> blocks in the code.</p>
+<p class="mb-3">So how can we manipulate values?</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="manipulating-and-naming-wires"><span class="header-section-number">3</span> Manipulating and naming wires</h1>
+<p class="mb-3">The fundamental idea of a cartesian category is that there is a concept of product. Elements can be composed and decomposed via products. In the arrow typeclass, this can be seen for example in:</p>
+<div class="sourceCode mb-3 notranslate" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a class="link link-hover text-zinc-600" href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">(&amp;&amp;&amp;) ::</span> a b c <span class="ot">-&gt;</span> a b c&#39; <span class="ot">-&gt;</span> a b (c, c&#39;)</span></code></pre></div>
+<p class="mb-3">However, manipulating tuples is messy. You have to deal with association laws saying that <code>(a,(b,c))</code> is equivalent to <code>((a,b),c)</code>, and so on.</p>
+<p class="mb-3">A more ergonomic solution is using row types. Essentially, instead of having nested products, we have records with named fields:</p>
+<div class="sourceCode mb-3 notranslate" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a class="link link-hover text-zinc-600" href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> <span class="dt">Person</span> <span class="ot">=</span></span>
+<span id="cb4-2"><a class="link link-hover text-zinc-600" href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Rec</span></span>
+<span id="cb4-3"><a class="link link-hover text-zinc-600" href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    ( <span class="st">&quot;name&quot;</span>   <span class="op">.==</span> <span class="dt">String</span></span>
+<span id="cb4-4"><a class="link link-hover text-zinc-600" href="#cb4-4" aria-hidden="true" tabindex="-1"></a>   <span class="op">.+</span> <span class="st">&quot;age&quot;</span>    <span class="op">.==</span> <span class="dt">Int</span></span>
+<span id="cb4-5"><a class="link link-hover text-zinc-600" href="#cb4-5" aria-hidden="true" tabindex="-1"></a>   <span class="op">.+</span> <span class="st">&quot;active&quot;</span> <span class="op">.==</span> <span class="dt">Bool</span></span>
+<span id="cb4-6"><a class="link link-hover text-zinc-600" href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-7"><a class="link link-hover text-zinc-600" href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a class="link link-hover text-zinc-600" href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ot">person ::</span> <span class="dt">Person</span></span>
+<span id="cb4-9"><a class="link link-hover text-zinc-600" href="#cb4-9" aria-hidden="true" tabindex="-1"></a>person <span class="ot">=</span></span>
+<span id="cb4-10"><a class="link link-hover text-zinc-600" href="#cb4-10" aria-hidden="true" tabindex="-1"></a>     <span class="op">#</span>name   <span class="op">.==</span> <span class="st">&quot;Alice&quot;</span></span>
+<span id="cb4-11"><a class="link link-hover text-zinc-600" href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">.+</span> <span class="op">#</span>age    <span class="op">.==</span> <span class="dv">42</span></span>
+<span id="cb4-12"><a class="link link-hover text-zinc-600" href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">.+</span> <span class="op">#</span>active <span class="op">.==</span> <span class="dt">True</span></span></code></pre></div>
+<p class="mb-3">Besides making the associativity/permutation problems go away, we now have <em>names</em> for attributes. That is what lets us have named ports in our wire diagrams.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="4" id="writing-and-interpreting-a-program"><span class="header-section-number">4</span> Writing and interpreting a program</h1>
+<p class="mb-3">We start by describing the actions we support. In the compact syntax used by WireCat, that looks like this:</p>
+<div class="sourceCode mb-3 notranslate" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a class="link link-hover text-zinc-600" href="#cb5-1" aria-hidden="true" tabindex="-1"></a>[effect|</span>
+<span id="cb5-2"><a class="link link-hover text-zinc-600" href="#cb5-2" aria-hidden="true" tabindex="-1"></a>WordCount</span>
+<span id="cb5-3"><a class="link link-hover text-zinc-600" href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  ReadPath    :: {} -&gt; { path :: FilePath }</span>
+<span id="cb5-4"><a class="link link-hover text-zinc-600" href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  LoadText    :: { path :: FilePath } -&gt; { text :: String }</span>
+<span id="cb5-5"><a class="link link-hover text-zinc-600" href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  CountWords  :: { text :: String } -&gt; { words :: Int }</span>
+<span id="cb5-6"><a class="link link-hover text-zinc-600" href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  CountLines  :: { text :: String } -&gt; { lines :: Int }</span>
+<span id="cb5-7"><a class="link link-hover text-zinc-600" href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  CountChars  :: { text :: String } -&gt; { chars :: Int }</span>
+<span id="cb5-8"><a class="link link-hover text-zinc-600" href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  WriteReport :: { path :: FilePath, words :: Int, lines :: Int, chars :: Int } -&gt; {}</span>
+<span id="cb5-9"><a class="link link-hover text-zinc-600" href="#cb5-9" aria-hidden="true" tabindex="-1"></a>|]</span></code></pre></div>
+<p class="mb-3">Every effect can be interpreted in its free cartesian category, which gives us an effect graph, and that’s how we generate the wire diagrams:</p>
+<div class="sourceCode mb-3 notranslate" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a class="link link-hover text-zinc-600" href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ot">toGraph ::</span> <span class="dt">ToLabel</span> op <span class="ot">=&gt;</span> <span class="dt">Free</span> op r s <span class="ot">-&gt;</span> <span class="dt">Graph</span> (<span class="dt">Rec</span> r) (<span class="dt">Rec</span> s)</span></code></pre></div>
+<p class="mb-3">Execution is given by an <code>Interpret</code> instance:</p>
+<div class="sourceCode mb-3 notranslate" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a class="link link-hover text-zinc-600" href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Interpret</span> (<span class="dt">KleisliRec</span> <span class="dt">IO</span>) <span class="dt">WordCount</span> <span class="kw">where</span></span>
+<span id="cb7-2"><a class="link link-hover text-zinc-600" href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">--</span></span>
+<span id="cb7-3"><a class="link link-hover text-zinc-600" href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  interpret <span class="dt">ReadPath</span> <span class="ot">=</span> <span class="dt">KleisliRec</span> <span class="op">$</span> \_ <span class="ot">-&gt;</span> <span class="kw">do</span></span>
+<span id="cb7-4"><a class="link link-hover text-zinc-600" href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">putStr</span> <span class="st">&quot;Path: &quot;</span></span>
+<span id="cb7-5"><a class="link link-hover text-zinc-600" href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">getLine</span></span>
+<span id="cb7-6"><a class="link link-hover text-zinc-600" href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pure</span> (<span class="op">#</span>path <span class="op">.==</span> p)</span>
+<span id="cb7-7"><a class="link link-hover text-zinc-600" href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">--</span></span>
+<span id="cb7-8"><a class="link link-hover text-zinc-600" href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  interpret <span class="dt">LoadText</span> <span class="ot">=</span> <span class="dt">KleisliRec</span> <span class="op">$</span> \r <span class="ot">-&gt;</span> <span class="kw">do</span></span>
+<span id="cb7-9"><a class="link link-hover text-zinc-600" href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    t <span class="ot">&lt;-</span> <span class="fu">readFile</span> (r <span class="op">.!</span> <span class="op">#</span>path)</span>
+<span id="cb7-10"><a class="link link-hover text-zinc-600" href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pure</span> (<span class="op">#</span>text <span class="op">.==</span> t)</span>
+<span id="cb7-11"><a class="link link-hover text-zinc-600" href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">--</span></span>
+<span id="cb7-12"><a class="link link-hover text-zinc-600" href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  interpret <span class="dt">CountWords</span> <span class="ot">=</span> <span class="dt">KleisliRec</span> <span class="op">$</span> \r <span class="ot">-&gt;</span></span>
+<span id="cb7-13"><a class="link link-hover text-zinc-600" href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pure</span> (<span class="op">#</span>words <span class="op">.==</span> <span class="fu">length</span> (<span class="fu">words</span> (r <span class="op">.!</span> <span class="op">#</span>text)))</span>
+<span id="cb7-14"><a class="link link-hover text-zinc-600" href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">--</span></span>
+<span id="cb7-15"><a class="link link-hover text-zinc-600" href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  interpret <span class="dt">CountLines</span> <span class="ot">=</span> <span class="dt">KleisliRec</span> <span class="op">$</span> \r <span class="ot">-&gt;</span></span>
+<span id="cb7-16"><a class="link link-hover text-zinc-600" href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pure</span> (<span class="op">#</span>lines <span class="op">.==</span> <span class="fu">length</span> (<span class="fu">lines</span> (r <span class="op">.!</span> <span class="op">#</span>text)))</span>
+<span id="cb7-17"><a class="link link-hover text-zinc-600" href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">--</span></span>
+<span id="cb7-18"><a class="link link-hover text-zinc-600" href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  interpret <span class="dt">CountChars</span> <span class="ot">=</span> <span class="dt">KleisliRec</span> <span class="op">$</span> \r <span class="ot">-&gt;</span></span>
+<span id="cb7-19"><a class="link link-hover text-zinc-600" href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pure</span> (<span class="op">#</span>chars <span class="op">.==</span> <span class="fu">length</span> (r <span class="op">.!</span> <span class="op">#</span>text))</span>
+<span id="cb7-20"><a class="link link-hover text-zinc-600" href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">--</span></span>
+<span id="cb7-21"><a class="link link-hover text-zinc-600" href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  interpret <span class="dt">WriteReport</span> <span class="ot">=</span> <span class="dt">KleisliRec</span> <span class="op">$</span> \r <span class="ot">-&gt;</span> <span class="kw">do</span></span>
+<span id="cb7-22"><a class="link link-hover text-zinc-600" href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">putStr</span> <span class="op">$</span></span>
+<span id="cb7-23"><a class="link link-hover text-zinc-600" href="#cb7-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">unlines</span></span>
+<span id="cb7-24"><a class="link link-hover text-zinc-600" href="#cb7-24" aria-hidden="true" tabindex="-1"></a>        [ <span class="st">&quot;path: &quot;</span> <span class="op">++</span> r <span class="op">.!</span> <span class="op">#</span>path,</span>
+<span id="cb7-25"><a class="link link-hover text-zinc-600" href="#cb7-25" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;words: &quot;</span> <span class="op">++</span> <span class="fu">show</span> (r <span class="op">.!</span> <span class="op">#</span>words),</span>
+<span id="cb7-26"><a class="link link-hover text-zinc-600" href="#cb7-26" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;lines: &quot;</span> <span class="op">++</span> <span class="fu">show</span> (r <span class="op">.!</span> <span class="op">#</span>lines),</span>
+<span id="cb7-27"><a class="link link-hover text-zinc-600" href="#cb7-27" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;chars: &quot;</span> <span class="op">++</span> <span class="fu">show</span> (r <span class="op">.!</span> <span class="op">#</span>chars)</span>
+<span id="cb7-28"><a class="link link-hover text-zinc-600" href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb7-29"><a class="link link-hover text-zinc-600" href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pure</span> empty</span></code></pre></div>
+<p class="mb-3">And the actual code can be run with:</p>
+<div class="sourceCode mb-3 notranslate" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a class="link link-hover text-zinc-600" href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ot">wordCountIO ::</span> <span class="dt">Empty</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">Empty</span></span>
+<span id="cb8-2"><a class="link link-hover text-zinc-600" href="#cb8-2" aria-hidden="true" tabindex="-1"></a>wordCountIO <span class="ot">=</span> runKleisliRec wordCount</span></code></pre></div>
+<p class="mb-3">Remember the quasiquoter from before? It exists because the effect definition is repetitive in its expanded form. Conceptually, for each action in <code>WordCount a b</code>, the first argument is the input for the action, and the second argument is the output:</p>
+<div class="sourceCode mb-3 notranslate" id="cb9"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb9-1"><a class="link link-hover text-zinc-600" href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">WordCount</span> a b <span class="kw">where</span></span>
+<span id="cb9-2"><a class="link link-hover text-zinc-600" href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- | Prompt for the input file path.</span></span>
+<span id="cb9-3"><a class="link link-hover text-zinc-600" href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ReadPath</span> <span class="ot">::</span></span>
+<span id="cb9-4"><a class="link link-hover text-zinc-600" href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">WordCount</span></span>
+<span id="cb9-5"><a class="link link-hover text-zinc-600" href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      (<span class="dt">Rec</span> <span class="dt">Empty</span>)</span>
+<span id="cb9-6"><a class="link link-hover text-zinc-600" href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      (<span class="dt">Rec</span> (<span class="st">&quot;path&quot;</span> <span class="op">.==</span> <span class="dt">FilePath</span>))</span>
+<span id="cb9-7"><a class="link link-hover text-zinc-600" href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- | Load the file contents from the path.</span></span>
+<span id="cb9-8"><a class="link link-hover text-zinc-600" href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">LoadText</span> <span class="ot">::</span></span>
+<span id="cb9-9"><a class="link link-hover text-zinc-600" href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">WordCount</span></span>
+<span id="cb9-10"><a class="link link-hover text-zinc-600" href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      (<span class="dt">Rec</span> (<span class="st">&quot;path&quot;</span> <span class="op">.==</span> <span class="dt">FilePath</span>))</span>
+<span id="cb9-11"><a class="link link-hover text-zinc-600" href="#cb9-11" aria-hidden="true" tabindex="-1"></a>      (<span class="dt">Rec</span> (<span class="st">&quot;text&quot;</span> <span class="op">.==</span> <span class="dt">String</span>))</span>
+<span id="cb9-12"><a class="link link-hover text-zinc-600" href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- | Count whitespace-delimited words in the text.</span></span>
+<span id="cb9-13"><a class="link link-hover text-zinc-600" href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">CountWords</span> <span class="ot">::</span></span>
+<span id="cb9-14"><a class="link link-hover text-zinc-600" href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">WordCount</span></span>
+<span id="cb9-15"><a class="link link-hover text-zinc-600" href="#cb9-15" aria-hidden="true" tabindex="-1"></a>      (<span class="dt">Rec</span> (<span class="st">&quot;text&quot;</span> <span class="op">.==</span> <span class="dt">String</span>))</span>
+<span id="cb9-16"><a class="link link-hover text-zinc-600" href="#cb9-16" aria-hidden="true" tabindex="-1"></a>      (<span class="dt">Rec</span> (<span class="st">&quot;words&quot;</span> <span class="op">.==</span> <span class="dt">Int</span>))</span>
+<span id="cb9-17"><a class="link link-hover text-zinc-600" href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- | Count newline-delimited lines in the text.</span></span>
+<span id="cb9-18"><a class="link link-hover text-zinc-600" href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">CountLines</span> <span class="ot">::</span></span>
+<span id="cb9-19"><a class="link link-hover text-zinc-600" href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">WordCount</span></span>
+<span id="cb9-20"><a class="link link-hover text-zinc-600" href="#cb9-20" aria-hidden="true" tabindex="-1"></a>      (<span class="dt">Rec</span> (<span class="st">&quot;text&quot;</span> <span class="op">.==</span> <span class="dt">String</span>))</span>
+<span id="cb9-21"><a class="link link-hover text-zinc-600" href="#cb9-21" aria-hidden="true" tabindex="-1"></a>      (<span class="dt">Rec</span> (<span class="st">&quot;lines&quot;</span> <span class="op">.==</span> <span class="dt">Int</span>))</span>
+<span id="cb9-22"><a class="link link-hover text-zinc-600" href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- | Count characters in the text.</span></span>
+<span id="cb9-23"><a class="link link-hover text-zinc-600" href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="dt">CountChars</span> <span class="ot">::</span></span>
+<span id="cb9-24"><a class="link link-hover text-zinc-600" href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">WordCount</span></span>
+<span id="cb9-25"><a class="link link-hover text-zinc-600" href="#cb9-25" aria-hidden="true" tabindex="-1"></a>      (<span class="dt">Rec</span> (<span class="st">&quot;text&quot;</span> <span class="op">.==</span> <span class="dt">String</span>))</span>
+<span id="cb9-26"><a class="link link-hover text-zinc-600" href="#cb9-26" aria-hidden="true" tabindex="-1"></a>      (<span class="dt">Rec</span> (<span class="st">&quot;chars&quot;</span> <span class="op">.==</span> <span class="dt">Int</span>))</span>
+<span id="cb9-27"><a class="link link-hover text-zinc-600" href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- | Write the word, line, and character counts for the file.</span></span>
+<span id="cb9-28"><a class="link link-hover text-zinc-600" href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  <span class="dt">WriteReport</span> <span class="ot">::</span></span>
+<span id="cb9-29"><a class="link link-hover text-zinc-600" href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    <span class="dt">WordCount</span></span>
+<span id="cb9-30"><a class="link link-hover text-zinc-600" href="#cb9-30" aria-hidden="true" tabindex="-1"></a>      (<span class="dt">Rec</span> (<span class="st">&quot;path&quot;</span> <span class="op">.==</span> <span class="dt">FilePath</span> <span class="op">.+</span> <span class="st">&quot;words&quot;</span> <span class="op">.==</span> <span class="dt">Int</span> <span class="op">.+</span> <span class="st">&quot;lines&quot;</span> <span class="op">.==</span> <span class="dt">Int</span> <span class="op">.+</span> <span class="st">&quot;chars&quot;</span> <span class="op">.==</span> <span class="dt">Int</span>))</span>
+<span id="cb9-31"><a class="link link-hover text-zinc-600" href="#cb9-31" aria-hidden="true" tabindex="-1"></a>      (<span class="dt">Rec</span> <span class="dt">Empty</span>)</span></code></pre></div>
+<p class="mb-3">The expanded form also needs some helpers to run these effects:</p>
+<div class="sourceCode mb-3 notranslate" id="cb10"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a class="link link-hover text-zinc-600" href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ot">readPath ::</span> (<span class="dt">WordCount</span> <span class="op">:&gt;</span> cat) <span class="ot">=&gt;</span> cat <span class="dt">Empty</span> (<span class="st">&quot;path&quot;</span> <span class="op">.==</span> <span class="dt">FilePath</span>)</span>
+<span id="cb10-2"><a class="link link-hover text-zinc-600" href="#cb10-2" aria-hidden="true" tabindex="-1"></a>readPath <span class="ot">=</span> interpret <span class="dt">ReadPath</span></span>
+<span id="cb10-3"><a class="link link-hover text-zinc-600" href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a class="link link-hover text-zinc-600" href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ot">loadText ::</span> (<span class="dt">WordCount</span> <span class="op">:&gt;</span> cat) <span class="ot">=&gt;</span> cat (<span class="st">&quot;path&quot;</span> <span class="op">.==</span> <span class="dt">FilePath</span>) (<span class="st">&quot;text&quot;</span> <span class="op">.==</span> <span class="dt">String</span>)</span>
+<span id="cb10-5"><a class="link link-hover text-zinc-600" href="#cb10-5" aria-hidden="true" tabindex="-1"></a>loadText <span class="ot">=</span> interpret <span class="dt">LoadText</span></span>
+<span id="cb10-6"><a class="link link-hover text-zinc-600" href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a class="link link-hover text-zinc-600" href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="ot">countWords ::</span> (<span class="dt">WordCount</span> <span class="op">:&gt;</span> cat) <span class="ot">=&gt;</span> cat (<span class="st">&quot;text&quot;</span> <span class="op">.==</span> <span class="dt">String</span>) (<span class="st">&quot;words&quot;</span> <span class="op">.==</span> <span class="dt">Int</span>)</span>
+<span id="cb10-8"><a class="link link-hover text-zinc-600" href="#cb10-8" aria-hidden="true" tabindex="-1"></a>countWords <span class="ot">=</span> interpret <span class="dt">CountWords</span></span>
+<span id="cb10-9"><a class="link link-hover text-zinc-600" href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a class="link link-hover text-zinc-600" href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="ot">countLines ::</span> (<span class="dt">WordCount</span> <span class="op">:&gt;</span> cat) <span class="ot">=&gt;</span> cat (<span class="st">&quot;text&quot;</span> <span class="op">.==</span> <span class="dt">String</span>) (<span class="st">&quot;lines&quot;</span> <span class="op">.==</span> <span class="dt">Int</span>)</span>
+<span id="cb10-11"><a class="link link-hover text-zinc-600" href="#cb10-11" aria-hidden="true" tabindex="-1"></a>countLines <span class="ot">=</span> interpret <span class="dt">CountLines</span></span>
+<span id="cb10-12"><a class="link link-hover text-zinc-600" href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a class="link link-hover text-zinc-600" href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="ot">countChars ::</span> (<span class="dt">WordCount</span> <span class="op">:&gt;</span> cat) <span class="ot">=&gt;</span> cat (<span class="st">&quot;text&quot;</span> <span class="op">.==</span> <span class="dt">String</span>) (<span class="st">&quot;chars&quot;</span> <span class="op">.==</span> <span class="dt">Int</span>)</span>
+<span id="cb10-14"><a class="link link-hover text-zinc-600" href="#cb10-14" aria-hidden="true" tabindex="-1"></a>countChars <span class="ot">=</span> interpret <span class="dt">CountChars</span></span>
+<span id="cb10-15"><a class="link link-hover text-zinc-600" href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a class="link link-hover text-zinc-600" href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="ot">writeReport ::</span></span>
+<span id="cb10-17"><a class="link link-hover text-zinc-600" href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  (<span class="dt">WordCount</span> <span class="op">:&gt;</span> cat) <span class="ot">=&gt;</span></span>
+<span id="cb10-18"><a class="link link-hover text-zinc-600" href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  cat</span>
+<span id="cb10-19"><a class="link link-hover text-zinc-600" href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;path&quot;</span> <span class="op">.==</span> <span class="dt">FilePath</span> <span class="op">.+</span> <span class="st">&quot;words&quot;</span> <span class="op">.==</span> <span class="dt">Int</span> <span class="op">.+</span> <span class="st">&quot;lines&quot;</span> <span class="op">.==</span> <span class="dt">Int</span> <span class="op">.+</span> <span class="st">&quot;chars&quot;</span> <span class="op">.==</span> <span class="dt">Int</span>)</span>
+<span id="cb10-20"><a class="link link-hover text-zinc-600" href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Empty</span></span>
+<span id="cb10-21"><a class="link link-hover text-zinc-600" href="#cb10-21" aria-hidden="true" tabindex="-1"></a>writeReport <span class="ot">=</span> interpret <span class="dt">WriteReport</span></span></code></pre></div>
+<p class="mb-3">Here we find the notation <code>:&gt;</code>, which means that we can interpret an effect in a cartesian category.</p>
+<p class="mb-3">This is the boilerplate that the quasiquoter replaces.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="5" id="conclusion"><span class="header-section-number">5</span> Conclusion</h1>
+<p class="mb-3">The interesting part, to me, is that the program has a real executable interpretation and a real graphical interpretation, without making the diagram a lossy trace.</p>
+<p class="mb-3">This opens several possible directions. For example, it should be possible to have a purely graphical code editor for it – it’s just a graph manipulation tool. This allows a clear separation between specification and implementation at different levels. For example, defining the graph and letting an LLM write the implementation.</p>
+<p class="mb-3">At the same time, the best way to organize, compose and layer code is not obvious. And this is one of the questions I want to tackle in the next posts.</p>
+        </main>
+
+        <br>
+        <br>
+    </article>
+</div>
+
+</body>
+</html>
