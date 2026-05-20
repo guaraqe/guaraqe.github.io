@@ -24,9 +24,8 @@ let
         buildInputs =
           [
             # Site
-            nodePackages.browser-sync
-            nodePackages.npm
-            nodePackages.node2nix
+            browser-sync
+            nodejs
             # Haskell
             localHaskellPackages.ghc
             localHaskellPackages.cabal-install

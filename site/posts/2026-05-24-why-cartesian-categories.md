@@ -1,5 +1,5 @@
 ---
-title: Why cartesian categories?
+title: "WireCat: visual programming with cartesian categories"
 summary: Introducing WireCat, a GHC plugin for writing typed categorical wiring diagrams with proc notation
 ---
 

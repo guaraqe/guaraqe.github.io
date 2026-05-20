@@ -96,12 +96,12 @@ buildIndex posts = do
   
   -- Compile the HTML content as a template and substitute posts data
   htmlTemplate <- compileTemplate' path
-  let templateData = object [("posts", toJSON posts)]
+  let templateData = object [("posts", toJSON (take 5 posts))]
       processedContent = substitute htmlTemplate templateData
 
   -- Apply the default template for proper layout
   defaultTemplate <- compileTemplate' "site/templates/default.html"
-  let wrappedData = object [("title", toJSON ("Home" :: String)), ("content", toJSON (Text.unpack processedContent))]
+  let wrappedData = object [("title", toJSON ("" :: String)), ("content", toJSON (Text.unpack processedContent))]
       finalContent = substitute defaultTemplate wrappedData
 
   let layout =
