@@ -35,6 +35,10 @@
   color: var(--color-primary);
 }
 
+.header-section-number::after {
+  content: ".";
+}
+
 /* Visual hierarchy */
 .navbar {
   backdrop-filter: blur(10px);
