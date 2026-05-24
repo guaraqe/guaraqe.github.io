@@ -11,7 +11,7 @@ The approach I want to take here is to use effects that allow a _graphical repre
 
 ![](./img/wirecat.svg){ width=50% }
 
-In short, WireCat is a GHC plugin, a library, and a visualization tool based on cartesian categories and extensible records that allows us to write code like this:
+In short, [WireCat](https://github.com/guaraqe/wirecat) is a GHC plugin, a library, and a visualization tool based on cartesian categories and extensible records that allows us to write code like this:
 
 ```haskell
 wordCount :: WordCount :> cat => cat Empty Empty
