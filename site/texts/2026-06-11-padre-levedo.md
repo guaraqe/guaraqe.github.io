@@ -10,7 +10,7 @@ Tive essa fase da adolescência em que eu escutava o auge do que o país tinha a
 
 Todo este preâmbulo para chegar ao assunto, como eu conheci essa bagaça toda. E a fonte é o blog do santíssimo [Padre Levedo](https://www.geocities.ws/padrelevedo/).  Blog este que desapareceu da web por usar o lendário `hgp.ig.com.br` para o hosting. Alguns destroços deste website podem ser encontrados ainda em um mirror que fiz [aqui](https://xyah.github.io/). 
 
-![O antigo site do Padre Levedo](./img/padre-levedo.png)
+![](./img/padre-levedo.png)
 
 Sujeito este que não lembro como encontrei na internet do passado, mas que produziu pérolas tais quais:
 
