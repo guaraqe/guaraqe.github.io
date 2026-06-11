@@ -24,7 +24,7 @@ let
         buildInputs =
           [
             # Site
-            browser-sync
+            nodePackages.browser-sync
             nodejs
             # Haskell
             localHaskellPackages.ghc

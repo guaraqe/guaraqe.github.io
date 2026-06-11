@@ -3,7 +3,6 @@
 {-# LANGUAGE OverloadedRecordDot #-}
 {-# LANGUAGE NoFieldSelectors #-}
 
-
 module Site.Layout
   ( Layout (..),
     build,
@@ -20,6 +19,7 @@ import Slick
 data Layout = Layout
   { title :: String,
     content :: String,
+    language :: String,
     latex :: Bool,
     page :: String,
     pageLink :: String,

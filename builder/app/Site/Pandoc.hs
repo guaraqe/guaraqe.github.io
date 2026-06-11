@@ -12,19 +12,19 @@ import Data.Char (toLower)
 import Data.List (dropWhileEnd, isPrefixOf, isSuffixOf)
 import Data.Maybe (fromMaybe)
 import Data.Text (Text)
-import qualified Data.Text as T
+import Data.Text qualified as T
 import Development.Shake
 import Site.Html
 import Site.Json
 import Slick.Pandoc
 import Text.Blaze.Html.Renderer.Text (renderHtml)
 import Text.Pandoc
-  ( Pandoc (..),
+  ( Block (..),
+    HTMLMathMethod (..),
+    Inline (..),
+    Pandoc (..),
     ReaderOptions (..),
     WriterOptions (..),
-    HTMLMathMethod (..),
-    Block (..),
-    Inline (..),
     def,
     pandocExtensions,
     runIO,
@@ -33,8 +33,8 @@ import Text.Pandoc
 -- import Image.LaTeX.Render.Pandoc
 import Text.Pandoc.CrossRef
 import Text.Pandoc.Readers.Markdown (readMarkdown)
-import Text.Pandoc.Writers.HTML (writeHtml5)
 import Text.Pandoc.Walk (walk)
+import Text.Pandoc.Writers.HTML (writeHtml5)
 
 readMarkdownAndMeta :: Text -> Action (Pandoc, Value)
 readMarkdownAndMeta markdown = do
@@ -57,7 +57,8 @@ writeHtmlAndMeta pandoc value = do
             writerHTMLMathMethod = KaTeX "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist"
           }
 
-      pandocWithCallouts = convertCallouts pandoc
+      pandocWithQuoteBreaks = walk preserveQuoteLineBreaks pandoc
+      pandocWithCallouts = convertCallouts pandocWithQuoteBreaks
 
   pandocWithRefs <-
     liftIO $
@@ -85,6 +86,15 @@ data CalloutKind
 
 convertCallouts :: Pandoc -> Pandoc
 convertCallouts = walk convertBlockQuote
+
+preserveQuoteLineBreaks :: Block -> Block
+preserveQuoteLineBreaks (BlockQuote blocks) =
+  BlockQuote (walk softToHardBreak blocks)
+  where
+    softToHardBreak :: Inline -> Inline
+    softToHardBreak SoftBreak = LineBreak
+    softToHardBreak inline = inline
+preserveQuoteLineBreaks block = block
 
 convertObsidianImages :: Text -> Text
 convertObsidianImages input =
@@ -176,8 +186,9 @@ parseTag rawTag =
 stripAnchor :: [Inline] -> ([Inline], Maybe String)
 stripAnchor inlines =
   case reverse (trimSpaces inlines) of
-    (Str anchor : rest) | "^" `T.isPrefixOf` anchor ->
-      (trimSpaces (reverse rest), Just (T.unpack (T.drop 1 anchor)))
+    (Str anchor : rest)
+      | "^" `T.isPrefixOf` anchor ->
+          (trimSpaces (reverse rest), Just (T.unpack (T.drop 1 anchor)))
     _ -> (trimSpaces inlines, Nothing)
 
 trimSpaces :: [Inline] -> [Inline]

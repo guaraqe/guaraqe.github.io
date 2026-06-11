@@ -1,24 +1,25 @@
 {-# LANGUAGE DeriveAnyClass #-}
 {-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE DuplicateRecordFields #-}
 {-# LANGUAGE OverloadedRecordDot #-}
+{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE NoFieldSelectors #-}
 
 module Main where
 
 import Control.Monad
+import Data.Aeson (object, toJSON)
+import Data.Text qualified as Text
 import Development.Shake
 import Development.Shake.FilePath
 import Development.Shake.Forward
 import Site.Blog qualified as Blog
 import Site.Book qualified as Book
 import Site.Layout qualified as Layout
-import Site.Sitemap qualified as Sitemap
-import Data.Text qualified as Text
-import Slick
-import Data.Aeson (toJSON, object)
 import Site.Note qualified as Note
+import Site.Sitemap qualified as Sitemap
+import Slick
+import System.Directory qualified as Dir
 
 outputFolder :: FilePath
 outputFolder = "docs/"
@@ -32,37 +33,39 @@ copyStaticFiles = do
 copyBioinformaticsExam :: Action ()
 copyBioinformaticsExam = do
   let path = "/home/juan/Code/guaraqe/tdsi-statistics-exam/build-github"
-  filepaths <- getDirectoryFiles path ["//*"]
-  void $ forP filepaths $ \filepath ->
-    copyFileChanged (path </> filepath) (outputFolder </> "courses" </> "statistics-exam" </> filepath)
+  copyOptionalDirectory path (outputFolder </> "courses" </> "statistics-exam")
 
 copyStatisticsExam :: Action ()
 copyStatisticsExam = do
   let path = "/home/juan/Code/guaraqe/tdsi-questions/build-github"
-  filepaths <- getDirectoryFiles path ["//*"]
-  void $ forP filepaths $ \filepath ->
-    copyFileChanged (path </> filepath) (outputFolder </> "courses" </> "bioinformatics-exam" </> filepath)
+  copyOptionalDirectory path (outputFolder </> "courses" </> "bioinformatics-exam")
 
 copyPhysicsExam :: Action ()
 copyPhysicsExam = do
   let path = "/home/juan/Code/guaraqe/tdsi-physics-exam/build-github"
-  filepaths <- getDirectoryFiles path ["//*"]
-  void $ forP filepaths $ \filepath ->
-    copyFileChanged (path </> filepath) (outputFolder </> "courses" </> "physics-exam" </> filepath)
+  copyOptionalDirectory path (outputFolder </> "courses" </> "physics-exam")
 
-  copyMicroMacro :: Action ()
+copyMicroMacro :: Action ()
 copyMicroMacro = do
   let path = "/home/juan/Code/guaraqe/micro-macro/crates/micro-macro/web/dist-release"
-  filepaths <- getDirectoryFiles path ["//*"]
-  void $ forP filepaths $ \filepath ->
-    copyFileChanged (path </> filepath) (outputFolder </> "micro-macro" </> filepath)
+  copyOptionalDirectory path (outputFolder </> "micro-macro")
+
+copyOptionalDirectory :: FilePath -> FilePath -> Action ()
+copyOptionalDirectory input output = do
+  exists <- liftIO $ Dir.doesDirectoryExist input
+  when exists $ do
+    filepaths <- getDirectoryFiles input ["//*"]
+    void $ forP filepaths $ \filepath ->
+      copyFileChanged (input </> filepath) (output </> filepath)
 
 buildNotes :: Action ()
 buildNotes = do
   let input = "/home/juan/Obsidian/Science/Generalized-Entropies/generalized-entropies.md"
       output = "notes/generalized-entropies"
       assets = Just "/home/juan/Obsidian/Science/Generalized-Entropies/images"
-  Note.buildNote outputFolder input output assets
+  exists <- liftIO $ Dir.doesFileExist input
+  when exists $
+    Note.buildNote outputFolder input output assets
 
 buildBlog :: Action [Blog.Post]
 buildBlog = do
@@ -70,33 +73,46 @@ buildBlog = do
   Blog.buildIndex (outputFolder </> "posts") posts
   pure posts
 
+buildTexts :: Action [Blog.Post]
+buildTexts = do
+  texts <- Blog.buildTexts "site/texts" (outputFolder </> "texts")
+  Blog.buildTextsIndex (outputFolder </> "texts") texts
+  pure texts
+
 buildBooks :: Action ()
 buildBooks = do
   let makeBook (input, output) =
         Book.build outputFolder input output Nothing
 
-  sections <- mapM
-    makeBook
-    [ ( "/home/juan/Courses/Statistics",
-        "courses/statistics"
-      ),
-      ( "/home/juan/Courses/Bioinformatics",
-        "courses/bioinformatics"
-      ),
-      ( "/home/juan/Courses/Physics",
-        "courses/physics"
-      )
-    ]
+  let books =
+        [ ( "/home/juan/Courses/Statistics",
+            "courses/statistics"
+          ),
+          ( "/home/juan/Courses/Bioinformatics",
+            "courses/bioinformatics"
+          ),
+          ( "/home/juan/Courses/Physics",
+            "courses/physics"
+          )
+        ]
+
+  availableBooks <-
+    filterM (liftIO . Dir.doesDirectoryExist . fst) books
+  sections <- mapM makeBook availableBooks
 
   Book.buildList (outputFolder </> "courses") sections
 
-buildIndex :: [Blog.Post] -> Action ()
-buildIndex posts = do
+buildIndex :: [Blog.Post] -> [Blog.Post] -> Action ()
+buildIndex posts texts = do
   let path :: FilePath = "site/index.html"
-  
+
   -- Compile the HTML content as a template and substitute posts data
   htmlTemplate <- compileTemplate' path
-  let templateData = object [("posts", toJSON (take 5 posts))]
+  let templateData =
+        object
+          [ ("posts", toJSON (take 5 posts)),
+            ("texts", toJSON (take 3 texts))
+          ]
       processedContent = substitute htmlTemplate templateData
 
   -- Apply the default template for proper layout
@@ -108,6 +124,7 @@ buildIndex posts = do
         Layout.Layout
           { title = "Home",
             content = Text.unpack finalContent,
+            language = "en",
             latex = True,
             page = "Home",
             pageLink = "/",
@@ -132,6 +149,7 @@ buildCV = do
         Layout.Layout
           { title = "CV",
             content = Text.unpack finalContent,
+            language = "en",
             latex = True,
             page = "CV",
             pageLink = "/cv.html",
@@ -141,7 +159,6 @@ buildCV = do
           }
 
   Layout.build (outputFolder </> "cv.html") layout
-
 
 buildProjects :: Action ()
 buildProjects = do
@@ -157,6 +174,7 @@ buildProjects = do
         Layout.Layout
           { title = "Projects",
             content = Text.unpack finalContent,
+            language = "en",
             latex = True,
             page = "Projects",
             pageLink = "/projects.html",
@@ -167,15 +185,15 @@ buildProjects = do
 
   Layout.build (outputFolder </> "projects.html") layout
 
-
 buildRules :: Action ()
 buildRules = do
   posts <- buildBlog
+  texts <- buildTexts
   buildBooks
-  buildIndex posts
+  buildIndex posts texts
   buildCV
   buildProjects
-  Sitemap.buildSitemap outputFolder posts
+  Sitemap.buildSitemap outputFolder posts texts
   copyStaticFiles
   copyBioinformaticsExam
   copyStatisticsExam

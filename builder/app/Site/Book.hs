@@ -19,11 +19,11 @@ import Data.String (fromString)
 import Data.Text qualified as T
 import Data.Text.Lazy qualified as TL
 import Development.Shake
-import Network.HTTP.Client.TLS (newTlsManager)
 import Development.Shake.Classes
 import Development.Shake.FilePath
 import Development.Shake.Forward
 import GHC.Generics (Generic)
+import Network.HTTP.Client.TLS (newTlsManager)
 import Site.Html
 import Site.Json
 import Site.Layout qualified as Layout
@@ -94,6 +94,7 @@ writeSection outputFolder section = do
         Layout.Layout
           { title = section.title,
             content = T.unpack $ substitute template value,
+            language = "en",
             latex = True,
             page = "Courses",
             pageLink = "/courses",
@@ -222,6 +223,7 @@ buildList outputFolder sections = do
         Layout.Layout
           { title = "Courses",
             content = T.unpack $ substitute indexT (toJSON indexInfo),
+            language = "en",
             latex = False,
             page = "Courses",
             pageLink = "/courses",
@@ -236,28 +238,29 @@ buildList outputFolder sections = do
 
 translateSection :: FilePath -> String -> String -> Section -> Action Section
 translateSection cachePath srcLang outLang section = do
-    manager <- newTlsManager
-    let trans = translate cachePath manager srcLang outLang
+  manager <- newTlsManager
+  let trans = translate cachePath manager srcLang outLang
 
-    title <- trans section.title
-    content <- trans section.content
-    parentTitle <- mapM trans section.parentTitle
-    previousTitle <- mapM trans section.previousTitle
-    nextTitle <- mapM trans section.nextTitle
-    bookTitle <- mapM trans section.bookTitle
-    bookIndex <- mapM trans section.bookIndex
-    subsections <-
-      mapM
-        (translateSection cachePath srcLang outLang)
-        section.subsections
+  title <- trans section.title
+  content <- trans section.content
+  parentTitle <- mapM trans section.parentTitle
+  previousTitle <- mapM trans section.previousTitle
+  nextTitle <- mapM trans section.nextTitle
+  bookTitle <- mapM trans section.bookTitle
+  bookIndex <- mapM trans section.bookIndex
+  subsections <-
+    mapM
+      (translateSection cachePath srcLang outLang)
+      section.subsections
 
-    pure section
-      { title = title
-      , content = content
-      , subsections = subsections
-      , parentTitle = parentTitle
-      , previousTitle = previousTitle
-      , nextTitle = nextTitle
-      , bookTitle = bookTitle
-      , bookIndex = bookIndex
+  pure
+    section
+      { title = title,
+        content = content,
+        subsections = subsections,
+        parentTitle = parentTitle,
+        previousTitle = previousTitle,
+        nextTitle = nextTitle,
+        bookTitle = bookTitle,
+        bookIndex = bookIndex
       }

@@ -53,7 +53,7 @@ without root access
         "@type": "Person",
         "name": "Juan Raphael Diaz Simões"
       },
-      "inLanguage": "en-US"
+      "inLanguage": "en"
     }
     </script>
     <link rel="stylesheet" href="/css/style.css">
@@ -97,6 +97,7 @@ without root access
             <div class="hidden sm:block">
               <ul class="menu menu-horizontal text-sm space-x-1">
                 <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Writing</a></li>
+                <li><a href="/texts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Texts</a></li>
                 <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Teaching</a></li>
                 <li><a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">CV</a></li>
                 <li><a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Projects</a></li>
@@ -105,6 +106,7 @@ without root access
             <div class="block sm:hidden">
               <div class="grid grid-cols-2 gap-1 text-xs">
                 <a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Writing</a>
+                <a href="/texts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Texts</a>
                 <a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">CV</a>
                 <a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Teaching</a>
                 <a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Projects</a>
@@ -128,7 +130,7 @@ without root access
 <p class="mb-3">One drawback of using these is the fact that they are difficult to use in very restricted environments, like high-performance scientific clusters, since they are non-standard tools. GHC is almost never included in these environments, which is a blocker for Haskell. While Nix can solve this problem, users do not have root access in general.</p>
 <p class="mb-3">A possible solution for this is <a class="link link-hover text-zinc-600" href="https://github.com/matthewbauer/nix-bundle">nix-bundle</a>. However, it uses <a class="link link-hover text-zinc-600" href="https://github.com/lethalman/nix-user-chroot">nix-user-chroot</a>, that needs user namespaces, requiring at least Linux 3.8. I had version 2.6.</p>
 <p class="mb-3">This post describes a rustic solution inspired by the above (i.e. reading the source) that worked very well in my case. The idea is to copy the closure of of the desired executable to a local <code>nix</code> folder, and create a virtual environment where this folder is mounted on <code>/</code> using PRoot.</p>
-<h2 class="text-xl mt-5 mb-5" data-number="0.1" id="generating-the-closure"><span class="header-section-number">0.1</span> Generating the closure</h2>
+<h2 class="text-xl mt-5 mb-5" data-number="1" id="generating-the-closure"><span class="header-section-number">1</span> Generating the closure</h2>
 <p class="mb-3">We suppose that <code>./nixpkgs.nix</code> is an overlayed Nixpkgs that contains the executable we want to run, identified as <code>my-executable</code>. More information about using Haskell with Nix can be found in <a class="link link-hover text-zinc-600" href="https://github.com/Gabriel439/haskell-nix">Gabriel Gonzalez guide</a>. The script for setting up the local environment is the following:</p>
 <div class="sourceCode mb-3 notranslate" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a class="link link-hover text-zinc-600" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
 <span id="cb1-2"><a class="link link-hover text-zinc-600" href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -144,12 +146,12 @@ without root access
 <span id="cb1-12"><a class="link link-hover text-zinc-600" href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the executable to the local folder</span></span>
 <span id="cb1-13"><a class="link link-hover text-zinc-600" href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> package/<span class="st">&quot;</span><span class="va">$bld</span><span class="st">&quot;</span>/bin/my-executable my-executable</span></code></pre></div>
 <p class="mb-3">This should give you a local <code>./nix</code> folder with all the necessary libraries for your executable, and <code>./my-executable</code> locally.</p>
-<h2 class="text-xl mt-5 mb-5" data-number="0.2" id="running-the-executable"><span class="header-section-number">0.2</span> Running the executable</h2>
+<h2 class="text-xl mt-5 mb-5" data-number="2" id="running-the-executable"><span class="header-section-number">2</span> Running the executable</h2>
 <p class="mb-3">The first step is to download <a class="link link-hover text-zinc-600" href="https://proot-me.github.io/#downloads">PRoot</a>, which we will refer to as <code>proot</code> in the command line. Since this is a statically compiled binary, it has no dependencies. In order to run the executable one only needs to:</p>
 <div class="sourceCode mb-3 notranslate" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a class="link link-hover text-zinc-600" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./proot</span> <span class="at">-b</span> ./nix:/nix ./my-executable <span class="at">--flag</span> value</span></code></pre></div>
 <p class="mb-3">The <code>-b</code> flag says that we want to mount <code>./nix</code> to <code>/nix</code>, and the following arguments are the executable itself and the flags passed to it.</p>
 <p class="mb-3">And that’s it! Now you should be able to use Haskell in scientific clusters!</p>
-<h2 class="text-xl mt-5 mb-5" data-number="0.3" id="comments"><span class="header-section-number">0.3</span> Comments</h2>
+<h2 class="text-xl mt-5 mb-5" data-number="3" id="comments"><span class="header-section-number">3</span> Comments</h2>
 <p class="mb-3">In order for this to work, the processor architecture of your personal computer and the cluster’s one should be the same. In my case, both were <code>x86-64</code>.</p>
 <p class="mb-3">When running, I got the following error message:</p>
 <pre><code>ERROR: ld.so: object &#39;libcr_run.so&#39; from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.</code></pre>

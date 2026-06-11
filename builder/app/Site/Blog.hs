@@ -9,12 +9,15 @@ module Site.Blog
   ( Post (..),
     build,
     buildIndex,
+    buildTexts,
+    buildTextsIndex,
   )
 where
 
 import Control.Monad (void)
 import Data.Aeson as A
 import Data.List (sortOn)
+import Data.Maybe (fromMaybe)
 import Data.Ord (Down (..))
 import Data.Text qualified as T
 import Data.Time
@@ -31,7 +34,13 @@ import Slick
 build :: FilePath -> FilePath -> Action [Post]
 build inputFolder outputFolder = do
   copyStaticFiles inputFolder outputFolder
-  posts <- buildPosts inputFolder outputFolder
+  posts <- buildPosts inputFolder outputFolder "posts" "Posts" "/posts"
+  pure $ sortOn (Down . (.sortDate)) posts
+
+buildTexts :: FilePath -> FilePath -> Action [Post]
+buildTexts inputFolder outputFolder = do
+  copyStaticFiles inputFolder outputFolder
+  posts <- buildPosts inputFolder outputFolder "texts" "Texts" "/texts"
   pure $ sortOn (Down . (.sortDate)) posts
 
 --------------------------------------------------------------------------------
@@ -59,11 +68,30 @@ buildIndex outputFolder posts = do
         Layout.Layout
           { title = "Posts",
             content = T.unpack $ substitute indexT (toJSON indexInfo),
+            language = "en",
             latex = False,
             page = "Posts",
             pageLink = "/posts",
             description = "Technical writing on programming languages, software engineering, bioinformatics, and performance optimization by Juan Raphael Diaz Simões",
             currentUrl = "/posts",
+            isPost = False
+          }
+  Layout.build (outputFolder </> "index.html") layout
+
+buildTextsIndex :: FilePath -> [Post] -> Action ()
+buildTextsIndex outputFolder posts = do
+  indexT <- compileTemplate' "site/templates/text-list.html"
+  let indexInfo = IndexInfo posts
+      layout =
+        Layout.Layout
+          { title = "Texts",
+            content = T.unpack $ substitute indexT (toJSON indexInfo),
+            language = "en",
+            latex = False,
+            page = "Texts",
+            pageLink = "/texts",
+            description = "Essays, stories, fragments, and other writing by Juan Raphael Diaz Simões",
+            currentUrl = "/texts",
             isPost = False
           }
   Layout.build (outputFolder </> "index.html") layout
@@ -82,13 +110,13 @@ data Post = Post
   }
   deriving (Generic, Eq, Ord, Show, FromJSON, ToJSON, Binary)
 
-buildPosts :: FilePath -> FilePath -> Action [Post]
-buildPosts inputFolder outputFolder = do
+buildPosts :: FilePath -> FilePath -> FilePath -> String -> String -> Action [Post]
+buildPosts inputFolder outputFolder urlRoot page pageLink = do
   pPaths <- getDirectoryPaths ["*.md"] [inputFolder]
-  forP pPaths (buildPost outputFolder)
+  forP pPaths (buildPost outputFolder urlRoot page pageLink)
 
-buildPost :: FilePath -> FilePath -> Action Post
-buildPost outputFolder srcPath = cacheAction ("post" :: T.Text, srcPath) $ do
+buildPost :: FilePath -> FilePath -> String -> String -> FilePath -> Action Post
+buildPost outputFolder urlRoot page pageLink srcPath = cacheAction ("post" :: T.Text, srcPath) $ do
   postContent <- T.pack <$> readFile' srcPath
   (pandoc, meta) <- readMarkdownAndMeta postContent
   postData <- writeHtmlAndMeta pandoc meta
@@ -101,22 +129,26 @@ buildPost outputFolder srcPath = cacheAction ("post" :: T.Text, srcPath) $ do
           . setObjectAttribute "sortDate" (showGregorian date)
           . setObjectAttribute "dateISO" (showGregorian date)
           . setObjectAttribute "url" postUrl
-          . setObjectAttribute "fullUrl" ("posts" </> postUrl)
+          . setObjectAttribute "fullUrl" (urlRoot </> postUrl)
           $ postData
 
   template <- compileTemplate' "site/templates/post.html"
 
   post <- convert fullPostData
+  let language =
+        T.unpack . T.strip . T.pack $
+          fromMaybe "en" (getObjectAttribute "language" postData)
 
   let layout =
         Layout.Layout
           { title = post.title,
             content = T.unpack $ substitute template fullPostData,
+            language,
             latex = True,
-            page = "Posts",
-            pageLink = "/posts",
-            description = maybe (take 160 $ post.title ++ " - Technical article by Juan Raphael Diaz Simões") id post.summary,
-            currentUrl = "/posts/" ++ postUrl,
+            page,
+            pageLink,
+            description = fromMaybe (take 160 $ post.title ++ " - Writing by Juan Raphael Diaz Simões") post.summary,
+            currentUrl = "/" ++ urlRoot ++ "/" ++ postUrl,
             isPost = True
           }
 

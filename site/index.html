@@ -80,6 +80,28 @@
     <a href="/posts" class="link link-hover text-slate-600">More writing</a>
 </p>
 
+<h2 class="text-xl mt-8 mb-2">Other Texts</h2>
+
+<p class="text-sm text-slate-600 mb-4">Essays, stories, fragments, and writing in Portuguese and English.</p>
+
+<div class="space-y-3">
+{{#texts}}
+    <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
+        <div class="flex items-start justify-between mb-1">
+            <h3 class="text-base font-semibold flex-1 mr-4">
+                <a href="/{{{fullUrl}}}" class="text-slate-800 hover:text-slate-600">{{{title}}}</a>
+            </h3>
+            <span class="text-sm text-slate-500 whitespace-nowrap">{{{date}}}</span>
+        </div>
+        <p class="text-sm text-slate-600">{{{summary}}}</p>
+    </article>
+{{/texts}}
+</div>
+
+<p class="text-sm text-slate-600 mt-4 text-right">
+    <a href="/texts" class="link link-hover text-slate-600">More texts</a>
+</p>
+
 <script>
 function revealEmail() {
     const emailContent = document.getElementById('email-content');

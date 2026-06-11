@@ -17,7 +17,7 @@ import Site.Layout (Layout (..))
 import Site.Layout qualified as Layout
 import Site.Pandoc
 import Slick
-import qualified System.Directory as Dir
+import System.Directory qualified as Dir
 
 buildNote ::
   FilePath ->
@@ -44,6 +44,7 @@ buildNote outputFolder inputFile outputRel mAssetsDir = do
         Layout
           { title = title,
             content = T.unpack wrapped,
+            language = "en",
             latex = True,
             page = "Notes",
             pageLink = "/notes",
