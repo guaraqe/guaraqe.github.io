@@ -1,6 +1,6 @@
 ---
 title: Padre Levedo
-summary: Rock progressivo italiano, a internet do passado e a descoberta de que eu gostava de música
+summary: Uma homenagem a este santíssimo homem, com alguns desvios sobre minha vida
 language: pt-BR
 ---
 
@@ -43,5 +43,5 @@ E tudo isso que me levou até hoje, ouvindo Alphataurus para treinar meu italian
 > Davanti a te
 > Alberi immensi
 > Sul tuo cammino
-> Una ragione
+> Una ragiong
 > Per vivere c'è

@@ -90,7 +90,7 @@ buildTextsIndex outputFolder posts = do
             latex = False,
             page = "Texts",
             pageLink = "/texts",
-            description = "Essays, stories, fragments, and other writing by Juan Raphael Diaz Simões",
+            description = "",
             currentUrl = "/texts",
             isPost = False
           }
