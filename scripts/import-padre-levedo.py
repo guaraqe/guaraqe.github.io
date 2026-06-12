@@ -193,17 +193,21 @@ def page(title: str, body: str, description: str = "") -> str:
 
 
 def render_post(post: Post, newer: Post | None, older: Post | None) -> str:
-    links = ['<a href="index.html">Todos os textos</a>']
+    bottom_links = []
     if newer:
-        links.append(
-            f'<a href="{html.escape(newer.filename, quote=True)}">Texto mais recente</a>'
+        bottom_links.append(
+            f'<a href="{html.escape(newer.filename, quote=True)}">Próximo texto</a>'
         )
     if older:
-        links.append(
-            f'<a href="{html.escape(older.filename, quote=True)}">Texto mais antigo</a>'
+        bottom_links.insert(
+            0,
+            f'<a href="{html.escape(older.filename, quote=True)}">Texto precedente</a>',
         )
 
-    body = f"""    <nav>{" · ".join(links)}</nav>
+    bottom_navigation = (
+        f'    <nav>{" · ".join(bottom_links)}</nav>' if bottom_links else ""
+    )
+    body = f"""    <nav><a href="index.html">Todos os textos</a></nav>
     <article>
       <header>
         <h1>{html.escape(post.title)}</h1>
@@ -213,7 +217,7 @@ def render_post(post: Post, newer: Post | None, older: Post | None) -> str:
         {post.body}
       </div>
     </article>
-    <nav>{" · ".join(links)}</nav>"""
+{bottom_navigation}"""
     return page(post.title, body, plain_text(post.body)[:160])
 
 
