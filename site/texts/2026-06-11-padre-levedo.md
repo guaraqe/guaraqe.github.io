@@ -26,7 +26,7 @@ O momento mais marcante foi quando eu, com meus quatorze anos, estava convencido
 
 Fiquei noites e noites baixando albums em torrent, frequentando o forum do SoundChaser (onde lia recomendações do emérito Alfredo), e ouvido músicas obscuras. Demorou até a faculdade pra conhecer alguém que ouvisse as mesmas bizarrices que eu, e que por acaso virou um dos meus melhores amigos: o Igor.
 
-Nos encontramos num momento duplamente surpreendente. Estávamos os dois fazendo a prova para fazer intercâmbio na École Polytechnique, e na saída ele me ofereceu uma carona até o IF. No porta CD do carro, a capa inconfundível do Ceux du Dehors, do Univers Zéro (que na época era pronunciado como seuxdudeórs). Nós dois passamos, e nos vemos até hoje.
+Nos encontramos num momento duplamente surpreendente. Estávamos os dois fazendo a prova para fazer intercâmbio na École Polytechnique, e na saída ele me ofereceu uma carona até o IF. No porta CD do carro, a capa inconfundível do Ceux du Dehors, do Univers Zéro (que na época era pronunciado como seuxdudeórs). Nós dois passamos e o resto é história.
 
 E tudo isso que me levou até hoje, ouvindo Alphataurus para treinar meu italiano, vai que me serve amanhã...
 
