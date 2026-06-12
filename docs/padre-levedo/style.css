@@ -1,0 +1,59 @@
+:root {
+  color-scheme: light dark;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.6;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+a {
+  color: #865b22;
+}
+
+nav {
+  margin: 1rem 0 2rem;
+}
+
+article header {
+  margin-bottom: 2rem;
+}
+
+h1 {
+  line-height: 1.2;
+}
+
+time {
+  white-space: nowrap;
+}
+
+.post-index {
+  padding-left: 1.5rem;
+}
+
+.post-index li {
+  margin: 0.35rem 0;
+}
+
+.post-index time {
+  display: inline-block;
+  width: 6.5rem;
+}
+
+.post-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  a {
+    color: #e0ad66;
+  }
+}

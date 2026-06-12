@@ -50,6 +50,10 @@ copyMicroMacro = do
   let path = "/home/juan/Code/guaraqe/micro-macro/crates/micro-macro/web/dist-release"
   copyOptionalDirectory path (outputFolder </> "micro-macro")
 
+copyPadreLevedo :: Action ()
+copyPadreLevedo =
+  copyOptionalDirectory "site/padre-levedo" (outputFolder </> "padre-levedo")
+
 copyOptionalDirectory :: FilePath -> FilePath -> Action ()
 copyOptionalDirectory input output = do
   exists <- liftIO $ Dir.doesDirectoryExist input
@@ -199,6 +203,7 @@ buildRules = do
   copyStatisticsExam
   copyPhysicsExam
   copyMicroMacro
+  copyPadreLevedo
   buildNotes
 
 main :: IO ()
