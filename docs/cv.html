@@ -161,14 +161,18 @@ function revealEmail() {
 <div class="space-y-3 mb-8">
     <article class="cv-card bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
         <div class="flex items-start justify-between mb-2">
-            <h3 class="text-lg font-semibold flex-1 mr-4">Tlon — Senior Software Engineer</h3>
-            <span class="text-sm text-slate-500 whitespace-nowrap">2023/01 - Present</span>
+            <h3 class="text-lg font-semibold flex-1 mr-4">Tlon — Backend / Infrastructure Software Engineer</h3>
+            <span class="text-sm text-slate-500 whitespace-nowrap">Jan 2023 - Present · 3 yrs 8 mos</span>
         </div>
-        <p class="text-sm text-slate-700 mb-2">Haskell engineer developing Urbit hosting platform. Infrastructure work enabling automated Kubernetes orchestration and platform automation.</p>
+        <p class="text-sm text-slate-500 mb-2">Full-time · Remote</p>
+        <p class="text-sm text-slate-700 mb-2">Core engineer on Tlon's hosting platform, which ran a fleet of thousands of Urbit personal servers on Kubernetes. Developing the Haskell control plane, orchestration layer, Rust telemetry, and React admin console.</p>
         <ul class="list-disc list-inside ml-2 text-sm text-slate-600 space-y-1">
-            <li>Platform automation managing thousands of Urbit instances</li>
-            <li>Kubernetes orchestration and infrastructure management</li>
-            <li>System integration between Urbit and Kubernetes</li>
+            <li><strong>Hosting control plane (Haskell/PostgreSQL/Kubernetes):</strong> ship provisioning, multi-cluster orchestration across GCP and bare metal, capacity management, and fleet visibility.</li>
+            <li><strong>Fleet automation and cost cutting:</strong> auto-suspension of idle servers, packet-triggered wake-up, mass OTA updates, and ship optimization.</li>
+            <li><strong>Network telemetry pipeline in Rust:</strong> a libpcap sidecar parsing Urbit's binary wire protocol into Prometheus metrics, plus a visualizer of the fleet's peer-to-peer graph with community detection.</li>
+            <li><strong>Signup and identity stack:</strong> invite links, email/phone verification (Twilio), rate limiting, anti-abuse tooling, and full MFA (TOTP + SMS).</li>
+            <li><strong>S3 storage proxy:</strong> per-user quotas over shared buckets, enabling free managed file storage.</li>
+            <li><strong>Observability and CI/CD:</strong> OpenTelemetry tracing across services and batch jobs, Prometheus/Grafana, Nix, GitHub Actions, Helm, and Docker.</li>
         </ul>
     </article>
 
