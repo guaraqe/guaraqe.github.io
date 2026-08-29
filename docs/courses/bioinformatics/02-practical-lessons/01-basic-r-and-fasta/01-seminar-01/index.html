@@ -2,58 +2,61 @@
 <html lang="en" data-theme="light">
 <head profile="http://www.w3.org/2005/10/profile">
     <meta charset="UTF-8">
-    <meta name="description" content="2.1.1 Basic R
- - Course material by Juan Raphael Diaz Simões">
+    <meta name="description" content="2.1.1 Basic R - Course material by Juan Raphael Diaz Simões">
     <meta name="author" content="Juan Raphael Diaz Simões">
     <meta name="keywords" content="Haskell, functional programming, software engineering, bioinformatics, performance optimization, Juan Simões">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="index, follow">
-    <title>2.1.1 Basic R
-</title>
+    <title>2.1.1 Basic R</title>
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="2.1.1 Basic R
-">
-    <meta property="og:description" content="2.1.1 Basic R
- - Course material by Juan Raphael Diaz Simões">
-    <meta property="og:url" content="https://guaraqe.github.io/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/01-seminar-01/index.html">
+    <meta property="og:title" content="2.1.1 Basic R">
+    <meta property="og:description" content="2.1.1 Basic R - Course material by Juan Raphael Diaz Simões">
+    <meta property="og:url" content="https://guaraqe.com/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/01-seminar-01/index.html">
     <meta property="og:site_name" content="Juan Raphael Diaz Simões">
-    
+    <meta property="og:image" content="https://guaraqe.com/images/og-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Juan Raphael Diaz Simões — Senior Backend / Platform Engineer">
+
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="2.1.1 Basic R
-">
-    <meta name="twitter:description" content="2.1.1 Basic R
- - Course material by Juan Raphael Diaz Simões">
-    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="2.1.1 Basic R">
+    <meta name="twitter:description" content="2.1.1 Basic R - Course material by Juan Raphael Diaz Simões">
+    <meta name="twitter:image" content="https://guaraqe.com/images/og-card.png">
+
+    <!-- Icons -->
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/images/juan.png">
+
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://guaraqe.github.io/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/01-seminar-01/index.html">
+    <link rel="canonical" href="https://guaraqe.com/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/01-seminar-01/index.html">
     
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "2.1.1 Basic R
-",
-      "description": "2.1.1 Basic R
- - Course material by Juan Raphael Diaz Simões",
-      "url": "https://guaraqe.github.io/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/01-seminar-01/index.html",
+      "name": "2.1.1 Basic R",
+      "description": "2.1.1 Basic R - Course material by Juan Raphael Diaz Simões",
+      "url": "https://guaraqe.com/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/01-seminar-01/index.html",
       "author": {
         "@type": "Person",
         "name": "Juan Raphael Diaz Simões",
         "jobTitle": "Software Engineer",
         "knowsAbout": ["Haskell", "Functional Programming", "Bioinformatics", "Performance Optimization"],
-        "url": "https://guaraqe.github.io"
+        "url": "https://guaraqe.com"
       },
-      "inLanguage": "en-US"
+      "inLanguage": "en"
     }
     </script>
+    <!-- Compiled locally from tailwind/input.css. First, so that the reset and
+         the utilities are what the two sheets below override — which is where
+         the CDN build it replaced injected itself. -->
+    <link rel="stylesheet" href="/css/tailwind.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/syntax.css">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
 
@@ -77,7 +80,7 @@
     </script>
 
 </head>
-<body>
+<body data-page="Courses">
     <header>
         <div class="navbar no-print bg-base-100 px-4 py-3">
           <div class="navbar-start">
@@ -90,18 +93,23 @@
           <div class="navbar-end">
             <div class="hidden sm:block">
               <ul class="menu menu-horizontal text-sm space-x-1">
-                <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Writing</a></li>
-                <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Teaching</a></li>
                 <li><a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">CV</a></li>
                 <li><a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Projects</a></li>
+                <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Writing</a></li>
+                <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Teaching</a></li>
+                <li><a href="/texts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Texts</a></li>
               </ul>
             </div>
             <div class="block sm:hidden">
-              <div class="grid grid-cols-2 gap-1 text-xs">
-                <a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Writing</a>
+              <!-- Five items no longer divide into the three-column grid this used
+                   to be, which left a ragged half-empty second row. Wrapping from
+                   the right keeps the rows packed whatever the count. -->
+              <div class="flex flex-wrap justify-end gap-x-1 gap-y-0.5 text-xs">
                 <a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">CV</a>
-                <a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Teaching</a>
                 <a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Projects</a>
+                <a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Writing</a>
+                <a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Teaching</a>
+                <a href="/texts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Texts</a>
               </div>
             </div>
           </div>

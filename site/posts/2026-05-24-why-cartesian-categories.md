@@ -1,6 +1,7 @@
 ---
 title: "WireCat: visual programming with cartesian categories"
 summary: Introducing WireCat, a GHC plugin for writing typed categorical wiring diagrams with proc notation
+tags: "Compilers, Haskell, Category Theory"
 ---
 
 The main bottleneck in programming is not in code production, but in code understanding. This became even more pronounced with the monumental quantities of code AI is capable of producing. This means we desperately need tools that help us manage this uncontrolled growth.

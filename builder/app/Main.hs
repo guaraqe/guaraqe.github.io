@@ -9,14 +9,15 @@ module Main where
 
 import Control.Monad
 import Data.Aeson (object, toJSON)
+import Data.List (sortOn)
+import Data.Ord (Down (..))
 import Data.Text qualified as Text
 import Development.Shake
 import Development.Shake.FilePath
 import Development.Shake.Forward
 import Site.Blog qualified as Blog
-import Site.Book qualified as Book
 import Site.Layout qualified as Layout
-import Site.Note qualified as Note
+import Site.Raw qualified as Raw
 import Site.Sitemap qualified as Sitemap
 import Slick
 import System.Directory qualified as Dir
@@ -24,58 +25,116 @@ import System.Directory qualified as Dir
 outputFolder :: FilePath
 outputFolder = "docs/"
 
+-- | Compile the Tailwind stylesheet. Pages used to load Tailwind from
+-- @cdn.tailwindcss.com@, which is the in-browser JIT compiler and is not meant
+-- for production, plus the whole of daisyUI for eleven classes. Building here
+-- ships one small stylesheet and removes both third-party hosts from the
+-- critical path.
+buildStyles :: Action ()
+buildStyles = do
+  -- Tailwind decides what to emit by scanning the markup, so every file it is
+  -- configured to scan is an input to this step.
+  sources <-
+    getDirectoryFiles
+      ""
+      [ "site//*.html",
+        "site//*.md",
+        "tailwind/*",
+        "site/raw//*.html"
+      ]
+  need sources
+  command_ [] "tailwindcss" $
+    [ "--config",
+      "tailwind/tailwind.config.js",
+      "--input",
+      "tailwind/input.css",
+      "--output",
+      outputFolder </> "css" </> "tailwind.css",
+      "--minify"
+    ]
+
 copyStaticFiles :: Action ()
 copyStaticFiles = do
   filepaths <- getDirectoryFiles "site" ["images//*", "css//*", "js//*", "data//*", "robots.txt", "CNAME"]
   void $ forP filepaths $ \filepath ->
     copyFileChanged ("site" </> filepath) (outputFolder </> filepath)
 
-copyBioinformaticsExam :: Action ()
-copyBioinformaticsExam = do
-  let path = "/home/juan/Code/guaraqe/tdsi-statistics-exam/build-github"
-  copyOptionalDirectory path (outputFolder </> "courses" </> "statistics-exam")
-
-copyStatisticsExam :: Action ()
-copyStatisticsExam = do
-  let path = "/home/juan/Code/guaraqe/tdsi-questions/build-github"
-  copyOptionalDirectory path (outputFolder </> "courses" </> "bioinformatics-exam")
-
-copyPhysicsExam :: Action ()
-copyPhysicsExam = do
-  let path = "/home/juan/Code/guaraqe/tdsi-physics-exam/build-github"
-  copyOptionalDirectory path (outputFolder </> "courses" </> "physics-exam")
-
-copyMicroMacro :: Action ()
-copyMicroMacro = do
-  let path = "/home/juan/Code/guaraqe/micro-macro/crates/micro-macro/web/dist-release"
-  copyOptionalDirectory path (outputFolder </> "micro-macro")
-
+-- | Padre Levedo is a personal humour blog that happens to share a domain with
+-- the CV. It stays live and reachable by direct link, but every page is marked
+-- noindex so it does not surface in search results beside professional pages.
 copyPadreLevedo :: Action ()
-copyPadreLevedo =
-  copyOptionalDirectory "site/padre-levedo" (outputFolder </> "padre-levedo")
-
-copyOptionalDirectory :: FilePath -> FilePath -> Action ()
-copyOptionalDirectory input output = do
+copyPadreLevedo = do
+  let input = "site/padre-levedo"
+      output = outputFolder </> "padre-levedo"
   exists <- liftIO $ Dir.doesDirectoryExist input
   when exists $ do
     filepaths <- getDirectoryFiles input ["//*"]
     void $ forP filepaths $ \filepath ->
-      copyFileChanged (input </> filepath) (output </> filepath)
+      if takeExtension filepath == ".html"
+        then do
+          contents <- readFile' (input </> filepath)
+          writeFile' (output </> filepath) $
+            Text.unpack $
+              insertNoindex (Text.pack contents)
+        else copyFileChanged (input </> filepath) (output </> filepath)
 
-buildNotes :: Action ()
-buildNotes = do
-  let input = "/home/juan/Obsidian/Science/Generalized-Entropies/generalized-entropies.md"
-      output = "notes/generalized-entropies"
-      assets = Just "/home/juan/Obsidian/Science/Generalized-Entropies/images"
+-- | Add a robots meta tag to a document, unless it already declares one or has
+-- no head to put it in.
+insertNoindex :: Text.Text -> Text.Text
+insertNoindex contents
+  | "name=\"robots\"" `Text.isInfixOf` contents = contents
+  | Text.null rest = contents
+  | otherwise = before <> headTag <> noindexTag <> Text.drop (Text.length headTag) rest
+  where
+    headTag = "<head>"
+    noindexTag = "\n<meta name=\"robots\" content=\"noindex, nofollow\">"
+    (before, rest) = Text.breakOn headTag contents
+
+-- | The PDF CV is authored in Typst outside this repository. It is copied into
+-- the output so that @/juan-simoes-cv.pdf@ is a stable link that can be given
+-- to recruiters and attached to applications.
+copyCV :: Action ()
+copyCV = do
+  let path = "/home/juan/Obsidian/Knowledge/CV/pdf/juan-simoes-cv.pdf"
+  copyOptionalFile path (outputFolder </> "juan-simoes-cv.pdf")
+
+copyOptionalFile :: FilePath -> FilePath -> Action ()
+copyOptionalFile input output = do
   exists <- liftIO $ Dir.doesFileExist input
-  when exists $
-    Note.buildNote outputFolder input output assets
+  if exists
+    then copyFileChanged input output
+    else putWarn $ "Missing optional file, skipping: " <> input
+
+-- | The entropy note. It used to be a nav item and a home page section of its
+-- own, both pointing straight at the page because there was only ever one
+-- note; it reads as writing, so it is listed with the writing. There is no
+-- Markdown source to collect it from — see "Site.Raw" — so the listing entry
+-- is spelled out here. The date is when the note first went up on the site.
+entropyNote :: Blog.Post
+entropyNote =
+  Blog.Post
+    { title = "Generalized effective numbers and entropies",
+      content = "",
+      url = noteUrl,
+      fullUrl = noteUrl,
+      date = "December 16, 2025",
+      sortDate = "2025-12-16",
+      summary = Just "Working notes on generalized effective numbers, Hill numbers, and related entropies.",
+      tags = Just "Information Theory, Mathematics",
+      tagList = Just ["Information Theory", "Mathematics"]
+    }
+
+-- | Root-relative, unlike the posts, whose URLs are relative to the listing
+-- they appear in. It resolves the same from @\/@ and from @\/posts@.
+noteUrl :: String
+noteUrl = "/notes/generalized-entropies/"
 
 buildBlog :: Action [Blog.Post]
 buildBlog = do
   posts <- Blog.build "site/posts" (outputFolder </> "posts")
-  Blog.buildIndex (outputFolder </> "posts") posts
-  pure posts
+  let listed = sortOn (Down . (.sortDate)) (entropyNote : posts)
+  Blog.buildIndex (outputFolder </> "posts") listed
+  pure listed
 
 buildTexts :: Action [Blog.Post]
 buildTexts = do
@@ -83,28 +142,25 @@ buildTexts = do
   Blog.buildTextsIndex (outputFolder </> "texts") texts
   pure texts
 
-buildBooks :: Action ()
-buildBooks = do
-  let makeBook (input, output) =
-        Book.build outputFolder input output Nothing
-
-  let books =
-        [ ( "/home/juan/Courses/Statistics",
-            "courses/statistics"
-          ),
-          ( "/home/juan/Courses/Bioinformatics",
-            "courses/bioinformatics"
-          ),
-          ( "/home/juan/Courses/Physics",
-            "courses/physics"
-          )
-        ]
-
-  availableBooks <-
-    filterM (liftIO . Dir.doesDirectoryExist . fst) books
-  sections <- mapM makeBook availableBooks
-
-  Book.buildList (outputFolder </> "courses") sections
+-- | The listing at @\/courses@. The course books themselves are no longer
+-- built from Markdown — see "Site.Raw" — so the three entries are written out
+-- in the template rather than collected from the sections.
+buildCourseList :: Action ()
+buildCourseList = do
+  template <- compileTemplate' "site/templates/course-list.html"
+  let layout =
+        Layout.Layout
+          { title = "Courses",
+            content = Text.unpack $ substitute template (object []),
+            language = "en",
+            latex = False,
+            page = "Courses",
+            pageLink = "/courses",
+            description = "University courses on statistics, bioinformatics, and physics by Juan Raphael Diaz Simões",
+            currentUrl = "/courses",
+            isPost = False
+          }
+  Layout.build (outputFolder </> "courses" </> "index.html") layout
 
 buildIndex :: [Blog.Post] -> [Blog.Post] -> Action ()
 buildIndex posts texts = do
@@ -146,7 +202,9 @@ buildCV = do
 
   -- Apply the default template for proper layout
   defaultTemplate <- compileTemplate' "site/templates/default.html"
-  let wrappedData = object [("title", toJSON ("CV" :: String)), ("content", toJSON (Text.unpack htmlContent))]
+  -- The page supplies its own <h1>; an empty title suppresses the one in the
+  -- default template so the page does not open with two headings.
+  let wrappedData = object [("title", toJSON ("" :: String)), ("content", toJSON (Text.unpack htmlContent))]
       finalContent = substitute defaultTemplate wrappedData
 
   let layout =
@@ -171,7 +229,7 @@ buildProjects = do
   let templateData = object []
       processedContent = substitute htmlTemplate templateData
   defaultTemplate <- compileTemplate' "site/templates/default.html"
-  let wrappedData = object [("title", toJSON ("Projects" :: String)), ("content", toJSON (Text.unpack processedContent))]
+  let wrappedData = object [("title", toJSON ("" :: String)), ("content", toJSON (Text.unpack processedContent))]
       finalContent = substitute defaultTemplate wrappedData
 
   let layout =
@@ -193,18 +251,16 @@ buildRules :: Action ()
 buildRules = do
   posts <- buildBlog
   texts <- buildTexts
-  buildBooks
+  buildCourseList
   buildIndex posts texts
   buildCV
   buildProjects
   Sitemap.buildSitemap outputFolder posts texts
+  Raw.build "site/raw" outputFolder
+  buildStyles
   copyStaticFiles
-  copyBioinformaticsExam
-  copyStatisticsExam
-  copyPhysicsExam
-  copyMicroMacro
   copyPadreLevedo
-  buildNotes
+  copyCV
 
 main :: IO ()
 main = do

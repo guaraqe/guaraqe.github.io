@@ -1,6 +1,7 @@
 ---
 title: Running Haskell applications in clusters using Nix
 summary: Deploying Haskell applications on HPC clusters using Nix and PRoot without root access
+tags: "Nix, Infrastructure, Haskell"
 ---
 
 Haskell is my favorite programming language, and Nix my favorite way of setting up development environments for programming and running algorithms.

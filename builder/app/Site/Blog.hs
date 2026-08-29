@@ -106,9 +106,25 @@ data Post = Post
     fullUrl :: String,
     date :: String,
     sortDate :: String,
-    summary :: Maybe String
+    summary :: Maybe String,
+    -- | Comma-separated topics from the post front matter.
+    tags :: Maybe String,
+    -- | 'tags' split for templates. Absent from the front matter, so it parses
+    -- as Nothing and is filled in after the post is read.
+    tagList :: Maybe [String]
   }
   deriving (Generic, Eq, Ord, Show, FromJSON, ToJSON, Binary)
+
+-- | Split the comma-separated @tags@ field into the list templates iterate
+-- over. A post with no tags keeps Nothing so the template renders nothing.
+withTagList :: Post -> Post
+withTagList post = post {tagList = splitTags <$> post.tags}
+  where
+    splitTags = filter (not . null) . map trim . splitOn ','
+    trim = T.unpack . T.strip . T.pack
+    splitOn c s = case break (== c) s of
+      (chunk, []) -> [chunk]
+      (chunk, _ : rest) -> chunk : splitOn c rest
 
 buildPosts :: FilePath -> FilePath -> FilePath -> String -> String -> Action [Post]
 buildPosts inputFolder outputFolder urlRoot page pageLink = do
@@ -134,7 +150,7 @@ buildPost outputFolder urlRoot page pageLink srcPath = cacheAction ("post" :: T.
 
   template <- compileTemplate' "site/templates/post.html"
 
-  post <- convert fullPostData
+  post <- withTagList <$> convert fullPostData
   let language =
         T.unpack . T.strip . T.pack $
           fromMaybe "en" (getObjectAttribute "language" postData)

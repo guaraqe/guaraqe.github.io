@@ -1,0 +1,178 @@
+---
+title: 2.1.4 Comparing Gene Sequences
+description: 2.1.4 Comparing Gene Sequences - Course material by Juan Raphael Diaz Simões
+language: en
+url: /courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/05-seminar-04/index.html
+page: Courses
+pageLink: /courses
+latex: true
+---
+<div class="md:flex justify-center bg-base-100">
+<article class="prose max-w-prose mb-5">
+  <div class="book-navigation -mt-4">
+
+    <div class="book-navigation-parent drawer">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content">
+        <label for="my-drawer" class="btn btn-outline btn-sm gap-2 cursor-pointer hover:btn-primary transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+          </svg>
+          <span class="font-medium">Index</span>
+        </label>
+      </div>
+      <div class="drawer-side">
+        <label for="my-drawer" class="drawer-overlay"></label>
+           <div class="menu menu-vertical p-4 bg-base-200">
+             <h1 class="text-xl mb-5 w-100" style="margin-left: 0.75em;">
+                  Introduction to Bioinformatics
+
+             </h1>
+             <div style="margin-left:-1.5em;">
+               <ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/index.html">1 Lectures
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/03-lecture-01/index.html">1.1 Bioinformatics Basics
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/07-lecture-02/index.html">1.2 Comparing Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/10-lecture-03/index.html">1.3 Comparing Gene Sequences 2
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/13-lecture-04/index.html">1.4 Gene Finding
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/16-lecture-05/index.html">1.5 Locating genes and its functions: techniques, problems and difficulties
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/index.html">2 Practical Lessons
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/index.html">2.1 Basic R and generic data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/01-seminar-01/index.html">2.1.1 Basic R
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/02-seminar-02/index.html">2.1.2 Files
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/04-seminar-03/index.html">2.1.3 Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/05-seminar-04/index.html">2.1.4 Comparing Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/06-control-01/index.html">2.1.5 Control: Loading and processing data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/20-seminar-12/index.html">2.1.6 Programming Exercises
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/index.html">2.2 Basic analysis of genetic data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/08-seminar-05/index.html">2.2.1 GC Content
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/09-seminar-06/index.html">2.2.2 Subseries GC Content
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/10-seminar-06/index.html">2.2.3 Exercise: Comparing sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/11-seminar-07/index.html">2.2.4 Creating dot plots
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/14-control-02/index.html">2.2.5 Loading and comparing data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/index.html">2.3 Codons and gene finding
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/15-seminar-09/index.html">2.3.1 Translating bases to codons
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/17-seminar-10/index.html">2.3.2 Codon frequencies and finding genes
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/18-control-03/index.html">2.3.3 Theoretical Control
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/19-seminar-11/index.html">2.3.4 Aminoacid sequences and base sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/index.html">2.4 Summary and exam
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/21-seminar-13/index.html">2.4.1 Theoretical Questions
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/22-exam-01/index.html">2.4.2 Final exam
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li></ul></li></ul>
+             </div>
+           </div>
+      </div>
+    </div>
+
+    <div class="book-navigation-parent">
+      <a href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/index.html">↑ 2.1 Basic R and generic data
+</a>
+    </div>
+
+    <div class="book-navigation-section">
+
+       <div class="book-navigation-previous">
+         <a href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/04-seminar-03/index.html">2.1.3 Gene Sequences
+</a>
+       </div>
+
+       <div class="book-navigation-next">
+         <a href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/06-control-01/index.html">2.1.5 Control: Loading and processing data
+</a>
+       </div>
+    </div>
+
+  </div>
+
+    <h1 class="text-3xl mb-5">
+    2.1.4 Comparing Gene Sequences
+
+</h1>
+
+<p class="mb-3">In the last lecture, we fetched data from <a class="link link-hover text-zinc-600" href="www.ncbi.nlm.nih.gov">NCBI</a> and did some simple statistical analysis on the dengue virus genome. We would like to do such analyses very easily with other genomes. For this, we are going to use <em>functions</em>.</p>
+<p class="mb-3">Furthermore, we will use these new functions two analyze two different viruses: the dengue virus (<code>NC_001477</code>) and the zika virus (<code>NC_012532</code>). Both are viruses that cause diseases in tropical regions and are transmitted by mosquitos, so it is interesting to see if we can find simple differences between the genomes.</p>
+<p class="mb-3">You can download the sequences by clicking the following links: <a class="link link-hover text-zinc-600" href="data/dengue.fasta">dengue</a> and <a class="link link-hover text-zinc-600" href="data/zika.fasta">zika</a>. It will be easier if you right click it, and choose “Save as…” and choose the <code>Bioinformatics/workspace</code> folder that is in the desktop.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="functions"><span class="header-section-number">1</span> Functions</h1>
+<p class="mb-3">Functions are operations that are composed by smaller operations. They are useful for putting together tasks that are always executed together, without being tied to a specific data.</p>
+<p class="mb-3">For example, let’s say we want to print a word together with its number of characters. This can be done as follows:</p>
+<pre class="sourcecode"><code>word &lt;- &quot;Juan&quot;
+size &lt;- nchar(&quot;Juan&quot;)
+paste(word,&quot;has&quot;,size,&quot;letters.&quot;)</code></pre>
+<p class="mb-3">The result will be <code>Juan has 4 letters.</code> What if we want to execute this task for any word? We do this by defining a function:</p>
+<pre class="sourcecode"><code>countSize &lt;- function(word) {
+  size &lt;- nchar(word)
+  paste(word,&quot;has&quot;,size,&quot;letters.&quot;)
+}</code></pre>
+<p class="mb-3">and it can be used with different words:</p>
+<pre class="sourcecode"><code>&gt; countSize(&quot;Juan&quot;)
+[1] &quot;Juan has 4 letters.&quot;
+&gt; countSize(&quot;Dengue&quot;)
+[1] &quot;Dengue has 6 letters.&quot;</code></pre>
+<p class="mb-3">We can apply this method for different operations.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="loading-gene-sequence-data"><span class="header-section-number">2</span> Loading gene sequence data</h1>
+<p class="mb-3">The idea for this function is to make the file we are reading a function argument. Based on this file, we will build the vector data. Text that are after <code>#</code> are just comments and have no effect on the code.</p>
+<pre class="sourcecode"><code>#oad vector of nucleotides from file
+readVector &lt;- function(file){
+  # Read data from file
+  data &lt;- read.fasta(file)
+  # Transform data into just a vector
+  vector &lt;- c(data[[1]])
+  # Return vector
+  return(vector)
+}</code></pre>
+<p class="mb-3">This can be used to load the zika and dengue data we downloaded before:</p>
+<pre class="sourcecode"><code>dengue &lt;- readVector(&quot;dengue.fasta&quot;)
+zika &lt;- readVector(&quot;zika.fasta&quot;)</code></pre>
+<p class="mb-3">As a first test, we can compare their sizes:</p>
+<pre class="sourcecode"><code>&gt; length(dengue)
+[1] 10735
+&gt; length(zika)
+[1] 10794</code></pre>
+<p class="mb-3">their sizes are different, but not too far away from each other.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="showing-data"><span class="header-section-number">3</span> Showing data</h1>
+<p class="mb-3">Last time, we built tables from this data, and plotted a bar plot with them. This can also become a function:</p>
+<pre class="sourcecode"><code>showBars &lt;- function(title,data, n) {
+  table &lt;- count(data,n)
+  barplot(table,main=title)
+}</code></pre>
+<p class="mb-3">And we can see the bar plots for each distribution:</p>
+<pre class="sourcecode"><code>showBars(&quot;Dengue&quot;,dengue,1)
+showBars(&quot;Zika&quot;,zika,1)</code></pre>
+<h1 class="text-2xl mt-5 mb-5" data-number="4" id="comparing-data"><span class="header-section-number">4</span> Comparing data</h1>
+<p class="mb-3">These plots look different. However, we are just showing them one at time. How can we show both at the same time?</p>
+<p class="mb-3">First, we tell R that we want to see data in a table with 1 row and 2 columns:</p>
+<pre class="sourcecode"><code>par(mfrow=c(1,2))</code></pre>
+<p class="mb-3">and then, we plot once more our graphs:</p>
+<pre class="sourcecode"><code>showBars(&quot;Dengue&quot;,dengue,1)
+showBars(&quot;Zika&quot;,zika,1)</code></pre>
+<p class="mb-3"><img class="mx-auto" src="data/comparison.png" /></p>
+<p class="mb-3">These graphs have a similar shape, but the quantities of each nucleotide are different. How can we measure this difference? We can write another function.</p>
+<pre class="sourcecode"><code>difference &lt;- function(data1,data2,n) {
+  table1 &lt;- count(data1,n)
+  table2 &lt;- count(data2,n)
+  barplot(table1-table2,main=&quot;Difference&quot;)
+}</code></pre>
+<p class="mb-3">and execute it with <code>difference(dengue,zika,1)</code>:</p>
+<p class="mb-3"><img class="mx-auto" src="data/difference.png" /> As one can see, there are more <code>A</code> nucleotides in the dengue genome, but less <code>G</code> ones.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="5" id="exercise"><span class="header-section-number">5</span> Exercise</h1>
+<p class="mb-3">Try to show the bar plots of dengue and zika using sequences of size 2 instead. What are the differences?</p>
+
+  <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
+
+
+    <div class="google-translate-container">
+      <div id="google_translate_element"></div>
+    </div>
+
+</article>
+  <script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      autoDisplay: false,
+      includedLanguages: 'en,ru,uz',
+    }, 'google_translate_element');
+  }
+  </script>
+
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</div>

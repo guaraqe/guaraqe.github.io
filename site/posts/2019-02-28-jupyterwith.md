@@ -1,6 +1,7 @@
 ---
 title: "JupyterWith: declarative, reproducible notebook environments"
 summary: Nix-based solution for reproducible Jupyter environments with multiple language kernels
+tags: "Nix, Tooling, Reproducibility"
 ---
 
 I wrote a post for [Tweag](https://www.tweag.io) with Matthias Meschede on

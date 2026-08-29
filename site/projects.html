@@ -5,26 +5,116 @@
     padding: 0.125rem 0.375rem;
     border-radius: 0.25rem;
     background-color: transparent;
-    color: #94a3b8;
-    border: 1px solid #e2e8f0;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+}
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+/* Projects were bordered cards, which read as heavy and as clickable when only
+   the links inside them are. A hairline between entries separates them just as
+   well and leaves the content to carry the page. The first entry in a section
+   needs no rule: the section heading already has one under it. */
+.project + .project {
+    margin-top: 1.75rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid #e2e8f0;
 }
 </style>
 
-<h1 class="text-3xl font-bold mb-6 text-slate-800">Open Source Projects</h1>
+<h1 class="text-3xl font-bold mb-6 text-slate-900">Open Source Projects</h1>
 
-<p class="text-slate-700 mb-8">Software projects spanning scientific computing, distributed systems, and functional programming.</p>
+<p class="text-slate-700 mb-8">Software projects spanning compilers and type systems, scientific computing, distributed systems, and functional programming.</p>
 
-<h2 class="text-2xl font-semibold mb-4 text-slate-800">Scientific Computing</h2>
+<h2 class="text-2xl font-semibold mb-4 text-slate-900">Recent</h2>
 
-<div class="bg-white border border-slate-300 rounded-lg p-5 mb-6">
-    <h3 class="text-xl font-bold mb-3">
-        <a href="https://github.com/guaraqe/lineageflow" class="text-slate-800 hover:text-slate-600">LineageFlow</a>
-    </h3>
+<div class="project">
+    <h3 class="text-xl font-bold mb-1 text-slate-900">WireCat</h3>
+    <p class="text-xs font-medium uppercase tracking-wide text-slate-500 mb-3">Haskell · GHC Plugin · React</p>
+    <p class="text-slate-700 mb-4">Exploration of multi-level effect systems as a way to support AI-assisted software development. A compiler plugin, library, CLI, and viewer for writing typed wiring diagrams as executable Haskell: one definition either runs as code or renders as an interactive graph, separating high-level views from low-level implementation. Submitted to ZuriHac 2026.</p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-2">
+        <div>
+            <h4 class="font-semibold text-slate-800 mb-2">Why it exists:</h4>
+            <ul class="text-sm text-slate-700 space-y-1">
+                <li>• Keeps architecture diagrams honest — they are the code</li>
+                <li>• Gives agents a typed, high-level view to work against</li>
+                <li>• Cartesian categories as the semantic foundation</li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-semibold text-slate-800 mb-2">Technical implementation:</h4>
+            <ul class="text-sm text-slate-700 space-y-1">
+                <li>• GHC source plugin desugaring <code>proc</code> notation</li>
+                <li>• Typed diagram library with a CLI renderer</li>
+                <li>• React viewer for interactive graph exploration</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mt-3">
+        <span class="tag">Haskell</span>
+        <span class="tag">GHC Plugin</span>
+        <span class="tag">Category Theory</span>
+        <span class="tag">React</span>
+    </div>
+
+    <div class="project-links">
+        <a href="https://github.com/guaraqe/wirecat" class="text-blue-700 hover:text-blue-900">GitHub →</a>
+        <a href="/posts/2026-05-24-why-cartesian-categories.html" class="text-blue-700 hover:text-blue-900">Read the write-up →</a>
+    </div>
+</div>
+
+<div class="project">
+    <h3 class="text-xl font-bold mb-1 text-slate-900">Micro-Macro</h3>
+    <p class="text-xs font-medium uppercase tracking-wide text-slate-500 mb-3">Rust · WebAssembly</p>
+    <p class="text-slate-700 mb-4">Interactive explorer for microscopic Markov processes and the dynamics they induce on macroscopic observables. Build a process in the graph editor and watch how coarse-graining changes what the system looks like, with matrix and heatmap views throughout. Runs entirely in the browser, and comes with a tutorial on hidden Markov chains.</p>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-2">
+        <div>
+            <h4 class="font-semibold text-slate-800 mb-2">What it shows:</h4>
+            <ul class="text-sm text-slate-700 space-y-1">
+                <li>• When a coarse-grained view stays Markovian, and when it stops</li>
+                <li>• Stationary distributions and entropy rates</li>
+                <li>• Hidden Markov chains, built up from scratch</li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-semibold text-slate-800 mb-2">Technical implementation:</h4>
+            <ul class="text-sm text-slate-700 space-y-1">
+                <li>• Rust simulation core compiled to WebAssembly</li>
+                <li>• Interactive graph editor with live matrix views</li>
+                <li>• No server: the whole model runs client-side</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mt-3">
+        <span class="tag">Rust</span>
+        <span class="tag">WebAssembly</span>
+        <span class="tag">Markov Processes</span>
+    </div>
+
+    <div class="project-links">
+        <a href="/micro-macro/" class="text-blue-700 hover:text-blue-900"><strong>Try it live →</strong></a>
+        <a href="https://github.com/guaraqe/micro-macro" class="text-blue-700 hover:text-blue-900">GitHub →</a>
+    </div>
+</div>
+
+<h2 class="text-2xl font-semibold mb-4 mt-8 text-slate-900">Scientific Computing</h2>
+
+<div class="project">
+    <h3 class="text-xl font-bold mb-3 text-slate-900">LineageFlow</h3>
     <p class="text-slate-700 mb-4">Toolkit for quantitative cell lineage analysis in developing organisms. Developed as part of PhD research on embryonic morphogenesis.</p>
 
     <div class="grid md:grid-cols-2 gap-6 mb-4">
         <div>
-            <h4 class="font-semibold text-slate-800 mb-2">Research Context:</h4>
+            <h4 class="font-semibold text-slate-800 mb-2">Research context:</h4>
             <ul class="text-sm text-slate-700 space-y-1">
                 <li>• Automated morphogenetic field identification</li>
                 <li>• Part of PhD thesis research</li>
@@ -32,7 +122,7 @@
             </ul>
         </div>
         <div>
-            <h4 class="font-semibold text-slate-800 mb-2">Technical Implementation:</h4>
+            <h4 class="font-semibold text-slate-800 mb-2">Technical implementation:</h4>
             <ul class="text-sm text-slate-700 space-y-1">
                 <li>• Modular Haskell architecture with 10+ algorithms</li>
                 <li>• Declarative interface for reproducible workflows</li>
@@ -47,17 +137,20 @@
         <span class="tag">Scientific Computing</span>
         <span class="tag">Nix</span>
     </div>
+
+    <div class="project-links">
+        <a href="https://github.com/guaraqe/lineageflow" class="text-blue-700 hover:text-blue-900">GitHub →</a>
+        <a href="https://hal.archives-ouvertes.fr/tel-01689773" class="text-blue-700 hover:text-blue-900">Thesis →</a>
+    </div>
 </div>
 
-<div class="bg-white border border-slate-300 rounded-lg p-5 mb-6">
-    <h3 class="text-xl font-bold mb-3">
-        <a href="https://github.com/guaraqe/csdc" class="text-slate-800 hover:text-slate-600">CSDC DAO</a>
-    </h3>
+<div class="project">
+    <h3 class="text-xl font-bold mb-3 text-slate-900">CSDC DAO</h3>
     <p class="text-slate-700 mb-4">Full-stack platform for decentralized research collaboration. Experiment in academic self-organization with democratic governance.</p>
 
     <div class="grid md:grid-cols-2 gap-6 mb-4">
         <div>
-            <h4 class="font-semibold text-slate-800 mb-2">Platform Features:</h4>
+            <h4 class="font-semibold text-slate-800 mb-2">Platform features:</h4>
             <ul class="text-sm text-slate-700 space-y-1">
                 <li>• Dual voting systems (Simple Majority, Majority Consensus)</li>
                 <li>• User profiles, forums, file sharing</li>
@@ -66,7 +159,7 @@
             </ul>
         </div>
         <div>
-            <h4 class="font-semibold text-slate-800 mb-2">Technical Stack:</h4>
+            <h4 class="font-semibold text-slate-800 mb-2">Technical stack:</h4>
             <ul class="text-sm text-slate-700 space-y-1">
                 <li>• Haskell/Servant backend, Elm frontend</li>
                 <li>• PostgreSQL with JWT authentication</li>
@@ -83,57 +176,64 @@
         <span class="tag">IPFS</span>
         <span class="tag">Docker</span>
     </div>
+
+    <div class="project-links">
+        <a href="https://github.com/guaraqe/csdc" class="text-blue-700 hover:text-blue-900">GitHub →</a>
+    </div>
 </div>
 
-<div class="bg-white border border-slate-300 rounded-lg p-5 mb-6">
-    <h3 class="text-lg font-bold mb-2">
-        <a href="https://github.com/guaraqe/gnuhealth-nix-docker" class="text-slate-800 hover:text-slate-600">GNUHealth Nix Docker</a>
-    </h3>
+<div class="project">
+    <h3 class="text-lg font-bold mb-2 text-slate-900">GNUHealth Nix Docker</h3>
     <p class="text-slate-700 mb-3">Docker deployment for GNUHealth medical information systems. Simplifies deployment using Nix reproducibility and containerization.</p>
     <div class="flex flex-wrap gap-2 mt-3">
         <span class="tag">Docker</span>
         <span class="tag">Nix</span>
         <span class="tag">Healthcare</span>
     </div>
+    <div class="project-links">
+        <a href="https://github.com/guaraqe/gnuhealth-nix-docker" class="text-blue-700 hover:text-blue-900">GitHub →</a>
+    </div>
 </div>
 
-<h2 class="text-2xl font-semibold mb-4 mt-8 text-slate-800">Haskell Libraries</h2>
+<h2 class="text-2xl font-semibold mb-4 mt-8 text-slate-900">Haskell Libraries</h2>
 
-<div class="space-y-4 mb-6">
-    <div class="bg-white border border-slate-300 rounded-lg p-4">
-        <h3 class="text-lg font-bold mb-2">
-            <a href="https://github.com/guaraqe/constraint-classes" class="text-slate-800 hover:text-slate-600">constraint-classes</a>
-        </h3>
+<div class="mb-6">
+    <div class="project">
+        <h3 class="text-lg font-bold mb-2 text-slate-900">constraint-classes</h3>
         <p class="text-slate-700 mb-3">Library addressing type class limitations using ConstraintKinds. Enables flexible abstractions while preserving type inference.</p>
         <span class="tag">Haskell</span>
+        <div class="project-links">
+            <a href="https://github.com/guaraqe/constraint-classes" class="text-blue-700 hover:text-blue-900">GitHub →</a>
+        </div>
     </div>
 
-    <div class="bg-white border border-slate-300 rounded-lg p-4">
-        <h3 class="text-lg font-bold mb-2">
-            <a href="https://github.com/guaraqe/reflex-elm" class="text-slate-800 hover:text-slate-600">reflex-elm</a>
-        </h3>
+    <div class="project">
+        <h3 class="text-lg font-bold mb-2 text-slate-900">reflex-elm</h3>
         <p class="text-slate-700 mb-3">Elm-inspired development model for Haskell web applications. Combines Reflex reactive programming with Elm architecture.</p>
         <div class="flex flex-wrap gap-2 mt-2">
             <span class="tag">Haskell</span>
             <span class="tag">Web</span>
         </div>
+        <div class="project-links">
+            <a href="https://github.com/guaraqe/reflex-elm" class="text-blue-700 hover:text-blue-900">GitHub →</a>
+        </div>
     </div>
 
-    <div class="bg-white border border-slate-300 rounded-lg p-4">
-        <h3 class="text-lg font-bold mb-2">
-            <a href="https://github.com/guaraqe/LATS" class="text-slate-800 hover:text-slate-600">LATS</a>
-        </h3>
+    <div class="project">
+        <h3 class="text-lg font-bold mb-2 text-slate-900">LATS</h3>
         <p class="text-slate-700 mb-3">Linear Algebra in Typed Space. Experiment replacing typed dimensions with typed linear spaces.</p>
         <span class="tag">Haskell</span>
+        <div class="project-links">
+            <a href="https://github.com/guaraqe/LATS" class="text-blue-700 hover:text-blue-900">GitHub →</a>
+        </div>
     </div>
 </div>
 
-<div class="bg-slate-50 border border-slate-300 p-5 rounded-lg mt-8">
-    <h2 class="text-xl font-semibold mb-3 text-slate-800">Areas of Work</h2>
+<div class="mt-8 pt-6 border-t border-slate-200">
+    <h2 class="text-xl font-semibold mb-3 mt-0 text-slate-900 no-rule">Also on this site</h2>
     <div class="grid md:grid-cols-2 gap-3 text-sm text-slate-700">
-        <div><strong>Research:</strong> Computational embryology analysis tools</div>
-        <div><strong>Platform Engineering:</strong> Urbit hosting infrastructure</div>
-        <div><strong>Education:</strong> Medical and engineering curriculum</div>
-        <div><strong>Open Source:</strong> Functional programming libraries</div>
+        <div><strong><a href="/micro-macro/" class="text-blue-700 hover:text-blue-900">Micro-Macro</a></strong> — interactive Markov process explorer</div>
+        <div><strong><a href="/courses" class="text-blue-700 hover:text-blue-900">Courses</a></strong> — statistics, bioinformatics, and physics, with browser-based exams</div>
+        <div><strong><a href="/posts" class="text-blue-700 hover:text-blue-900">Writing</a></strong> — performance, type systems, and tooling</div>
     </div>
 </div>

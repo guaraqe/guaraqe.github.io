@@ -8,6 +8,7 @@
   --color-text: #1e293b;        /* slate-800 */
   --color-text-muted: #64748b;  /* slate-500 */
   --color-border: #cbd5e1;      /* slate-300 */
+  --color-heading: #0f172a;     /* slate-900 */
 }
 
 /* Modern typography and spacing */
@@ -24,15 +25,129 @@
 .prose h1 {
   margin-bottom: 2rem;
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-heading);
 }
 
 .prose h2 {
-  color: var(--color-primary);
+  color: var(--color-heading);
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .prose h3 {
+  color: var(--color-heading);
+  font-weight: 600;
+}
+
+/* Section headings need to survive a skim: give them weight, contrast, and a
+   rule that separates them from the block above. */
+.prose h2:not(.no-rule) {
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* A heading that sits inside a layout block (the home page masthead) should not
+   inherit the standalone-title spacing. */
+.prose h1.page-title {
+  margin-bottom: 0.25rem;
+}
+
+/* The default prose paragraph margin is meant for body copy; inside the
+   availability box it stacks on the box padding and leaves a lopsided gap. */
+.prose .availability p {
+  margin-bottom: 0.35rem;
+}
+
+.prose .availability p:last-child {
+  margin-bottom: 0;
+}
+
+/* Topic labels on listings. Dates alone made a thin recent stretch the story;
+   topics show the range instead. */
+.entry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+}
+
+.entry-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.25rem;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+/* Listings of posts, notes and courses. Boxes made every entry look like a
+   clickable card while only the title was a link, and the card padding left
+   dead space under short summaries. A plain list scans faster and the link is
+   unambiguous. */
+.entry-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.entry-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.prose .entry-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.prose .entry-title a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.entry-date {
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.prose .entry-summary {
+  margin: 0.2rem 0 0 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #475569;
+}
+
+@media (max-width: 640px) {
+  .entry-head {
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+}
+
+/* Links used as headings — card titles, post titles — must keep the heading
+   colour rather than fade to the muted link grey. */
+.prose h1 a:not(.btn),
+.prose h2 a:not(.btn),
+.prose h3 a:not(.btn) {
+  color: inherit;
+}
+
+.prose h1 a:not(.btn):hover,
+.prose h2 a:not(.btn):hover,
+.prose h3 a:not(.btn):hover {
   color: var(--color-primary);
+}
+
+/* The prose measure is right for articles, but a CV and the project cards are
+   dense, structured content that reads badly at 65ch. */
+body[data-page="CV"] article.prose,
+body[data-page="Projects"] article.prose {
+  max-width: 52rem;
 }
 
 .prose blockquote {
@@ -202,6 +317,13 @@ div.book-navigation-next a::after {
   .prose a:not(.btn):hover {
     color: var(--color-primary) !important;
   }
+
+  /* The !important above would otherwise flatten heading links back to grey. */
+  .prose h1 a:not(.btn),
+  .prose h2 a:not(.btn),
+  .prose h3 a:not(.btn) {
+    color: inherit !important;
+  }
 }
 
 /* Google Translate styling */
@@ -279,11 +401,18 @@ div.book-navigation-next a::after {
   color: #5b21b6;
 }
 
+/* The system monospace stack, so inline code renders in SF Mono on macOS and
+   Consolas on Windows rather than falling back to the browser's default. This
+   is what visitors actually saw while Tailwind was loaded from the CDN: the
+   Play build injects its reset after the author sheets, so its `code` rule won
+   over this one. Spelling it out keeps that rendering now that the local build
+   loads first. */
 code {
-  font-family: "DejaVu Sans Mono", monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
   background: #f1f5f9;
   border-radius: 0.375rem;
-  padding: 0.125rem 0.25rem;
+  padding: 0.125rem 0.5rem;
 }
 
 pre code {
@@ -317,6 +446,17 @@ pre {
   overflow-x: auto;
   background: #f1f5f9;
   border-radius: 0.375rem;
+}
+
+/* CV entries were bordered cards. Nineteen of them stacked down the page read
+   as heavy, and the hover border suggested a link that was not there. A hairline
+   between entries does the same separating work. The rule is scoped to
+   .cv-list because the skills block is a two-column grid, where a border on
+   every item but the first lands unevenly across the rows. */
+.cv-list > .cv-card + .cv-card {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e2e8f0;
 }
 
 @media print {

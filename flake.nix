@@ -45,6 +45,12 @@
             packages = [
               ghc
               haskellPackages.cabal-install
+              # The builder shells out to this to compile site/css/tailwind.css.
+              # Pinned to v3 to match the config and the typography plugin.
+              pkgs.tailwindcss_3
+              # Shake's forward mode traces external commands through fsatrace
+              # to discover their dependencies.
+              pkgs.fsatrace
             ];
           };
         });

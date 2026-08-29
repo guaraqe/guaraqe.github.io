@@ -1,0 +1,156 @@
+---
+title: 2.2.5 Loading and comparing data
+description: 2.2.5 Loading and comparing data - Course material by Juan Raphael Diaz Simões
+language: en
+url: /courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/14-control-02/index.html
+page: Courses
+pageLink: /courses
+latex: true
+---
+<div class="md:flex justify-center bg-base-100">
+<article class="prose max-w-prose mb-5">
+  <div class="book-navigation -mt-4">
+
+    <div class="book-navigation-parent drawer">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content">
+        <label for="my-drawer" class="btn btn-outline btn-sm gap-2 cursor-pointer hover:btn-primary transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+          </svg>
+          <span class="font-medium">Index</span>
+        </label>
+      </div>
+      <div class="drawer-side">
+        <label for="my-drawer" class="drawer-overlay"></label>
+           <div class="menu menu-vertical p-4 bg-base-200">
+             <h1 class="text-xl mb-5 w-100" style="margin-left: 0.75em;">
+                  Introduction to Bioinformatics
+
+             </h1>
+             <div style="margin-left:-1.5em;">
+               <ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/index.html">1 Lectures
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/03-lecture-01/index.html">1.1 Bioinformatics Basics
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/07-lecture-02/index.html">1.2 Comparing Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/10-lecture-03/index.html">1.3 Comparing Gene Sequences 2
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/13-lecture-04/index.html">1.4 Gene Finding
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/16-lecture-05/index.html">1.5 Locating genes and its functions: techniques, problems and difficulties
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/index.html">2 Practical Lessons
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/index.html">2.1 Basic R and generic data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/01-seminar-01/index.html">2.1.1 Basic R
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/02-seminar-02/index.html">2.1.2 Files
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/04-seminar-03/index.html">2.1.3 Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/05-seminar-04/index.html">2.1.4 Comparing Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/06-control-01/index.html">2.1.5 Control: Loading and processing data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/20-seminar-12/index.html">2.1.6 Programming Exercises
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/index.html">2.2 Basic analysis of genetic data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/08-seminar-05/index.html">2.2.1 GC Content
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/09-seminar-06/index.html">2.2.2 Subseries GC Content
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/10-seminar-06/index.html">2.2.3 Exercise: Comparing sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/11-seminar-07/index.html">2.2.4 Creating dot plots
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/14-control-02/index.html">2.2.5 Loading and comparing data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/index.html">2.3 Codons and gene finding
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/15-seminar-09/index.html">2.3.1 Translating bases to codons
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/17-seminar-10/index.html">2.3.2 Codon frequencies and finding genes
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/18-control-03/index.html">2.3.3 Theoretical Control
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/19-seminar-11/index.html">2.3.4 Aminoacid sequences and base sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/index.html">2.4 Summary and exam
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/21-seminar-13/index.html">2.4.1 Theoretical Questions
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/22-exam-01/index.html">2.4.2 Final exam
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li></ul></li></ul>
+             </div>
+           </div>
+      </div>
+    </div>
+
+    <div class="book-navigation-parent">
+      <a href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/index.html">↑ 2.2 Basic analysis of genetic data
+</a>
+    </div>
+
+    <div class="book-navigation-section">
+
+       <div class="book-navigation-previous">
+         <a href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/11-seminar-07/index.html">2.2.4 Creating dot plots
+</a>
+       </div>
+
+       <div class="book-navigation-next">
+       </div>
+    </div>
+
+  </div>
+
+    <h1 class="text-3xl mb-5">
+    2.2.5 Loading and comparing data
+
+</h1>
+
+<p class="mb-3">In this control, you are going to do, by yourselves, repeat the analyses we did in the last classes.</p>
+<p class="mb-3">The information you need to do the exam is in the text, <strong>read it attentively</strong>. You can look at the pages of the previous lessons if you want.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="getting-your-sequence"><span class="header-section-number">1</span> Getting your sequence</h1>
+<p class="mb-3">Take your <strong>first name</strong> and <strong>last name</strong> first letters and look the list below. Choose the two sequences corresponding to these two letters.</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li><code>a</code> : <code>gggatggttt</code></li>
+<li><code>b</code> : <code>tcaacctgtg</code></li>
+<li><code>c</code> : <code>caggaattgc</code></li>
+<li><code>d</code> : <code>tagtccactg</code></li>
+<li><code>e</code> : <code>agcgttcact</code></li>
+<li><code>f</code> : <code>ataatcccca</code></li>
+<li><code>g</code> : <code>tttcccttag</code></li>
+<li><code>h</code> : <code>aggcccagat</code></li>
+<li><code>i</code> : <code>tgaatttaga</code></li>
+<li><code>j</code> : <code>tgggggacaa</code></li>
+<li><code>k</code> : <code>ccgtgatctg</code></li>
+<li><code>l</code> : <code>aaggggcgca</code></li>
+<li><code>m</code> : <code>cgtaatagcc</code></li>
+<li><code>n</code> : <code>aaggctgact</code></li>
+<li><code>o</code> : <code>cctgctgtac</code></li>
+<li><code>p</code> : <code>gatctaatcg</code></li>
+<li><code>q</code> : <code>ataactgaac</code></li>
+<li><code>r</code> : <code>tccacaaggc</code></li>
+<li><code>s</code> : <code>aacaggagtt</code></li>
+<li><code>t</code> : <code>ggaatacact</code></li>
+<li><code>u</code> : <code>cgagcattga</code></li>
+<li><code>v</code> : <code>agatttcatt</code></li>
+<li><code>w</code> : <code>agaatgctgg</code></li>
+<li><code>x</code> : <code>caagctgtga</code></li>
+<li><code>y</code> : <code>ggttgcgctc</code></li>
+<li><code>z</code> : <code>attacagctg</code></li>
+</ul>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="using-paper"><span class="header-section-number">2</span> Using paper</h1>
+<p class="mb-3">Ask the teacher for two DNA strands. You will create the dot plot such as the one below, but <strong>using your own two sequences</strong>.</p>
+<p class="mb-3"><img class="mx-auto" src="data/6263efd5f082b523c955ac3348e4da13.png" /></p>
+<h1 class="text-2xl mt-5 mb-5" data-number="3" id="using-the-computer"><span class="header-section-number">3</span> Using the computer</h1>
+<h2 class="text-xl mt-5 mb-5" data-number="3.1" id="loading-the-library"><span class="header-section-number">3.1</span> Loading the library</h2>
+<p class="mb-3">In order to use the <code>seqinr</code> library to load and process gene sequence data, run the following command in the <em>console</em>:</p>
+<pre class="sourcecode"><code>library(seqinr)</code></pre>
+<p class="mb-3"><em>How to know it worked</em>: RStudio will accept your command, and not produce any errors. The line after the command will be just empty.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="3.2" id="creating-a-dot-plot"><span class="header-section-number">3.2</span> Creating a dot plot</h2>
+<p class="mb-3">Coming back to the DNA strands you compared on paper. Save <strong>your personal DNA sequences</strong> in R:</p>
+<pre class="sourcecode"><code>dna1 &lt;- s2c(&quot;actcgctgc&quot;)
+dna2 &lt;- s2c(&quot;cgctgcact&quot;)</code></pre>
+<p class="mb-3">and use <code>dotPlot</code> to build the dot plot. For example, <code>dotPlot(dna1,dna2</code>.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="4" id="sending-the-results"><span class="header-section-number">4</span> Sending the results</h1>
+<p class="mb-3">Take a photo of the computer screen and of the paper you wrote and send me.</p>
+
+  <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
+
+
+    <div class="google-translate-container">
+      <div id="google_translate_element"></div>
+    </div>
+
+</article>
+  <script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      autoDisplay: false,
+      includedLanguages: 'en,ru,uz',
+    }, 'google_translate_element');
+  }
+  </script>
+
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</div>

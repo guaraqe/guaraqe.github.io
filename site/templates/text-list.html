@@ -4,17 +4,15 @@
 
         <p class="text-sm text-slate-600 mb-6">Essays, stories, fragments, and other writing in Portuguese and English.</p>
 
-        <div class="space-y-3">
+        <div class="entry-list">
             {{#posts}}
-            <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
-                <div class="flex items-start justify-between mb-1">
-                    <h3 class="text-base font-semibold flex-1 mr-4">
-                        <a href="{{url}}" class="text-slate-800 hover:text-slate-600">{{title}}</a>
-                    </h3>
-                    <span class="text-sm text-slate-500 whitespace-nowrap">{{date}}</span>
+            <article class="entry">
+                <div class="entry-head">
+                    <h3 class="entry-title"><a href="{{url}}">{{title}}</a></h3>
+                    <span class="entry-date">{{date}}</span>
                 </div>
                 {{#summary}}
-                <p class="text-sm text-slate-600">{{summary}}</p>
+                <p class="entry-summary">{{summary}}</p>
                 {{/summary}}
             </article>
             {{/posts}}

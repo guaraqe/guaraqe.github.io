@@ -13,16 +13,25 @@
     <meta property="og:type" content="{{#isPost}}article{{/isPost}}{{^isPost}}website{{/isPost}}">
     <meta property="og:title" content="{{title}}">
     <meta property="og:description" content="{{description}}">
-    <meta property="og:url" content="https://guaraqe.github.io{{currentUrl}}">
+    <meta property="og:url" content="{{baseUrl}}{{currentUrl}}">
     <meta property="og:site_name" content="Juan Raphael Diaz Simões">
-    
+    <meta property="og:image" content="{{ogImage}}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Juan Raphael Diaz Simões — Senior Backend / Platform Engineer">
+
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{title}}">
     <meta name="twitter:description" content="{{description}}">
-    
+    <meta name="twitter:image" content="{{ogImage}}">
+
+    <!-- Icons -->
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/images/juan.png">
+
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://guaraqe.github.io{{currentUrl}}">
+    <link rel="canonical" href="{{baseUrl}}{{currentUrl}}">
     
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -31,12 +40,12 @@
       "@type": "{{#isPost}}BlogPosting{{/isPost}}{{^isPost}}WebSite{{/isPost}}",
       "name": "{{title}}",
       "description": "{{description}}",
-      "url": "https://guaraqe.github.io{{currentUrl}}",
+      "url": "{{baseUrl}}{{currentUrl}}",
       {{#isPost}}
       "author": {
         "@type": "Person",
         "name": "Juan Raphael Diaz Simões",
-        "url": "https://guaraqe.github.io"
+        "url": "{{baseUrl}}"
       },
       "publisher": {
         "@type": "Person",
@@ -49,16 +58,18 @@
         "name": "Juan Raphael Diaz Simões",
         "jobTitle": "Software Engineer",
         "knowsAbout": ["Haskell", "Functional Programming", "Bioinformatics", "Performance Optimization"],
-        "url": "https://guaraqe.github.io"
+        "url": "{{baseUrl}}"
       },
       {{/isPost}}
       "inLanguage": "{{language}}"
     }
     </script>
+    <!-- Compiled locally from tailwind/input.css. First, so that the reset and
+         the utilities are what the two sheets below override — which is where
+         the CDN build it replaced injected itself. -->
+    <link rel="stylesheet" href="/css/tailwind.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/syntax.css">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
 
     {{#latex}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
@@ -84,7 +95,7 @@
     {{/latex}}
 
 </head>
-<body>
+<body data-page="{{page}}">
     {{>site/templates/header.html}}
     {{{content}}}
 </body>

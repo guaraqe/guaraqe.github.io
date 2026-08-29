@@ -1,115 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://guaraqe.github.io/</loc>
+    <loc>https://guaraqe.com/</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/posts</loc>
+    <loc>https://guaraqe.com/posts</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/texts</loc>
+    <loc>https://guaraqe.com/texts</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/cv.html</loc>
+    <loc>https://guaraqe.com/cv.html</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/projects.html</loc>
+    <loc>https://guaraqe.com/projects.html</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/courses</loc>
+    <loc>https://guaraqe.com/courses</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/posts/2026-05-24-why-cartesian-categories.html</loc>
+    <loc>https://guaraqe.com/posts/2026-05-24-why-cartesian-categories.html</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/posts/2023-01-02-cpu-usage.html</loc>
+    <loc>https://guaraqe.com/notes/generalized-entropies/</loc>
+    <lastmod>2025-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guaraqe.com/posts/2023-01-02-cpu-usage.html</loc>
     <lastmod>2023-01-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/posts/2021-04-15-arrows-through-a-different-lens.html</loc>
+    <loc>https://guaraqe.com/posts/2021-04-15-arrows-through-a-different-lens.html</loc>
     <lastmod>2021-04-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/posts/2020-03-05-peirce.html</loc>
+    <loc>https://guaraqe.com/posts/2020-03-05-peirce.html</loc>
     <lastmod>2020-03-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/posts/2020-01-31-performance-bottlenecks.html</loc>
+    <loc>https://guaraqe.com/posts/2020-01-31-performance-bottlenecks.html</loc>
     <lastmod>2020-01-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/posts/2019-02-28-jupyterwith.html</loc>
+    <loc>https://guaraqe.com/posts/2019-02-28-jupyterwith.html</loc>
     <lastmod>2019-02-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/posts/2019-02-08-article.html</loc>
+    <loc>https://guaraqe.com/posts/2019-02-08-article.html</loc>
     <lastmod>2019-02-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/posts/2019-01-23-ihaskell.html</loc>
+    <loc>https://guaraqe.com/posts/2019-01-23-ihaskell.html</loc>
     <lastmod>2019-01-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/posts/2018-04-17-nix-haskell-clusters.html</loc>
+    <loc>https://guaraqe.com/posts/2018-04-17-nix-haskell-clusters.html</loc>
     <lastmod>2018-04-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/posts/2017-11-02-type-classes-incidental-non-examples.html</loc>
+    <loc>https://guaraqe.com/posts/2017-11-02-type-classes-incidental-non-examples.html</loc>
     <lastmod>2017-11-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/posts/2017-11-01-type-classes-laws.html</loc>
+    <loc>https://guaraqe.com/posts/2017-11-01-type-classes-laws.html</loc>
     <lastmod>2017-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/posts/2017-02-24-article.html</loc>
+    <loc>https://guaraqe.com/posts/2017-02-24-article.html</loc>
     <lastmod>2017-02-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guaraqe.github.io/texts/2026-06-11-padre-levedo.html</loc>
+    <loc>https://guaraqe.com/texts/2026-06-11-padre-levedo.html</loc>
     <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

@@ -13,16 +13,25 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Posts">
     <meta property="og:description" content="Technical writing on programming languages, software engineering, bioinformatics, and performance optimization by Juan Raphael Diaz Simões">
-    <meta property="og:url" content="https://guaraqe.github.io/posts">
+    <meta property="og:url" content="https://guaraqe.com/posts">
     <meta property="og:site_name" content="Juan Raphael Diaz Simões">
-    
+    <meta property="og:image" content="https://guaraqe.com/images/og-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Juan Raphael Diaz Simões — Senior Backend / Platform Engineer">
+
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Posts">
     <meta name="twitter:description" content="Technical writing on programming languages, software engineering, bioinformatics, and performance optimization by Juan Raphael Diaz Simões">
-    
+    <meta name="twitter:image" content="https://guaraqe.com/images/og-card.png">
+
+    <!-- Icons -->
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/images/juan.png">
+
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://guaraqe.github.io/posts">
+    <link rel="canonical" href="https://guaraqe.com/posts">
     
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -31,25 +40,27 @@
       "@type": "WebSite",
       "name": "Posts",
       "description": "Technical writing on programming languages, software engineering, bioinformatics, and performance optimization by Juan Raphael Diaz Simões",
-      "url": "https://guaraqe.github.io/posts",
+      "url": "https://guaraqe.com/posts",
       "author": {
         "@type": "Person",
         "name": "Juan Raphael Diaz Simões",
         "jobTitle": "Software Engineer",
         "knowsAbout": ["Haskell", "Functional Programming", "Bioinformatics", "Performance Optimization"],
-        "url": "https://guaraqe.github.io"
+        "url": "https://guaraqe.com"
       },
       "inLanguage": "en"
     }
     </script>
+    <!-- Compiled locally from tailwind/input.css. First, so that the reset and
+         the utilities are what the two sheets below override — which is where
+         the CDN build it replaced injected itself. -->
+    <link rel="stylesheet" href="/css/tailwind.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/syntax.css">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
 
 
 </head>
-<body>
+<body data-page="Posts">
     <header>
         <div class="navbar no-print bg-base-100 px-4 py-3">
           <div class="navbar-start">
@@ -62,18 +73,23 @@
           <div class="navbar-end">
             <div class="hidden sm:block">
               <ul class="menu menu-horizontal text-sm space-x-1">
-                <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Writing</a></li>
-                <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Teaching</a></li>
                 <li><a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">CV</a></li>
                 <li><a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Projects</a></li>
+                <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Writing</a></li>
+                <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Teaching</a></li>
+                <li><a href="/texts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Texts</a></li>
               </ul>
             </div>
             <div class="block sm:hidden">
-              <div class="grid grid-cols-2 gap-1 text-xs">
-                <a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Writing</a>
+              <!-- Five items no longer divide into the three-column grid this used
+                   to be, which left a ragged half-empty second row. Wrapping from
+                   the right keeps the rows packed whatever the count. -->
+              <div class="flex flex-wrap justify-end gap-x-1 gap-y-0.5 text-xs">
                 <a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">CV</a>
-                <a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Teaching</a>
                 <a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Projects</a>
+                <a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Writing</a>
+                <a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Teaching</a>
+                <a href="/texts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Texts</a>
               </div>
             </div>
           </div>
@@ -81,156 +97,152 @@
     </header>
     <div class="md:flex justify-center bg-base-100">
     <article class="prose max-w-prose">
-        <h1 class="text-3xl mb-2">Technical Writing</h1>
+        <h1 class="text-3xl mb-2">Technical Articles</h1>
 
-        <p class="text-sm text-slate-600 mb-6">Technical articles on programming languages, development tools, performance optimization, and computational biology.</p>
+        <p class="text-sm text-slate-600 mb-6">On various subjects.</p>
 
-        <div class="space-y-3">
-            <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
-                <div class="flex items-start justify-between mb-1">
-                    <h3 class="text-base font-semibold flex-1 mr-4">
-                        <a href="2026-05-24-why-cartesian-categories.html" class="text-slate-800 hover:text-slate-600">WireCat: visual programming with cartesian categories
-</a>
-                    </h3>
-                    <span class="text-sm text-slate-500 whitespace-nowrap">May 24, 2026</span>
+        <div class="entry-list">
+            <article class="entry">
+                <div class="entry-head">
+                    <h3 class="entry-title"><a href="2026-05-24-why-cartesian-categories.html">WireCat: visual programming with cartesian categories
+</a></h3>
+                    <span class="entry-date">May 24, 2026</span>
                 </div>
-                <p class="text-sm text-slate-600">Introducing WireCat, a GHC plugin for writing typed categorical wiring
+                <p class="entry-summary">Introducing WireCat, a GHC plugin for writing typed categorical wiring
 diagrams with proc notation
 </p>
+                <div class="entry-tags"><span class="entry-tag">Compilers</span><span class="entry-tag">Haskell</span><span class="entry-tag">Category Theory</span></div>
             </article>
-            <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
-                <div class="flex items-start justify-between mb-1">
-                    <h3 class="text-base font-semibold flex-1 mr-4">
-                        <a href="2023-01-02-cpu-usage.html" class="text-slate-800 hover:text-slate-600">Summarizing multicore usage using entropy
-</a>
-                    </h3>
-                    <span class="text-sm text-slate-500 whitespace-nowrap">January  2, 2023</span>
+            <article class="entry">
+                <div class="entry-head">
+                    <h3 class="entry-title"><a href="/notes/generalized-entropies/">Generalized effective numbers and entropies</a></h3>
+                    <span class="entry-date">December 16, 2025</span>
                 </div>
-                <p class="text-sm text-slate-600">Python script using entropy and effective numbers to display multicore
+                <p class="entry-summary">Working notes on generalized effective numbers, Hill numbers, and related entropies.</p>
+                <div class="entry-tags"><span class="entry-tag">Information Theory</span><span class="entry-tag">Mathematics</span></div>
+            </article>
+            <article class="entry">
+                <div class="entry-head">
+                    <h3 class="entry-title"><a href="2023-01-02-cpu-usage.html">Summarizing multicore usage using entropy
+</a></h3>
+                    <span class="entry-date">January  2, 2023</span>
+                </div>
+                <p class="entry-summary">Python script using entropy and effective numbers to display multicore
 CPU usage in status bars
 </p>
+                <div class="entry-tags"><span class="entry-tag">Observability</span><span class="entry-tag">Information Theory</span></div>
             </article>
-            <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
-                <div class="flex items-start justify-between mb-1">
-                    <h3 class="text-base font-semibold flex-1 mr-4">
-                        <a href="2021-04-15-arrows-through-a-different-lens.html" class="text-slate-800 hover:text-slate-600">Arrows, through a different lens
-</a>
-                    </h3>
-                    <span class="text-sm text-slate-500 whitespace-nowrap">April 15, 2021</span>
+            <article class="entry">
+                <div class="entry-head">
+                    <h3 class="entry-title"><a href="2021-04-15-arrows-through-a-different-lens.html">Arrows, through a different lens
+</a></h3>
+                    <span class="entry-date">April 15, 2021</span>
                 </div>
-                <p class="text-sm text-slate-600">Using profunctor optics with Arrow-based workflows for better
+                <p class="entry-summary">Using profunctor optics with Arrow-based workflows for better
 composability
 </p>
+                <div class="entry-tags"><span class="entry-tag">Haskell</span><span class="entry-tag">Type Systems</span><span class="entry-tag">Data Pipelines</span></div>
             </article>
-            <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
-                <div class="flex items-start justify-between mb-1">
-                    <h3 class="text-base font-semibold flex-1 mr-4">
-                        <a href="2020-03-05-peirce.html" class="text-slate-800 hover:text-slate-600">Code is engineering, types are science
-</a>
-                    </h3>
-                    <span class="text-sm text-slate-500 whitespace-nowrap">March  5, 2020</span>
+            <article class="entry">
+                <div class="entry-head">
+                    <h3 class="entry-title"><a href="2020-03-05-peirce.html">Code is engineering, types are science
+</a></h3>
+                    <span class="entry-date">March  5, 2020</span>
                 </div>
-                <p class="text-sm text-slate-600">Exploring deduction, induction, and abduction in software development
+                <p class="entry-summary">Exploring deduction, induction, and abduction in software development
 through Peirce’s theory
 </p>
+                <div class="entry-tags"><span class="entry-tag">Software Engineering</span><span class="entry-tag">Philosophy</span></div>
             </article>
-            <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
-                <div class="flex items-start justify-between mb-1">
-                    <h3 class="text-base font-semibold flex-1 mr-4">
-                        <a href="2020-01-31-performance-bottlenecks.html" class="text-slate-800 hover:text-slate-600">Locating performance bottlenecks in large Haskell codebases
-</a>
-                    </h3>
-                    <span class="text-sm text-slate-500 whitespace-nowrap">January 31, 2020</span>
+            <article class="entry">
+                <div class="entry-head">
+                    <h3 class="entry-title"><a href="2020-01-31-performance-bottlenecks.html">Locating performance bottlenecks in large Haskell codebases
+</a></h3>
+                    <span class="entry-date">January 31, 2020</span>
                 </div>
-                <p class="text-sm text-slate-600">Manual cost center profiling technique achieving 100x speedups in
+                <p class="entry-summary">Manual cost center profiling technique achieving 100x speedups in
 production systems
 </p>
+                <div class="entry-tags"><span class="entry-tag">Performance</span><span class="entry-tag">Haskell</span><span class="entry-tag">Profiling</span></div>
             </article>
-            <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
-                <div class="flex items-start justify-between mb-1">
-                    <h3 class="text-base font-semibold flex-1 mr-4">
-                        <a href="2019-02-28-jupyterwith.html" class="text-slate-800 hover:text-slate-600">JupyterWith: declarative, reproducible notebook environments
-</a>
-                    </h3>
-                    <span class="text-sm text-slate-500 whitespace-nowrap">February 28, 2019</span>
+            <article class="entry">
+                <div class="entry-head">
+                    <h3 class="entry-title"><a href="2019-02-28-jupyterwith.html">JupyterWith: declarative, reproducible notebook environments
+</a></h3>
+                    <span class="entry-date">February 28, 2019</span>
                 </div>
-                <p class="text-sm text-slate-600">Nix-based solution for reproducible Jupyter environments with multiple
+                <p class="entry-summary">Nix-based solution for reproducible Jupyter environments with multiple
 language kernels
 </p>
+                <div class="entry-tags"><span class="entry-tag">Nix</span><span class="entry-tag">Tooling</span><span class="entry-tag">Reproducibility</span></div>
             </article>
-            <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
-                <div class="flex items-start justify-between mb-1">
-                    <h3 class="text-base font-semibold flex-1 mr-4">
-                        <a href="2019-02-08-article.html" class="text-slate-800 hover:text-slate-600">Brownian-like deviation of neighboring cells in the early embryogenesis
+            <article class="entry">
+                <div class="entry-head">
+                    <h3 class="entry-title"><a href="2019-02-08-article.html">Brownian-like deviation of neighboring cells in the early embryogenesis
 of the zebrafish
-</a>
-                    </h3>
-                    <span class="text-sm text-slate-500 whitespace-nowrap">February  8, 2019</span>
+</a></h3>
+                    <span class="entry-date">February  8, 2019</span>
                 </div>
-                <p class="text-sm text-slate-600">Research paper on cell movement patterns during zebrafish embryonic
+                <p class="entry-summary">Research paper on cell movement patterns during zebrafish embryonic
 development
 </p>
+                <div class="entry-tags"><span class="entry-tag">Computational Biology</span><span class="entry-tag">Research</span></div>
             </article>
-            <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
-                <div class="flex items-start justify-between mb-1">
-                    <h3 class="text-base font-semibold flex-1 mr-4">
-                        <a href="2019-01-23-ihaskell.html" class="text-slate-800 hover:text-slate-600">Towards interactive data science in Haskell: Haskell in JupyterLab
-</a>
-                    </h3>
-                    <span class="text-sm text-slate-500 whitespace-nowrap">January 23, 2019</span>
+            <article class="entry">
+                <div class="entry-head">
+                    <h3 class="entry-title"><a href="2019-01-23-ihaskell.html">Towards interactive data science in Haskell: Haskell in JupyterLab
+</a></h3>
+                    <span class="entry-date">January 23, 2019</span>
                 </div>
-                <p class="text-sm text-slate-600">Setting up IHaskell kernel in JupyterLab for interactive Haskell data
+                <p class="entry-summary">Setting up IHaskell kernel in JupyterLab for interactive Haskell data
 analysis
 </p>
+                <div class="entry-tags"><span class="entry-tag">Haskell</span><span class="entry-tag">Tooling</span><span class="entry-tag">Data Science</span></div>
             </article>
-            <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
-                <div class="flex items-start justify-between mb-1">
-                    <h3 class="text-base font-semibold flex-1 mr-4">
-                        <a href="2018-04-17-nix-haskell-clusters.html" class="text-slate-800 hover:text-slate-600">Running Haskell applications in clusters using Nix
-</a>
-                    </h3>
-                    <span class="text-sm text-slate-500 whitespace-nowrap">April 17, 2018</span>
+            <article class="entry">
+                <div class="entry-head">
+                    <h3 class="entry-title"><a href="2018-04-17-nix-haskell-clusters.html">Running Haskell applications in clusters using Nix
+</a></h3>
+                    <span class="entry-date">April 17, 2018</span>
                 </div>
-                <p class="text-sm text-slate-600">Deploying Haskell applications on HPC clusters using Nix and PRoot
+                <p class="entry-summary">Deploying Haskell applications on HPC clusters using Nix and PRoot
 without root access
 </p>
+                <div class="entry-tags"><span class="entry-tag">Nix</span><span class="entry-tag">Infrastructure</span><span class="entry-tag">Haskell</span></div>
             </article>
-            <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
-                <div class="flex items-start justify-between mb-1">
-                    <h3 class="text-base font-semibold flex-1 mr-4">
-                        <a href="2017-11-02-type-classes-incidental-non-examples.html" class="text-slate-800 hover:text-slate-600">Haskell type classes: incidental non-examples
-</a>
-                    </h3>
-                    <span class="text-sm text-slate-500 whitespace-nowrap">November  2, 2017</span>
+            <article class="entry">
+                <div class="entry-head">
+                    <h3 class="entry-title"><a href="2017-11-02-type-classes-incidental-non-examples.html">Haskell type classes: incidental non-examples
+</a></h3>
+                    <span class="entry-date">November  2, 2017</span>
                 </div>
-                <p class="text-sm text-slate-600">Why some types like Set and Map don’t fit standard type classes and
+                <p class="entry-summary">Why some types like Set and Map don’t fit standard type classes and
 possible solutions
 </p>
+                <div class="entry-tags"><span class="entry-tag">Haskell</span><span class="entry-tag">Type Systems</span></div>
             </article>
-            <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
-                <div class="flex items-start justify-between mb-1">
-                    <h3 class="text-base font-semibold flex-1 mr-4">
-                        <a href="2017-11-01-type-classes-laws.html" class="text-slate-800 hover:text-slate-600">Haskell type classes: a compilation of laws
-</a>
-                    </h3>
-                    <span class="text-sm text-slate-500 whitespace-nowrap">November  1, 2017</span>
+            <article class="entry">
+                <div class="entry-head">
+                    <h3 class="entry-title"><a href="2017-11-01-type-classes-laws.html">Haskell type classes: a compilation of laws
+</a></h3>
+                    <span class="entry-date">November  1, 2017</span>
                 </div>
-                <p class="text-sm text-slate-600">Reference compilation of mathematical laws for Haskell’s core type
+                <p class="entry-summary">Reference compilation of mathematical laws for Haskell’s core type
 classes
 </p>
+                <div class="entry-tags"><span class="entry-tag">Haskell</span><span class="entry-tag">Type Systems</span></div>
             </article>
-            <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
-                <div class="flex items-start justify-between mb-1">
-                    <h3 class="text-base font-semibold flex-1 mr-4">
-                        <a href="2017-02-24-article.html" class="text-slate-800 hover:text-slate-600">Cell trajectory clustering: towards the automated identification of
+            <article class="entry">
+                <div class="entry-head">
+                    <h3 class="entry-title"><a href="2017-02-24-article.html">Cell trajectory clustering: towards the automated identification of
 morphogenetic fields in animal embryogenesis
-</a>
-                    </h3>
-                    <span class="text-sm text-slate-500 whitespace-nowrap">February 24, 2017</span>
+</a></h3>
+                    <span class="entry-date">February 24, 2017</span>
                 </div>
-                <p class="text-sm text-slate-600">Algorithm for clustering embryonic cells using quantum
+                <p class="entry-summary">Algorithm for clustering embryonic cells using quantum
 mechanics-inspired path integrals
 </p>
+                <div class="entry-tags"><span class="entry-tag">Haskell</span><span class="entry-tag">Type Systems</span></div>
             </article>
         </div>
 

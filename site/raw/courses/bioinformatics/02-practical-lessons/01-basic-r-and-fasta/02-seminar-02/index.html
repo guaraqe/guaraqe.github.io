@@ -1,0 +1,191 @@
+---
+title: 2.1.2 Files
+description: 2.1.2 Files - Course material by Juan Raphael Diaz Simões
+language: en
+url: /courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/02-seminar-02/index.html
+page: Courses
+pageLink: /courses
+latex: true
+---
+<div class="md:flex justify-center bg-base-100">
+<article class="prose max-w-prose mb-5">
+  <div class="book-navigation -mt-4">
+
+    <div class="book-navigation-parent drawer">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content">
+        <label for="my-drawer" class="btn btn-outline btn-sm gap-2 cursor-pointer hover:btn-primary transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+          </svg>
+          <span class="font-medium">Index</span>
+        </label>
+      </div>
+      <div class="drawer-side">
+        <label for="my-drawer" class="drawer-overlay"></label>
+           <div class="menu menu-vertical p-4 bg-base-200">
+             <h1 class="text-xl mb-5 w-100" style="margin-left: 0.75em;">
+                  Introduction to Bioinformatics
+
+             </h1>
+             <div style="margin-left:-1.5em;">
+               <ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/index.html">1 Lectures
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/03-lecture-01/index.html">1.1 Bioinformatics Basics
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/07-lecture-02/index.html">1.2 Comparing Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/10-lecture-03/index.html">1.3 Comparing Gene Sequences 2
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/13-lecture-04/index.html">1.4 Gene Finding
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/01-lectures/16-lecture-05/index.html">1.5 Locating genes and its functions: techniques, problems and difficulties
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/index.html">2 Practical Lessons
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/index.html">2.1 Basic R and generic data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/01-seminar-01/index.html">2.1.1 Basic R
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/02-seminar-02/index.html">2.1.2 Files
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/04-seminar-03/index.html">2.1.3 Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/05-seminar-04/index.html">2.1.4 Comparing Gene Sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/06-control-01/index.html">2.1.5 Control: Loading and processing data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/20-seminar-12/index.html">2.1.6 Programming Exercises
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/index.html">2.2 Basic analysis of genetic data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/08-seminar-05/index.html">2.2.1 GC Content
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/09-seminar-06/index.html">2.2.2 Subseries GC Content
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/10-seminar-06/index.html">2.2.3 Exercise: Comparing sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/11-seminar-07/index.html">2.2.4 Creating dot plots
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/02-gc-content-dot-plot/14-control-02/index.html">2.2.5 Loading and comparing data
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/index.html">2.3 Codons and gene finding
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/15-seminar-09/index.html">2.3.1 Translating bases to codons
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/17-seminar-10/index.html">2.3.2 Codon frequencies and finding genes
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/18-control-03/index.html">2.3.3 Theoretical Control
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/03-codons-and-gene-finding/19-seminar-11/index.html">2.3.4 Aminoacid sequences and base sequences
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/index.html">2.4 Summary and exam
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/21-seminar-13/index.html">2.4.1 Theoretical Questions
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li><li><a class="link link-hover text-zinc-600" href="/courses/bioinformatics/02-practical-lessons/04-summary-and-exam/22-exam-01/index.html">2.4.2 Final exam
+</a><ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul></li></ul></li></ul></li></ul>
+             </div>
+           </div>
+      </div>
+    </div>
+
+    <div class="book-navigation-parent">
+      <a href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/index.html">↑ 2.1 Basic R and generic data
+</a>
+    </div>
+
+    <div class="book-navigation-section">
+
+       <div class="book-navigation-previous">
+         <a href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/01-seminar-01/index.html">2.1.1 Basic R
+</a>
+       </div>
+
+       <div class="book-navigation-next">
+         <a href="/courses/bioinformatics/02-practical-lessons/01-basic-r-and-fasta/04-seminar-03/index.html">2.1.3 Gene Sequences
+</a>
+       </div>
+    </div>
+
+  </div>
+
+    <h1 class="text-3xl mb-5">
+    2.1.2 Files
+
+</h1>
+
+<p class="mb-3">When we close R, we lose everything we did – the variables and functions we defined are lost. In order to keep our work, we need to use <em>files</em>. There are two types of files we are going to use:</p>
+<ul class="list-disc list-outside mt-1 mb-3 pl-5">
+<li>Source code: where we write the code that needs to be executed.</li>
+<li>Data files: where we write the data we analyze, and the results we obtain.</li>
+</ul>
+<h1 class="text-2xl mt-5 mb-5" data-number="1" id="source-code"><span class="header-section-number">1</span> Source code</h1>
+<p class="mb-3">In RStudio, we manipulate source code in the code panel, located at the upper-left part of the screen.</p>
+<p class="mb-3"><img class="mx-auto" src="data/code.png" /></p>
+<p class="mb-3">In this panel, we can have multiple files open at the same time. For example, in this image we have a file <code>Untitled1</code>. The red color means this file is temporary and we need to save it somewhere. The asterisk <code>*</code> means that there were changes since the last time the file was changed.</p>
+<p class="mb-3">To run the code, you need to select the code you want to execute (such as 7+9 above), and press the <code>Run</code> button. The result can be seen in the console, in the lower-left panel.</p>
+<p class="mb-3">Files can be open from the “File -&gt; Open File…” menu, or by pressing <code>CTRL-O</code>. Files can be saved by pressing the disquette icon, or by pressing <code>CTRL-S</code>.</p>
+<h2 class="text-xl mt-5 mb-5" data-number="1.1" id="working-with-multiple-files"><span class="header-section-number">1.1</span> Working with multiple files</h2>
+<p class="mb-3">When doing long manipulations, it is convenient to decompose your work in multiple files. In order to do so, first create a folder with your name in the desktop. After, on the lower-right panel, go to your folder (in the image below, it is named <code>r-tests</code>), go to the <code>More</code> menu, and click in <code>Set As Working Directory</code>.</p>
+<p class="mb-3"><img class="mx-auto" src="data/folder.png" /></p>
+<p class="mb-3">We are going to create two files. The first one will be named <code>code1.R</code>, and the second one <code>code2.R</code>. In <code>code2.R</code>, define the following function <code>sayHello</code>:</p>
+<pre class="sourcecode"><code>sayHello &lt;- function(name){
+  return(paste(&quot;Hello&quot;, name))
+}</code></pre>
+<p class="mb-3">In <code>code1.R</code>, we can use this function by <em>sourcing</em> <code>code2.R</code>:</p>
+<pre class="sourcecode"><code># Import the file. This defines the function `sayHello`.
+source(&quot;code2.R&quot;)
+
+# Define a variable `x`
+x &lt;- 5
+
+# Depending on the value of `x`, do something different.
+if (x &gt; 10) {
+  sayHello(&quot;Big Number&quot;)
+} else {
+  sayHello(&quot;Small Number&quot;)
+}</code></pre>
+<p class="mb-3">To execute this file, select the block of code, and press <code>Run</code>. Change the value of <code>x</code>, and run it again, to see how the code works.</p>
+<h1 class="text-2xl mt-5 mb-5" data-number="2" id="working-with-data-files"><span class="header-section-number">2</span> Working with data files</h1>
+<p class="mb-3">Open Excel, and create a file as follows, with first name, family name and age. You may use different data.</p>
+<p class="mb-3"><img class="mx-auto" src="data/data.png" /></p>
+<p class="mb-3">Save it as a <code>.csv</code> file, named <code>data</code>. We can load this file in R and save it in the variable <code>myData</code>:</p>
+<pre class="sourcecode"><code>myData &lt;- read.csv(&quot;data.csv&quot;)</code></pre>
+<p class="mb-3">The resulting data will be a <em>Data Frame</em>:</p>
+<pre class="sourcecode"><code>&gt; myData
+     First    Last Age
+1     Juan  Simoes  33
+2     Luna    Diaz  28
+3  Rogerio   Pinto  60
+4 Mercedes Jimenez  61</code></pre>
+<p class="mb-3">It has rows and columns. You can refer to rows by numbers, and to columns by either number or name:</p>
+<pre class="sourcecode"><code>myData # See the table
+myData[&quot;First&quot;] # See all the first names
+myData[1] # See all the first names, but referring to the order
+myData[1,] # See the data of the first person
+myData$Age # See all ages, but as a vector</code></pre>
+<h2 class="text-xl mt-5 mb-5" data-number="2.1" id="working-with-data-frames"><span class="header-section-number">2.1</span> Working with data frames</h2>
+<p class="mb-3">With this variable available, we can analyze the data. For example, what is the highest age in our data set?</p>
+<pre class="sourcecode"><code>&gt; max(myData$Age)
+[1] 61</code></pre>
+<p class="mb-3">But who’s this person? We can ask this using:</p>
+<pre class="sourcecode"><code>&gt; which.max(myData$Age) # Get the index of the maximum value
+[1] 4
+&gt; oldest &lt;- which.max(myData$Age) # Store it in a variable
+&gt; myData[oldest,] # Get the corresponding row
+     First    Last Age
+4 Mercedes Jimenez  61</code></pre>
+<p class="mb-3">And now we know the oldest person in the data set!</p>
+<h2 class="text-xl mt-5 mb-5" data-number="2.2" id="plots"><span class="header-section-number">2.2</span> Plots</h2>
+<p class="mb-3">Plotting data in R is very simple. Let’s start by preparing some data:</p>
+<pre class="sourcecode"><code># A function that squares a number.
+square &lt;- function(a) {
+  return(a*a)
+}
+
+# The X values for the graph.
+x &lt;- seq(from=-1,to=1,by=0.1)
+
+# The Y values for the graph.
+# The square of each number in x.
+y &lt;- sapply(x,square)
+
+# Create the graph.
+plot(x,y)</code></pre>
+<p class="mb-3">On the lower-right panel, you should see the graph:</p>
+<p class="mb-3"><img class="mx-auto" src="data/plot.png" /> Using the <em>Export</em> button, you can save this image as a file.</p>
+
+  <ul class="list-disc list-outside mt-1 mb-3 pl-5"></ul>
+
+
+    <div class="google-translate-container">
+      <div id="google_translate_element"></div>
+    </div>
+
+</article>
+  <script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      autoDisplay: false,
+      includedLanguages: 'en,ru,uz',
+    }, 'google_translate_element');
+  }
+  </script>
+
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</div>

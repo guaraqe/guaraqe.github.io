@@ -1,0 +1,312 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   daisyUI replacements.
+
+   The site loaded all of daisyUI (a ~180 kB stylesheet of themes and
+   components) to use eleven classes. They are reimplemented here, matching the
+   daisyUI 3 light theme so the rendered pages do not change, and nothing else
+   is carried along.
+
+   These live in the components layer so that the Tailwind utilities written
+   alongside them in the markup — `border-slate-400`, `px-4`, `text-slate-700`
+   — still win, exactly as they did before.
+   --------------------------------------------------------------------------- */
+
+@layer base {
+  /* daisyUI's base set the page surface and the default text colour from its
+     light theme. Without it, anything outside `.prose` — the header nav, most
+     visibly — falls back to the browser default black. */
+  body {
+    background-color: #ffffff;
+    color: #1e293b;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  /* Theme surfaces. Only two of daisyUI's colour slots were ever used. */
+  .bg-base-100 {
+    background-color: #ffffff;
+  }
+
+  .bg-base-200 {
+    background-color: #f2f2f2;
+  }
+
+  /* Buttons ---------------------------------------------------------------- */
+
+  .btn {
+    display: inline-flex;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 3rem;
+    min-height: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-width: 1px;
+    border-color: transparent;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1em;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration-line: none;
+    cursor: pointer;
+    user-select: none;
+    transition-property: color, background-color, border-color, opacity,
+      box-shadow, transform;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  .btn-sm {
+    height: 2rem;
+    min-height: 2rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .btn-outline {
+    background-color: transparent;
+    border-color: currentColor;
+  }
+
+  /* Links ------------------------------------------------------------------ */
+
+  .link {
+    text-decoration-line: underline;
+    cursor: pointer;
+  }
+
+  .link-hover {
+    text-decoration-line: none;
+  }
+
+  .link-hover:hover {
+    text-decoration-line: underline;
+  }
+
+  /* Navbar ----------------------------------------------------------------- */
+
+  .navbar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 4rem;
+    padding: 0.5rem;
+  }
+
+  .navbar-start {
+    display: inline-flex;
+    align-items: center;
+    width: 50%;
+    justify-content: flex-start;
+  }
+
+  .navbar-end {
+    display: inline-flex;
+    align-items: center;
+    width: 50%;
+    justify-content: flex-end;
+  }
+
+  /* Tables ----------------------------------------------------------------- */
+  /* Used only by the course pages. Note that Tailwind also ships a `.table`
+     utility (`display: table`), so the class survives purging either way — but
+     without these rules the tables render with no padding and no rules at all.
+     The utility still wins on `display`, exactly as it did under the CDN. */
+
+  .table {
+    position: relative;
+    width: 100%;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-align: left;
+  }
+
+  .table :where(th, td) {
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+  }
+
+  .table :where(thead, tbody) :where(tr:not(:last-child)),
+  .table :where(thead, tbody) :where(tr:first-child:last-child) {
+    border-bottom-width: 1px;
+    border-bottom-color: #f2f2f2;
+  }
+
+  .table :where(thead, tfoot) {
+    white-space: nowrap;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 700;
+    color: rgb(31 41 55 / 0.6);
+  }
+
+  /* Menus ------------------------------------------------------------------ */
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  /* `display: flex` is what suppresses the list markers: the course table of
+     contents carries `list-disc` on every `ul`, and daisyUI was cancelling it
+     here rather than in the markup. */
+  :where(.menu li) {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  /* Nested levels indent and get a hairline guide down the left. `nowrap` is
+     also what keeps the drawer panel as wide as its longest entry. */
+  .menu :where(li ul) {
+    position: relative;
+    margin-left: 1rem;
+    padding-left: 0.5rem;
+    white-space: nowrap;
+  }
+
+  .menu :where(li ul)::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.75rem;
+    bottom: 0.75rem;
+    width: 1px;
+    background-color: rgb(31 41 55 / 0.1);
+  }
+
+  .menu :where(li:not(.menu-title) > *:not(ul):not(details):not(.menu-title)) {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content auto max-content;
+    align-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    text-align: left;
+    user-select: none;
+    transition-property: color, background-color, border-color, opacity,
+      box-shadow, transform;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .menu-horizontal {
+    display: inline-flex;
+    flex-direction: row;
+  }
+
+  .menu-vertical {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Drawer ----------------------------------------------------------------- */
+  /* A checkbox-driven off-canvas panel, used only by the course section pages
+     for the table of contents. No JavaScript involved: the sibling combinator
+     on the hidden checkbox slides the panel in. */
+
+  .drawer {
+    position: relative;
+    display: grid;
+    grid-auto-columns: max-content auto;
+    width: 100%;
+  }
+
+  .drawer-toggle {
+    position: fixed;
+    height: 0;
+    width: 0;
+    appearance: none;
+    opacity: 0;
+  }
+
+  .drawer-content {
+    grid-column-start: 2;
+    grid-row-start: 1;
+  }
+
+  /* Hidden by `visibility` rather than by moving it offscreen, so the panel
+     keeps its layout size and slides in from its own left edge. */
+  .drawer-side {
+    pointer-events: none;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    display: grid;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-template-rows: repeat(1, minmax(0, 1fr));
+    align-items: flex-start;
+    justify-items: start;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+  }
+
+  .drawer-side::-webkit-scrollbar {
+    display: none;
+  }
+
+  .drawer-side > .drawer-overlay {
+    cursor: pointer;
+    background-color: transparent;
+    transition: background-color 0.2s cubic-bezier(0, 0, 0.58, 1);
+  }
+
+  .drawer-side > *:not(.drawer-overlay) {
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0, 0, 0.58, 1);
+  }
+
+  .drawer-toggle:checked ~ .drawer-side {
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  /* Open, the overlay and the panel stack in the same grid cell: the overlay
+     stretches to fill it and the panel sits on top at its natural width. */
+  .drawer-toggle:checked ~ .drawer-side > * {
+    grid-column-start: 1;
+    grid-row-start: 1;
+  }
+
+  .drawer-toggle:checked ~ .drawer-side > .drawer-overlay {
+    position: sticky;
+    top: 0;
+    place-self: stretch;
+    background-color: hsl(0 0% 0% / 0.4);
+  }
+
+  .drawer-toggle:checked ~ .drawer-side > *:not(.drawer-overlay) {
+    transform: translateX(0%);
+  }
+}

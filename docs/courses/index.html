@@ -13,16 +13,25 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Courses">
     <meta property="og:description" content="University courses on statistics, bioinformatics, and physics by Juan Raphael Diaz Simões">
-    <meta property="og:url" content="https://guaraqe.github.io/courses">
+    <meta property="og:url" content="https://guaraqe.com/courses">
     <meta property="og:site_name" content="Juan Raphael Diaz Simões">
-    
+    <meta property="og:image" content="https://guaraqe.com/images/og-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Juan Raphael Diaz Simões — Senior Backend / Platform Engineer">
+
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Courses">
     <meta name="twitter:description" content="University courses on statistics, bioinformatics, and physics by Juan Raphael Diaz Simões">
-    
+    <meta name="twitter:image" content="https://guaraqe.com/images/og-card.png">
+
+    <!-- Icons -->
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/images/juan.png">
+
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://guaraqe.github.io/courses">
+    <link rel="canonical" href="https://guaraqe.com/courses">
     
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -31,25 +40,27 @@
       "@type": "WebSite",
       "name": "Courses",
       "description": "University courses on statistics, bioinformatics, and physics by Juan Raphael Diaz Simões",
-      "url": "https://guaraqe.github.io/courses",
+      "url": "https://guaraqe.com/courses",
       "author": {
         "@type": "Person",
         "name": "Juan Raphael Diaz Simões",
         "jobTitle": "Software Engineer",
         "knowsAbout": ["Haskell", "Functional Programming", "Bioinformatics", "Performance Optimization"],
-        "url": "https://guaraqe.github.io"
+        "url": "https://guaraqe.com"
       },
       "inLanguage": "en"
     }
     </script>
+    <!-- Compiled locally from tailwind/input.css. First, so that the reset and
+         the utilities are what the two sheets below override — which is where
+         the CDN build it replaced injected itself. -->
+    <link rel="stylesheet" href="/css/tailwind.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/syntax.css">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
 
 
 </head>
-<body>
+<body data-page="Courses">
     <header>
         <div class="navbar no-print bg-base-100 px-4 py-3">
           <div class="navbar-start">
@@ -62,18 +73,23 @@
           <div class="navbar-end">
             <div class="hidden sm:block">
               <ul class="menu menu-horizontal text-sm space-x-1">
-                <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Writing</a></li>
-                <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Teaching</a></li>
                 <li><a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">CV</a></li>
                 <li><a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Projects</a></li>
+                <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Writing</a></li>
+                <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Teaching</a></li>
+                <li><a href="/texts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Texts</a></li>
               </ul>
             </div>
             <div class="block sm:hidden">
-              <div class="grid grid-cols-2 gap-1 text-xs">
-                <a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Writing</a>
+              <!-- Five items no longer divide into the three-column grid this used
+                   to be, which left a ragged half-empty second row. Wrapping from
+                   the right keeps the rows packed whatever the count. -->
+              <div class="flex flex-wrap justify-end gap-x-1 gap-y-0.5 text-xs">
                 <a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">CV</a>
-                <a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Teaching</a>
                 <a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Projects</a>
+                <a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Writing</a>
+                <a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Teaching</a>
+                <a href="/texts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Texts</a>
               </div>
             </div>
           </div>
@@ -85,29 +101,29 @@
 
         <p class="text-sm text-slate-600 mb-6">Course materials developed for medical and engineering students at Tashkent State Dental Institute and Turin Polytechnic University in Tashkent.</p>
 
-        <div class="space-y-4">
-            <article class="bg-white border border-slate-200 rounded-lg p-5 hover:border-slate-400 transition-colors">
-                <h3 class="text-lg font-semibold mb-2">
-                    <a href="/courses/statistics/index.html" class="text-slate-800 hover:text-slate-600">Statistics using Excel, a data type based approach</a>
-                </h3>
-                <p class="text-sm text-slate-700 mb-3">Data analysis fundamentals using Excel with categorical, ordered, and numerical data types. Covers probability distributions, hypothesis testing, correlation, and regression using real medical datasets including birth weight studies and breast cancer data.</p>
-                <p class="text-xs text-slate-600">Excel-based statistical analysis with healthcare applications</p>
+        <div class="entry-list">
+            <article class="entry">
+                <div class="entry-head">
+                    <h3 class="entry-title"><a href="/courses/statistics/index.html">Statistics using Excel, a data type based approach</a></h3>
+                    <span class="entry-date">Excel · healthcare data</span>
+                </div>
+                <p class="entry-summary">Data analysis fundamentals using Excel with categorical, ordered, and numerical data types. Covers probability distributions, hypothesis testing, correlation, and regression using real medical datasets including birth weight studies and breast cancer data.</p>
             </article>
 
-            <article class="bg-white border border-slate-200 rounded-lg p-5 hover:border-slate-400 transition-colors">
-                <h3 class="text-lg font-semibold mb-2">
-                    <a href="/courses/bioinformatics/index.html" class="text-slate-800 hover:text-slate-600">Introduction to Bioinformatics</a>
-                </h3>
-                <p class="text-sm text-slate-700 mb-3">Computational analysis of biological data using R programming. DNA sequence analysis, GC content calculation, codon frequency analysis, gene finding algorithms, and protein sequence comparison through hands-on FASTA file processing.</p>
-                <p class="text-xs text-slate-600">R programming with genomic data analysis</p>
+            <article class="entry">
+                <div class="entry-head">
+                    <h3 class="entry-title"><a href="/courses/bioinformatics/index.html">Introduction to Bioinformatics</a></h3>
+                    <span class="entry-date">R · genomic data</span>
+                </div>
+                <p class="entry-summary">Computational analysis of biological data using R programming. DNA sequence analysis, GC content calculation, codon frequency analysis, gene finding algorithms, and protein sequence comparison through hands-on FASTA file processing.</p>
             </article>
 
-            <article class="bg-white border border-slate-200 rounded-lg p-5 hover:border-slate-400 transition-colors">
-                <h3 class="text-lg font-semibold mb-2">
-                    <a href="/courses/physics/index.html" class="text-slate-800 hover:text-slate-600">Medical and biological physics</a>
-                </h3>
-                <p class="text-sm text-slate-700 mb-3">Physics principles applied to biological systems and medical technology. Covers biomechanics, biorheology, thermodynamics, sound/ultrasound, electrodynamics (ECG), and optics (lasers, X-rays). Laboratory work with medical equipment and measurements.</p>
-                <p class="text-xs text-slate-600">Laboratory experiments with medical devices and measurements</p>
+            <article class="entry">
+                <div class="entry-head">
+                    <h3 class="entry-title"><a href="/courses/physics/index.html">Medical and biological physics</a></h3>
+                    <span class="entry-date">Lab · medical devices</span>
+                </div>
+                <p class="entry-summary">Physics principles applied to biological systems and medical technology. Covers biomechanics, biorheology, thermodynamics, sound/ultrasound, electrodynamics (ECG), and optics (lasers, X-rays). Laboratory work with medical equipment and measurements.</p>
             </article>
         </div>
 

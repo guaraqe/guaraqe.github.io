@@ -6,12 +6,18 @@
     </div>
 
     <div class="flex flex-wrap gap-3 justify-center items-center mt-4">
-        <button onclick="revealEmail()" id="email-btn" class="btn btn-sm btn-outline border-slate-400 text-slate-700 hover:bg-slate-100 hover:text-slate-700 hover:border-slate-400 flex items-center gap-1">
+        <a href="/juan-simoes-cv.pdf" class="btn btn-sm border-slate-700 bg-slate-700 text-white hover:bg-slate-800 hover:border-slate-800 flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+            Download PDF
+        </a>
+        <a href="mailto:juanrapha@gmail.com" class="btn btn-sm btn-outline border-slate-400 text-slate-700 hover:bg-slate-100 hover:text-slate-700 hover:border-slate-400 flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
             </svg>
-            <span id="email-btn-text">Contact</span>
-        </button>
+            Email
+        </a>
         <a href="https://github.com/guaraqe" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline border-slate-400 text-slate-700 hover:bg-slate-100 hover:text-slate-700 hover:border-slate-400 flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -25,25 +31,7 @@
             LinkedIn
         </a>
     </div>
-    <div id="email-content" class="hidden mt-2 text-center">
-        <a href="#" id="email-link" class="text-slate-600 hover:text-slate-800 text-sm"></a>
-    </div>
 </div>
-
-<script>
-function revealEmail() {
-    const emailContent = document.getElementById('email-content');
-    const emailLink = document.getElementById('email-link');
-
-    const user = 'juanrapha';
-    const domain = 'gmail.com';
-    const email = user + '@' + domain;
-
-    emailLink.href = 'mailto:' + email;
-    emailLink.textContent = email;
-    emailContent.classList.remove('hidden');
-}
-</script>
 
 <p class="text-base leading-relaxed text-slate-700 mb-8">
     Backend and platform engineer with ten years of experience and a PhD in complex systems science. I value correctness and pragmatism. At Tlon I owned fleet health for thousands of stateful servers distributed across five Kubernetes clusters and their control plane, the automation that suspends and wakes them on demand, the network telemetry, and the observability that made failures diagnosable. Earlier I led a six-engineer team at a consultancy and made a production trading system up to 100× faster on a tenth of the memory.
@@ -51,8 +39,8 @@ function revealEmail() {
 
 <h2 class="text-2xl font-bold mb-4 text-slate-800">Experience</h2>
 
-<div class="space-y-4 mb-8">
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
+<div class="cv-list mb-8">
+    <article class="cv-card">
         <div class="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between mb-2">
             <div class="flex-1 sm:mr-4">
                 <h3 class="text-lg font-semibold">Tlon</h3>
@@ -74,7 +62,7 @@ function revealEmail() {
         <p class="text-sm text-slate-500 mt-3"><strong>Stack:</strong> Haskell, PostgreSQL, Kubernetes, Rust, Go, Nix, OpenTelemetry, Prometheus, Grafana, Helm, Terraform, Docker, Google Cloud, S3, GitHub Actions</p>
     </article>
 
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
+    <article class="cv-card">
         <div class="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between mb-2">
             <div class="flex-1 sm:mr-4">
                 <h3 class="text-lg font-semibold">Tweag</h3>
@@ -98,24 +86,24 @@ function revealEmail() {
 
 <h2 class="text-2xl font-bold mb-4 text-slate-800">Technical Skills</h2>
 
-<div class="grid md:grid-cols-2 gap-3 text-sm mb-8">
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4">
+<div class="grid md:grid-cols-2 gap-x-8 gap-y-4 text-sm mb-8">
+    <article class="cv-card">
         <h3 class="font-semibold mb-2 text-slate-800">Core</h3>
         <p class="text-slate-700">Haskell, Rust, Go, Python, TypeScript, JavaScript, SQL, Nix</p>
     </article>
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4">
+    <article class="cv-card">
         <h3 class="font-semibold mb-2 text-slate-800">Platform</h3>
         <p class="text-slate-700">PostgreSQL, GitHub Actions, Kubernetes, Docker, Terraform, Google Cloud, AWS, MongoDB, S3</p>
     </article>
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4">
+    <article class="cv-card">
         <h3 class="font-semibold mb-2 text-slate-800">Observability</h3>
         <p class="text-slate-700">OpenTelemetry, Prometheus, Grafana, distributed tracing, libpcap</p>
     </article>
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4">
+    <article class="cv-card">
         <h3 class="font-semibold mb-2 text-slate-800">Leadership</h3>
         <p class="text-slate-700">Team lead, line management, technical editing, teaching, hiring, mentoring</p>
     </article>
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4 md:col-span-2">
+    <article class="cv-card md:col-span-2">
         <h3 class="font-semibold mb-2 text-slate-800">Languages</h3>
         <p class="text-slate-700">Portuguese (native), English (fluent), French (fluent), Spanish (working), Russian (basic)</p>
     </article>
@@ -123,18 +111,18 @@ function revealEmail() {
 
 <h2 class="text-2xl font-bold mb-4 text-slate-800">Selected Open Source</h2>
 
-<div class="space-y-3 mb-8">
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
+<div class="cv-list mb-8">
+    <article class="cv-card">
         <h3 class="text-lg font-semibold text-slate-800"><a href="https://github.com/guaraqe/wirecat" class="hover:text-blue-700">WireCat</a></h3>
         <p class="text-xs font-medium uppercase tracking-wide text-slate-500 mb-2">Haskell · GHC Plugin · React</p>
         <p class="text-sm text-slate-700">Exploration of multi-level effect systems as a way to support AI-assisted software development. Compiler plugin, library, CLI, and viewer for writing typed wiring diagrams as executable Haskell: one definition runs as code or renders as interactive graphs, effectively separating high-level views and low-level implementation. Submitted to ZuriHac 2026.</p>
     </article>
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
+    <article class="cv-card">
         <h3 class="text-lg font-semibold text-slate-800"><a href="https://github.com/guaraqe/micro-macro" class="hover:text-blue-700">Micro-Macro</a></h3>
         <p class="text-xs font-medium uppercase tracking-wide text-slate-500 mb-2">Rust · WebAssembly</p>
-        <p class="text-sm text-slate-700">Interactive explorer for microscopic Markov processes and the dynamics they induce on macroscopic observables, with graph editors, matrix and heatmap views, and a browser build. Comes together with a tutorial about hidden Markov chains.</p>
+        <p class="text-sm text-slate-700">Interactive explorer for microscopic Markov processes and the dynamics they induce on macroscopic observables, with graph editors, matrix and heatmap views, and a browser build. Comes together with a tutorial about hidden Markov chains. <a href="/micro-macro/" class="font-medium text-blue-600 hover:text-blue-800">Try it live →</a></p>
     </article>
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
+    <article class="cv-card">
         <h3 class="text-lg font-semibold text-slate-800"><a href="https://github.com/guaraqe/lineageflow" class="hover:text-blue-700">LineageFlow</a></h3>
         <p class="text-xs font-medium uppercase tracking-wide text-slate-500 mb-2">Haskell · Nix · OpenGL</p>
         <p class="text-sm text-slate-700">Toolkit built during my PhD for reproducible spatio-temporal cell lineage analysis: many algorithms behind a single declarative interface, with 3D+time visualisation of results.</p>
@@ -143,8 +131,8 @@ function revealEmail() {
 
 <h2 class="text-2xl font-bold mb-4 text-slate-800">Education</h2>
 
-<div class="space-y-3 mb-8">
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
+<div class="cv-list mb-8">
+    <article class="cv-card">
         <div class="flex items-start justify-between gap-4 mb-2">
             <div>
                 <h3 class="text-lg font-semibold">PhD, Complex Systems Science</h3>
@@ -154,7 +142,7 @@ function revealEmail() {
         </div>
         <p class="text-sm text-slate-600">“A mathematical approach to embryonic morphogenesis based on spatio-temporal cell lineages”. Mathematical and computational framework for analysing cell movement in embryonic development, covering clustering, force estimation, and stochastic analysis. <a href="https://hal.archives-ouvertes.fr/tel-01689773" class="font-medium text-blue-600 hover:text-blue-800">Thesis (HAL)</a></p>
     </article>
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
+    <article class="cv-card">
         <div class="flex items-start justify-between gap-4">
             <div>
                 <h3 class="text-lg font-semibold">MSc, Complex Systems Science</h3>
@@ -163,7 +151,7 @@ function revealEmail() {
             <span class="text-sm font-medium text-slate-500 whitespace-nowrap">2013</span>
         </div>
     </article>
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
+    <article class="cv-card">
         <div class="flex items-start justify-between gap-4">
             <div>
                 <h3 class="text-lg font-semibold">BSc, Physics</h3>
@@ -176,15 +164,15 @@ function revealEmail() {
 
 <h2 class="text-2xl font-bold mb-4 text-slate-800">Additional Experience</h2>
 
-<div class="space-y-3 mb-8">
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
+<div class="cv-list mb-8">
+    <article class="cv-card">
         <div class="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between mb-2">
             <h3 class="text-lg font-semibold flex-1 sm:mr-4">Associate Professor, Tashkent State Dental Institute</h3>
             <span class="text-sm font-medium text-slate-500 whitespace-nowrap">2020 — 2024</span>
         </div>
         <p class="text-sm text-slate-700">Taught biophysics, statistics, and bioinformatics to more than 100 students per semester while working full-time in engineering. Built three courses from scratch — lectures, practical exercises, and browser-based examinations — and published all of it online. Concurrently lectured physics at Turin Polytechnic University in Tashkent (2020 — 2021).</p>
     </article>
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
+    <article class="cv-card">
         <div class="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between mb-2">
             <h3 class="text-lg font-semibold flex-1 sm:mr-4">Research Engineer, École Polytechnique and CNRS</h3>
             <span class="text-sm font-medium text-slate-500 whitespace-nowrap">2017 — 2018</span>
@@ -195,20 +183,20 @@ function revealEmail() {
 
 <h2 class="text-2xl font-bold mb-4 text-slate-800">Selected Publications &amp; Writing</h2>
 
-<div class="space-y-3">
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
+<div class="cv-list">
+    <article class="cv-card">
         <h3 class="font-semibold text-slate-800"><a href="https://www.tweag.io/blog/2020-01-30-haskell-profiling/" class="hover:text-blue-700">Locating performance bottlenecks in large Haskell codebases</a></h3>
         <p class="text-sm text-slate-600">Tweag · 2020</p>
     </article>
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
+    <article class="cv-card">
         <h3 class="font-semibold text-slate-800"><a href="https://www.tweag.io/blog/2020-03-05-peirce/" class="hover:text-blue-700">Code is engineering, types are science</a></h3>
         <p class="text-sm text-slate-600">Tweag · 2020</p>
     </article>
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
+    <article class="cv-card">
         <h3 class="font-semibold text-slate-800"><a href="https://doi.org/10.1088/1478-3975/aaf92d" class="hover:text-blue-700">Brownian-like deviation of neighboring cells in zebrafish embryogenesis</a></h3>
         <p class="text-sm text-slate-600">Physical Biology · 2019</p>
     </article>
-    <article class="cv-card bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
+    <article class="cv-card">
         <h3 class="font-semibold text-slate-800"><a href="https://doi.org/10.5220/0006259407460752" class="hover:text-blue-700">Cell trajectory clustering for identifying morphogenetic fields</a></h3>
         <p class="text-sm text-slate-600">ICPRAM · 2017</p>
     </article>

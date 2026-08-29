@@ -15,14 +15,13 @@ executable builder
   main-is:          Main.hs
   other-modules:
     Site.Blog
-    Site.Book
+    Site.Config
     Site.Html
     Site.Json
     Site.Layout
     Site.Pandoc
-    Site.Note
+    Site.Raw
     Site.Sitemap
-    Site.Translate
 
   build-depends:
     , aeson
@@ -31,9 +30,6 @@ executable builder
     , blaze-markup
     , bytestring
     , containers
-    , hashable
-    , http-client
-    , http-client-tls
     , lens
     , lens-aeson
     , directory

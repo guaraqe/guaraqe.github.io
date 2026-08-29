@@ -13,16 +13,25 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Home">
     <meta property="og:description" content="Juan Raphael Diaz Simões - Software engineer specializing in Haskell, functional programming, bioinformatics, and performance optimization">
-    <meta property="og:url" content="https://guaraqe.github.io/">
+    <meta property="og:url" content="https://guaraqe.com/">
     <meta property="og:site_name" content="Juan Raphael Diaz Simões">
-    
+    <meta property="og:image" content="https://guaraqe.com/images/og-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Juan Raphael Diaz Simões — Senior Backend / Platform Engineer">
+
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Home">
     <meta name="twitter:description" content="Juan Raphael Diaz Simões - Software engineer specializing in Haskell, functional programming, bioinformatics, and performance optimization">
-    
+    <meta name="twitter:image" content="https://guaraqe.com/images/og-card.png">
+
+    <!-- Icons -->
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/images/juan.png">
+
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://guaraqe.github.io/">
+    <link rel="canonical" href="https://guaraqe.com/">
     
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -31,21 +40,23 @@
       "@type": "WebSite",
       "name": "Home",
       "description": "Juan Raphael Diaz Simões - Software engineer specializing in Haskell, functional programming, bioinformatics, and performance optimization",
-      "url": "https://guaraqe.github.io/",
+      "url": "https://guaraqe.com/",
       "author": {
         "@type": "Person",
         "name": "Juan Raphael Diaz Simões",
         "jobTitle": "Software Engineer",
         "knowsAbout": ["Haskell", "Functional Programming", "Bioinformatics", "Performance Optimization"],
-        "url": "https://guaraqe.github.io"
+        "url": "https://guaraqe.com"
       },
       "inLanguage": "en"
     }
     </script>
+    <!-- Compiled locally from tailwind/input.css. First, so that the reset and
+         the utilities are what the two sheets below override — which is where
+         the CDN build it replaced injected itself. -->
+    <link rel="stylesheet" href="/css/tailwind.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/syntax.css">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
 
@@ -69,7 +80,7 @@
     </script>
 
 </head>
-<body>
+<body data-page="Home">
     <header>
         <div class="navbar no-print bg-base-100 px-4 py-3">
           <div class="navbar-start">
@@ -82,18 +93,23 @@
           <div class="navbar-end">
             <div class="hidden sm:block">
               <ul class="menu menu-horizontal text-sm space-x-1">
-                <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Writing</a></li>
-                <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Teaching</a></li>
                 <li><a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">CV</a></li>
                 <li><a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Projects</a></li>
+                <li><a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Writing</a></li>
+                <li><a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Teaching</a></li>
+                <li><a href="/texts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors">Texts</a></li>
               </ul>
             </div>
             <div class="block sm:hidden">
-              <div class="grid grid-cols-2 gap-1 text-xs">
-                <a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Writing</a>
+              <!-- Five items no longer divide into the three-column grid this used
+                   to be, which left a ragged half-empty second row. Wrapping from
+                   the right keeps the rows packed whatever the count. -->
+              <div class="flex flex-wrap justify-end gap-x-1 gap-y-0.5 text-xs">
                 <a href="/cv.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">CV</a>
-                <a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Teaching</a>
                 <a href="/projects.html" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Projects</a>
+                <a href="/posts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Writing</a>
+                <a href="/courses" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Teaching</a>
+                <a href="/texts" class="hover:bg-gray-100 rounded-md px-2 py-1 transition-colors text-center">Texts</a>
               </div>
             </div>
           </div>
@@ -107,23 +123,26 @@
         <div class="flex items-center gap-4 mb-6">
     <img src="/images/juan.png" alt="Juan Raphael Diaz Simões" class="w-20 h-20 rounded-full object-cover flex-shrink-0">
     <div>
-        <h2 class="text-2xl mb-1"><strong>Juan Raphael Diaz Simões</strong></h2>
-        <h3 class="text-xl text-gray-600">Senior Backend / Platform Engineer</h3>
+        <h1 class="page-title text-2xl font-bold">Juan Raphael Diaz Simões</h1>
+        <p class="text-xl text-gray-600 mb-0">Senior Backend / Platform Engineer</p>
     </div>
 </div>
 
-<p class="mb-4">I am a backend and platform engineer with ten years of experience and a PhD in complex systems science. I build and repair production systems where reliability, performance, and correctness matter, from distributed infrastructure to developer tooling and data-intensive applications.</p>
+<p class="mb-4">I am a backend and platform engineer with ten years of experience and a PhD in complex systems science. I build and repair production systems where reliability, performance, and correctness matter: distributed infrastructure and Kubernetes, observability and instrumentation, developer tooling, and data-intensive applications.</p>
 
-<p class="text-sm text-slate-600 text-center">Open to senior engineering roles and consulting engagements in platform architecture, reliability, performance, and Haskell. Tell me what you are building.</p>
+<div class="availability border-l-4 border-slate-400 bg-slate-50 rounded-r-lg px-4 py-3 mb-4">
+    <p class="text-base font-semibold text-slate-800">Available for senior engineering roles and consulting in platform architecture, reliability, performance, and observability.</p>
+    <p class="text-sm text-slate-600">Working remotely across EU and US teams for a decade. Tell me what you are building.</p>
+</div>
 
 <div class="mt-1">
     <div class="flex flex-wrap gap-3 justify-center items-center">
-        <button onclick="revealEmail()" id="email-btn" class="btn btn-sm btn-outline border-slate-400 text-slate-700 hover:bg-slate-100 hover:text-slate-700 hover:border-slate-400 flex items-center gap-1">
+        <a href="mailto:juanrapha@gmail.com" class="btn btn-sm btn-outline border-slate-400 text-slate-700 hover:bg-slate-100 hover:text-slate-700 hover:border-slate-400 flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
             </svg>
-            <span id="email-btn-text">Contact</span>
-        </button>
+            Email
+        </a>
         <a href="https://github.com/guaraqe" target="_blank" class="btn btn-sm btn-outline border-slate-400 text-slate-700 hover:bg-slate-100 hover:text-slate-700 hover:border-slate-400 flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -136,9 +155,12 @@
             </svg>
             LinkedIn
         </a>
-    </div>
-    <div id="email-content" class="hidden mt-2 text-center">
-        <a href="#" id="email-link" class="text-slate-600 hover:text-slate-800 text-sm"></a>
+        <a href="/juan-simoes-cv.pdf" class="btn btn-sm btn-outline border-slate-400 text-slate-700 hover:bg-slate-100 hover:text-slate-700 hover:border-slate-400 flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+            CV (PDF)
+        </a>
     </div>
 </div>
 
@@ -152,102 +174,66 @@
 
 <p class="mb-3">PhD in Complex Systems Science from Paris-Saclay University. Developed <a class="link link-hover text-slate-600" href="https://github.com/guaraqe/lineageflow">LineageFlow</a>, software for computational analysis of embryonic development. Published in Physical Biology and conference proceedings.</p>
 
-<h2 class="text-xl mt-8 mb-2">Notes</h2>
-<div class="bg-white border border-slate-200 rounded-lg p-4 mb-6 hover:border-slate-400 transition-colors">
-    <div class="flex items-start justify-between">
-        <div>
-            <h3 class="text-base font-semibold text-slate-800 mb-1">
-                <a class="link link-hover text-slate-800" href="/notes/generalized-entropies/">Generalized effective numbers and entropies</a>
-            </h3>
-            <p class="text-sm text-slate-600">Working notes on generalized effective numbers, Hill numbers, and related entropies.</p>
-        </div>
-    </div>
-</div>
+<h2 class="text-xl mt-8 mb-4">Selected Writing</h2>
 
-<h2 class="text-xl mt-8 mb-2">Recent Writing</h2>
-
-<div class="space-y-3">
-    <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
-        <div class="flex items-start justify-between mb-1">
-            <h3 class="text-base font-semibold flex-1 mr-4">
-                <a href="posts/2026-05-24-why-cartesian-categories.html" class="text-slate-800 hover:text-slate-600">WireCat: visual programming with cartesian categories
-</a>
-            </h3>
-            <span class="text-sm text-slate-500 whitespace-nowrap">May 24, 2026</span>
+<div class="entry-list">
+    <article class="entry">
+        <div class="entry-head">
+            <h3 class="entry-title"><a href="posts/2026-05-24-why-cartesian-categories.html">WireCat: visual programming with cartesian categories
+</a></h3>
+            <span class="entry-date">May 24, 2026</span>
         </div>
-        <p class="text-sm text-slate-600">Introducing WireCat, a GHC plugin for writing typed categorical wiring
+        <p class="entry-summary">Introducing WireCat, a GHC plugin for writing typed categorical wiring
 diagrams with proc notation
 </p>
+        <div class="entry-tags"><span class="entry-tag">Compilers</span><span class="entry-tag">Haskell</span><span class="entry-tag">Category Theory</span></div>
     </article>
-    <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
-        <div class="flex items-start justify-between mb-1">
-            <h3 class="text-base font-semibold flex-1 mr-4">
-                <a href="posts/2023-01-02-cpu-usage.html" class="text-slate-800 hover:text-slate-600">Summarizing multicore usage using entropy
-</a>
-            </h3>
-            <span class="text-sm text-slate-500 whitespace-nowrap">January  2, 2023</span>
+    <article class="entry">
+        <div class="entry-head">
+            <h3 class="entry-title"><a href="/notes/generalized-entropies/">Generalized effective numbers and entropies</a></h3>
+            <span class="entry-date">December 16, 2025</span>
         </div>
-        <p class="text-sm text-slate-600">Python script using entropy and effective numbers to display multicore
+        <p class="entry-summary">Working notes on generalized effective numbers, Hill numbers, and related entropies.</p>
+        <div class="entry-tags"><span class="entry-tag">Information Theory</span><span class="entry-tag">Mathematics</span></div>
+    </article>
+    <article class="entry">
+        <div class="entry-head">
+            <h3 class="entry-title"><a href="posts/2023-01-02-cpu-usage.html">Summarizing multicore usage using entropy
+</a></h3>
+            <span class="entry-date">January  2, 2023</span>
+        </div>
+        <p class="entry-summary">Python script using entropy and effective numbers to display multicore
 CPU usage in status bars
 </p>
+        <div class="entry-tags"><span class="entry-tag">Observability</span><span class="entry-tag">Information Theory</span></div>
     </article>
-    <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
-        <div class="flex items-start justify-between mb-1">
-            <h3 class="text-base font-semibold flex-1 mr-4">
-                <a href="posts/2021-04-15-arrows-through-a-different-lens.html" class="text-slate-800 hover:text-slate-600">Arrows, through a different lens
-</a>
-            </h3>
-            <span class="text-sm text-slate-500 whitespace-nowrap">April 15, 2021</span>
+    <article class="entry">
+        <div class="entry-head">
+            <h3 class="entry-title"><a href="posts/2021-04-15-arrows-through-a-different-lens.html">Arrows, through a different lens
+</a></h3>
+            <span class="entry-date">April 15, 2021</span>
         </div>
-        <p class="text-sm text-slate-600">Using profunctor optics with Arrow-based workflows for better
+        <p class="entry-summary">Using profunctor optics with Arrow-based workflows for better
 composability
 </p>
+        <div class="entry-tags"><span class="entry-tag">Haskell</span><span class="entry-tag">Type Systems</span><span class="entry-tag">Data Pipelines</span></div>
     </article>
-    <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
-        <div class="flex items-start justify-between mb-1">
-            <h3 class="text-base font-semibold flex-1 mr-4">
-                <a href="posts/2020-03-05-peirce.html" class="text-slate-800 hover:text-slate-600">Code is engineering, types are science
-</a>
-            </h3>
-            <span class="text-sm text-slate-500 whitespace-nowrap">March  5, 2020</span>
+    <article class="entry">
+        <div class="entry-head">
+            <h3 class="entry-title"><a href="posts/2020-03-05-peirce.html">Code is engineering, types are science
+</a></h3>
+            <span class="entry-date">March  5, 2020</span>
         </div>
-        <p class="text-sm text-slate-600">Exploring deduction, induction, and abduction in software development
+        <p class="entry-summary">Exploring deduction, induction, and abduction in software development
 through Peirce’s theory
 </p>
-    </article>
-    <article class="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-400 transition-colors">
-        <div class="flex items-start justify-between mb-1">
-            <h3 class="text-base font-semibold flex-1 mr-4">
-                <a href="posts/2020-01-31-performance-bottlenecks.html" class="text-slate-800 hover:text-slate-600">Locating performance bottlenecks in large Haskell codebases
-</a>
-            </h3>
-            <span class="text-sm text-slate-500 whitespace-nowrap">January 31, 2020</span>
-        </div>
-        <p class="text-sm text-slate-600">Manual cost center profiling technique achieving 100x speedups in
-production systems
-</p>
+        <div class="entry-tags"><span class="entry-tag">Software Engineering</span><span class="entry-tag">Philosophy</span></div>
     </article>
 </div>
 
 <p class="text-sm text-slate-600 mt-4 text-right">
     <a href="/posts" class="link link-hover text-slate-600">More writing</a>
 </p>
-
-<script>
-function revealEmail() {
-    const emailContent = document.getElementById('email-content');
-    const emailLink = document.getElementById('email-link');
-
-    const user = 'juanrapha';
-    const domain = 'gmail.com';
-    const email = user + '@' + domain;
-
-    emailLink.href = 'mailto:' + email;
-    emailLink.textContent = email;
-
-    emailContent.classList.remove('hidden');
-}
-</script>
 
     </article>
 </div>
