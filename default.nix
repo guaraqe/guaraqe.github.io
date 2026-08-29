@@ -32,8 +32,9 @@ let
             localHaskellPackages.ghcid
             localHaskellPackages.ormolu
             localHaskellPackages.cabal-fmt
-            # Latex
-            texlive.combined.scheme-medium
+            # Documents
+            typst
+            poppler-utils
             imagemagick
             # Translate
             translate-shell

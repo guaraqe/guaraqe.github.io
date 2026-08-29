@@ -157,7 +157,7 @@ buildCV = do
             latex = True,
             page = "CV",
             pageLink = "/cv.html",
-            description = "CV of Juan Raphael Diaz Simões - Software engineer with expertise in functional programming, bioinformatics, and distributed systems",
+            description = "CV of Juan Raphael Diaz Simões - Senior backend and platform engineer specializing in Kubernetes, distributed systems, Haskell, Rust, Go, and observability",
             currentUrl = "/cv.html",
             isPost = False
           }
