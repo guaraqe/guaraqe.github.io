@@ -168,7 +168,7 @@
                 <p>Remote · San Francisco, USA</p>
             </div>
         </div>
-        <p class="text-sm text-slate-700 mb-3">Core engineer on a hosting platform for Urbit pods running on multiple clusters. Owned fleet health and the control backend architecture, including automatizing updates, fleet size and memory usage optimization. Inherited constant breakage and little visibility; left behind a fleet that largely ran unattended.</p>
+        <p class="text-sm text-slate-700 mb-3">Core engineer on a hosting platform for Urbit pods running on multiple clusters. Owned fleet health and the control backend architecture, including automating updates, fleet size and memory usage optimization. Inherited constant breakage and little visibility; left behind a fleet that largely ran unattended.</p>
         <ul class="list-disc ml-5 text-sm text-slate-600 space-y-2">
             <li><strong>Set up the infrastructure that cut fleet cost tenfold.</strong> Built the automation that suspends idle instances and wakes them on user activity or meaningful network traffic, holding around 2,000 of 10,000 servers live at any moment. A pool of pre-booted instances kept signups fast despite boot times ranging from ten seconds to several minutes.</li>
             <li><strong>Replaced manual fleet maintenance with scheduled, self-retrying jobs.</strong> Designed mass maintenance operations — ship updates, storage optimization, backup and recovery — as API routes driven by cronjobs, with retries and concurrency limits handled by a custom Haskell job runner. Fleet-wide updates went from a recurring source of incidents to a routine that ran mostly without intervention.</li>
