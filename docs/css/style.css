@@ -23,9 +23,16 @@
 }
 
 .prose h1 {
-  margin-bottom: 2rem;
   font-weight: 700;
   color: var(--color-heading);
+}
+
+/* Fallback spacing for a heading that sets none of its own. Wrapped in :where()
+   so it carries no specificity: as a plain `.prose h1` rule it outranked every
+   Tailwind mb-* utility and forced 2rem under every heading on the site,
+   including the ones written to sit close to their subtitle. */
+:where(.prose) h1 {
+  margin-bottom: 2rem;
 }
 
 .prose h2 {

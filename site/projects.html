@@ -27,7 +27,7 @@
 }
 </style>
 
-<h1 class="text-3xl font-bold mb-6 text-slate-900">Open Source Projects</h1>
+<h1 class="text-3xl font-bold mb-2 text-slate-900">Open Source Projects</h1>
 
 <p class="text-slate-700 mb-8">Software projects spanning compilers and type systems, scientific computing, distributed systems, and functional programming.</p>
 
@@ -37,25 +37,6 @@
     <h3 class="text-xl font-bold mb-1 text-slate-900">WireCat</h3>
     <p class="text-xs font-medium uppercase tracking-wide text-slate-500 mb-3">Haskell · GHC Plugin · React</p>
     <p class="text-slate-700 mb-4">Exploration of multi-level effect systems as a way to support AI-assisted software development. A compiler plugin, library, CLI, and viewer for writing typed wiring diagrams as executable Haskell: one definition either runs as code or renders as an interactive graph, separating high-level views from low-level implementation. Submitted to ZuriHac 2026.</p>
-
-    <div class="grid md:grid-cols-2 gap-6 mb-2">
-        <div>
-            <h4 class="font-semibold text-slate-800 mb-2">Why it exists:</h4>
-            <ul class="text-sm text-slate-700 space-y-1">
-                <li>• Keeps architecture diagrams honest — they are the code</li>
-                <li>• Gives agents a typed, high-level view to work against</li>
-                <li>• Cartesian categories as the semantic foundation</li>
-            </ul>
-        </div>
-        <div>
-            <h4 class="font-semibold text-slate-800 mb-2">Technical implementation:</h4>
-            <ul class="text-sm text-slate-700 space-y-1">
-                <li>• GHC source plugin desugaring <code>proc</code> notation</li>
-                <li>• Typed diagram library with a CLI renderer</li>
-                <li>• React viewer for interactive graph exploration</li>
-            </ul>
-        </div>
-    </div>
 
     <div class="flex flex-wrap gap-2 mt-3">
         <span class="tag">Haskell</span>
@@ -75,25 +56,6 @@
     <p class="text-xs font-medium uppercase tracking-wide text-slate-500 mb-3">Rust · WebAssembly</p>
     <p class="text-slate-700 mb-4">Interactive explorer for microscopic Markov processes and the dynamics they induce on macroscopic observables. Build a process in the graph editor and watch how coarse-graining changes what the system looks like, with matrix and heatmap views throughout. Runs entirely in the browser, and comes with a tutorial on hidden Markov chains.</p>
 
-    <div class="grid md:grid-cols-2 gap-6 mb-2">
-        <div>
-            <h4 class="font-semibold text-slate-800 mb-2">What it shows:</h4>
-            <ul class="text-sm text-slate-700 space-y-1">
-                <li>• When a coarse-grained view stays Markovian, and when it stops</li>
-                <li>• Stationary distributions and entropy rates</li>
-                <li>• Hidden Markov chains, built up from scratch</li>
-            </ul>
-        </div>
-        <div>
-            <h4 class="font-semibold text-slate-800 mb-2">Technical implementation:</h4>
-            <ul class="text-sm text-slate-700 space-y-1">
-                <li>• Rust simulation core compiled to WebAssembly</li>
-                <li>• Interactive graph editor with live matrix views</li>
-                <li>• No server: the whole model runs client-side</li>
-            </ul>
-        </div>
-    </div>
-
     <div class="flex flex-wrap gap-2 mt-3">
         <span class="tag">Rust</span>
         <span class="tag">WebAssembly</span>
@@ -110,27 +72,8 @@
 
 <div class="project">
     <h3 class="text-xl font-bold mb-3 text-slate-900">LineageFlow</h3>
-    <p class="text-slate-700 mb-4">Toolkit for quantitative cell lineage analysis in developing organisms. Developed as part of PhD research on embryonic morphogenesis.</p>
-
-    <div class="grid md:grid-cols-2 gap-6 mb-4">
-        <div>
-            <h4 class="font-semibold text-slate-800 mb-2">Research context:</h4>
-            <ul class="text-sm text-slate-700 space-y-1">
-                <li>• Automated morphogenetic field identification</li>
-                <li>• Part of PhD thesis research</li>
-                <li>• Foundation for Physical Biology publication</li>
-            </ul>
-        </div>
-        <div>
-            <h4 class="font-semibold text-slate-800 mb-2">Technical implementation:</h4>
-            <ul class="text-sm text-slate-700 space-y-1">
-                <li>• Modular Haskell architecture with 10+ algorithms</li>
-                <li>• Declarative interface for reproducible workflows</li>
-                <li>• Real-time 3D visualization with OpenGL</li>
-                <li>• Nix-based deployment for reproducibility</li>
-            </ul>
-        </div>
-    </div>
+    <p class="text-slate-700 mb-4">
+    Toolkit built during my PhD for reproducible spatio-temporal cell lineage analysis: many algorithms behind a single declarative interface, with 3D+time visualisation of results.</p>
 
     <div class="flex flex-wrap gap-2 mt-3">
         <span class="tag">Haskell</span>
@@ -146,28 +89,7 @@
 
 <div class="project">
     <h3 class="text-xl font-bold mb-3 text-slate-900">CSDC DAO</h3>
-    <p class="text-slate-700 mb-4">Full-stack platform for decentralized research collaboration. Experiment in academic self-organization with democratic governance.</p>
-
-    <div class="grid md:grid-cols-2 gap-6 mb-4">
-        <div>
-            <h4 class="font-semibold text-slate-800 mb-2">Platform features:</h4>
-            <ul class="text-sm text-slate-700 space-y-1">
-                <li>• Dual voting systems (Simple Majority, Majority Consensus)</li>
-                <li>• User profiles, forums, file sharing</li>
-                <li>• Hierarchical organizational units</li>
-                <li>• IPFS integration for distributed storage</li>
-            </ul>
-        </div>
-        <div>
-            <h4 class="font-semibold text-slate-800 mb-2">Technical stack:</h4>
-            <ul class="text-sm text-slate-700 space-y-1">
-                <li>• Haskell/Servant backend, Elm frontend</li>
-                <li>• PostgreSQL with JWT authentication</li>
-                <li>• Docker Compose and Nix deployment</li>
-                <li>• REST API with real-time updates</li>
-            </ul>
-        </div>
-    </div>
+    <p class="text-slate-700 mb-4">Full-stack platform for decentralized research collaboration. Experiment in academic self-organization with democratic governance: hierarchical organizational units including forums and elections.</p>
 
     <div class="flex flex-wrap gap-2 mt-3">
         <span class="tag">Haskell</span>

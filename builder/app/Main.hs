@@ -8,7 +8,7 @@
 module Main where
 
 import Control.Monad
-import Data.Aeson (object, toJSON)
+import Data.Aeson (Value (Null), object, toJSON)
 import Data.List (sortOn)
 import Data.Ord (Down (..))
 import Data.Text qualified as Text
@@ -177,7 +177,7 @@ buildIndex posts texts = do
 
   -- Apply the default template for proper layout
   defaultTemplate <- compileTemplate' "site/templates/default.html"
-  let wrappedData = object [("title", toJSON ("" :: String)), ("content", toJSON (Text.unpack processedContent))]
+  let wrappedData = object [("title", Null), ("content", toJSON (Text.unpack processedContent))]
       finalContent = substitute defaultTemplate wrappedData
 
   let layout =
@@ -202,9 +202,11 @@ buildCV = do
 
   -- Apply the default template for proper layout
   defaultTemplate <- compileTemplate' "site/templates/default.html"
-  -- The page supplies its own <h1>; an empty title suppresses the one in the
-  -- default template so the page does not open with two headings.
-  let wrappedData = object [("title", toJSON ("" :: String)), ("content", toJSON (Text.unpack htmlContent))]
+  -- The page supplies its own <h1>; a null title suppresses the one in the
+  -- default template so the page does not open with two headings. It has to be
+  -- null rather than "": Mustache treats an empty string as a present value, so
+  -- the {{#title}} section still fired and left an empty <h1> taking up space.
+  let wrappedData = object [("title", Null), ("content", toJSON (Text.unpack htmlContent))]
       finalContent = substitute defaultTemplate wrappedData
 
   let layout =
@@ -229,7 +231,7 @@ buildProjects = do
   let templateData = object []
       processedContent = substitute htmlTemplate templateData
   defaultTemplate <- compileTemplate' "site/templates/default.html"
-  let wrappedData = object [("title", toJSON ("" :: String)), ("content", toJSON (Text.unpack processedContent))]
+  let wrappedData = object [("title", Null), ("content", toJSON (Text.unpack processedContent))]
       finalContent = substitute defaultTemplate wrappedData
 
   let layout =
