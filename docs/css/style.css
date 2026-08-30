@@ -48,7 +48,7 @@
 
 /* Section headings need to survive a skim: give them weight, contrast, and a
    rule that separates them from the block above. */
-.prose h2:not(.no-rule) {
+.prose h2 {
   padding-bottom: 0.35rem;
   border-bottom: 1px solid #e2e8f0;
 }
@@ -204,17 +204,6 @@ article.prose {
 
 .prose a:not(.btn):hover {
   color: var(--color-primary);
-}
-
-img.inline-math {
-  display: inline-block;
-}
-
-img.display-math {
-  margin-top: 0.75em;
-  margin-bottom: 0.75em;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 div.book-navigation {
