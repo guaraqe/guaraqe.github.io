@@ -12,8 +12,8 @@
 --
 -- A file here is templated when it opens with a @---@ front matter block, and
 -- copied byte for byte otherwise. That second path carries the images,
--- spreadsheets and handouts, and also the exam bundles and the micro-macro
--- build, which are self-contained pages that never used the site layout.
+-- spreadsheets and handouts, and also the exam bundles, which are
+-- self-contained pages that never used the site layout.
 module Site.Raw
   ( build,
   )

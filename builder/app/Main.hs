@@ -98,6 +98,24 @@ copyCV = do
   let path = "/home/juan/Obsidian/Knowledge/CV/pdf/juan-simoes-cv.pdf"
   copyOptionalFile path (outputFolder </> "juan-simoes-cv.pdf")
 
+-- | Apps built in their own repositories, which are expected to be checked
+-- out next to this one and already built for the path they are published
+-- under. The build output is copied as is; the build fails when it is missing.
+copyApps :: Action ()
+copyApps = do
+  copyApp "../micro-macro/crates/micro-macro/web/dist-release" "micro-macro"
+  copyApp "../nixos-module-navigator/viewer/dist" "nixos-module-navigator"
+
+copyApp :: FilePath -> FilePath -> Action ()
+copyApp input output = do
+  exists <- liftIO $ Dir.doesDirectoryExist input
+  filepaths <- if exists then getDirectoryFiles input ["//*"] else pure []
+  when (null filepaths) $
+    fail $
+      "Missing build output: " <> input
+  void $ forP filepaths $ \filepath ->
+    copyFileChanged (input </> filepath) (outputFolder </> output </> filepath)
+
 copyOptionalFile :: FilePath -> FilePath -> Action ()
 copyOptionalFile input output = do
   exists <- liftIO $ Dir.doesFileExist input
@@ -263,6 +281,7 @@ buildRules = do
   copyStaticFiles
   copyPadreLevedo
   copyCV
+  copyApps
 
 main :: IO ()
 main = do
